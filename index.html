@@ -228,6 +228,14 @@
         <textarea id="ksfp-admin-records-text" rows="4" placeholder="One school per line, e.g.&#10;Maize: 8-0&#10;Wichita-Northwest: 7-0" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
         <button class="ksfp-btn primary" id="ksfp-admin-save-records" style="margin-top:6px;">Save records</button>
         <p class="ksfp-admin-status" id="ksfp-admin-records-status"></p>
+
+        <label for="ksfp-admin-clear-class" style="margin-top:12px;">Clear all ballots for</label>
+        <div style="display:flex; gap:8px; margin-bottom:6px;">
+          <select id="ksfp-admin-clear-week"></select>
+          <select id="ksfp-admin-clear-class"></select>
+        </div>
+        <button class="ksfp-btn ghost" id="ksfp-admin-clear-ballots" style="border-color:var(--red); color:#E88B84;">Clear all ballots</button>
+        <p class="ksfp-admin-status" id="ksfp-admin-clear-status"></p>
       </div>
 
     </div>
@@ -270,10 +278,10 @@ const auth = getAuth(app);
     "6-Man": ["Ingalls","Kiowa-South Barber","Deerfield","Rexford-Golden Plains","Peabody-Burns","Satanta","Ashland","Lost Springs-Centre","Grainfield/Wheatland-Grinell","Tescott","Rozel-Pawnee Heights","Bucklin","Buffalo-Altoona Midway","McPherson-Elyria Christian","Bird City-Cheylin","Moscow","LeRoy-Southern Coffey County","Ransom-Western Plains","Melvern-Marais Des Cygnes Valley","Almena-Northern Valley","Chase","Logan","Chetopa","Palco","Otis-Bison","Weskan","Brewster","Winona Triplains"]
   };
   const CLASS_ORDER = ["6A","5A","4A","3A","2A","1A","8-Man I","8-Man II","6-Man"];
-  const RANK_COUNT = 10;
   const DEFAULT_WEEK = "Preseason";
+  function rankCountFor(cls) { return cls === "6-Man" ? 5 : 10; }
 
-  let state = { cls: "6A", email: "", completed: {}, view: "vote", week: DEFAULT_WEEK, publicWeek: DEFAULT_WEEK, publicCls: "6A" };
+  let state = { cls: "6A", email: "", completed: {}, view: "vote", week: DEFAULT_WEEK, publicWeek: DEFAULT_WEEK, publicCls: "ALL" };
 
   const root = document.getElementById("ksfp-root");
   const headerSubEl = document.getElementById("ksfp-header-sub");
@@ -319,6 +327,10 @@ const auth = getAuth(app);
   const adminRecordsTextEl = document.getElementById("ksfp-admin-records-text");
   const adminSaveRecordsBtn = document.getElementById("ksfp-admin-save-records");
   const adminRecordsStatusEl = document.getElementById("ksfp-admin-records-status");
+  const adminClearWeekEl = document.getElementById("ksfp-admin-clear-week");
+  const adminClearClassEl = document.getElementById("ksfp-admin-clear-class");
+  const adminClearBtn = document.getElementById("ksfp-admin-clear-ballots");
+  const adminClearStatusEl = document.getElementById("ksfp-admin-clear-status");
   const publicRecordsLinkEl = document.getElementById("ksfp-public-records-link");
 
   const HEADER_TEXT = {
@@ -477,10 +489,11 @@ const auth = getAuth(app);
 
   function renderBallotForm(prefill) {
     const schools = schoolsFor(state.cls);
+    const rankCount = rankCountFor(state.cls);
     titleEl.textContent = "Cast your ballot — " + state.cls;
-    subEl.textContent = "Voting for: " + state.week + ". Rank your top " + RANK_COUNT + " out of " + schools.length + " member schools.";
+    subEl.textContent = "Voting for: " + state.week + ". Rank your top " + rankCount + " out of " + schools.length + " member schools.";
     ranksEl.innerHTML = "";
-    for (let i = 0; i < RANK_COUNT; i++) {
+    for (let i = 0; i < rankCount; i++) {
       const row = document.createElement("div");
       row.className = "ksfp-rank-row";
       const num = document.createElement("div");
@@ -494,7 +507,7 @@ const auth = getAuth(app);
       ranksEl.appendChild(row);
     }
     rebuildSelectOptions();
-    if (prefill && prefill.length === RANK_COUNT) {
+    if (prefill && prefill.length === rankCount) {
       const selects = ranksEl.querySelectorAll("select");
       prefill.forEach((school, i) => { if (selects[i]) selects[i].value = school; });
       rebuildSelectOptions();
@@ -532,6 +545,16 @@ const auth = getAuth(app);
 
   function renderPublicClassTabs() {
     publicTabsEl.innerHTML = "";
+    const allBtn = document.createElement("button");
+    allBtn.className = "ksfp-tab" + (state.publicCls === "ALL" ? " active" : "");
+    allBtn.textContent = "All Classes";
+    allBtn.addEventListener("click", () => {
+      state.publicCls = "ALL";
+      renderPublicClassTabs();
+      loadPublicStandingsForSelection();
+    });
+    publicTabsEl.appendChild(allBtn);
+
     CLASS_ORDER.forEach(cls => {
       const btn = document.createElement("button");
       btn.className = "ksfp-tab" + (cls === state.publicCls ? " active" : "");
@@ -539,14 +562,19 @@ const auth = getAuth(app);
       btn.addEventListener("click", () => {
         state.publicCls = cls;
         renderPublicClassTabs();
-        loadPublicStandings();
+        loadPublicStandingsForSelection();
       });
       publicTabsEl.appendChild(btn);
     });
   }
 
+  function loadPublicStandingsForSelection() {
+    return state.publicCls === "ALL" ? loadAllPublicStandings() : loadPublicStandings();
+  }
+
   async function computeStandingsRows(week, cls) {
     const data = await loadPollEntries(week, cls);
+    const rankCount = rankCountFor(cls);
     const voterKeys = Object.keys(data);
     const points = {};
     const firstPlace = {};
@@ -555,7 +583,7 @@ const auth = getAuth(app);
       if (!entry || !Array.isArray(entry.rankings)) return;
       entry.rankings.forEach((school, idx) => {
         if (!school) return;
-        points[school] = (points[school] || 0) + (RANK_COUNT - idx);
+        points[school] = (points[school] || 0) + (rankCount - idx);
         if (idx === 0) firstPlace[school] = (firstPlace[school] || 0) + 1;
       });
     });
@@ -565,37 +593,7 @@ const auth = getAuth(app);
     return { rows, ballotCount: voterKeys.length };
   }
 
-  async function loadPublicStandings() {
-    publicStandingsEl.innerHTML = '<p class="ksfp-empty">Loading standings…</p>';
-    document.getElementById("ksfp-public-title").textContent = state.publicWeek + " — " + state.publicCls;
-
-    let rows, ballotCount, records, prevResult, prevWeek;
-    try {
-      const weeks = await getWeeksList();
-      const weekIdx = weeks.indexOf(state.publicWeek);
-      prevWeek = weekIdx > 0 ? weeks[weekIdx - 1] : null;
-      [{ rows, ballotCount }, records, prevResult] = await Promise.all([
-        computeStandingsRows(state.publicWeek, state.publicCls),
-        getRecords(state.publicWeek, state.publicCls),
-        prevWeek ? computeStandingsRows(prevWeek, state.publicCls) : Promise.resolve(null)
-      ]);
-    } catch (e) {
-      publicStandingsEl.innerHTML = '<p class="ksfp-empty">Could not load standings. Check your connection or Firebase setup.</p>';
-      return;
-    }
-
-    publicCountEl.textContent = ballotCount + (ballotCount === 1 ? " ballot cast" : " ballots cast");
-
-    if (rows.length === 0) {
-      publicStandingsEl.innerHTML = '<p class="ksfp-empty">No ballots were cast for ' + state.publicCls + '.</p>';
-      return;
-    }
-
-    const prevRank = {};
-    if (prevResult) {
-      prevResult.rows.slice(0, 10).forEach((r, i) => { prevRank[r.school] = i + 1; });
-    }
-
+  function buildStandingsTableHtml(rows, records, prevRank, prevWeek) {
     const top = rows.slice(0, 10);
     const others = rows.slice(10);
 
@@ -612,6 +610,70 @@ const auth = getAuth(app);
       const list = others.map(r => r.school + " " + r.pts).join(", ");
       html += '<p class="ksfp-receiving"><b>Receiving votes:</b> ' + list + '</p>';
     }
+    return html;
+  }
+
+  async function loadClassStandingsData(week, cls) {
+    const weeks = await getWeeksList();
+    const weekIdx = weeks.indexOf(week);
+    const prevWeek = weekIdx > 0 ? weeks[weekIdx - 1] : null;
+    const [{ rows, ballotCount }, records, prevResult] = await Promise.all([
+      computeStandingsRows(week, cls),
+      getRecords(week, cls),
+      prevWeek ? computeStandingsRows(prevWeek, cls) : Promise.resolve(null)
+    ]);
+    const prevRank = {};
+    if (prevResult) {
+      prevResult.rows.slice(0, 10).forEach((r, i) => { prevRank[r.school] = i + 1; });
+    }
+    return { rows, ballotCount, records, prevRank, prevWeek };
+  }
+
+  async function loadPublicStandings() {
+    publicStandingsEl.innerHTML = '<p class="ksfp-empty">Loading standings…</p>';
+    document.getElementById("ksfp-public-title").textContent = state.publicWeek + " — " + state.publicCls;
+
+    let rows, ballotCount, records, prevRank, prevWeek;
+    try {
+      ({ rows, ballotCount, records, prevRank, prevWeek } = await loadClassStandingsData(state.publicWeek, state.publicCls));
+    } catch (e) {
+      publicStandingsEl.innerHTML = '<p class="ksfp-empty">Could not load standings. Check your connection or Firebase setup.</p>';
+      return;
+    }
+
+    publicCountEl.textContent = ballotCount + (ballotCount === 1 ? " ballot cast" : " ballots cast");
+
+    if (rows.length === 0) {
+      publicStandingsEl.innerHTML = '<p class="ksfp-empty">No ballots were cast for ' + state.publicCls + '.</p>';
+      return;
+    }
+
+    publicStandingsEl.innerHTML = buildStandingsTableHtml(rows, records, prevRank, prevWeek);
+  }
+
+  async function loadAllPublicStandings() {
+    publicStandingsEl.innerHTML = '<p class="ksfp-empty">Loading standings…</p>';
+    document.getElementById("ksfp-public-title").textContent = state.publicWeek + " — All Classes";
+    publicCountEl.textContent = "";
+
+    let results;
+    try {
+      results = await Promise.all(CLASS_ORDER.map(cls => loadClassStandingsData(state.publicWeek, cls)));
+    } catch (e) {
+      publicStandingsEl.innerHTML = '<p class="ksfp-empty">Could not load standings. Check your connection or Firebase setup.</p>';
+      return;
+    }
+
+    let html = "";
+    CLASS_ORDER.forEach((cls, i) => {
+      const { rows, ballotCount, records, prevRank, prevWeek } = results[i];
+      html += '<div style="margin-bottom:28px;">';
+      html += '<div class="ksfp-standings-head"><h2>' + cls + '</h2><span class="ksfp-count">' + ballotCount + (ballotCount === 1 ? " ballot cast" : " ballots cast") + '</span></div>';
+      html += rows.length === 0
+        ? '<p class="ksfp-empty">No ballots were cast for ' + cls + '.</p>'
+        : buildStandingsTableHtml(rows, records, prevRank, prevWeek);
+      html += '</div>';
+    });
 
     publicStandingsEl.innerHTML = html;
   }
@@ -629,7 +691,7 @@ const auth = getAuth(app);
     publicTabsEl.style.display = "flex";
     publicCardEl.style.display = "block";
     renderPublicClassTabs();
-    await loadPublicStandings();
+    await loadPublicStandingsForSelection();
   }
 
   async function showPublicView() {
@@ -677,6 +739,7 @@ const auth = getAuth(app);
       return;
     }
 
+    const rankCount = rankCountFor(state.cls);
     const points = {};
     const firstPlace = {};
     voterKeys.forEach(key => {
@@ -684,7 +747,7 @@ const auth = getAuth(app);
       if (!entry || !Array.isArray(entry.rankings)) return;
       entry.rankings.forEach((school, idx) => {
         if (!school) return;
-        points[school] = (points[school] || 0) + (RANK_COUNT - idx);
+        points[school] = (points[school] || 0) + (rankCount - idx);
         if (idx === 0) firstPlace[school] = (firstPlace[school] || 0) + 1;
       });
     });
@@ -720,7 +783,7 @@ const auth = getAuth(app);
     }
     const rankings = currentSelections();
     if (rankings.some(r => !r)) {
-      showMsg("Fill in all " + RANK_COUNT + " ranking slots before submitting.", "err");
+      showMsg("Fill in all " + rankCountFor(state.cls) + " ranking slots before submitting.", "err");
       return;
     }
     const unique = new Set(rankings);
@@ -816,7 +879,7 @@ const auth = getAuth(app);
     adminPanelEl.style.display = "block";
     await refreshAdminPanel();
     adminRecordsWeekEl.value = state.publicWeek;
-    adminRecordsClassEl.value = state.publicCls;
+    if (state.publicCls !== "ALL") adminRecordsClassEl.value = state.publicCls;
     await loadRecordsIntoTextarea();
     adminPanelEl.scrollIntoView({ behavior: "smooth", block: "start" });
   });
@@ -862,6 +925,12 @@ const auth = getAuth(app);
     adminRecordsClassEl.innerHTML = CLASS_ORDER.map(c =>
       '<option value="' + c + '">' + c + '</option>'
     ).join("");
+    adminClearWeekEl.innerHTML = weeks.map(w =>
+      '<option value="' + w.replace(/"/g,'&quot;') + '"' + (w === currentWeek ? " selected" : "") + '>' + w + '</option>'
+    ).join("");
+    adminClearClassEl.innerHTML = CLASS_ORDER.map(c =>
+      '<option value="' + c + '">' + c + '</option>'
+    ).join("");
 
     await refreshReleaseStatusText();
     await loadRecordsIntoTextarea();
@@ -903,6 +972,31 @@ const auth = getAuth(app);
       }
     } catch (e) {
       adminRecordsStatusEl.textContent = "Save failed — you may need to sign in again.";
+    }
+  });
+
+  adminClearBtn.addEventListener("click", async () => {
+    if (!auth.currentUser) {
+      adminClearStatusEl.textContent = "Sign in first.";
+      return;
+    }
+    const week = adminClearWeekEl.value;
+    const cls = adminClearClassEl.value;
+    const confirmed = window.confirm(
+      "Delete ALL ballots for " + cls + " — " + week + "? This cannot be undone."
+    );
+    if (!confirmed) return;
+
+    adminClearStatusEl.textContent = "Clearing…";
+    try {
+      const data = await loadPollEntries(week, cls);
+      const ids = Object.keys(data);
+      await Promise.all(ids.map(id => deleteBallotEntry(week, cls, id)));
+      adminClearStatusEl.textContent = "Cleared " + ids.length + (ids.length === 1 ? " ballot" : " ballots") + " for " + cls + " — " + week + ".";
+      if (state.week === week && state.cls === cls) await loadStandings();
+      if (state.view === "public" && state.publicWeek === week && state.publicCls === cls) await loadPublicStandings();
+    } catch (e) {
+      adminClearStatusEl.textContent = "Clear failed — you may need to sign in again.";
     }
   });
 
@@ -964,6 +1058,17 @@ const auth = getAuth(app);
     renderTabs();
     renderBallotForm();
     await loadStandings();
+
+    // Support a direct link straight to the public results page, e.g.
+    // index.html?results=1  or  index.html?results=1&week=Week+1&class=6A
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("results")) {
+      if (params.get("week")) state.publicWeek = params.get("week");
+      if (params.get("class") && CLASS_ORDER.indexOf(params.get("class")) !== -1) {
+        state.publicCls = params.get("class");
+      }
+      switchView("public");
+    }
   }
 
   init();
