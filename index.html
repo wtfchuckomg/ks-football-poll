@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026 Kansas Media Football Rankings</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600&display=swap');
+
+  html, body { margin: 0; padding: 0; background: #050D18; }
+
+  .ksfp * { box-sizing: border-box; }
+  .ksfp {
+    --bg: #050D18;
+    --panel: #0A1826;
+    --panel-2: #0F2135;
+    --line: #1C3550;
+    --chalk: #F4F6F1;
+    --chalk-dim: #9AACC0;
+    --gold: #D8A93E;
+    --gold-dim: #9C7C2F;
+    --red: #C1443B;
+    font-family: 'Work Sans', sans-serif;
+    background: var(--bg);
+    color: var(--chalk);
+    padding: 28px 20px 48px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .ksfp h1, .ksfp h2, .ksfp h3 { font-family: 'Anton', sans-serif; font-weight: 400; letter-spacing: 0.3px; margin: 0; }
+  .ksfp-header { text-align: center; margin-bottom: 22px; }
+  .ksfp-header h1 { font-size: 34px; line-height: 1.05; }
+  .ksfp-header p { color: var(--chalk-dim); font-size: 14px; margin: 8px 0 0; }
+
+  .ksfp-tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 22px; }
+  .ksfp-tab {
+    background: var(--panel); border: 1px solid var(--line); color: var(--chalk-dim);
+    font-family: 'Anton', sans-serif; font-size: 14px; letter-spacing: 0.5px;
+    padding: 9px 16px; border-radius: 4px; cursor: pointer;
+  }
+  .ksfp-tab:hover { border-color: var(--gold-dim); color: var(--chalk); }
+  .ksfp-tab.active { background: var(--gold); border-color: var(--gold); color: #201502; }
+  .ksfp-tab.locked { opacity: 0.4; cursor: not-allowed; }
+  .ksfp-tab.locked:hover { border-color: var(--line); color: var(--chalk-dim); }
+
+  .ksfp-progress { text-align: center; color: var(--chalk-dim); font-size: 12px; margin: -14px 0 20px; }
+
+  .ksfp-next-btn { background: transparent; border: 1px solid currentColor; color: var(--gold); font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 12.5px; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-left: 8px; }
+  .ksfp-next-btn:hover { background: rgba(216,169,62,0.15); }
+
+  .ksfp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+  @media (max-width: 700px) { .ksfp-grid { grid-template-columns: 1fr; } }
+
+  .ksfp-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px 18px 20px; }
+  .ksfp-card h2 { font-size: 19px; margin-bottom: 4px; }
+  .ksfp-sub { color: var(--chalk-dim); font-size: 12.5px; margin: 0 0 16px; }
+
+  .ksfp-field { margin-bottom: 12px; }
+  .ksfp-field label { display: block; font-size: 12px; color: var(--chalk-dim); margin-bottom: 4px; }
+  .ksfp-field input[type=email] {
+    width: 100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk);
+    padding: 9px 10px; border-radius: 4px; font-size: 14px; font-family: inherit;
+  }
+
+  .ksfp-rank-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+  .ksfp-rank-num {
+    font-family: 'Anton', sans-serif; font-size: 15px; color: #201502; background: var(--gold);
+    width: 26px; height: 26px; min-width: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+  .ksfp-rank-row select {
+    flex: 1; background: var(--bg); border: 1px solid var(--line); color: var(--chalk);
+    padding: 8px 8px; border-radius: 4px; font-size: 13.5px; font-family: inherit;
+  }
+
+  .ksfp-actions { display: flex; gap: 10px; margin-top: 16px; }
+  .ksfp-btn {
+    font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 13.5px; border-radius: 4px;
+    padding: 10px 16px; cursor: pointer; border: 1px solid var(--gold);
+  }
+  .ksfp-btn.primary { background: var(--gold); color: #201502; }
+  .ksfp-btn.primary:hover { background: #e6bb52; }
+  .ksfp-btn.ghost { background: transparent; color: var(--chalk-dim); border-color: var(--line); }
+  .ksfp-btn.ghost:hover { color: var(--chalk); border-color: var(--gold-dim); }
+  .ksfp-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .ksfp-msg { font-size: 13px; margin-top: 12px; padding: 8px 10px; border-radius: 4px; display: none; }
+  .ksfp-msg.show { display: block; }
+  .ksfp-msg.ok { background: rgba(216,169,62,0.15); color: var(--gold); border: 1px solid var(--gold-dim); }
+  .ksfp-msg.err { background: rgba(193,68,59,0.15); color: #E88B84; border: 1px solid var(--red); }
+
+  .ksfp-standings-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+  .ksfp-count { color: var(--chalk-dim); font-size: 12.5px; }
+
+  table.ksfp-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13.5px; }
+  table.ksfp-table th {
+    text-align: left; color: var(--chalk-dim); font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.5px; font-weight: 500; padding: 0 6px 8px; border-bottom: 1px solid var(--line);
+  }
+  table.ksfp-table td { padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  table.ksfp-table tr:nth-child(5n) td { border-bottom: 1px solid var(--gold-dim); }
+  table.ksfp-table tr:last-child td { border-bottom: none; }
+  .ksfp-rk { font-family: 'Anton', sans-serif; font-size: 17px; color: var(--gold); width: 28px; }
+  .ksfp-team { font-weight: 600; }
+  .ksfp-pts { text-align: right; font-variant-numeric: tabular-nums; }
+  .ksfp-fpv { text-align: right; color: var(--chalk-dim); font-variant-numeric: tabular-nums; }
+  .ksfp-empty { color: var(--chalk-dim); font-size: 13.5px; padding: 18px 4px; text-align: center; }
+  .ksfp-receiving { font-size: 12px; color: var(--chalk-dim); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); line-height: 1.6; }
+  .ksfp-receiving b { color: var(--chalk); font-weight: 600; }
+
+  .ksfp-note { color: var(--chalk-dim); font-size: 11.5px; margin-top: 14px; line-height: 1.5; }
+
+  .ksfp-viewtoggle { display: flex; justify-content: center; gap: 8px; margin-bottom: 22px; }
+  .ksfp-view-btn {
+    background: transparent; border: 1px solid var(--line); color: var(--chalk-dim);
+    font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 13px;
+    padding: 8px 18px; border-radius: 20px; cursor: pointer;
+  }
+  .ksfp-view-btn:hover { border-color: var(--gold-dim); color: var(--chalk); }
+  .ksfp-view-btn.active { background: var(--chalk); border-color: var(--chalk); color: var(--bg); }
+
+  .ksfp-public-msg { text-align: center; color: var(--chalk-dim); font-size: 14px; padding: 30px 10px; }
+
+  .ksfp-admin-wrap { text-align: center; margin-top: 30px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .ksfp-admin-link { background: none; border: none; color: var(--chalk-dim); font-size: 12px; cursor: pointer; text-decoration: underline; }
+  .ksfp-admin-link:hover { color: var(--gold); }
+  .ksfp-admin-panel { max-width: 320px; margin: 10px auto 0; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; text-align: left; }
+  .ksfp-admin-panel label { display: block; font-size: 11px; color: var(--chalk-dim); margin-bottom: 6px; }
+  .ksfp-admin-panel input, .ksfp-admin-panel select { flex: 1; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 13px; font-family: inherit; }
+  .ksfp-admin-status { font-size: 12px; color: var(--chalk-dim); margin: 8px 0 0; }
+</style>
+</head>
+<body>
+
+<div class="ksfp" id="ksfp-root">
+  <div class="ksfp-header">
+    <h1>2026 Kansas Media Football Rankings</h1>
+    <p id="ksfp-header-sub">Thank you for casting your media vote for the 2026 season. Please fill every place by 11:59 p.m. Sunday night.</p>
+  </div>
+
+  <div class="ksfp-viewtoggle" id="ksfp-viewtoggle">
+    <button class="ksfp-view-btn active" data-view="vote">Cast a ballot</button>
+    <button class="ksfp-view-btn" data-view="public">Public results</button>
+  </div>
+
+  <div id="ksfp-vote-view">
+    <div class="ksfp-tabs" id="ksfp-tabs"></div>
+    <p class="ksfp-progress" id="ksfp-progress">Enter your email to track progress across classes.</p>
+
+    <div class="ksfp-grid">
+      <div class="ksfp-card">
+        <h2 id="ksfp-ballot-title">Cast your ballot</h2>
+        <p class="ksfp-sub" id="ksfp-ballot-sub"></p>
+
+        <div class="ksfp-field">
+          <label for="ksfp-email">Email address</label>
+          <input type="email" id="ksfp-email" placeholder="name@email.com" />
+        </div>
+
+        <div id="ksfp-ranks"></div>
+
+        <div class="ksfp-actions">
+          <button class="ksfp-btn primary" id="ksfp-submit">Submit ballot</button>
+          <button class="ksfp-btn ghost" id="ksfp-clear">Clear my ballot</button>
+        </div>
+        <div class="ksfp-msg" id="ksfp-msg"></div>
+        <p class="ksfp-note">Points follow the standard AP model: 10 for a 1st-place vote down to 1 for a 10th-place vote. Submitting again with the same email replaces your previous ballot for this class.</p>
+      </div>
+
+      <div class="ksfp-card">
+        <div class="ksfp-standings-head">
+          <h2>Current standings</h2>
+          <span class="ksfp-count" id="ksfp-count"></span>
+        </div>
+        <div id="ksfp-standings"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ksfp-public-view" style="display:none;">
+    <div class="ksfp-tabs" id="ksfp-public-week-tabs"></div>
+    <p class="ksfp-public-msg" id="ksfp-public-msg"></p>
+    <div class="ksfp-tabs" id="ksfp-public-tabs" style="display:none;"></div>
+    <div class="ksfp-card" id="ksfp-public-card" style="display:none;">
+      <div class="ksfp-standings-head">
+        <h2 id="ksfp-public-title">Final standings</h2>
+        <span class="ksfp-count" id="ksfp-public-count"></span>
+      </div>
+      <div id="ksfp-public-standings"></div>
+      <button class="ksfp-admin-link" id="ksfp-public-records-link" style="margin-top:12px;">Enter records for this class</button>
+    </div>
+  </div>
+
+  <div class="ksfp-admin-wrap">
+    <button class="ksfp-admin-link" id="ksfp-admin-link">Admin</button>
+    <div class="ksfp-admin-panel" id="ksfp-admin-panel" style="display:none;">
+
+      <div id="ksfp-admin-login">
+        <label for="ksfp-admin-email">Admin email</label>
+        <input type="email" id="ksfp-admin-email" placeholder="you@example.com" style="width:100%; margin-bottom:8px;" />
+        <label for="ksfp-admin-password">Password</label>
+        <input type="password" id="ksfp-admin-password" placeholder="Password" style="width:100%; margin-bottom:8px;" />
+        <button class="ksfp-btn primary" id="ksfp-admin-signin">Sign in</button>
+        <p class="ksfp-admin-status" id="ksfp-admin-login-status"></p>
+      </div>
+
+      <div id="ksfp-admin-controls" style="display:none;">
+        <p class="ksfp-admin-status" style="margin:0 0 12px;">Signed in as <b id="ksfp-admin-whoami"></b> — <button class="ksfp-admin-link" id="ksfp-admin-signout">Sign out</button></p>
+
+        <label for="ksfp-admin-week-input">Now voting: <span id="ksfp-admin-current-week">—</span></label>
+        <div style="display:flex; gap:8px; margin-bottom:6px;">
+          <input type="text" id="ksfp-admin-week-input" placeholder="e.g. Week 1" />
+          <button class="ksfp-btn primary" id="ksfp-admin-set-week">Set week</button>
+        </div>
+        <p class="ksfp-admin-status" id="ksfp-admin-week-status"></p>
+
+        <label for="ksfp-admin-release-select" style="margin-top:12px;">Release results for</label>
+        <div style="display:flex; gap:8px;">
+          <select id="ksfp-admin-release-select"></select>
+          <button class="ksfp-btn primary" id="ksfp-admin-toggle-release">Release</button>
+        </div>
+        <p class="ksfp-admin-status" id="ksfp-admin-status"></p>
+
+        <label for="ksfp-admin-records-class" style="margin-top:12px;">Add records for</label>
+        <div style="display:flex; gap:8px; margin-bottom:6px;">
+          <select id="ksfp-admin-records-week"></select>
+          <select id="ksfp-admin-records-class"></select>
+        </div>
+        <textarea id="ksfp-admin-records-text" rows="4" placeholder="One school per line, e.g.&#10;Maize: 8-0&#10;Wichita-Northwest: 7-0" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
+        <button class="ksfp-btn primary" id="ksfp-admin-save-records" style="margin-top:6px;">Save records</button>
+        <p class="ksfp-admin-status" id="ksfp-admin-records-status"></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {
+  getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import {
+  getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+// ---- Fill this in with your Firebase project's web app config ----
+// Firebase console > Project settings > General > Your apps > SDK setup and config
+const firebaseConfig = {
+  apiKey: "AIzaSyBTiNraruWtESR_ioYAEM4QaxkqBYY3ZAg",
+  authDomain: "ks-football-poll.firebaseapp.com",
+  projectId: "ks-football-poll",
+  storageBucket: "ks-football-poll.firebasestorage.app",
+  messagingSenderId: "359451879003",
+  appId: "1:359451879003:web:36df8102763cfab727817e"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+(function() {
+  const CLASSES = {
+    "6A": ["Wichita-East","Derby","Wichita-Southeast","Garden City","Wichita-North","Dodge City","Manhattan","Kansas City-Wyandotte","Olathe Northwest","Topeka-Washburn Rural","Olathe North","Wichita-South","Wichita-Heights","Olathe South","Gardner-Edgerton","Junction City","Shawnee Mission East","Olathe East","Haysville-Campus","Topeka","OP-Blue Valley Northwest","OP-Blue Valley West","Shawnee Mission Northwest","Lawrence-Free State","Shawnee Mission South","Shawnee Mission West","Olathe West","Maize","Lawrence","Wichita-Northwest","Shawnee Mission North","Shawnee-Mill Valley"],
+    "5A": ["OP-Blue Valley","Liberal","OP-Blue Valley North","Wichita-West","Kansas City-Washington","Kansas City-JC Harmon","Wichita-Bishop Carroll","Leavenworth","Hutchinson","Emporia","Topeka West","OP-Blue Valley Southwest","Spring Hill","Topeka-Seaman","Maize South","Kansas City-Turner","Hays","Tecumseh-Shawnee Heights","Valley Center","Salina-South","Lenexa-St. James Academy","Kansas City-Piper","Andover","De Soto","Salina-Central","Pittsburg","Goddard","Goddard-Eisenhower","Newton","Wichita-Kapaun Mt. Carmel","Basehor-Linwood","Andover Central"],
+    "4A": ["Arkansas City","Lansing","Kansas City-Sumner Academy","Great Bend","Topeka-Highland Park","OP-St. Thomas Aquinas","Kansas City-FL Schlagle","Bonner Springs","Shawnee Mission-Bishop Miege","Ottawa","Buhler","McPherson","Towanda-Circle","Paola","Tonganoxie","Winfield","Eudora","Louisburg","Mulvane","Independence","Fort Scott","Augusta","Coffeyville-Field Kindley","Rose Hill","Chanute","Wamego","El Dorado","Abilene","Wellington","Altamont-Labette County","St. George-Rock Creek","Ulysses"],
+    "3A": ["Baldwin","Andale","Parsons","Atchison","Concordia","Clearwater","Chapman","Topeka-Hayden","Perry-Lecompton/Lawrence-Bishop Seabury","Pratt","Clay Center Community","Santa Fe Trail","Hugoton","Hesston","Holton","Frontenac","Iola","Girard","Scott City Community","Osawatomie","Colby","Meriden-Jefferson West","Garnett-Anderson County","Kansas City-Bishop Ward","Columbus","Holcomb","Seneca-Nemaha Central","LaCygne-Prairie View","Goodland","Wichita-Collegiate","Hoisington","Burlington","Hiawatha","Larned","Wichita-Trinity Academy","Lindsborg-Smoky Valley","Wellsville","Lyons","Nickerson","Cheney"],
+    "2A": ["Marysville","Baxter Springs","Halstead","Council Grove","Neodesha","Beloit","Haven","Silver Lake","Riley County","Hoyt-Royal Valley","Caney Valley","Galena","Sabetha","Gypsum-Southeast of Saline","Shawnee-Maranatha Academy","Russell","Anthony/Harper-Chaparral","Cherryvale","Minneapolis","Fredonia","Ellsworth","Kingman","Osage City","Wathena-Riverside","Riverton","Lakin","Easton-Pleasant Ridge","Norton Community","Garden Plain","Pomona-West Franklin","Richmond-Central Heights","Phillipsburg","Kismet-Southwestern Heights","Cimarron","Oskaloosa","Douglass","Marion","Horton","Mound City-Jayhawk Linn","Humboldt"],
+    "1A": ["Hillsboro","Whitewater-Remington","Sterling","Medicine Lodge","Syracuse","St. Marys","Effingham-Atchison County Community","Plainville/Natoma","Arma-Northeast","Leon-Bluestem","Rossville","Hays-Thomas More Prep-Marian","Eureka","Sedgwick","Belle Plaine","Moundridge","McLouth","Atchison-Maur Hill-Mount Academy","Ellinwood","Eskridge-Mission Valley","Jackson Heights","Winchester-Jefferson Co. North","Conway Springs","Pittsburg-St. Marys Colgan","Belleville-Republic County","Highland-Doniphan West","Smith Center","Hutchinson-Trinity Catholic","Inman","Uniontown","Salina-Sacred Heart","Valley Falls","Wabaunsee","Blue Rapids-Valley Heights","Centralia","Olpe","Onaga"],
+    "8-Man I": ["Oswego","Oakley","Cherokee-Southeast","Herington","Lyndon","Brookville-Ell Saline","South Sumner (Caldwell/South Haven)","Topeka-Cair Paravel Latin School","Howard-West Elk / Longton-Elk Valley","Bennington","Cottonwood Falls-Chase County","Solomon","Elkhart/Rolla","Wakeeney-Trego Community","Washington County","Johnson-Stanton County","Yates Center","Cedar Vale/Dexter","Udall","Coldwater-South Central","Oxford","Hoxie","Erie","Sublette","Canton-Galva","Clyde-Clifton Clyde","Atwood-Rawlins County","Spearville","Leoti-Wichita County","Claflin-Central Plains","Allen-Northern Heights","Hill City","Burden-Central","Lincoln","Greensburg-Kiowa County","Oberlin-Decatur Community","Montezuma-South Gray","Mankato-Rock Hills","Pleasanton","St. John-Hudson"],
+    "8-Man II": ["Goessel","Little River","Sedan","Sylvan-Lucas Unified","Rosalia-Flinthills","La Crosse","Pretty Prairie","Kinsley","St. Francis","Meade","Ellis","Quinter","Norwich","Attica/Argonia","Rural Vista (White City/Hope)","Downs-Lakeside","Pratt-Skyline","Madison/Hamilton","Tribune-Greeley County","Troy","Frankfort","Macksville","Osborne","Beloit-St. John's / Tipton Catholic","Wichita-The Independent","Stockton","Burlingame","Randolph-Blue Valley","Jetmore-Hodgeman County","Moran-Marmaton Valley","Langdon-Fairfield","Hutchinson-Central Christian","Lebo","Ness City","Colony-Crest","Cunningham","Stafford","Minneola","Victoria","St. Paul","Wakefield","Linn","Scandia-Pike Valley","Hanover","Hartford","Dighton","Waverly","Kensington-Thunder Ridge","Sharon Springs-Wallace County","Axtell"],
+    "6-Man": ["Ingalls","Kiowa-South Barber","Deerfield","Rexford-Golden Plains","Peabody-Burns","Satanta","Ashland","Lost Springs-Centre","Grainfield/Wheatland-Grinell","Tescott","Rozel-Pawnee Heights","Bucklin","Buffalo-Altoona Midway","McPherson-Elyria Christian","Bird City-Cheylin","Moscow","LeRoy-Southern Coffey County","Ransom-Western Plains","Melvern-Marais Des Cygnes Valley","Almena-Northern Valley","Chase","Logan","Chetopa","Palco","Otis-Bison","Weskan","Brewster","Winona Triplains"]
+  };
+  const CLASS_ORDER = ["6A","5A","4A","3A","2A","1A","8-Man I","8-Man II","6-Man"];
+  const RANK_COUNT = 10;
+  const DEFAULT_WEEK = "Preseason";
+
+  let state = { cls: "6A", email: "", completed: {}, view: "vote", week: DEFAULT_WEEK, publicWeek: DEFAULT_WEEK, publicCls: "6A" };
+
+  const root = document.getElementById("ksfp-root");
+  const headerSubEl = document.getElementById("ksfp-header-sub");
+  const tabsEl = document.getElementById("ksfp-tabs");
+  const progressEl = document.getElementById("ksfp-progress");
+  const ranksEl = document.getElementById("ksfp-ranks");
+  const emailEl = document.getElementById("ksfp-email");
+  const msgEl = document.getElementById("ksfp-msg");
+  const standingsEl = document.getElementById("ksfp-standings");
+  const countEl = document.getElementById("ksfp-count");
+  const titleEl = document.getElementById("ksfp-ballot-title");
+  const subEl = document.getElementById("ksfp-ballot-sub");
+
+  const voteViewEl = document.getElementById("ksfp-vote-view");
+  const publicViewEl = document.getElementById("ksfp-public-view");
+  const publicWeekTabsEl = document.getElementById("ksfp-public-week-tabs");
+  const publicMsgEl = document.getElementById("ksfp-public-msg");
+  const publicTabsEl = document.getElementById("ksfp-public-tabs");
+  const publicCardEl = document.getElementById("ksfp-public-card");
+  const publicStandingsEl = document.getElementById("ksfp-public-standings");
+  const publicCountEl = document.getElementById("ksfp-public-count");
+
+  const adminLinkEl = document.getElementById("ksfp-admin-link");
+  const adminPanelEl = document.getElementById("ksfp-admin-panel");
+  const adminLoginEl = document.getElementById("ksfp-admin-login");
+  const adminControlsEl = document.getElementById("ksfp-admin-controls");
+  const adminEmailEl = document.getElementById("ksfp-admin-email");
+  const adminPasswordEl = document.getElementById("ksfp-admin-password");
+  const adminSignInBtn = document.getElementById("ksfp-admin-signin");
+  const adminLoginStatusEl = document.getElementById("ksfp-admin-login-status");
+  const adminWhoamiEl = document.getElementById("ksfp-admin-whoami");
+  const adminSignOutBtn = document.getElementById("ksfp-admin-signout");
+
+  const adminCurrentWeekEl = document.getElementById("ksfp-admin-current-week");
+  const adminWeekInputEl = document.getElementById("ksfp-admin-week-input");
+  const adminSetWeekBtn = document.getElementById("ksfp-admin-set-week");
+  const adminWeekStatusEl = document.getElementById("ksfp-admin-week-status");
+  const adminReleaseSelectEl = document.getElementById("ksfp-admin-release-select");
+  const adminToggleBtn = document.getElementById("ksfp-admin-toggle-release");
+  const adminStatusEl = document.getElementById("ksfp-admin-status");
+  const adminRecordsWeekEl = document.getElementById("ksfp-admin-records-week");
+  const adminRecordsClassEl = document.getElementById("ksfp-admin-records-class");
+  const adminRecordsTextEl = document.getElementById("ksfp-admin-records-text");
+  const adminSaveRecordsBtn = document.getElementById("ksfp-admin-save-records");
+  const adminRecordsStatusEl = document.getElementById("ksfp-admin-records-status");
+  const publicRecordsLinkEl = document.getElementById("ksfp-public-records-link");
+
+  const HEADER_TEXT = {
+    vote: "Thank you for casting your media vote for the 2026 season. Please fill every place by 11:59 p.m. Sunday night.",
+    public: "Any publication may use this rankings for their use without any attribution. If any media person(s) would like to vote please contact cchaney@cherryroad.com."
+  };
+
+  // ---------------------------------------------------------------
+  // Firestore data layer
+  //   polls/{week}__{cls}/entries/{emailHash}  -> { rankings, ts }
+  //   meta/settings                            -> { currentWeek, weeks }
+  //   releases/{week}                          -> { released }
+  //   records/{week}__{cls}                    -> { schools: { name: record } }
+  // ---------------------------------------------------------------
+  function pollId(week, cls) { return week + "__" + cls; }
+
+  // The Firestore SDK's realtime channel can retry silently forever
+  // against an unreachable/misconfigured project instead of rejecting —
+  // wrap every call so a bad network or bad firebaseConfig fails fast
+  // and visibly instead of hanging the page indefinitely.
+  const NETWORK_TIMEOUT_MS = 8000;
+  function withTimeout(promise) {
+    return Promise.race([
+      promise,
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Network request timed out.")), NETWORK_TIMEOUT_MS))
+    ]);
+  }
+
+  async function loadPollEntries(week, cls) {
+    const snap = await withTimeout(getDocs(collection(db, "polls", pollId(week, cls), "entries")));
+    const data = {};
+    snap.forEach(d => { data[d.id] = d.data(); });
+    return data;
+  }
+
+  async function saveBallotEntry(week, cls, emailHash, rankings) {
+    await withTimeout(setDoc(doc(db, "polls", pollId(week, cls), "entries", emailHash), { rankings, ts: Date.now() }));
+  }
+
+  async function deleteBallotEntry(week, cls, emailHash) {
+    await withTimeout(deleteDoc(doc(db, "polls", pollId(week, cls), "entries", emailHash)));
+  }
+
+  async function getRecords(week, cls) {
+    try {
+      const snap = await withTimeout(getDoc(doc(db, "records", pollId(week, cls))));
+      return snap.exists() ? (snap.data().schools || {}) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  async function saveRecords(week, cls, obj) {
+    await withTimeout(setDoc(doc(db, "records", pollId(week, cls)), { schools: obj }));
+  }
+
+  let settingsCache = null;
+  async function getSettings() {
+    if (settingsCache) return settingsCache;
+    const snap = await withTimeout(getDoc(doc(db, "meta", "settings")));
+    if (snap.exists()) { settingsCache = snap.data(); return settingsCache; }
+    settingsCache = { currentWeek: DEFAULT_WEEK, weeks: [DEFAULT_WEEK] };
+    return settingsCache;
+  }
+
+  async function getCurrentWeek() { return (await getSettings()).currentWeek; }
+  async function getWeeksList() { return (await getSettings()).weeks; }
+
+  async function setCurrentWeek(week) {
+    const settings = await getSettings();
+    const weeks = settings.weeks.indexOf(week) === -1 ? settings.weeks.concat([week]) : settings.weeks;
+    const next = { currentWeek: week, weeks };
+    await withTimeout(setDoc(doc(db, "meta", "settings"), next));
+    settingsCache = next;
+  }
+
+  async function getReleaseStatus(week) {
+    try {
+      const snap = await withTimeout(getDoc(doc(db, "releases", week)));
+      return !!(snap.exists() && snap.data().released);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  async function setReleaseStatus(week, val) {
+    await withTimeout(setDoc(doc(db, "releases", week), { released: !!val }));
+  }
+
+  function isUnlocked(index) {
+    return index === 0 || !!state.completed[CLASS_ORDER[index - 1]];
+  }
+
+  async function refreshCompletionForEmail(email) {
+    if (!email) { state.completed = {}; return; }
+    const key = await hashEmail(email);
+    const results = await Promise.all(CLASS_ORDER.map(cls => loadPollEntries(state.week, cls)));
+    const completed = {};
+    CLASS_ORDER.forEach((cls, i) => { completed[cls] = !!results[i][key]; });
+    state.completed = completed;
+  }
+
+  function schoolsFor(cls) { return CLASSES[cls]; }
+
+  function renderTabs() {
+    tabsEl.innerHTML = "";
+    CLASS_ORDER.forEach((cls, i) => {
+      const unlocked = isUnlocked(i) || !!state.completed[cls];
+      const btn = document.createElement("button");
+      btn.className = "ksfp-tab" + (cls === state.cls ? " active" : "") + (unlocked ? "" : " locked");
+      btn.textContent = cls;
+      if (!unlocked) {
+        btn.title = "Finish your " + CLASS_ORDER[i - 1] + " ballot to unlock " + cls + ".";
+      }
+      btn.addEventListener("click", () => {
+        if (!unlocked) {
+          showMsg("Finish your " + CLASS_ORDER[i - 1] + " ballot before moving on to " + cls + ".", "err");
+          return;
+        }
+        state.cls = cls;
+        renderTabs();
+        renderBallotForm();
+        loadStandings();
+        showMsg("", "");
+      });
+      tabsEl.appendChild(btn);
+    });
+
+    if (Object.keys(state.completed).length === 0) {
+      progressEl.textContent = "Enter your email to track progress across classes.";
+    } else {
+      const doneCount = CLASS_ORDER.filter(c => state.completed[c]).length;
+      progressEl.textContent = doneCount >= CLASS_ORDER.length
+        ? "All 9 classes complete — thanks for voting in every classification."
+        : doneCount + " of " + CLASS_ORDER.length + " classes completed.";
+    }
+  }
+
+  function currentSelections() {
+    return Array.from(ranksEl.querySelectorAll("select")).map(s => s.value);
+  }
+
+  function rebuildSelectOptions() {
+    const schools = schoolsFor(state.cls);
+    const chosen = currentSelections();
+    ranksEl.querySelectorAll("select").forEach((sel) => {
+      const own = sel.value;
+      const opts = ['<option value="">Select a school</option>'].concat(
+        schools.filter(s => s === own || chosen.indexOf(s) === -1).map(s =>
+          '<option value="' + s.replace(/"/g,'&quot;') + '"' + (s === own ? " selected" : "") + '>' + s + '</option>'
+        )
+      );
+      sel.innerHTML = opts.join("");
+    });
+  }
+
+  function renderBallotForm(prefill) {
+    const schools = schoolsFor(state.cls);
+    titleEl.textContent = "Cast your ballot — " + state.cls;
+    subEl.textContent = "Voting for: " + state.week + ". Rank your top " + RANK_COUNT + " out of " + schools.length + " member schools.";
+    ranksEl.innerHTML = "";
+    for (let i = 0; i < RANK_COUNT; i++) {
+      const row = document.createElement("div");
+      row.className = "ksfp-rank-row";
+      const num = document.createElement("div");
+      num.className = "ksfp-rank-num";
+      num.textContent = i + 1;
+      const sel = document.createElement("select");
+      sel.dataset.idx = i;
+      sel.addEventListener("change", rebuildSelectOptions);
+      row.appendChild(num);
+      row.appendChild(sel);
+      ranksEl.appendChild(row);
+    }
+    rebuildSelectOptions();
+    if (prefill && prefill.length === RANK_COUNT) {
+      const selects = ranksEl.querySelectorAll("select");
+      prefill.forEach((school, i) => { if (selects[i]) selects[i].value = school; });
+      rebuildSelectOptions();
+    }
+  }
+
+  function showMsg(text, kind) {
+    if (!text) { msgEl.className = "ksfp-msg"; msgEl.textContent = ""; return; }
+    msgEl.className = "ksfp-msg show " + kind;
+    msgEl.textContent = text;
+  }
+
+  function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  async function hashEmail(email) {
+    const enc = new TextEncoder().encode(email);
+    const digest = await crypto.subtle.digest("SHA-256", enc);
+    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  function renderPublicWeekTabs(weeks) {
+    publicWeekTabsEl.innerHTML = "";
+    weeks.forEach(week => {
+      const btn = document.createElement("button");
+      btn.className = "ksfp-tab" + (week === state.publicWeek ? " active" : "");
+      btn.textContent = week;
+      btn.addEventListener("click", () => {
+        state.publicWeek = week;
+        renderPublicWeekTabs(weeks);
+        showPublicWeek();
+      });
+      publicWeekTabsEl.appendChild(btn);
+    });
+  }
+
+  function renderPublicClassTabs() {
+    publicTabsEl.innerHTML = "";
+    CLASS_ORDER.forEach(cls => {
+      const btn = document.createElement("button");
+      btn.className = "ksfp-tab" + (cls === state.publicCls ? " active" : "");
+      btn.textContent = cls;
+      btn.addEventListener("click", () => {
+        state.publicCls = cls;
+        renderPublicClassTabs();
+        loadPublicStandings();
+      });
+      publicTabsEl.appendChild(btn);
+    });
+  }
+
+  async function computeStandingsRows(week, cls) {
+    const data = await loadPollEntries(week, cls);
+    const voterKeys = Object.keys(data);
+    const points = {};
+    const firstPlace = {};
+    voterKeys.forEach(key => {
+      const entry = data[key];
+      if (!entry || !Array.isArray(entry.rankings)) return;
+      entry.rankings.forEach((school, idx) => {
+        if (!school) return;
+        points[school] = (points[school] || 0) + (RANK_COUNT - idx);
+        if (idx === 0) firstPlace[school] = (firstPlace[school] || 0) + 1;
+      });
+    });
+    const rows = Object.keys(points).map(school => ({
+      school, pts: points[school], fpv: firstPlace[school] || 0
+    })).sort((a, b) => b.pts - a.pts || b.fpv - a.fpv || a.school.localeCompare(b.school));
+    return { rows, ballotCount: voterKeys.length };
+  }
+
+  async function loadPublicStandings() {
+    publicStandingsEl.innerHTML = '<p class="ksfp-empty">Loading standings…</p>';
+    document.getElementById("ksfp-public-title").textContent = state.publicWeek + " — " + state.publicCls;
+
+    let rows, ballotCount, records, prevResult, prevWeek;
+    try {
+      const weeks = await getWeeksList();
+      const weekIdx = weeks.indexOf(state.publicWeek);
+      prevWeek = weekIdx > 0 ? weeks[weekIdx - 1] : null;
+      [{ rows, ballotCount }, records, prevResult] = await Promise.all([
+        computeStandingsRows(state.publicWeek, state.publicCls),
+        getRecords(state.publicWeek, state.publicCls),
+        prevWeek ? computeStandingsRows(prevWeek, state.publicCls) : Promise.resolve(null)
+      ]);
+    } catch (e) {
+      publicStandingsEl.innerHTML = '<p class="ksfp-empty">Could not load standings. Check your connection or Firebase setup.</p>';
+      return;
+    }
+
+    publicCountEl.textContent = ballotCount + (ballotCount === 1 ? " ballot cast" : " ballots cast");
+
+    if (rows.length === 0) {
+      publicStandingsEl.innerHTML = '<p class="ksfp-empty">No ballots were cast for ' + state.publicCls + '.</p>';
+      return;
+    }
+
+    const prevRank = {};
+    if (prevResult) {
+      prevResult.rows.slice(0, 10).forEach((r, i) => { prevRank[r.school] = i + 1; });
+    }
+
+    const top = rows.slice(0, 10);
+    const others = rows.slice(10);
+
+    let html = '<table class="ksfp-table"><thead><tr><th>Rk</th><th>School (1st place votes)</th><th style="text-align:right">Record</th><th style="text-align:right">Points</th><th style="text-align:right">LW</th></tr></thead><tbody>';
+    top.forEach((r, i) => {
+      const name = r.school + (r.fpv > 0 ? " (" + r.fpv + ")" : "");
+      const record = records[r.school] || "—";
+      const lw = !prevWeek ? "—" : (prevRank[r.school] ? prevRank[r.school] : "NR");
+      html += '<tr><td class="ksfp-rk">' + (i + 1) + '</td><td class="ksfp-team">' + name + '</td><td class="ksfp-pts">' + record + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + lw + '</td></tr>';
+    });
+    html += '</tbody></table>';
+
+    if (others.length > 0) {
+      const list = others.map(r => r.school + " " + r.pts).join(", ");
+      html += '<p class="ksfp-receiving"><b>Receiving votes:</b> ' + list + '</p>';
+    }
+
+    publicStandingsEl.innerHTML = html;
+  }
+
+  async function showPublicWeek() {
+    const released = await getReleaseStatus(state.publicWeek);
+    document.getElementById("ksfp-public-title").textContent = state.publicWeek;
+    if (!released) {
+      publicMsgEl.textContent = state.publicWeek + " results haven't been released yet. Check back after voting closes at 11:59 p.m. Sunday.";
+      publicTabsEl.style.display = "none";
+      publicCardEl.style.display = "none";
+      return;
+    }
+    publicMsgEl.textContent = "";
+    publicTabsEl.style.display = "flex";
+    publicCardEl.style.display = "block";
+    renderPublicClassTabs();
+    await loadPublicStandings();
+  }
+
+  async function showPublicView() {
+    let weeks;
+    try {
+      weeks = await getWeeksList();
+    } catch (e) {
+      publicMsgEl.textContent = "Could not load results. Check your connection or Firebase setup.";
+      publicTabsEl.style.display = "none";
+      publicCardEl.style.display = "none";
+      return;
+    }
+    if (weeks.indexOf(state.publicWeek) === -1) state.publicWeek = weeks[weeks.length - 1];
+    renderPublicWeekTabs(weeks);
+    await showPublicWeek();
+  }
+
+  function switchView(view) {
+    state.view = view;
+    headerSubEl.textContent = HEADER_TEXT[view];
+    document.querySelectorAll(".ksfp-view-btn").forEach(b => {
+      b.classList.toggle("active", b.dataset.view === view);
+    });
+    voteViewEl.style.display = view === "vote" ? "block" : "none";
+    publicViewEl.style.display = view === "public" ? "block" : "none";
+    if (view === "public") showPublicView();
+  }
+
+  async function loadStandings() {
+    standingsEl.innerHTML = '<p class="ksfp-empty">Loading standings…</p>';
+    countEl.textContent = "";
+    let data;
+    try {
+      data = await loadPollEntries(state.week, state.cls);
+    } catch (e) {
+      standingsEl.innerHTML = '<p class="ksfp-empty">Could not load standings. Check your connection or Firebase setup.</p>';
+      return;
+    }
+    const voterKeys = Object.keys(data);
+    countEl.textContent = voterKeys.length + (voterKeys.length === 1 ? " ballot cast" : " ballots cast");
+
+    if (voterKeys.length === 0) {
+      standingsEl.innerHTML = '<p class="ksfp-empty">No ballots yet for ' + state.cls + '. Be the first to vote.</p>';
+      await maybePrefillFromEmail(data);
+      return;
+    }
+
+    const points = {};
+    const firstPlace = {};
+    voterKeys.forEach(key => {
+      const entry = data[key];
+      if (!entry || !Array.isArray(entry.rankings)) return;
+      entry.rankings.forEach((school, idx) => {
+        if (!school) return;
+        points[school] = (points[school] || 0) + (RANK_COUNT - idx);
+        if (idx === 0) firstPlace[school] = (firstPlace[school] || 0) + 1;
+      });
+    });
+
+    const rows = Object.keys(points).map(school => ({
+      school, pts: points[school], fpv: firstPlace[school] || 0
+    })).sort((a, b) => b.pts - a.pts || b.fpv - a.fpv || a.school.localeCompare(b.school));
+
+    let html = '<table class="ksfp-table"><thead><tr><th>Rk</th><th>School</th><th style="text-align:right">Pts</th><th style="text-align:right">1st votes</th></tr></thead><tbody>';
+    rows.slice(0, 25).forEach((r, i) => {
+      html += '<tr><td class="ksfp-rk">' + (i + 1) + '</td><td class="ksfp-team">' + r.school + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + (r.fpv || "—") + '</td></tr>';
+    });
+    html += '</tbody></table>';
+    standingsEl.innerHTML = html;
+
+    await maybePrefillFromEmail(data);
+  }
+
+  async function maybePrefillFromEmail(data) {
+    const email = emailEl.value.trim().toLowerCase();
+    if (!email || !isValidEmail(email)) return;
+    const key = await hashEmail(email);
+    if (data[key] && Array.isArray(data[key].rankings)) {
+      renderBallotForm(data[key].rankings);
+    }
+  }
+
+  async function submitBallot() {
+    const email = emailEl.value.trim().toLowerCase();
+    if (!isValidEmail(email)) {
+      showMsg("Enter a valid email address first.", "err");
+      return;
+    }
+    const rankings = currentSelections();
+    if (rankings.some(r => !r)) {
+      showMsg("Fill in all " + RANK_COUNT + " ranking slots before submitting.", "err");
+      return;
+    }
+    const unique = new Set(rankings);
+    if (unique.size !== rankings.length) {
+      showMsg("Each school can only appear once on your ballot.", "err");
+      return;
+    }
+
+    const submitBtn = document.getElementById("ksfp-submit");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting…";
+    try {
+      const key = await hashEmail(email);
+      await saveBallotEntry(state.week, state.cls, key, rankings);
+      state.completed[state.cls] = true;
+      renderTabs();
+      await loadStandings();
+
+      const idx = CLASS_ORDER.indexOf(state.cls);
+      const nextCls = CLASS_ORDER[idx + 1];
+      msgEl.className = "ksfp-msg show ok";
+      msgEl.innerHTML = "";
+      msgEl.appendChild(document.createTextNode("Your " + state.cls + " ballot has been recorded."));
+      if (nextCls) {
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "ksfp-next-btn";
+        nextBtn.textContent = "Continue to " + nextCls + " →";
+        nextBtn.addEventListener("click", () => {
+          state.cls = nextCls;
+          renderTabs();
+          renderBallotForm();
+          loadStandings();
+          showMsg("", "");
+        });
+        msgEl.appendChild(nextBtn);
+      }
+    } catch (e) {
+      showMsg("Something went wrong saving your ballot. Try again.", "err");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit ballot";
+    }
+  }
+
+  async function clearBallot() {
+    const email = emailEl.value.trim().toLowerCase();
+    if (!isValidEmail(email)) {
+      showMsg("Enter your email to find and clear your ballot.", "err");
+      return;
+    }
+    const key = await hashEmail(email);
+    const data = await loadPollEntries(state.week, state.cls);
+    if (!data[key]) {
+      showMsg("No ballot found for that email in " + state.cls + ".", "err");
+      return;
+    }
+    await deleteBallotEntry(state.week, state.cls, key);
+    renderBallotForm();
+    showMsg("Your ballot for " + state.cls + " has been cleared.", "ok");
+    await loadStandings();
+  }
+
+  document.getElementById("ksfp-submit").addEventListener("click", submitBallot);
+  document.getElementById("ksfp-clear").addEventListener("click", clearBallot);
+  emailEl.addEventListener("change", async () => {
+    const email = emailEl.value.trim().toLowerCase();
+    await refreshCompletionForEmail(email);
+
+    const currentIdx = CLASS_ORDER.indexOf(state.cls);
+    if (!isUnlocked(currentIdx) && !state.completed[state.cls]) {
+      const firstIncompleteIdx = CLASS_ORDER.findIndex(c => !state.completed[c]);
+      state.cls = firstIncompleteIdx === -1 ? CLASS_ORDER[CLASS_ORDER.length - 1] : CLASS_ORDER[firstIncompleteIdx];
+      renderBallotForm();
+      await loadStandings();
+    }
+
+    renderTabs();
+    const data = await loadPollEntries(state.week, state.cls);
+    await maybePrefillFromEmail(data);
+  });
+
+  document.querySelectorAll(".ksfp-view-btn").forEach(btn => {
+    btn.addEventListener("click", () => switchView(btn.dataset.view));
+  });
+
+  adminLinkEl.addEventListener("click", async () => {
+    const isHidden = adminPanelEl.style.display === "none";
+    adminPanelEl.style.display = isHidden ? "block" : "none";
+    if (isHidden) await refreshAdminPanel();
+  });
+
+  publicRecordsLinkEl.addEventListener("click", async () => {
+    adminPanelEl.style.display = "block";
+    await refreshAdminPanel();
+    adminRecordsWeekEl.value = state.publicWeek;
+    adminRecordsClassEl.value = state.publicCls;
+    await loadRecordsIntoTextarea();
+    adminPanelEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  onAuthStateChanged(auth, async (user) => {
+    const loggedIn = !!user;
+    adminLoginEl.style.display = loggedIn ? "none" : "block";
+    adminControlsEl.style.display = loggedIn ? "block" : "none";
+    if (loggedIn) {
+      adminWhoamiEl.textContent = user.email;
+    }
+    if (adminPanelEl.style.display !== "none") {
+      await refreshAdminPanel();
+    }
+  });
+
+  adminSignInBtn.addEventListener("click", async () => {
+    adminLoginStatusEl.textContent = "Signing in…";
+    try {
+      await signInWithEmailAndPassword(auth, adminEmailEl.value.trim(), adminPasswordEl.value);
+      adminPasswordEl.value = "";
+      adminLoginStatusEl.textContent = "";
+    } catch (e) {
+      adminLoginStatusEl.textContent = "Sign-in failed — check the email and password.";
+    }
+  });
+
+  adminSignOutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+  });
+
+  async function refreshAdminPanel() {
+    const currentWeek = await getCurrentWeek();
+    adminCurrentWeekEl.textContent = currentWeek;
+
+    const weeks = await getWeeksList();
+    adminReleaseSelectEl.innerHTML = weeks.map(w =>
+      '<option value="' + w.replace(/"/g,'&quot;') + '"' + (w === currentWeek ? " selected" : "") + '>' + w + '</option>'
+    ).join("");
+    adminRecordsWeekEl.innerHTML = weeks.map(w =>
+      '<option value="' + w.replace(/"/g,'&quot;') + '"' + (w === currentWeek ? " selected" : "") + '>' + w + '</option>'
+    ).join("");
+    adminRecordsClassEl.innerHTML = CLASS_ORDER.map(c =>
+      '<option value="' + c + '">' + c + '</option>'
+    ).join("");
+
+    await refreshReleaseStatusText();
+    await loadRecordsIntoTextarea();
+  }
+
+  async function loadRecordsIntoTextarea() {
+    const week = adminRecordsWeekEl.value;
+    const cls = adminRecordsClassEl.value;
+    if (!week || !cls) { adminRecordsTextEl.value = ""; return; }
+    const records = await getRecords(week, cls);
+    adminRecordsTextEl.value = Object.keys(records).map(school => school + ": " + records[school]).join("\n");
+    adminRecordsStatusEl.textContent = "";
+  }
+
+  adminRecordsWeekEl.addEventListener("change", loadRecordsIntoTextarea);
+  adminRecordsClassEl.addEventListener("change", loadRecordsIntoTextarea);
+
+  adminSaveRecordsBtn.addEventListener("click", async () => {
+    if (!auth.currentUser) {
+      adminRecordsStatusEl.textContent = "Sign in first.";
+      return;
+    }
+    const week = adminRecordsWeekEl.value;
+    const cls = adminRecordsClassEl.value;
+    const lines = adminRecordsTextEl.value.split("\n").map(l => l.trim()).filter(Boolean);
+    const records = {};
+    lines.forEach(line => {
+      const idx = line.indexOf(":");
+      if (idx === -1) return;
+      const school = line.slice(0, idx).trim();
+      const record = line.slice(idx + 1).trim();
+      if (school && record) records[school] = record;
+    });
+    try {
+      await saveRecords(week, cls, records);
+      adminRecordsStatusEl.textContent = "Saved records for " + cls + " — " + week + ".";
+      if (state.view === "public" && state.publicWeek === week && state.publicCls === cls) {
+        await loadPublicStandings();
+      }
+    } catch (e) {
+      adminRecordsStatusEl.textContent = "Save failed — you may need to sign in again.";
+    }
+  });
+
+  async function refreshReleaseStatusText() {
+    const week = adminReleaseSelectEl.value;
+    if (!week) { adminStatusEl.textContent = ""; return; }
+    const released = await getReleaseStatus(week);
+    adminToggleBtn.textContent = released ? "Unrelease " + week : "Release " + week;
+    adminStatusEl.textContent = released ? week + " is currently public." : week + " is currently hidden from the public page.";
+  }
+
+  adminReleaseSelectEl.addEventListener("change", refreshReleaseStatusText);
+
+  adminSetWeekBtn.addEventListener("click", async () => {
+    if (!auth.currentUser) {
+      adminWeekStatusEl.textContent = "Sign in first.";
+      return;
+    }
+    const newWeek = adminWeekInputEl.value.trim();
+    if (!newWeek) {
+      adminWeekStatusEl.textContent = "Enter a week name first, e.g. \"Week 1\".";
+      return;
+    }
+    try {
+      await setCurrentWeek(newWeek);
+      state.week = newWeek;
+      adminWeekInputEl.value = "";
+      adminWeekStatusEl.textContent = "Now voting: " + newWeek + ".";
+      renderBallotForm();
+      await loadStandings();
+      await refreshAdminPanel();
+    } catch (e) {
+      adminWeekStatusEl.textContent = "Save failed — you may need to sign in again.";
+    }
+  });
+
+  adminToggleBtn.addEventListener("click", async () => {
+    if (!auth.currentUser) {
+      adminStatusEl.textContent = "Sign in first.";
+      return;
+    }
+    const week = adminReleaseSelectEl.value;
+    try {
+      const released = await getReleaseStatus(week);
+      await setReleaseStatus(week, !released);
+      await refreshReleaseStatusText();
+      if (state.view === "public") await showPublicView();
+    } catch (e) {
+      adminStatusEl.textContent = "Save failed — you may need to sign in again.";
+    }
+  });
+
+  async function init() {
+    try {
+      state.week = await getCurrentWeek();
+    } catch (e) {
+      console.error("Could not reach Firestore — check firebaseConfig in index.html.", e);
+    }
+    renderTabs();
+    renderBallotForm();
+    await loadStandings();
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
