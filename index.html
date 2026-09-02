@@ -729,14 +729,17 @@ const auth = getAuth(app);
 
   async function showPublicWeek() {
     const released = await getReleaseStatus(state.publicWeek);
+    const isAdmin = !!auth.currentUser;
     document.getElementById("ksfp-public-title").textContent = state.publicWeek;
-    if (!released) {
+    if (!released && !isAdmin) {
       publicMsgEl.textContent = state.publicWeek + " results haven't been released yet. Check back after voting closes at 11:59 p.m. Sunday.";
       publicTabsEl.style.display = "none";
       publicCardEl.style.display = "none";
       return;
     }
-    publicMsgEl.textContent = "";
+    publicMsgEl.textContent = (!released && isAdmin)
+      ? "Admin preview — " + state.publicWeek + " hasn't been released to the public yet."
+      : "";
     publicTabsEl.style.display = "flex";
     publicCardEl.style.display = "block";
     renderPublicClassTabs();
@@ -964,6 +967,9 @@ const auth = getAuth(app);
     }
     if (adminPanelEl.style.display !== "none") {
       await refreshAdminPanel();
+    }
+    if (state.view === "public") {
+      await showPublicWeek();
     }
   });
 
