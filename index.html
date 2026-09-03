@@ -302,11 +302,6 @@
         <button class="ksfp-btn primary" id="ksfp-admin-save-lastseason" style="margin-top:6px;">Save last season</button>
         <p class="ksfp-admin-status" id="ksfp-admin-lastseason-status"></p>
 
-        <label for="ksfp-admin-bulk-lastseason-text" style="margin-top:12px;">Bulk import last season (all classes at once, for the week selected above)</label>
-        <textarea id="ksfp-admin-bulk-lastseason-text" rows="6" placeholder="6A&#10;Maize: State runner-up&#10;Derby: Class 6A regional&#10;&#10;5A&#10;Andover: Class 5A sectional" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
-        <button class="ksfp-btn primary" id="ksfp-admin-bulk-save-lastseason" style="margin-top:6px;">Import all classes</button>
-        <p class="ksfp-admin-status" id="ksfp-admin-bulk-lastseason-status"></p>
-
         <label for="ksfp-admin-clear-class" style="margin-top:12px;">Clear all ballots for</label>
         <div style="display:flex; gap:8px; margin-bottom:6px;">
           <select id="ksfp-admin-clear-week"></select>
@@ -450,9 +445,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const adminLastSeasonTextEl = document.getElementById("ksfp-admin-lastseason-text");
   const adminSaveLastSeasonBtn = document.getElementById("ksfp-admin-save-lastseason");
   const adminLastSeasonStatusEl = document.getElementById("ksfp-admin-lastseason-status");
-  const adminBulkLastSeasonTextEl = document.getElementById("ksfp-admin-bulk-lastseason-text");
-  const adminBulkSaveLastSeasonBtn = document.getElementById("ksfp-admin-bulk-save-lastseason");
-  const adminBulkLastSeasonStatusEl = document.getElementById("ksfp-admin-bulk-lastseason-status");
   const adminClearWeekEl = document.getElementById("ksfp-admin-clear-week");
   const adminClearClassEl = document.getElementById("ksfp-admin-clear-class");
   const adminClearBtn = document.getElementById("ksfp-admin-clear-ballots");
@@ -1388,74 +1380,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       }
     } catch (e) {
       adminLastSeasonStatusEl.textContent = "Save failed — you may need to sign in again.";
-    }
-  });
-
-  function normalizeClassHeader(line) {
-    const stripped = line.replace(/^class\s+/i, "").trim();
-    return CLASS_ORDER.find(c => c.toLowerCase() === stripped.toLowerCase()) || null;
-  }
-
-  function parseBulkLastSeason(text) {
-    const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
-    const result = {};
-    let currentCls = null;
-    lines.forEach(line => {
-      const header = normalizeClassHeader(line);
-      if (header) {
-        currentCls = header;
-        if (!result[currentCls]) result[currentCls] = {};
-        return;
-      }
-      const idx = line.indexOf(":");
-      if (idx === -1 || !currentCls) return;
-      const school = line.slice(0, idx).trim();
-      const value = line.slice(idx + 1).trim();
-      if (school && value) result[currentCls][school] = value;
-    });
-    return result;
-  }
-
-  let bulkLastSeasonQueue = null;
-  let bulkLastSeasonParsed = null;
-
-  adminBulkSaveLastSeasonBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminBulkLastSeasonStatusEl.textContent = "Sign in first.";
-      return;
-    }
-    const week = adminRecordsWeekEl.value;
-
-    if (!bulkLastSeasonQueue || bulkLastSeasonQueue.length === 0) {
-      bulkLastSeasonParsed = parseBulkLastSeason(adminBulkLastSeasonTextEl.value);
-      bulkLastSeasonQueue = Object.keys(bulkLastSeasonParsed);
-      if (bulkLastSeasonQueue.length === 0) {
-        adminBulkLastSeasonStatusEl.textContent = 'Couldn\'t find any class headers (e.g. "6A" or "Class 6A") — check the formatting.';
-        return;
-      }
-    }
-
-    const cls = bulkLastSeasonQueue[0];
-    adminBulkSaveLastSeasonBtn.disabled = true;
-    adminBulkLastSeasonStatusEl.textContent = "Saving " + cls + "…";
-    try {
-      await saveLastSeason(week, cls, bulkLastSeasonParsed[cls]);
-      bulkLastSeasonQueue.shift();
-      if (bulkLastSeasonQueue.length > 0) {
-        adminBulkLastSeasonStatusEl.textContent = "Saved " + cls + ". " + bulkLastSeasonQueue.length + " left — click the button again for " + bulkLastSeasonQueue[0] + ".";
-        adminBulkSaveLastSeasonBtn.textContent = "Import next: " + bulkLastSeasonQueue[0];
-      } else {
-        adminBulkLastSeasonStatusEl.textContent = "All classes saved for " + week + ".";
-        adminBulkSaveLastSeasonBtn.textContent = "Import all classes";
-        await loadRecordsIntoTextarea();
-        if (state.view === "public" && state.publicWeek === week) {
-          await loadPublicStandingsForSelection();
-        }
-      }
-    } catch (e) {
-      adminBulkLastSeasonStatusEl.textContent = "Save failed for " + cls + " — click the button again to retry just this class.";
-    } finally {
-      adminBulkSaveLastSeasonBtn.disabled = false;
     }
   });
 
