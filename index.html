@@ -297,11 +297,6 @@
         <button class="ksfp-btn primary" id="ksfp-admin-save-records" style="margin-top:6px;">Save records</button>
         <p class="ksfp-admin-status" id="ksfp-admin-records-status"></p>
 
-        <label for="ksfp-admin-lastseason-text" style="margin-top:12px;">Last season result (shown on Preseason instead of "LW")</label>
-        <textarea id="ksfp-admin-lastseason-text" rows="4" placeholder="One school per line, e.g.&#10;Maize: State runner-up&#10;Wichita-Northwest: Reached 6A Regional" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
-        <button class="ksfp-btn primary" id="ksfp-admin-save-lastseason" style="margin-top:6px;">Save last season</button>
-        <p class="ksfp-admin-status" id="ksfp-admin-lastseason-status"></p>
-
         <label for="ksfp-admin-clear-class" style="margin-top:12px;">Clear all ballots for</label>
         <div style="display:flex; gap:8px; margin-bottom:6px;">
           <select id="ksfp-admin-clear-week"></select>
@@ -442,9 +437,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const adminRecordsTextEl = document.getElementById("ksfp-admin-records-text");
   const adminSaveRecordsBtn = document.getElementById("ksfp-admin-save-records");
   const adminRecordsStatusEl = document.getElementById("ksfp-admin-records-status");
-  const adminLastSeasonTextEl = document.getElementById("ksfp-admin-lastseason-text");
-  const adminSaveLastSeasonBtn = document.getElementById("ksfp-admin-save-lastseason");
-  const adminLastSeasonStatusEl = document.getElementById("ksfp-admin-lastseason-status");
   const adminClearWeekEl = document.getElementById("ksfp-admin-clear-week");
   const adminClearClassEl = document.getElementById("ksfp-admin-clear-class");
   const adminClearBtn = document.getElementById("ksfp-admin-clear-ballots");
@@ -561,11 +553,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   async function getLastSeason(week, cls) {
     const data = await getRecordsDoc(week, cls);
     return data.lastSeason || {};
-  }
-
-  async function saveLastSeason(week, cls, obj) {
-    const existing = await getRecordsDoc(week, cls);
-    await withTimeout(setDoc(doc(db, "records", pollId(week, cls)), { schools: existing.schools || {}, lastSeason: obj }));
   }
 
   let settingsCache = null;
@@ -1318,12 +1305,10 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   async function loadRecordsIntoTextarea() {
     const week = adminRecordsWeekEl.value;
     const cls = adminRecordsClassEl.value;
-    if (!week || !cls) { adminRecordsTextEl.value = ""; adminLastSeasonTextEl.value = ""; return; }
-    const [records, lastSeason] = await Promise.all([getRecords(week, cls), getLastSeason(week, cls)]);
+    if (!week || !cls) { adminRecordsTextEl.value = ""; return; }
+    const records = await getRecords(week, cls);
     adminRecordsTextEl.value = Object.keys(records).map(school => school + ": " + records[school]).join("\n");
     adminRecordsStatusEl.textContent = "";
-    adminLastSeasonTextEl.value = Object.keys(lastSeason).map(school => school + ": " + lastSeason[school]).join("\n");
-    adminLastSeasonStatusEl.textContent = "";
   }
 
   adminRecordsWeekEl.addEventListener("change", loadRecordsIntoTextarea);
@@ -1353,33 +1338,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       }
     } catch (e) {
       adminRecordsStatusEl.textContent = "Save failed — you may need to sign in again.";
-    }
-  });
-
-  adminSaveLastSeasonBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminLastSeasonStatusEl.textContent = "Sign in first.";
-      return;
-    }
-    const week = adminRecordsWeekEl.value;
-    const cls = adminRecordsClassEl.value;
-    const lines = adminLastSeasonTextEl.value.split("\n").map(l => l.trim()).filter(Boolean);
-    const lastSeason = {};
-    lines.forEach(line => {
-      const idx = line.indexOf(":");
-      if (idx === -1) return;
-      const school = line.slice(0, idx).trim();
-      const result = line.slice(idx + 1).trim();
-      if (school && result) lastSeason[school] = result;
-    });
-    try {
-      await saveLastSeason(week, cls, lastSeason);
-      adminLastSeasonStatusEl.textContent = "Saved last season results for " + cls + " — " + week + ".";
-      if (state.view === "public" && state.publicWeek === week) {
-        await loadPublicStandingsForSelection();
-      }
-    } catch (e) {
-      adminLastSeasonStatusEl.textContent = "Save failed — you may need to sign in again.";
     }
   });
 
