@@ -169,15 +169,16 @@
   </div>
 
   <div class="ksfp-viewtoggle" id="ksfp-viewtoggle">
-    <button class="ksfp-view-btn active" data-view="vote">Cast a ballot</button>
+    <button class="ksfp-view-btn active" data-view="vote" id="ksfp-vote-toggle-btn">Cast a ballot</button>
     <button class="ksfp-view-btn" data-view="public">Public results</button>
   </div>
 
   <div id="ksfp-vote-view">
+    <p class="ksfp-public-msg" id="ksfp-vote-locked-msg" style="display:none;">Voting is currently closed. Check back soon.</p>
     <div class="ksfp-tabs" id="ksfp-tabs"></div>
     <p class="ksfp-progress" id="ksfp-progress">Enter your email to track progress across classes.</p>
 
-    <div class="ksfp-grid">
+    <div class="ksfp-grid" id="ksfp-vote-grid">
       <div class="ksfp-card">
         <h2 id="ksfp-ballot-title">Cast your ballot</h2>
         <p class="ksfp-sub" id="ksfp-ballot-sub"></p>
@@ -374,6 +375,9 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const msgEl = document.getElementById("ksfp-msg");
   const lockBannerEl = document.getElementById("ksfp-lock-banner");
   const ballotBodyEl = document.getElementById("ksfp-ballot-body");
+  const voteLockedMsgEl = document.getElementById("ksfp-vote-locked-msg");
+  const voteGridEl = document.getElementById("ksfp-vote-grid");
+  const voteToggleBtnEl = document.getElementById("ksfp-vote-toggle-btn");
   const submitBtnEl = document.getElementById("ksfp-submit");
   const clearBtnEl = document.getElementById("ksfp-clear");
   const standingsEl = document.getElementById("ksfp-standings");
@@ -879,6 +883,18 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     } catch (e) {
       locked = false;
     }
+    const isAdmin = !!auth.currentUser;
+    const hideForVoters = locked && !isAdmin;
+
+    voteLockedMsgEl.style.display = hideForVoters ? "block" : "none";
+    tabsEl.style.display = hideForVoters ? "none" : "";
+    progressEl.style.display = hideForVoters ? "none" : "";
+    voteGridEl.style.display = hideForVoters ? "none" : "";
+    voteToggleBtnEl.style.display = hideForVoters ? "none" : "";
+    if (hideForVoters && state.view === "vote") {
+      switchView("public");
+    }
+
     lockBannerEl.style.display = locked ? "block" : "none";
     ballotBodyEl.style.display = locked ? "none" : "block";
     submitBtnEl.disabled = locked;
@@ -1416,7 +1432,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       const locked = await getVotingLocked();
       await setVotingLocked(!locked);
       await refreshLockStatusText();
-      if (state.view === "vote") await applyVotingLockUI();
+      await applyVotingLockUI();
     } catch (e) {
       adminLockStatusEl.textContent = "Save failed — you may need to sign in again.";
     }
