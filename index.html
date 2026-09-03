@@ -281,7 +281,6 @@
   <div id="ksfp-public-view" style="display:none;">
     <div class="ksfp-tabs" id="ksfp-public-week-tabs"></div>
     <p class="ksfp-public-msg" id="ksfp-public-msg"></p>
-    <div class="ksfp-tabs" id="ksfp-public-tabs" style="display:none;"></div>
     <div class="ksfp-card" id="ksfp-public-card" style="display:none;">
       <div class="ksfp-standings-head">
         <h2 id="ksfp-public-title">Final standings</h2>
@@ -445,7 +444,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const publicViewEl = document.getElementById("ksfp-public-view");
   const publicWeekTabsEl = document.getElementById("ksfp-public-week-tabs");
   const publicMsgEl = document.getElementById("ksfp-public-msg");
-  const publicTabsEl = document.getElementById("ksfp-public-tabs");
   const publicCardEl = document.getElementById("ksfp-public-card");
   const publicStandingsEl = document.getElementById("ksfp-public-standings");
   const publicCountEl = document.getElementById("ksfp-public-count");
@@ -790,31 +788,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     });
   }
 
-  function renderPublicClassTabs() {
-    publicTabsEl.innerHTML = "";
-    const allBtn = document.createElement("button");
-    allBtn.className = "ksfp-tab" + (state.publicCls === "ALL" ? " active" : "");
-    allBtn.textContent = "All Classes";
-    allBtn.addEventListener("click", () => {
-      state.publicCls = "ALL";
-      renderPublicClassTabs();
-      loadPublicStandingsForSelection();
-    });
-    publicTabsEl.appendChild(allBtn);
-
-    CLASS_ORDER.forEach(cls => {
-      const btn = document.createElement("button");
-      btn.className = "ksfp-tab" + (cls === state.publicCls ? " active" : "");
-      btn.textContent = cls;
-      btn.addEventListener("click", () => {
-        state.publicCls = cls;
-        renderPublicClassTabs();
-        loadPublicStandingsForSelection();
-      });
-      publicTabsEl.appendChild(btn);
-    });
-  }
-
   function loadPublicStandingsForSelection() {
     return state.publicCls === "ALL" ? loadAllPublicStandings() : loadPublicStandings();
   }
@@ -963,16 +936,13 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     document.getElementById("ksfp-public-title").textContent = state.publicWeek;
     if (!released && !isAdmin) {
       publicMsgEl.textContent = state.publicWeek + " results haven't been released yet. Check back after voting closes at 11:59 p.m. Sunday.";
-      publicTabsEl.style.display = "none";
       publicCardEl.style.display = "none";
       return;
     }
     publicMsgEl.textContent = (!released && isAdmin)
       ? "Admin preview — " + state.publicWeek + " hasn't been released to the public yet."
       : "";
-    publicTabsEl.style.display = "flex";
     publicCardEl.style.display = "block";
-    renderPublicClassTabs();
     await loadPublicStandingsForSelection();
   }
 
@@ -982,7 +952,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       weeks = await getWeeksList();
     } catch (e) {
       publicMsgEl.textContent = "Could not load results. Check your connection or Firebase setup.";
-      publicTabsEl.style.display = "none";
       publicCardEl.style.display = "none";
       return;
     }
