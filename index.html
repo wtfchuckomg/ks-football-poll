@@ -955,9 +955,18 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       return;
     }
     const voterKeys = Object.keys(data);
-    countEl.textContent = voterKeys.length + (voterKeys.length === 1 ? " ballot cast" : " ballots cast");
     renderAdminPicksTable(data);
     await renderVoterRosterStatus(data);
+
+    const canSeeResults = !!auth.currentUser || !!state.completed[state.cls];
+    if (!canSeeResults) {
+      countEl.textContent = "";
+      standingsEl.innerHTML = '<p class="ksfp-empty">Standings for ' + state.cls + ' will show once you submit your ballot for this class.</p>';
+      await maybePrefillFromEmail(data);
+      return;
+    }
+
+    countEl.textContent = voterKeys.length + (voterKeys.length === 1 ? " ballot cast" : " ballots cast");
 
     if (voterKeys.length === 0) {
       standingsEl.innerHTML = '<p class="ksfp-empty">No ballots yet for ' + state.cls + '. Be the first to vote.</p>';
