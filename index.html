@@ -39,6 +39,13 @@
     margin: 0 auto;
   }
   .ksfp h1, .ksfp h2, .ksfp h3 { font-family: 'Anton', sans-serif; font-weight: 400; letter-spacing: 0.3px; margin: 0; }
+
+  .ksfp-sitenav { display: flex; justify-content: center; gap: 28px; padding-bottom: 14px; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
+  .ksfp-sitenav a, .ksfp-sitenav span { font-family: 'Anton', sans-serif; font-size: 14px; letter-spacing: 0.5px; text-decoration: none; padding-bottom: 4px; }
+  .ksfp-sitenav a { color: var(--gold); border-bottom: 2px solid var(--gold); }
+  .ksfp-sitenav span.disabled { color: var(--chalk-dim); opacity: 0.5; cursor: default; }
+  .ksfp-sitenav span.disabled small { display: block; font-family: 'Work Sans', sans-serif; font-size: 9px; letter-spacing: 0.3px; margin-top: 2px; text-transform: none; }
+
   .ksfp-header { text-align: center; margin-bottom: 22px; }
   .ksfp-header h1 { font-size: 34px; line-height: 1.05; }
   .ksfp-header p { color: var(--chalk-dim); font-size: 14px; margin: 8px 0 0; }
@@ -68,7 +75,7 @@
 
   .ksfp-field { margin-bottom: 12px; }
   .ksfp-field label { display: block; font-size: 12px; color: var(--chalk-dim); margin-bottom: 4px; }
-  .ksfp-field input[type=email] {
+  .ksfp-field input[type=email], .ksfp-field input[type=text] {
     width: 100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk);
     padding: 9px 10px; border-radius: 4px; font-size: 14px; font-family: inherit;
   }
@@ -116,6 +123,14 @@
   .ksfp-fpv { text-align: right; color: var(--chalk-dim); font-variant-numeric: tabular-nums; }
   .ksfp-empty { color: var(--chalk-dim); font-size: 13.5px; padding: 18px 4px; text-align: center; }
   .ksfp-receiving { font-size: 12px; color: var(--chalk-dim); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); line-height: 1.6; }
+
+  .ksfp-roster-list { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; margin-top: 12px; }
+  .ksfp-roster-item { display: flex; align-items: center; gap: 6px; }
+  .ksfp-roster-item.voted { color: var(--chalk); }
+  .ksfp-roster-item.missing { color: var(--chalk-dim); }
+  .ksfp-roster-dot { width: 8px; height: 8px; min-width: 8px; border-radius: 50%; display: inline-block; }
+  .ksfp-roster-item.voted .ksfp-roster-dot { background: var(--gold); }
+  .ksfp-roster-item.missing .ksfp-roster-dot { background: transparent; border: 1px solid var(--chalk-dim); }
   .ksfp-receiving b { color: var(--chalk); font-weight: 600; }
 
   .ksfp-note { color: var(--chalk-dim); font-size: 11.5px; margin-top: 14px; line-height: 1.5; }
@@ -143,6 +158,11 @@
 <body>
 
 <div class="ksfp" id="ksfp-root">
+  <nav class="ksfp-sitenav">
+    <a href="index.html">Media Rankings</a>
+    <span class="disabled">Pick 'Em<small>Coming soon</small></span>
+  </nav>
+
   <div class="ksfp-header">
     <h1>2026 Kansas Media Football Rankings</h1>
     <p id="ksfp-header-sub">Thank you for casting your media vote for the 2026 season. Please fill every place by 11:59 p.m. Sunday night.</p>
@@ -163,19 +183,26 @@
         <p class="ksfp-sub" id="ksfp-ballot-sub"></p>
         <p class="ksfp-msg show err" id="ksfp-lock-banner" style="display:none;">Voting is currently locked. Check back soon.</p>
 
-        <div class="ksfp-field">
-          <label for="ksfp-email">Email address</label>
-          <input type="email" id="ksfp-email" placeholder="name@email.com" />
-        </div>
+        <div id="ksfp-ballot-body">
+          <div class="ksfp-field">
+            <label for="ksfp-name">Your name</label>
+            <input type="text" id="ksfp-name" placeholder="Jane Smith" />
+          </div>
 
-        <div id="ksfp-ranks"></div>
+          <div class="ksfp-field">
+            <label for="ksfp-email">Email address</label>
+            <input type="email" id="ksfp-email" placeholder="name@email.com" />
+          </div>
 
-        <div class="ksfp-actions">
-          <button class="ksfp-btn primary" id="ksfp-submit">Submit ballot</button>
-          <button class="ksfp-btn ghost" id="ksfp-clear">Clear my ballot</button>
+          <div id="ksfp-ranks"></div>
+
+          <div class="ksfp-actions">
+            <button class="ksfp-btn primary" id="ksfp-submit">Submit ballot</button>
+            <button class="ksfp-btn ghost" id="ksfp-clear">Clear my ballot</button>
+          </div>
+          <div class="ksfp-msg" id="ksfp-msg"></div>
+          <p class="ksfp-note">Points follow the standard AP model: 10 for a 1st-place vote down to 1 for a 10th-place vote. Submitting again with the same email replaces your previous ballot for this class.</p>
         </div>
-        <div class="ksfp-msg" id="ksfp-msg"></div>
-        <p class="ksfp-note">Points follow the standard AP model: 10 for a 1st-place vote down to 1 for a 10th-place vote. Submitting again with the same email replaces your previous ballot for this class.</p>
       </div>
 
       <div class="ksfp-card">
@@ -184,6 +211,24 @@
           <span class="ksfp-count" id="ksfp-count"></span>
         </div>
         <div id="ksfp-standings"></div>
+      </div>
+    </div>
+
+    <div class="ksfp-card" id="ksfp-admin-roster-card" style="display:none; margin-top:20px;">
+      <div class="ksfp-standings-head">
+        <h2>Who's Voted — <span id="ksfp-admin-roster-cls"></span></h2>
+        <span class="ksfp-count" id="ksfp-admin-roster-count"></span>
+      </div>
+      <div id="ksfp-admin-roster-list"></div>
+    </div>
+
+    <div class="ksfp-card" id="ksfp-admin-picks-card" style="display:none; margin-top:20px;">
+      <div class="ksfp-standings-head">
+        <h2>Everyone's Picks</h2>
+        <span class="ksfp-count">Commissioner only.</span>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="ksfp-table" id="ksfp-admin-picks-table"></table>
       </div>
     </div>
   </div>
@@ -228,6 +273,11 @@
         <button class="ksfp-btn ghost" id="ksfp-admin-toggle-lock" style="border-color:var(--red); color:#E88B84;">Lock voting</button>
         <p class="ksfp-admin-status" id="ksfp-admin-lock-status"></p>
 
+        <label for="ksfp-admin-roster-text" style="margin-top:12px;">Expected voters this week (one per line)</label>
+        <textarea id="ksfp-admin-roster-text" rows="4" placeholder="Alice Smith&#10;Bob Jones" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
+        <button class="ksfp-btn primary" id="ksfp-admin-save-roster" style="margin-top:6px;">Save roster</button>
+        <p class="ksfp-admin-status" id="ksfp-admin-roster-status"></p>
+
         <label for="ksfp-admin-release-select" style="margin-top:12px;">Release results for</label>
         <div style="display:flex; gap:8px;">
           <select id="ksfp-admin-release-select"></select>
@@ -251,12 +301,18 @@
         </div>
         <button class="ksfp-btn ghost" id="ksfp-admin-clear-ballots" style="border-color:var(--red); color:#E88B84;">Clear all ballots</button>
         <p class="ksfp-admin-status" id="ksfp-admin-clear-status"></p>
+
+        <label style="margin-top:12px;">Email voters their picks</label>
+        <p class="ksfp-admin-status" style="margin:0 0 6px;">Sends everyone who voted for "<span id="ksfp-admin-email-week-label">—</span>" a recap of their picks across every class.</p>
+        <button class="ksfp-btn primary" id="ksfp-admin-email-picks">Email everyone their picks</button>
+        <p class="ksfp-admin-status" id="ksfp-admin-email-status"></p>
       </div>
 
     </div>
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import {
@@ -279,6 +335,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+
+// ---- Fill this in with your EmailJS account details (emailjs.com) ----
+// Account > General for the Public Key. Email Services for the Service ID.
+// Email Templates for the Template ID.
+const EMAILJS_PUBLIC_KEY = "5ZvIhkqtESa7Ygak-";
+const EMAILJS_SERVICE_ID = "service_z0ehguk";
+const EMAILJS_TEMPLATE_ID = "template_z7fhflh";
+if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
+  window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
 
 (function() {
   const CLASSES = {
@@ -303,13 +369,21 @@ const auth = getAuth(app);
   const tabsEl = document.getElementById("ksfp-tabs");
   const progressEl = document.getElementById("ksfp-progress");
   const ranksEl = document.getElementById("ksfp-ranks");
+  const nameEl = document.getElementById("ksfp-name");
   const emailEl = document.getElementById("ksfp-email");
   const msgEl = document.getElementById("ksfp-msg");
   const lockBannerEl = document.getElementById("ksfp-lock-banner");
+  const ballotBodyEl = document.getElementById("ksfp-ballot-body");
   const submitBtnEl = document.getElementById("ksfp-submit");
   const clearBtnEl = document.getElementById("ksfp-clear");
   const standingsEl = document.getElementById("ksfp-standings");
   const countEl = document.getElementById("ksfp-count");
+  const adminPicksCardEl = document.getElementById("ksfp-admin-picks-card");
+  const adminPicksTableEl = document.getElementById("ksfp-admin-picks-table");
+  const adminRosterCardEl = document.getElementById("ksfp-admin-roster-card");
+  const adminRosterClsEl = document.getElementById("ksfp-admin-roster-cls");
+  const adminRosterCountEl = document.getElementById("ksfp-admin-roster-count");
+  const adminRosterListEl = document.getElementById("ksfp-admin-roster-list");
   const titleEl = document.getElementById("ksfp-ballot-title");
   const subEl = document.getElementById("ksfp-ballot-sub");
 
@@ -339,6 +413,9 @@ const auth = getAuth(app);
   const adminWeekStatusEl = document.getElementById("ksfp-admin-week-status");
   const adminToggleLockBtn = document.getElementById("ksfp-admin-toggle-lock");
   const adminLockStatusEl = document.getElementById("ksfp-admin-lock-status");
+  const adminRosterTextEl = document.getElementById("ksfp-admin-roster-text");
+  const adminSaveRosterBtn = document.getElementById("ksfp-admin-save-roster");
+  const adminRosterStatusEl = document.getElementById("ksfp-admin-roster-status");
   const adminReleaseSelectEl = document.getElementById("ksfp-admin-release-select");
   const adminToggleBtn = document.getElementById("ksfp-admin-toggle-release");
   const adminStatusEl = document.getElementById("ksfp-admin-status");
@@ -351,6 +428,9 @@ const auth = getAuth(app);
   const adminClearClassEl = document.getElementById("ksfp-admin-clear-class");
   const adminClearBtn = document.getElementById("ksfp-admin-clear-ballots");
   const adminClearStatusEl = document.getElementById("ksfp-admin-clear-status");
+  const adminEmailWeekLabelEl = document.getElementById("ksfp-admin-email-week-label");
+  const adminEmailPicksBtn = document.getElementById("ksfp-admin-email-picks");
+  const adminEmailStatusEl = document.getElementById("ksfp-admin-email-status");
   const publicRecordsLinkEl = document.getElementById("ksfp-public-records-link");
 
   const HEADER_TEXT = {
@@ -386,12 +466,23 @@ const auth = getAuth(app);
     return data;
   }
 
-  async function saveBallotEntry(week, cls, emailHash, rankings) {
-    await withTimeout(setDoc(doc(db, "polls", pollId(week, cls), "entries", emailHash), { rankings, ts: Date.now() }));
+  async function saveBallotEntry(week, cls, emailHash, rankings, name) {
+    await withTimeout(setDoc(doc(db, "polls", pollId(week, cls), "entries", emailHash), { rankings, ts: Date.now(), name }));
   }
 
   async function deleteBallotEntry(week, cls, emailHash) {
     await withTimeout(deleteDoc(doc(db, "polls", pollId(week, cls), "entries", emailHash)));
+  }
+
+  async function saveVoterContact(week, emailHash, email) {
+    await withTimeout(setDoc(doc(db, "voterContacts", week, "entries", emailHash), { email }));
+  }
+
+  async function loadVoterContacts(week) {
+    const snap = await withTimeout(getDocs(collection(db, "voterContacts", week, "entries")));
+    const data = {};
+    snap.forEach(d => { data[d.id] = d.data(); });
+    return data;
   }
 
   async function getRecords(week, cls) {
@@ -422,8 +513,17 @@ const auth = getAuth(app);
   async function setCurrentWeek(week) {
     const settings = await getSettings();
     const weeks = settings.weeks.indexOf(week) === -1 ? settings.weeks.concat([week]) : settings.weeks;
-    // Starting a new week always unlocks voting for it.
-    const next = { currentWeek: week, weeks, votingLocked: false };
+    // Starting a new week always unlocks voting and clears the old roster.
+    const next = { currentWeek: week, weeks, votingLocked: false, voterRoster: [] };
+    await withTimeout(setDoc(doc(db, "meta", "settings"), next));
+    settingsCache = next;
+  }
+
+  async function getVoterRoster() { return (await getSettings()).voterRoster || []; }
+
+  async function setVoterRoster(names) {
+    const settings = await getSettings();
+    const next = { currentWeek: settings.currentWeek, weeks: settings.weeks, votingLocked: !!settings.votingLocked, voterRoster: names };
     await withTimeout(setDoc(doc(db, "meta", "settings"), next));
     settingsCache = next;
   }
@@ -780,9 +880,67 @@ const auth = getAuth(app);
       locked = false;
     }
     lockBannerEl.style.display = locked ? "block" : "none";
+    ballotBodyEl.style.display = locked ? "none" : "block";
     submitBtnEl.disabled = locked;
     clearBtnEl.disabled = locked;
     return locked;
+  }
+
+  function namesMatch(a, b) { return a.trim().toLowerCase() === b.trim().toLowerCase(); }
+
+  async function renderVoterRosterStatus(data) {
+    if (!auth.currentUser) {
+      adminRosterCardEl.style.display = "none";
+      return;
+    }
+    const roster = await getVoterRoster();
+    if (roster.length === 0) {
+      adminRosterCardEl.style.display = "none";
+      return;
+    }
+    adminRosterCardEl.style.display = "block";
+    adminRosterClsEl.textContent = state.cls;
+
+    const votedNames = Object.keys(data).map(k => (data[k] && data[k].name) || "").filter(Boolean);
+    const votedCount = roster.filter(r => votedNames.some(v => namesMatch(v, r))).length;
+    adminRosterCountEl.textContent = votedCount + " of " + roster.length + " voted";
+
+    adminRosterListEl.innerHTML = roster.map(name => {
+      const voted = votedNames.some(v => namesMatch(v, name));
+      return '<div class="ksfp-roster-item ' + (voted ? "voted" : "missing") + '">'
+        + '<span class="ksfp-roster-dot"></span>' + name + '</div>';
+    }).join("");
+  }
+
+  function renderAdminPicksTable(data) {
+    if (!auth.currentUser) {
+      adminPicksCardEl.style.display = "none";
+      return;
+    }
+    adminPicksCardEl.style.display = "block";
+    const rankCount = rankCountFor(state.cls);
+    const voterKeys = Object.keys(data);
+
+    let html = '<thead><tr><th>Player</th>';
+    for (let i = 1; i <= rankCount; i++) html += '<th style="text-align:center">' + i + '</th>';
+    html += '</tr></thead><tbody>';
+
+    if (voterKeys.length === 0) {
+      html += '<tr><td colspan="' + (rankCount + 1) + '" class="ksfp-empty">No ballots yet for ' + state.cls + '.</td></tr>';
+    } else {
+      voterKeys.forEach(key => {
+        const entry = data[key];
+        if (!entry || !Array.isArray(entry.rankings)) return;
+        const name = entry.name || "(unnamed)";
+        html += '<tr><td class="ksfp-team">' + name + '</td>';
+        for (let i = 0; i < rankCount; i++) {
+          html += '<td style="text-align:center; font-size:12px;">' + (entry.rankings[i] || "—") + '</td>';
+        }
+        html += '</tr>';
+      });
+    }
+    html += '</tbody>';
+    adminPicksTableEl.innerHTML = html;
   }
 
   async function loadStandings() {
@@ -798,6 +956,8 @@ const auth = getAuth(app);
     }
     const voterKeys = Object.keys(data);
     countEl.textContent = voterKeys.length + (voterKeys.length === 1 ? " ballot cast" : " ballots cast");
+    renderAdminPicksTable(data);
+    await renderVoterRosterStatus(data);
 
     if (voterKeys.length === 0) {
       standingsEl.innerHTML = '<p class="ksfp-empty">No ballots yet for ' + state.cls + '. Be the first to vote.</p>';
@@ -837,6 +997,7 @@ const auth = getAuth(app);
     if (!email || !isValidEmail(email)) return;
     const key = await hashEmail(email);
     if (data[key] && Array.isArray(data[key].rankings)) {
+      if (data[key].name && !nameEl.value.trim()) nameEl.value = data[key].name;
       renderBallotForm(data[key].rankings);
     }
   }
@@ -844,6 +1005,11 @@ const auth = getAuth(app);
   async function submitBallot() {
     if (await getVotingLockedFresh()) {
       showMsg("Voting is currently locked. Check back soon.", "err");
+      return;
+    }
+    const name = nameEl.value.trim();
+    if (!name) {
+      showMsg("Enter your name first.", "err");
       return;
     }
     const email = emailEl.value.trim().toLowerCase();
@@ -867,16 +1033,31 @@ const auth = getAuth(app);
     submitBtn.textContent = "Submitting…";
     try {
       const key = await hashEmail(email);
-      await saveBallotEntry(state.week, state.cls, key, rankings);
+      await saveBallotEntry(state.week, state.cls, key, rankings, name);
+      await saveVoterContact(state.week, key, email);
       state.completed[state.cls] = true;
       renderTabs();
       await loadStandings();
 
       const idx = CLASS_ORDER.indexOf(state.cls);
       const nextCls = CLASS_ORDER[idx + 1];
+      const justFinishedEverything = CLASS_ORDER.every(cls => state.completed[cls]);
+      let emailedRecap = false;
+      if (justFinishedEverything) {
+        try {
+          await sendVoterRecapEmail(state.week, key, name, email);
+          emailedRecap = true;
+        } catch (e) {
+          emailedRecap = false;
+        }
+      }
+
       msgEl.className = "ksfp-msg show ok";
       msgEl.innerHTML = "";
-      msgEl.appendChild(document.createTextNode("Your " + state.cls + " ballot has been recorded."));
+      const recordedText = justFinishedEverything
+        ? "Your " + state.cls + " ballot has been recorded — that's all 9 classes! " + (emailedRecap ? "A copy of your picks has been emailed to you." : "")
+        : "Your " + state.cls + " ballot has been recorded.";
+      msgEl.appendChild(document.createTextNode(recordedText));
       if (nextCls) {
         const nextBtn = document.createElement("button");
         nextBtn.className = "ksfp-next-btn";
@@ -971,6 +1152,9 @@ const auth = getAuth(app);
     if (state.view === "public") {
       await showPublicWeek();
     }
+    if (state.view === "vote") {
+      await loadStandings();
+    }
   });
 
   adminSignInBtn.addEventListener("click", async () => {
@@ -991,6 +1175,7 @@ const auth = getAuth(app);
   async function refreshAdminPanel() {
     const currentWeek = await getCurrentWeek();
     adminCurrentWeekEl.textContent = currentWeek;
+    adminEmailWeekLabelEl.textContent = currentWeek;
 
     const weeks = await getWeeksList();
     adminReleaseSelectEl.innerHTML = weeks.map(w =>
@@ -1012,6 +1197,15 @@ const auth = getAuth(app);
     await refreshReleaseStatusText();
     await loadRecordsIntoTextarea();
     await refreshLockStatusText();
+    await refreshRosterTextarea();
+  }
+
+  async function refreshRosterTextarea() {
+    const roster = await getVoterRoster();
+    adminRosterTextEl.value = roster.join("\n");
+    adminRosterStatusEl.textContent = roster.length
+      ? roster.length + " expected voter" + (roster.length === 1 ? "" : "s") + " set for this week."
+      : "No roster set for this week yet.";
   }
 
   async function refreshLockStatusText() {
@@ -1086,6 +1280,91 @@ const auth = getAuth(app);
     }
   });
 
+  async function sendVoterRecapEmail(week, key, name, email) {
+    if (!window.emailjs || EMAILJS_PUBLIC_KEY === "REPLACE_ME") return;
+    const allClassEntries = await Promise.all(CLASS_ORDER.map(cls => loadPollEntries(week, cls)));
+    const perClassPicks = {};
+    CLASS_ORDER.forEach((cls, i) => {
+      const entry = allClassEntries[i][key];
+      if (entry && Array.isArray(entry.rankings)) perClassPicks[cls] = entry.rankings;
+    });
+    await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_email: email,
+      to_name: name,
+      week: week,
+      picks: buildPicksEmailBody(perClassPicks)
+    });
+  }
+
+  function buildPicksEmailBody(perClassPicks) {
+    const lines = [];
+    CLASS_ORDER.forEach(cls => {
+      const picks = perClassPicks[cls];
+      if (!picks) return;
+      lines.push(cls + ":");
+      picks.forEach((school, i) => lines.push("  " + (i + 1) + ". " + school));
+      lines.push("");
+    });
+    return lines.join("\n").trim();
+  }
+
+  adminEmailPicksBtn.addEventListener("click", async () => {
+    if (!auth.currentUser) {
+      adminEmailStatusEl.textContent = "Sign in first.";
+      return;
+    }
+    if (!window.emailjs || EMAILJS_PUBLIC_KEY === "REPLACE_ME") {
+      adminEmailStatusEl.textContent = "EmailJS isn't set up yet — see the README for setup steps.";
+      return;
+    }
+    const week = state.week;
+    const confirmed = window.confirm("Email every voter who submitted a ballot for " + week + " a recap of their picks?");
+    if (!confirmed) return;
+
+    adminEmailStatusEl.textContent = "Gathering picks…";
+    try {
+      const [allClassEntries, contacts] = await Promise.all([
+        Promise.all(CLASS_ORDER.map(cls => loadPollEntries(week, cls))),
+        loadVoterContacts(week)
+      ]);
+
+      const voters = {};
+      CLASS_ORDER.forEach((cls, i) => {
+        const entries = allClassEntries[i];
+        Object.keys(entries).forEach(hash => {
+          const entry = entries[hash];
+          if (!entry || !Array.isArray(entry.rankings)) return;
+          if (!voters[hash]) voters[hash] = { name: entry.name || "Voter", perClassPicks: {} };
+          voters[hash].perClassPicks[cls] = entry.rankings;
+        });
+      });
+
+      const hashes = Object.keys(voters);
+      let sent = 0, failed = 0, skipped = 0;
+      for (const hash of hashes) {
+        adminEmailStatusEl.textContent = "Sending " + (sent + failed + skipped + 1) + " of " + hashes.length + "…";
+        const contact = contacts[hash];
+        if (!contact || !contact.email) { skipped++; continue; }
+        try {
+          await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            to_email: contact.email,
+            to_name: voters[hash].name,
+            week: week,
+            picks: buildPicksEmailBody(voters[hash].perClassPicks)
+          });
+          sent++;
+        } catch (e) {
+          failed++;
+        }
+      }
+      adminEmailStatusEl.textContent = "Emailed " + sent + (sent === 1 ? " voter" : " voters") + " for " + week + "."
+        + (skipped ? " " + skipped + " skipped (no email on file)." : "")
+        + (failed ? " " + failed + " failed to send." : "");
+    } catch (e) {
+      adminEmailStatusEl.textContent = "Something went wrong gathering picks.";
+    }
+  });
+
   async function refreshReleaseStatusText() {
     const week = adminReleaseSelectEl.value;
     if (!week) { adminStatusEl.textContent = ""; return; }
@@ -1131,6 +1410,21 @@ const auth = getAuth(app);
       if (state.view === "vote") await applyVotingLockUI();
     } catch (e) {
       adminLockStatusEl.textContent = "Save failed — you may need to sign in again.";
+    }
+  });
+
+  adminSaveRosterBtn.addEventListener("click", async () => {
+    if (!auth.currentUser) {
+      adminRosterStatusEl.textContent = "Sign in first.";
+      return;
+    }
+    const names = adminRosterTextEl.value.split("\n").map(n => n.trim()).filter(Boolean);
+    try {
+      await setVoterRoster(names);
+      await refreshRosterTextarea();
+      if (state.view === "vote") await loadStandings();
+    } catch (e) {
+      adminRosterStatusEl.textContent = "Save failed — you may need to sign in again.";
     }
   });
 
