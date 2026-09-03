@@ -1385,18 +1385,22 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       adminBulkLastSeasonStatusEl.textContent = 'Couldn\'t find any class headers (e.g. "6A" or "Class 6A") — check the formatting.';
       return;
     }
-    adminBulkLastSeasonStatusEl.textContent = "Saving…";
-    try {
-      for (const cls of classes) {
+    const succeeded = [];
+    const failed = [];
+    for (const cls of classes) {
+      adminBulkLastSeasonStatusEl.textContent = "Saving " + cls + " (" + (succeeded.length + failed.length + 1) + " of " + classes.length + ")…";
+      try {
         await saveLastSeason(week, cls, parsed[cls]);
+        succeeded.push(cls);
+      } catch (e) {
+        failed.push(cls);
       }
-      adminBulkLastSeasonStatusEl.textContent = "Saved last season results for " + classes.length + (classes.length === 1 ? " class" : " classes") + " — " + week + ".";
-      await loadRecordsIntoTextarea();
-      if (state.view === "public" && state.publicWeek === week) {
-        await loadPublicStandingsForSelection();
-      }
-    } catch (e) {
-      adminBulkLastSeasonStatusEl.textContent = "Save failed — you may need to sign in again.";
+    }
+    adminBulkLastSeasonStatusEl.textContent = "Saved " + succeeded.length + " of " + classes.length + " classes for " + week + "."
+      + (failed.length ? " Failed: " + failed.join(", ") + " — click Import again to retry just those." : "");
+    await loadRecordsIntoTextarea();
+    if (state.view === "public" && state.publicWeek === week) {
+      await loadPublicStandingsForSelection();
     }
   });
 
