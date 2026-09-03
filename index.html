@@ -41,8 +41,9 @@
   .ksfp h1, .ksfp h2, .ksfp h3 { font-family: 'Anton', sans-serif; font-weight: 400; letter-spacing: 0.3px; margin: 0; }
 
   .ksfp-sitenav { display: flex; justify-content: center; gap: 28px; padding-bottom: 14px; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
-  .ksfp-sitenav a, .ksfp-sitenav span { font-family: 'Anton', sans-serif; font-size: 14px; letter-spacing: 0.5px; text-decoration: none; padding-bottom: 4px; }
-  .ksfp-sitenav a { color: var(--gold); border-bottom: 2px solid var(--gold); }
+  .ksfp-sitenav a, .ksfp-sitenav span { font-family: 'Anton', sans-serif; font-size: 14px; letter-spacing: 0.5px; text-decoration: none; padding-bottom: 4px; color: var(--chalk-dim); }
+  .ksfp-sitenav a.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+  .ksfp-sitenav a:not(.active):hover { color: var(--chalk); }
   .ksfp-sitenav span.disabled { color: var(--chalk-dim); opacity: 0.5; cursor: default; }
   .ksfp-sitenav span.disabled small { display: block; font-family: 'Work Sans', sans-serif; font-size: 9px; letter-spacing: 0.3px; margin-top: 2px; text-transform: none; }
 
@@ -159,8 +160,8 @@
 
 <div class="ksfp" id="ksfp-root">
   <nav class="ksfp-sitenav">
-    <a href="index.html">Media Rankings</a>
-    <span class="disabled">Pick 'Em<small>Coming soon</small></span>
+    <a href="index.html" class="active">Media Rankings</a>
+    <a href="https://picks.kansasmediarankings.com">Pick 'Em</a>
   </nav>
 
   <div class="ksfp-header">
@@ -170,11 +171,12 @@
 
   <div class="ksfp-viewtoggle" id="ksfp-viewtoggle">
     <button class="ksfp-view-btn active" data-view="vote" id="ksfp-vote-toggle-btn">Cast a ballot</button>
-    <button class="ksfp-view-btn" data-view="public">Public results</button>
+    <button class="ksfp-view-btn" data-view="public" id="ksfp-public-toggle-btn">Public results</button>
   </div>
 
+  <p class="ksfp-public-msg" id="ksfp-vote-locked-msg" style="display:none;">Voting is currently closed. Check back soon.</p>
+
   <div id="ksfp-vote-view">
-    <p class="ksfp-public-msg" id="ksfp-vote-locked-msg" style="display:none;">Voting is currently closed. Check back soon.</p>
     <div class="ksfp-tabs" id="ksfp-tabs"></div>
     <p class="ksfp-progress" id="ksfp-progress">Enter your email to track progress across classes.</p>
 
@@ -299,6 +301,11 @@
         <textarea id="ksfp-admin-lastseason-text" rows="4" placeholder="One school per line, e.g.&#10;Maize: State runner-up&#10;Wichita-Northwest: Reached 6A Regional" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
         <button class="ksfp-btn primary" id="ksfp-admin-save-lastseason" style="margin-top:6px;">Save last season</button>
         <p class="ksfp-admin-status" id="ksfp-admin-lastseason-status"></p>
+
+        <label for="ksfp-admin-bulk-lastseason-text" style="margin-top:12px;">Bulk import last season (all classes at once, for the week selected above)</label>
+        <textarea id="ksfp-admin-bulk-lastseason-text" rows="6" placeholder="6A&#10;Maize: State runner-up&#10;Derby: Class 6A regional&#10;&#10;5A&#10;Andover: Class 5A sectional" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
+        <button class="ksfp-btn primary" id="ksfp-admin-bulk-save-lastseason" style="margin-top:6px;">Import all classes</button>
+        <p class="ksfp-admin-status" id="ksfp-admin-bulk-lastseason-status"></p>
 
         <label for="ksfp-admin-clear-class" style="margin-top:12px;">Clear all ballots for</label>
         <div style="display:flex; gap:8px; margin-bottom:6px;">
@@ -436,6 +443,9 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const adminLastSeasonTextEl = document.getElementById("ksfp-admin-lastseason-text");
   const adminSaveLastSeasonBtn = document.getElementById("ksfp-admin-save-lastseason");
   const adminLastSeasonStatusEl = document.getElementById("ksfp-admin-lastseason-status");
+  const adminBulkLastSeasonTextEl = document.getElementById("ksfp-admin-bulk-lastseason-text");
+  const adminBulkSaveLastSeasonBtn = document.getElementById("ksfp-admin-bulk-save-lastseason");
+  const adminBulkLastSeasonStatusEl = document.getElementById("ksfp-admin-bulk-lastseason-status");
   const adminClearWeekEl = document.getElementById("ksfp-admin-clear-week");
   const adminClearClassEl = document.getElementById("ksfp-admin-clear-class");
   const adminClearBtn = document.getElementById("ksfp-admin-clear-ballots");
@@ -822,7 +832,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       return;
     }
 
-    publicCountEl.textContent = ballotCount + (ballotCount === 1 ? " ballot cast" : " ballots cast");
+    publicCountEl.textContent = "";
 
     if (rows.length === 0) {
       publicStandingsEl.innerHTML = '<p class="ksfp-empty">No ballots were cast for ' + state.publicCls + '.</p>';
@@ -847,9 +857,9 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
 
     let html = "";
     CLASS_ORDER.forEach((cls, i) => {
-      const { rows, ballotCount, records, lastSeason, prevRank, prevWeek } = results[i];
+      const { rows, records, lastSeason, prevRank, prevWeek } = results[i];
       html += '<div style="margin-bottom:28px;">';
-      html += '<div class="ksfp-standings-head"><h2>' + cls + '</h2><span class="ksfp-count">' + ballotCount + (ballotCount === 1 ? " ballot cast" : " ballots cast") + '</span></div>';
+      html += '<div class="ksfp-standings-head"><h2>' + cls + '</h2></div>';
       html += rows.length === 0
         ? '<p class="ksfp-empty">No ballots were cast for ' + cls + '.</p>'
         : buildStandingsTableHtml(rows, records, prevRank, prevWeek, rankCountFor(cls), lastSeason);
@@ -914,14 +924,15 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     const isAdmin = !!auth.currentUser;
     const hideForVoters = locked && !isAdmin;
 
-    voteLockedMsgEl.style.display = hideForVoters ? "block" : "none";
-    tabsEl.style.display = hideForVoters ? "none" : "";
-    progressEl.style.display = hideForVoters ? "none" : "";
-    voteGridEl.style.display = hideForVoters ? "none" : "";
-    voteToggleBtnEl.style.display = hideForVoters ? "none" : "";
+    // Locking only ever hides the ballot side — Public results stays
+    // visible to everyone regardless of lock state (it has its own
+    // separate release/not-released gate).
     if (hideForVoters && state.view === "vote") {
       switchView("public");
     }
+    voteToggleBtnEl.style.display = hideForVoters ? "none" : "";
+    voteLockedMsgEl.style.display = (hideForVoters && state.view === "vote") ? "block" : "none";
+    voteViewEl.style.display = hideForVoters ? "none" : (state.view === "vote" ? "block" : "none");
 
     lockBannerEl.style.display = locked ? "block" : "none";
     ballotBodyEl.style.display = locked ? "none" : "block";
@@ -1010,7 +1021,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       return;
     }
 
-    countEl.textContent = voterKeys.length + (voterKeys.length === 1 ? " ballot cast" : " ballots cast");
+    countEl.textContent = "";
 
     if (voterKeys.length === 0) {
       standingsEl.innerHTML = '<p class="ksfp-empty">No ballots yet for ' + state.cls + '. Be the first to vote.</p>';
@@ -1334,6 +1345,58 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       }
     } catch (e) {
       adminLastSeasonStatusEl.textContent = "Save failed — you may need to sign in again.";
+    }
+  });
+
+  function normalizeClassHeader(line) {
+    const stripped = line.replace(/^class\s+/i, "").trim();
+    return CLASS_ORDER.find(c => c.toLowerCase() === stripped.toLowerCase()) || null;
+  }
+
+  function parseBulkLastSeason(text) {
+    const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
+    const result = {};
+    let currentCls = null;
+    lines.forEach(line => {
+      const header = normalizeClassHeader(line);
+      if (header) {
+        currentCls = header;
+        if (!result[currentCls]) result[currentCls] = {};
+        return;
+      }
+      const idx = line.indexOf(":");
+      if (idx === -1 || !currentCls) return;
+      const school = line.slice(0, idx).trim();
+      const value = line.slice(idx + 1).trim();
+      if (school && value) result[currentCls][school] = value;
+    });
+    return result;
+  }
+
+  adminBulkSaveLastSeasonBtn.addEventListener("click", async () => {
+    if (!auth.currentUser) {
+      adminBulkLastSeasonStatusEl.textContent = "Sign in first.";
+      return;
+    }
+    const week = adminRecordsWeekEl.value;
+    const parsed = parseBulkLastSeason(adminBulkLastSeasonTextEl.value);
+    const classes = Object.keys(parsed);
+    if (classes.length === 0) {
+      adminBulkLastSeasonStatusEl.textContent = 'Couldn\'t find any class headers (e.g. "6A" or "Class 6A") — check the formatting.';
+      return;
+    }
+    adminBulkLastSeasonStatusEl.textContent = "Saving…";
+    try {
+      for (const cls of classes) {
+        await saveLastSeason(week, cls, parsed[cls]);
+      }
+      adminBulkLastSeasonStatusEl.textContent = "Saved last season results for " + classes.length + (classes.length === 1 ? " class" : " classes") + " — " + week + ".";
+      await loadRecordsIntoTextarea();
+      if (state.view === "public" && state.publicWeek === week) {
+        await loadPublicStandingsForSelection();
+      }
+    } catch (e) {
+      adminBulkLastSeasonStatusEl.textContent = "Save failed — you may need to sign in again.";
     }
   });
 
