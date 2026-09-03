@@ -18,34 +18,40 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600&display=swap');
 
-  html, body { margin: 0; padding: 0; background: #050D18; }
+  html, body { margin: 0; padding: 0; background: #F0F0F0; }
+
+  .ksfp-topbar { background: #000000; }
+  .ksfp-topbar-inner {
+    max-width: 900px; margin: 0 auto; padding: 0 20px; min-height: 54px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 24px;
+  }
+  .ksfp-sitenav { display: flex; gap: 24px; }
+  .ksfp-sitenav a, .ksfp-sitenav span { font-family: 'Anton', sans-serif; font-size: 13px; letter-spacing: 0.5px; text-decoration: none; padding: 17px 0; color: #b8b8b8; border-bottom: 3px solid transparent; }
+  .ksfp-sitenav a.active { color: #ffffff; border-bottom: 3px solid var(--gold); }
+  .ksfp-sitenav a:not(.active):hover { color: #ffffff; }
+  .ksfp-sitenav span.disabled { color: #6b6b6b; opacity: 1; cursor: default; }
+  .ksfp-sitenav span.disabled small { display: block; font-family: 'Work Sans', sans-serif; font-size: 9px; letter-spacing: 0.3px; margin-top: 2px; text-transform: none; }
 
   .ksfp * { box-sizing: border-box; }
   .ksfp {
-    --bg: #050D18;
-    --panel: #0A1826;
-    --panel-2: #0F2135;
-    --line: #1C3550;
-    --chalk: #F4F6F1;
-    --chalk-dim: #9AACC0;
-    --gold: #D8A93E;
-    --gold-dim: #9C7C2F;
-    --red: #C1443B;
+    --bg: #F0F0F0;
+    --panel: #FFFFFF;
+    --panel-2: #F5F5F5;
+    --line: #DADADA;
+    --chalk: #1A1A1A;
+    --chalk-dim: #6B6B6B;
+    --gold: #D6001C;
+    --gold-dim: #A3001A;
+    --red: #8B0000;
+    --green: #1A7F37;
     font-family: 'Work Sans', sans-serif;
     background: var(--bg);
     color: var(--chalk);
-    padding: 28px 20px 48px;
+    padding: 24px 20px 48px;
     max-width: 900px;
     margin: 0 auto;
   }
   .ksfp h1, .ksfp h2, .ksfp h3 { font-family: 'Anton', sans-serif; font-weight: 400; letter-spacing: 0.3px; margin: 0; }
-
-  .ksfp-sitenav { display: flex; justify-content: center; gap: 28px; padding-bottom: 14px; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
-  .ksfp-sitenav a, .ksfp-sitenav span { font-family: 'Anton', sans-serif; font-size: 14px; letter-spacing: 0.5px; text-decoration: none; padding-bottom: 4px; color: var(--chalk-dim); }
-  .ksfp-sitenav a.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
-  .ksfp-sitenav a:not(.active):hover { color: var(--chalk); }
-  .ksfp-sitenav span.disabled { color: var(--chalk-dim); opacity: 0.5; cursor: default; }
-  .ksfp-sitenav span.disabled small { display: block; font-family: 'Work Sans', sans-serif; font-size: 9px; letter-spacing: 0.3px; margin-top: 2px; text-transform: none; }
 
   .ksfp-header { text-align: center; margin-bottom: 22px; }
   .ksfp-header h1 { font-size: 34px; line-height: 1.05; }
@@ -58,19 +64,19 @@
     padding: 9px 16px; border-radius: 4px; cursor: pointer;
   }
   .ksfp-tab:hover { border-color: var(--gold-dim); color: var(--chalk); }
-  .ksfp-tab.active { background: var(--gold); border-color: var(--gold); color: #201502; }
+  .ksfp-tab.active { background: var(--gold); border-color: var(--gold); color: #ffffff; }
   .ksfp-tab.locked { opacity: 0.4; cursor: not-allowed; }
   .ksfp-tab.locked:hover { border-color: var(--line); color: var(--chalk-dim); }
 
   .ksfp-progress { text-align: center; color: var(--chalk-dim); font-size: 12px; margin: -14px 0 20px; }
 
   .ksfp-next-btn { background: transparent; border: 1px solid currentColor; color: var(--gold); font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 12.5px; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-left: 8px; }
-  .ksfp-next-btn:hover { background: rgba(216,169,62,0.15); }
+  .ksfp-next-btn:hover { background: rgba(214,0,28,0.08); }
 
   .ksfp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
   @media (max-width: 700px) { .ksfp-grid { grid-template-columns: 1fr; } }
 
-  .ksfp-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px 18px 20px; }
+  .ksfp-card { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--gold); border-radius: 4px; padding: 18px 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
   .ksfp-card h2 { font-size: 19px; margin-bottom: 4px; }
   .ksfp-sub { color: var(--chalk-dim); font-size: 12.5px; margin: 0 0 16px; }
 
@@ -83,7 +89,7 @@
 
   .ksfp-rank-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
   .ksfp-rank-num {
-    font-family: 'Anton', sans-serif; font-size: 15px; color: #201502; background: var(--gold);
+    font-family: 'Anton', sans-serif; font-size: 15px; color: #ffffff; background: var(--gold);
     width: 26px; height: 26px; min-width: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
   }
   .ksfp-rank-row select {
@@ -96,16 +102,16 @@
     font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 13.5px; border-radius: 4px;
     padding: 10px 16px; cursor: pointer; border: 1px solid var(--gold);
   }
-  .ksfp-btn.primary { background: var(--gold); color: #201502; }
-  .ksfp-btn.primary:hover { background: #e6bb52; }
+  .ksfp-btn.primary { background: var(--gold); color: #ffffff; }
+  .ksfp-btn.primary:hover { background: var(--gold-dim); }
   .ksfp-btn.ghost { background: transparent; color: var(--chalk-dim); border-color: var(--line); }
   .ksfp-btn.ghost:hover { color: var(--chalk); border-color: var(--gold-dim); }
   .ksfp-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
   .ksfp-msg { font-size: 13px; margin-top: 12px; padding: 8px 10px; border-radius: 4px; display: none; }
   .ksfp-msg.show { display: block; }
-  .ksfp-msg.ok { background: rgba(216,169,62,0.15); color: var(--gold); border: 1px solid var(--gold-dim); }
-  .ksfp-msg.err { background: rgba(193,68,59,0.15); color: #E88B84; border: 1px solid var(--red); }
+  .ksfp-msg.ok { background: rgba(26,127,55,0.08); color: var(--green); border: 1px solid var(--green); }
+  .ksfp-msg.err { background: rgba(139,0,0,0.06); color: var(--red); border: 1px solid var(--red); }
 
   .ksfp-standings-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
   .ksfp-count { color: var(--chalk-dim); font-size: 12.5px; }
@@ -113,10 +119,11 @@
   table.ksfp-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13.5px; }
   table.ksfp-table th {
     text-align: left; color: var(--chalk-dim); font-size: 11px; text-transform: uppercase;
-    letter-spacing: 0.5px; font-weight: 500; padding: 0 6px 8px; border-bottom: 1px solid var(--line);
+    letter-spacing: 0.5px; font-weight: 700; padding: 0 6px 8px; border-bottom: 2px solid var(--chalk);
   }
   table.ksfp-table td { padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: middle; }
-  table.ksfp-table tr:nth-child(5n) td { border-bottom: 1px solid var(--gold-dim); }
+  table.ksfp-table tbody tr:nth-child(even) td { background: var(--panel-2); }
+  table.ksfp-table tr:nth-child(5n) td { border-bottom: 1px solid var(--gold); }
   table.ksfp-table tr:last-child td { border-bottom: none; }
   .ksfp-rk { font-family: 'Anton', sans-serif; font-size: 17px; color: var(--gold); width: 28px; }
   .ksfp-team { font-weight: 600; }
@@ -136,14 +143,29 @@
 
   .ksfp-note { color: var(--chalk-dim); font-size: 11.5px; margin-top: 14px; line-height: 1.5; }
 
-  .ksfp-viewtoggle { display: flex; justify-content: center; gap: 8px; margin-bottom: 22px; }
-  .ksfp-view-btn {
-    background: transparent; border: 1px solid var(--line); color: var(--chalk-dim);
-    font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 13px;
-    padding: 8px 18px; border-radius: 20px; cursor: pointer;
+  .ksfp-masthead { background: #ffffff; border-bottom: 1px solid #DADADA; }
+  .ksfp-masthead-inner {
+    max-width: 900px; margin: 0 auto; padding: 14px 20px;
+    display: flex; align-items: center;
   }
-  .ksfp-view-btn:hover { border-color: var(--gold-dim); color: var(--chalk); }
-  .ksfp-view-btn.active { background: var(--chalk); border-color: var(--chalk); color: var(--bg); }
+  .ksfp-masthead-brand { display: flex; align-items: center; }
+  .ksfp-masthead-header-img { height: 48px; width: auto; display: block; }
+
+  .ksfp-sectionnav { background: #000000; }
+  .ksfp-sectionnav-inner { max-width: 900px; margin: 0 auto; padding: 0 20px; display: flex; gap: 24px; flex-wrap: wrap; }
+  .ksfp-view-btn {
+    background: transparent; border: none; border-bottom: 3px solid transparent; color: #b8b8b8;
+    font-family: 'Anton', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 17px 0; cursor: pointer;
+  }
+  .ksfp-view-btn:hover { color: #ffffff; }
+  .ksfp-view-btn.active { color: #ffffff; border-bottom-color: #D6001C; }
+  .ksfp-sectionnav-links { margin-left: auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .ksfp-sectionnav-links a {
+    font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: 0.2px;
+    color: #8a8a8a; text-decoration: none; padding: 17px 0;
+  }
+  .ksfp-sectionnav-links a:hover { color: #ffffff; }
 
   .ksfp-public-msg { text-align: center; color: var(--chalk-dim); font-size: 14px; padding: 30px 10px; }
 
@@ -158,20 +180,40 @@
 </head>
 <body>
 
-<div class="ksfp" id="ksfp-root">
-  <nav class="ksfp-sitenav">
-    <a href="index.html" class="active">Media Rankings</a>
-    <a href="https://picks.kansasmediarankings.com">Pick 'Em</a>
-  </nav>
+<nav class="ksfp-topbar">
+  <div class="ksfp-topbar-inner">
+    <div class="ksfp-sitenav">
+      <a href="index.html" class="active">Media Rankings</a>
+      <a href="https://picks.kansasmediarankings.com">Pick 'Em</a>
+    </div>
+  </div>
+</nav>
 
+<div class="ksfp-masthead">
+  <div class="ksfp-masthead-inner">
+    <div class="ksfp-masthead-brand">
+      <img src="header.png" alt="Kansas Media Football Rankings" class="ksfp-masthead-header-img" />
+    </div>
+  </div>
+</div>
+
+<nav class="ksfp-sectionnav">
+  <div class="ksfp-sectionnav-inner" id="ksfp-viewtoggle">
+    <button class="ksfp-view-btn active" data-view="vote" id="ksfp-vote-toggle-btn">Cast a ballot</button>
+    <button class="ksfp-view-btn" data-view="public" id="ksfp-public-toggle-btn">Public results</button>
+    <div class="ksfp-sectionnav-links">
+      <a href="https://www.catchitkansas.com" target="_blank" rel="noopener">Catch It Kansas</a>
+      <a href="https://www.kansaspregame.com" target="_blank" rel="noopener">Kansas Pregame</a>
+      <a href="http://kpreps.com" target="_blank" rel="noopener">KPreps</a>
+      <a href="http://kshsaacovered.com" target="_blank" rel="noopener">KSHSAA Covered</a>
+    </div>
+  </div>
+</nav>
+
+<div class="ksfp" id="ksfp-root">
   <div class="ksfp-header">
     <h1>2026 Kansas Media Football Rankings</h1>
     <p id="ksfp-header-sub">Thank you for casting your media vote for the 2026 season. Please fill every place by 11:59 p.m. Sunday night.</p>
-  </div>
-
-  <div class="ksfp-viewtoggle" id="ksfp-viewtoggle">
-    <button class="ksfp-view-btn active" data-view="vote" id="ksfp-vote-toggle-btn">Cast a ballot</button>
-    <button class="ksfp-view-btn" data-view="public" id="ksfp-public-toggle-btn">Public results</button>
   </div>
 
   <p class="ksfp-public-msg" id="ksfp-vote-locked-msg" style="display:none;">Voting is currently closed. Check back soon.</p>
@@ -272,7 +314,7 @@
         </div>
         <p class="ksfp-admin-status" id="ksfp-admin-week-status"></p>
 
-        <button class="ksfp-btn ghost" id="ksfp-admin-toggle-lock" style="border-color:var(--red); color:#E88B84;">Lock voting</button>
+        <button class="ksfp-btn ghost" id="ksfp-admin-toggle-lock" style="border-color:var(--red); color:var(--red);">Lock voting</button>
         <p class="ksfp-admin-status" id="ksfp-admin-lock-status"></p>
 
         <label for="ksfp-admin-roster-text" style="margin-top:12px;">Expected voters this week (one per line)</label>
@@ -301,7 +343,7 @@
           <select id="ksfp-admin-clear-week"></select>
           <select id="ksfp-admin-clear-class"></select>
         </div>
-        <button class="ksfp-btn ghost" id="ksfp-admin-clear-ballots" style="border-color:var(--red); color:#E88B84;">Clear all ballots</button>
+        <button class="ksfp-btn ghost" id="ksfp-admin-clear-ballots" style="border-color:var(--red); color:var(--red);">Clear all ballots</button>
         <p class="ksfp-admin-status" id="ksfp-admin-clear-status"></p>
 
         <label style="margin-top:12px;">Email voters their picks</label>
@@ -312,7 +354,7 @@
         <label for="ksfp-admin-delete-week-select" style="margin-top:12px;">Delete a week (removes ALL its ballots, records, and release status — cannot be undone)</label>
         <div style="display:flex; gap:8px; margin-bottom:6px;">
           <select id="ksfp-admin-delete-week-select"></select>
-          <button class="ksfp-btn ghost" id="ksfp-admin-delete-week-btn" style="border-color:var(--red); color:#E88B84;">Delete week</button>
+          <button class="ksfp-btn ghost" id="ksfp-admin-delete-week-btn" style="border-color:var(--red); color:var(--red);">Delete week</button>
         </div>
         <p class="ksfp-admin-status" id="ksfp-admin-delete-week-status"></p>
       </div>
