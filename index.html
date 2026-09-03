@@ -319,6 +319,13 @@
         <p class="ksfp-admin-status" style="margin:0 0 6px;">Sends everyone who voted for "<span id="ksfp-admin-email-week-label">—</span>" a recap of their picks across every class.</p>
         <button class="ksfp-btn primary" id="ksfp-admin-email-picks">Email everyone their picks</button>
         <p class="ksfp-admin-status" id="ksfp-admin-email-status"></p>
+
+        <label for="ksfp-admin-delete-week-select" style="margin-top:12px;">Delete a week (removes ALL its ballots, records, and release status — cannot be undone)</label>
+        <div style="display:flex; gap:8px; margin-bottom:6px;">
+          <select id="ksfp-admin-delete-week-select"></select>
+          <button class="ksfp-btn ghost" id="ksfp-admin-delete-week-btn" style="border-color:var(--red); color:#E88B84;">Delete week</button>
+        </div>
+        <p class="ksfp-admin-status" id="ksfp-admin-delete-week-status"></p>
       </div>
 
     </div>
@@ -453,6 +460,9 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const adminEmailWeekLabelEl = document.getElementById("ksfp-admin-email-week-label");
   const adminEmailPicksBtn = document.getElementById("ksfp-admin-email-picks");
   const adminEmailStatusEl = document.getElementById("ksfp-admin-email-status");
+  const adminDeleteWeekSelectEl = document.getElementById("ksfp-admin-delete-week-select");
+  const adminDeleteWeekBtn = document.getElementById("ksfp-admin-delete-week-btn");
+  const adminDeleteWeekStatusEl = document.getElementById("ksfp-admin-delete-week-status");
   const publicRecordsLinkEl = document.getElementById("ksfp-public-records-link");
 
   const HEADER_TEXT = {
@@ -505,6 +515,36 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     const data = {};
     snap.forEach(d => { data[d.id] = d.data(); });
     return data;
+  }
+
+  // Bulk deletes touch many documents (ballots across 9 classes, contacts,
+  // records) — give them more room than a single-document call before
+  // giving up.
+  const BULK_TIMEOUT_MS = 20000;
+  function withBulkTimeout(promise) {
+    return Promise.race([
+      promise,
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Bulk operation timed out.")), BULK_TIMEOUT_MS))
+    ]);
+  }
+
+  async function deleteWeekData(week) {
+    for (const cls of CLASS_ORDER) {
+      const entriesSnap = await withBulkTimeout(getDocs(collection(db, "polls", pollId(week, cls), "entries")));
+      await withBulkTimeout(Promise.all(entriesSnap.docs.map(d => deleteDoc(d.ref))));
+      await withBulkTimeout(deleteDoc(doc(db, "records", pollId(week, cls))));
+    }
+
+    const contactsSnap = await withBulkTimeout(getDocs(collection(db, "voterContacts", week, "entries")));
+    await withBulkTimeout(Promise.all(contactsSnap.docs.map(d => deleteDoc(d.ref))));
+
+    await withBulkTimeout(deleteDoc(doc(db, "releases", week)));
+
+    const settings = await getSettings();
+    const weeks = settings.weeks.filter(w => w !== week);
+    const next = { currentWeek: settings.currentWeek, weeks, votingLocked: !!settings.votingLocked };
+    await withBulkTimeout(setDoc(doc(db, "meta", "settings"), next));
+    settingsCache = next;
   }
 
   async function getRecordsDoc(week, cls) {
@@ -1257,6 +1297,9 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     adminClearClassEl.innerHTML = CLASS_ORDER.map(c =>
       '<option value="' + c + '">' + c + '</option>'
     ).join("");
+    adminDeleteWeekSelectEl.innerHTML = weeks.map(w =>
+      '<option value="' + w.replace(/"/g,'&quot;') + '">' + w + (w === currentWeek ? " (current)" : "") + '</option>'
+    ).join("");
 
     await refreshReleaseStatusText();
     await loadRecordsIntoTextarea();
@@ -1373,34 +1416,46 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     return result;
   }
 
+  let bulkLastSeasonQueue = null;
+  let bulkLastSeasonParsed = null;
+
   adminBulkSaveLastSeasonBtn.addEventListener("click", async () => {
     if (!auth.currentUser) {
       adminBulkLastSeasonStatusEl.textContent = "Sign in first.";
       return;
     }
     const week = adminRecordsWeekEl.value;
-    const parsed = parseBulkLastSeason(adminBulkLastSeasonTextEl.value);
-    const classes = Object.keys(parsed);
-    if (classes.length === 0) {
-      adminBulkLastSeasonStatusEl.textContent = 'Couldn\'t find any class headers (e.g. "6A" or "Class 6A") — check the formatting.';
-      return;
-    }
-    const succeeded = [];
-    const failed = [];
-    for (const cls of classes) {
-      adminBulkLastSeasonStatusEl.textContent = "Saving " + cls + " (" + (succeeded.length + failed.length + 1) + " of " + classes.length + ")…";
-      try {
-        await saveLastSeason(week, cls, parsed[cls]);
-        succeeded.push(cls);
-      } catch (e) {
-        failed.push(cls);
+
+    if (!bulkLastSeasonQueue || bulkLastSeasonQueue.length === 0) {
+      bulkLastSeasonParsed = parseBulkLastSeason(adminBulkLastSeasonTextEl.value);
+      bulkLastSeasonQueue = Object.keys(bulkLastSeasonParsed);
+      if (bulkLastSeasonQueue.length === 0) {
+        adminBulkLastSeasonStatusEl.textContent = 'Couldn\'t find any class headers (e.g. "6A" or "Class 6A") — check the formatting.';
+        return;
       }
     }
-    adminBulkLastSeasonStatusEl.textContent = "Saved " + succeeded.length + " of " + classes.length + " classes for " + week + "."
-      + (failed.length ? " Failed: " + failed.join(", ") + " — click Import again to retry just those." : "");
-    await loadRecordsIntoTextarea();
-    if (state.view === "public" && state.publicWeek === week) {
-      await loadPublicStandingsForSelection();
+
+    const cls = bulkLastSeasonQueue[0];
+    adminBulkSaveLastSeasonBtn.disabled = true;
+    adminBulkLastSeasonStatusEl.textContent = "Saving " + cls + "…";
+    try {
+      await saveLastSeason(week, cls, bulkLastSeasonParsed[cls]);
+      bulkLastSeasonQueue.shift();
+      if (bulkLastSeasonQueue.length > 0) {
+        adminBulkLastSeasonStatusEl.textContent = "Saved " + cls + ". " + bulkLastSeasonQueue.length + " left — click the button again for " + bulkLastSeasonQueue[0] + ".";
+        adminBulkSaveLastSeasonBtn.textContent = "Import next: " + bulkLastSeasonQueue[0];
+      } else {
+        adminBulkLastSeasonStatusEl.textContent = "All classes saved for " + week + ".";
+        adminBulkSaveLastSeasonBtn.textContent = "Import all classes";
+        await loadRecordsIntoTextarea();
+        if (state.view === "public" && state.publicWeek === week) {
+          await loadPublicStandingsForSelection();
+        }
+      }
+    } catch (e) {
+      adminBulkLastSeasonStatusEl.textContent = "Save failed for " + cls + " — click the button again to retry just this class.";
+    } finally {
+      adminBulkSaveLastSeasonBtn.disabled = false;
     }
   });
 
@@ -1511,6 +1566,35 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
         + (failed ? " " + failed + " failed to send." : "");
     } catch (e) {
       adminEmailStatusEl.textContent = "Something went wrong gathering picks.";
+    }
+  });
+
+  adminDeleteWeekBtn.addEventListener("click", async () => {
+    if (!auth.currentUser) {
+      adminDeleteWeekStatusEl.textContent = "Sign in first.";
+      return;
+    }
+    const week = adminDeleteWeekSelectEl.value;
+    if (!week) return;
+    if (week === state.week) {
+      adminDeleteWeekStatusEl.textContent = 'Can\'t delete the week you\'re currently voting on — use "Set week" to switch to a different week first.';
+      return;
+    }
+    const confirmed = window.confirm(
+      'Delete "' + week + '" completely? This removes every ballot, record, and release status for it, for all 9 classes. This cannot be undone.'
+    );
+    if (!confirmed) return;
+
+    adminDeleteWeekStatusEl.textContent = "Deleting " + week + "…";
+    try {
+      await deleteWeekData(week);
+      adminDeleteWeekStatusEl.textContent = '"' + week + '" has been deleted.';
+      await refreshAdminPanel();
+      if (state.view === "public" && state.publicWeek === week) {
+        await showPublicView();
+      }
+    } catch (e) {
+      adminDeleteWeekStatusEl.textContent = "Delete failed partway through — you may need to sign in again, or just try again to finish removing " + week + ".";
     }
   });
 
