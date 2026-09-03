@@ -246,7 +246,6 @@
         <span class="ksfp-count" id="ksfp-public-count"></span>
       </div>
       <div id="ksfp-public-standings"></div>
-      <button class="ksfp-admin-link" id="ksfp-public-records-link" style="margin-top:12px;">Enter records for this class</button>
     </div>
   </div>
 
@@ -447,7 +446,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const adminDeleteWeekSelectEl = document.getElementById("ksfp-admin-delete-week-select");
   const adminDeleteWeekBtn = document.getElementById("ksfp-admin-delete-week-btn");
   const adminDeleteWeekStatusEl = document.getElementById("ksfp-admin-delete-week-status");
-  const publicRecordsLinkEl = document.getElementById("ksfp-public-records-link");
 
   const HEADER_TEXT = {
     vote: "Thank you for casting your media vote for the 2026 season. Please fill every place by 11:59 p.m. Sunday night.",
@@ -530,6 +528,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     await withBulkTimeout(setDoc(doc(db, "meta", "settings"), next));
     settingsCache = next;
   }
+
 
   async function getRecordsDoc(week, cls) {
     try {
@@ -799,19 +798,45 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     return { rows, ballotCount: voterKeys.length };
   }
 
+  // Standard "competition ranking" (AP-poll style): schools tied on both
+  // points and 1st-place votes share the same rank, and the next distinct
+  // school's rank skips ahead accordingly (two tied at 4 -> next is 6).
+  function assignRanksWithTies(rows) {
+    const result = [];
+    let i = 0;
+    while (i < rows.length) {
+      let j = i;
+      while (j + 1 < rows.length && rows[j + 1].pts === rows[i].pts && rows[j + 1].fpv === rows[i].fpv) {
+        j++;
+      }
+      const rank = i + 1;
+      const tied = j > i;
+      for (let k = i; k <= j; k++) {
+        result.push(Object.assign({}, rows[k], { rank: rank, tied: tied }));
+      }
+      i = j + 1;
+    }
+    return result;
+  }
+
+  function formatRank(rank, tied) {
+    return tied ? "T-" + rank : String(rank);
+  }
+
   function buildStandingsTableHtml(rows, records, prevRank, prevWeek, rankCount, lastSeason) {
-    const top = rows.slice(0, rankCount);
-    const others = rows.slice(rankCount);
+    const ranked = assignRanksWithTies(rows);
+    const top = ranked.filter(r => r.rank <= rankCount);
+    const others = ranked.filter(r => r.rank > rankCount);
     const lastColLabel = prevWeek ? "LW" : "Last season";
 
     let html = '<table class="ksfp-table"><thead><tr><th>Rk</th><th>School (1st place votes)</th><th style="text-align:right">Record</th><th style="text-align:right">Points</th><th style="text-align:right">' + lastColLabel + '</th></tr></thead><tbody>';
-    top.forEach((r, i) => {
+    top.forEach((r) => {
       const name = r.school + (r.fpv > 0 ? " (" + r.fpv + ")" : "");
       const record = records[r.school] || "—";
       const lastCol = prevWeek
         ? (prevRank[r.school] ? prevRank[r.school] : "NR")
         : ((lastSeason && lastSeason[r.school]) || "—");
-      html += '<tr><td class="ksfp-rk">' + (i + 1) + '</td><td class="ksfp-team">' + name + '</td><td class="ksfp-pts">' + record + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + lastCol + '</td></tr>';
+      html += '<tr><td class="ksfp-rk">' + formatRank(r.rank, r.tied) + '</td><td class="ksfp-team">' + name + '</td><td class="ksfp-pts">' + record + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + lastCol + '</td></tr>';
     });
     html += '</tbody></table>';
 
@@ -834,7 +859,9 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     ]);
     const prevRank = {};
     if (prevResult) {
-      prevResult.rows.slice(0, rankCountFor(cls)).forEach((r, i) => { prevRank[r.school] = i + 1; });
+      assignRanksWithTies(prevResult.rows).filter(r => r.rank <= rankCountFor(cls)).forEach(r => {
+        prevRank[r.school] = formatRank(r.rank, r.tied);
+      });
     }
     return { rows, ballotCount, records, lastSeason, prevRank, prevWeek };
   }
@@ -1066,8 +1093,8 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     })).sort((a, b) => b.pts - a.pts || b.fpv - a.fpv || a.school.localeCompare(b.school));
 
     let html = '<table class="ksfp-table"><thead><tr><th>Rk</th><th>School</th><th style="text-align:right">Pts</th><th style="text-align:right">1st votes</th></tr></thead><tbody>';
-    rows.slice(0, 25).forEach((r, i) => {
-      html += '<tr><td class="ksfp-rk">' + (i + 1) + '</td><td class="ksfp-team">' + r.school + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + (r.fpv || "—") + '</td></tr>';
+    assignRanksWithTies(rows).filter(r => r.rank <= 25).forEach((r) => {
+      html += '<tr><td class="ksfp-rk">' + formatRank(r.rank, r.tied) + '</td><td class="ksfp-team">' + r.school + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + (r.fpv || "—") + '</td></tr>';
     });
     html += '</tbody></table>';
     standingsEl.innerHTML = html;
@@ -1211,15 +1238,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     const isHidden = adminPanelEl.style.display === "none";
     adminPanelEl.style.display = isHidden ? "block" : "none";
     if (isHidden) await refreshAdminPanel();
-  });
-
-  publicRecordsLinkEl.addEventListener("click", async () => {
-    adminPanelEl.style.display = "block";
-    await refreshAdminPanel();
-    adminRecordsWeekEl.value = state.publicWeek;
-    if (state.publicCls !== "ALL") adminRecordsClassEl.value = state.publicCls;
-    await loadRecordsIntoTextarea();
-    adminPanelEl.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   onAuthStateChanged(auth, async (user) => {
@@ -1479,6 +1497,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       adminDeleteWeekStatusEl.textContent = "Delete failed partway through — you may need to sign in again, or just try again to finish removing " + week + ".";
     }
   });
+
 
   async function refreshReleaseStatusText() {
     const week = adminReleaseSelectEl.value;
