@@ -88,6 +88,65 @@ git push -u origin main
    propagate. Once GitHub shows a green checkmark next to your domain on the
    Pages settings page, check **Enforce HTTPS**.
 
+## 7. (Optional) Turn on "Email voters their picks"
+
+This lets you, as admin, click one button to email every voter who cast a
+ballot for the current week a recap of their picks across every class. It
+uses a free service called EmailJS — no backend, no cost.
+
+1. Go to https://www.emailjs.com and sign up (free plan is plenty for a
+   voting panel — a few hundred emails/month).
+2. Go to **Email Services**, add a new service, and connect your own email
+   account (Gmail, Outlook, etc.). Note the **Service ID** it gives you.
+3. Go to **Email Templates**, create a new template. Set the **To Email**
+   field to `{{to_email}}`. In the subject/body, use these variables:
+   - `{{to_name}}` — the voter's name
+   - `{{week}}` — the week (e.g. "Week 1")
+   - `{{picks}}` — their full picks, formatted as plain text, one class
+     per section
+   Note the **Template ID**.
+4. Go to **Account > General** and copy your **Public Key**.
+5. Paste all three into `index.html`, near the top of the `<script type="module">`
+   block:
+
+   ```js
+   const EMAILJS_PUBLIC_KEY = "...";
+   const EMAILJS_SERVICE_ID = "...";
+   const EMAILJS_TEMPLATE_ID = "...";
+   ```
+
+Until you fill these in, the "Email everyone their picks" button in the
+Admin panel will show a message telling you it isn't set up yet — everything
+else on the site works fine without it.
+
+## 8. (Optional) Turn on "Announce voting is open"
+
+This is a second, separate email button: one click emails everyone on a
+mailing list you maintain (Admin panel → "Voter mailing list") to let them
+know voting has opened for the current week. It reuses the same EmailJS
+account from step 7, but needs its own template since the content is
+different (an announcement, not a picks recap).
+
+1. In EmailJS, go to **Email Templates** and create *another* new template.
+   Set **To Email** to `{{to_email}}`. In the subject/body, use:
+   - `{{week}}` — the week (e.g. "Week 1")
+   - `{{voting_url}}` — a link straight to the ballot
+     (`https://kansasmediarankings.com/voting`)
+   Note this template's **Template ID** — it's different from the picks-recap
+   template's ID.
+2. Paste it into `index.html`, near the other EmailJS constants:
+
+   ```js
+   const EMAILJS_ANNOUNCE_TEMPLATE_ID = "...";
+   ```
+
+3. In the Admin panel, paste your voters' email addresses (one per line)
+   into "Voter mailing list" and click **Save mailing list** — this list is
+   remembered and reused every week, so you only need to maintain it when
+   people join or leave the panel.
+4. Each week, once you're ready for people to vote, click
+   **"Email: Voting is open"** to notify everyone on that list.
+
 ## Using the site
 
 - **Cast a ballot** — voters enter an email (used only to identify their own
@@ -120,3 +179,11 @@ known panel of voters (media/coaches), but don't publicize this as
 tamper-proof. If you eventually want real per-voter authentication, that's a
 bigger change (e.g. sending each voter a magic sign-in link) — ask if you want
 to go that route later.
+
+Voters' **names** are stored alongside their picks so the "Everyone's Picks"
+admin table can identify them — and since results are public-readable (by
+design, so the results page works), a technically savvy visitor could query
+that data directly and see names tied to picks, not just the admin. Real
+**email addresses** are kept separately, in a spot only a signed-in admin can
+read, specifically so "Email voters their picks" doesn't expose addresses the
+same way.

@@ -350,6 +350,16 @@
         <button class="ksfp-btn primary" id="ksfp-admin-email-picks">Email everyone their picks</button>
         <p class="ksfp-admin-status" id="ksfp-admin-email-status"></p>
 
+        <label for="ksfp-admin-announce-list-text" style="margin-top:12px;">Voter mailing list (one email per line — this list is saved and reused every week, edit it anytime)</label>
+        <textarea id="ksfp-admin-announce-list-text" rows="4" placeholder="jane@example.com&#10;coach@example.com" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
+        <button class="ksfp-btn primary" id="ksfp-admin-save-announce-list" style="margin-top:6px;">Save mailing list</button>
+        <p class="ksfp-admin-status" id="ksfp-admin-announce-list-status"></p>
+
+        <label style="margin-top:12px;">Announce voting is open</label>
+        <p class="ksfp-admin-status" style="margin:0 0 6px;">Emails everyone on the mailing list above to let them know voting is open for "<span id="ksfp-admin-announce-week-label">—</span>."</p>
+        <button class="ksfp-btn primary" id="ksfp-admin-send-announce">Email: Voting is open</button>
+        <p class="ksfp-admin-status" id="ksfp-admin-announce-status"></p>
+
         <label for="ksfp-admin-delete-week-select" style="margin-top:12px;">Delete a week (removes ALL its ballots, records, and release status — cannot be undone)</label>
         <div style="display:flex; gap:8px; margin-bottom:6px;">
           <select id="ksfp-admin-delete-week-select"></select>
@@ -392,6 +402,10 @@ const auth = getAuth(app);
 const EMAILJS_PUBLIC_KEY = "5ZvIhkqtESa7Ygak-";
 const EMAILJS_SERVICE_ID = "service_z0ehguk";
 const EMAILJS_TEMPLATE_ID = "template_z7fhflh";
+// A second, separate template for the "voting is open" announcement blast —
+// make a new template in EmailJS for this one (different subject/body than
+// the picks-recap template above) and paste its ID here.
+const EMAILJS_ANNOUNCE_TEMPLATE_ID = "template_criq9pd";
 if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 }
@@ -483,6 +497,12 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const adminEmailWeekLabelEl = document.getElementById("ksfp-admin-email-week-label");
   const adminEmailPicksBtn = document.getElementById("ksfp-admin-email-picks");
   const adminEmailStatusEl = document.getElementById("ksfp-admin-email-status");
+  const adminAnnounceListTextEl = document.getElementById("ksfp-admin-announce-list-text");
+  const adminSaveAnnounceListBtn = document.getElementById("ksfp-admin-save-announce-list");
+  const adminAnnounceListStatusEl = document.getElementById("ksfp-admin-announce-list-status");
+  const adminAnnounceWeekLabelEl = document.getElementById("ksfp-admin-announce-week-label");
+  const adminSendAnnounceBtn = document.getElementById("ksfp-admin-send-announce");
+  const adminAnnounceStatusEl = document.getElementById("ksfp-admin-announce-status");
   const adminDeleteWeekSelectEl = document.getElementById("ksfp-admin-delete-week-select");
   const adminDeleteWeekBtn = document.getElementById("ksfp-admin-delete-week-btn");
   const adminDeleteWeekStatusEl = document.getElementById("ksfp-admin-delete-week-status");
@@ -606,32 +626,37 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   async function getCurrentWeek() { return (await getSettings()).currentWeek; }
   async function getWeeksList() { return (await getSettings()).weeks; }
 
+  // Full-replace write to meta/settings that always carries forward every
+  // known field except whatever's explicitly overridden — avoids silently
+  // wiping fields (e.g. an old bug where locking voting erased the roster).
+  async function updateSettings(overrides) {
+    const settings = await getSettings();
+    const next = Object.assign({
+      currentWeek: settings.currentWeek,
+      weeks: settings.weeks,
+      votingLocked: !!settings.votingLocked,
+      voterRoster: settings.voterRoster || [],
+      announcementEmails: settings.announcementEmails || []
+    }, overrides);
+    await withTimeout(setDoc(doc(db, "meta", "settings"), next));
+    settingsCache = next;
+  }
+
   async function setCurrentWeek(week) {
     const settings = await getSettings();
     const weeks = settings.weeks.indexOf(week) === -1 ? settings.weeks.concat([week]) : settings.weeks;
     // Starting a new week always unlocks voting and clears the old roster.
-    const next = { currentWeek: week, weeks, votingLocked: false, voterRoster: [] };
-    await withTimeout(setDoc(doc(db, "meta", "settings"), next));
-    settingsCache = next;
+    await updateSettings({ currentWeek: week, weeks, votingLocked: false, voterRoster: [] });
   }
 
   async function getVoterRoster() { return (await getSettings()).voterRoster || []; }
-
-  async function setVoterRoster(names) {
-    const settings = await getSettings();
-    const next = { currentWeek: settings.currentWeek, weeks: settings.weeks, votingLocked: !!settings.votingLocked, voterRoster: names };
-    await withTimeout(setDoc(doc(db, "meta", "settings"), next));
-    settingsCache = next;
-  }
+  async function setVoterRoster(names) { await updateSettings({ voterRoster: names }); }
 
   async function getVotingLocked() { return !!(await getSettings()).votingLocked; }
+  async function setVotingLocked(val) { await updateSettings({ votingLocked: !!val }); }
 
-  async function setVotingLocked(val) {
-    const settings = await getSettings();
-    const next = { currentWeek: settings.currentWeek, weeks: settings.weeks, votingLocked: !!val };
-    await withTimeout(setDoc(doc(db, "meta", "settings"), next));
-    settingsCache = next;
-  }
+  async function getAnnouncementEmails() { return (await getSettings()).announcementEmails || []; }
+  async function setAnnouncementEmails(emails) { await updateSettings({ announcementEmails: emails }); }
 
   // Bypasses the settings cache so a submit/clear right after an admin
   // manually locks sees the truth, not a snapshot from whenever this
@@ -1288,6 +1313,9 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     const currentWeek = await getCurrentWeek();
     adminCurrentWeekEl.textContent = currentWeek;
     adminEmailWeekLabelEl.textContent = currentWeek;
+    adminAnnounceWeekLabelEl.textContent = currentWeek;
+    const announceEmails = await getAnnouncementEmails();
+    adminAnnounceListTextEl.value = announceEmails.join("\n");
 
     const weeks = await getWeeksList();
     adminReleaseSelectEl.innerHTML = weeks.map(w =>
@@ -1478,6 +1506,62 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     } catch (e) {
       adminEmailStatusEl.textContent = "Something went wrong gathering picks.";
     }
+  });
+
+  adminSaveAnnounceListBtn.addEventListener("click", async () => {
+    if (!auth.currentUser) {
+      adminAnnounceListStatusEl.textContent = "Sign in first.";
+      return;
+    }
+    const emails = adminAnnounceListTextEl.value.split("\n").map(e => e.trim()).filter(Boolean);
+    try {
+      await setAnnouncementEmails(emails);
+      adminAnnounceListStatusEl.textContent = "Saved " + emails.length + (emails.length === 1 ? " email." : " emails.");
+    } catch (e) {
+      adminAnnounceListStatusEl.textContent = "Save failed — you may need to sign in again.";
+    }
+  });
+
+  adminSendAnnounceBtn.addEventListener("click", async () => {
+    if (!auth.currentUser) {
+      adminAnnounceStatusEl.textContent = "Sign in first.";
+      return;
+    }
+    if (!window.emailjs || EMAILJS_PUBLIC_KEY === "REPLACE_ME" || EMAILJS_ANNOUNCE_TEMPLATE_ID === "REPLACE_ME") {
+      adminAnnounceStatusEl.textContent = "EmailJS announcement template isn't set up yet — see the README for setup steps.";
+      return;
+    }
+    const week = state.week;
+    let emails;
+    try {
+      emails = await getAnnouncementEmails();
+    } catch (e) {
+      adminAnnounceStatusEl.textContent = "Could not load the mailing list.";
+      return;
+    }
+    if (emails.length === 0) {
+      adminAnnounceStatusEl.textContent = "The mailing list is empty — add emails above and save first.";
+      return;
+    }
+    const confirmed = window.confirm("Email all " + emails.length + " people on the mailing list to announce that voting is open for " + week + "?");
+    if (!confirmed) return;
+
+    let sent = 0, failed = 0;
+    for (const email of emails) {
+      adminAnnounceStatusEl.textContent = "Sending " + (sent + failed + 1) + " of " + emails.length + "…";
+      try {
+        await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_ANNOUNCE_TEMPLATE_ID, {
+          to_email: email,
+          week: week,
+          voting_url: "https://kansasmediarankings.com/voting"
+        });
+        sent++;
+      } catch (e) {
+        failed++;
+      }
+    }
+    adminAnnounceStatusEl.textContent = "Emailed " + sent + (sent === 1 ? " person" : " people") + " that voting is open for " + week + "."
+      + (failed ? " " + failed + " failed to send." : "");
   });
 
   adminDeleteWeekBtn.addEventListener("click", async () => {
