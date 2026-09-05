@@ -360,6 +360,14 @@
         <button class="ksfp-btn primary" id="ksfp-admin-send-announce">Email: Voting is open</button>
         <p class="ksfp-admin-status" id="ksfp-admin-announce-status"></p>
 
+        <label for="ksfp-admin-rename-week-old" style="margin-top:12px;">Rename a week (keeps every ballot, record, and voter tied to it — just changes its label)</label>
+        <div style="display:flex; gap:8px; margin-bottom:6px;">
+          <select id="ksfp-admin-rename-week-old"></select>
+          <input type="text" id="ksfp-admin-rename-week-new" placeholder="New name, e.g. Week 2" style="flex:1; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 6px 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit;" />
+        </div>
+        <button class="ksfp-btn primary" id="ksfp-admin-rename-week-btn">Rename week</button>
+        <p class="ksfp-admin-status" id="ksfp-admin-rename-week-status"></p>
+
         <label for="ksfp-admin-delete-week-select" style="margin-top:12px;">Delete a week (removes ALL its ballots, records, and release status — cannot be undone)</label>
         <div style="display:flex; gap:8px; margin-bottom:6px;">
           <select id="ksfp-admin-delete-week-select"></select>
@@ -503,6 +511,10 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const adminAnnounceWeekLabelEl = document.getElementById("ksfp-admin-announce-week-label");
   const adminSendAnnounceBtn = document.getElementById("ksfp-admin-send-announce");
   const adminAnnounceStatusEl = document.getElementById("ksfp-admin-announce-status");
+  const adminRenameWeekOldEl = document.getElementById("ksfp-admin-rename-week-old");
+  const adminRenameWeekNewEl = document.getElementById("ksfp-admin-rename-week-new");
+  const adminRenameWeekBtn = document.getElementById("ksfp-admin-rename-week-btn");
+  const adminRenameWeekStatusEl = document.getElementById("ksfp-admin-rename-week-status");
   const adminDeleteWeekSelectEl = document.getElementById("ksfp-admin-delete-week-select");
   const adminDeleteWeekBtn = document.getElementById("ksfp-admin-delete-week-btn");
   const adminDeleteWeekStatusEl = document.getElementById("ksfp-admin-delete-week-status");
@@ -589,6 +601,44 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     settingsCache = next;
   }
 
+
+  // Moves every document keyed by `oldWeek` to the same shape keyed by
+  // `newWeek` (ballots, records, release status, voter contacts), then
+  // deletes the old copies and repoints meta/settings — a relabel, not
+  // a fresh week, so nothing already recorded is lost.
+  async function renameWeekData(oldWeek, newWeek) {
+    for (const cls of CLASS_ORDER) {
+      const entriesSnap = await withBulkTimeout(getDocs(collection(db, "polls", pollId(oldWeek, cls), "entries")));
+      await withBulkTimeout(Promise.all(entriesSnap.docs.map(d =>
+        setDoc(doc(db, "polls", pollId(newWeek, cls), "entries", d.id), d.data())
+      )));
+      await withBulkTimeout(Promise.all(entriesSnap.docs.map(d => deleteDoc(d.ref))));
+
+      const recSnap = await withBulkTimeout(getDoc(doc(db, "records", pollId(oldWeek, cls))));
+      if (recSnap.exists()) {
+        await withBulkTimeout(setDoc(doc(db, "records", pollId(newWeek, cls)), recSnap.data()));
+        await withBulkTimeout(deleteDoc(doc(db, "records", pollId(oldWeek, cls))));
+      }
+    }
+
+    const relSnap = await withBulkTimeout(getDoc(doc(db, "releases", oldWeek)));
+    if (relSnap.exists()) {
+      await withBulkTimeout(setDoc(doc(db, "releases", newWeek), relSnap.data()));
+      await withBulkTimeout(deleteDoc(doc(db, "releases", oldWeek)));
+    }
+
+    const contactsSnap = await withBulkTimeout(getDocs(collection(db, "voterContacts", oldWeek, "entries")));
+    await withBulkTimeout(Promise.all(contactsSnap.docs.map(d =>
+      setDoc(doc(db, "voterContacts", newWeek, "entries", d.id), d.data())
+    )));
+    await withBulkTimeout(Promise.all(contactsSnap.docs.map(d => deleteDoc(d.ref))));
+
+    const settings = await getSettings();
+    const weeks = settings.weeks.map(w => w === oldWeek ? newWeek : w);
+    const overrides = { weeks };
+    if (settings.currentWeek === oldWeek) overrides.currentWeek = newWeek;
+    await updateSettings(overrides);
+  }
 
   async function getRecordsDoc(week, cls) {
     try {
@@ -1333,6 +1383,9 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     adminClearClassEl.innerHTML = CLASS_ORDER.map(c =>
       '<option value="' + c + '">' + c + '</option>'
     ).join("");
+    adminRenameWeekOldEl.innerHTML = weeks.map(w =>
+      '<option value="' + w.replace(/"/g,'&quot;') + '">' + w + (w === currentWeek ? " (current)" : "") + '</option>'
+    ).join("");
     adminDeleteWeekSelectEl.innerHTML = weeks.map(w =>
       '<option value="' + w.replace(/"/g,'&quot;') + '">' + w + (w === currentWeek ? " (current)" : "") + '</option>'
     ).join("");
@@ -1359,21 +1412,36 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       : "Voting is open for the current week.";
   }
 
+  // Tracks what's currently on-screen vs. what's actually saved, so
+  // switching the week/class dropdown never silently throws away
+  // typed-but-unsaved records (this is exactly how records can look
+  // "entered" but never actually reach a given week/class).
+  let lastLoadedRecordsText = "";
+
   async function loadRecordsIntoTextarea() {
     const week = adminRecordsWeekEl.value;
     const cls = adminRecordsClassEl.value;
-    if (!week || !cls) { adminRecordsTextEl.value = ""; return; }
+    if (!week || !cls) { adminRecordsTextEl.value = ""; lastLoadedRecordsText = ""; return; }
     const records = await getRecords(week, cls);
-    adminRecordsTextEl.value = Object.keys(records).map(school => school + ": " + records[school]).join("\n");
+    lastLoadedRecordsText = Object.keys(records).map(school => school + ": " + records[school]).join("\n");
+    adminRecordsTextEl.value = lastLoadedRecordsText;
     adminRecordsStatusEl.textContent = "";
   }
 
-  adminRecordsWeekEl.addEventListener("change", loadRecordsIntoTextarea);
-  adminRecordsClassEl.addEventListener("change", loadRecordsIntoTextarea);
+  async function handleRecordsSelectorChange() {
+    if (adminRecordsTextEl.value !== lastLoadedRecordsText) {
+      const ok = window.confirm("You have unsaved records typed for the previous week/class — switch anyway and lose them?");
+      if (!ok) return;
+    }
+    await loadRecordsIntoTextarea();
+  }
+  adminRecordsWeekEl.addEventListener("change", handleRecordsSelectorChange);
+  adminRecordsClassEl.addEventListener("change", handleRecordsSelectorChange);
 
   adminSaveRecordsBtn.addEventListener("click", async () => {
     if (!auth.currentUser) {
       adminRecordsStatusEl.textContent = "Sign in first.";
+      window.alert("You're not signed in as admin, so nothing was saved. Sign in first, then try again.");
       return;
     }
     const week = adminRecordsWeekEl.value;
@@ -1387,14 +1455,20 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       const record = line.slice(idx + 1).trim();
       if (school && record) records[school] = record;
     });
+    if (!Object.keys(records).length) {
+      adminRecordsStatusEl.textContent = "Nothing to save — enter records as \"School: record\", one per line.";
+      return;
+    }
     try {
       await saveRecords(week, cls, records);
-      adminRecordsStatusEl.textContent = "Saved records for " + cls + " — " + week + ".";
+      lastLoadedRecordsText = adminRecordsTextEl.value;
+      adminRecordsStatusEl.textContent = "Saved " + Object.keys(records).length + " records for " + cls + " — " + week + ".";
       if (state.view === "public" && state.publicWeek === week) {
         await loadPublicStandingsForSelection();
       }
     } catch (e) {
       adminRecordsStatusEl.textContent = "Save failed — you may need to sign in again.";
+      window.alert("Saving records for " + cls + " — " + week + " failed. Nothing was recorded. Try signing out and back in, then save again.");
     }
   });
 
@@ -1562,6 +1636,45 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     }
     adminAnnounceStatusEl.textContent = "Emailed " + sent + (sent === 1 ? " person" : " people") + " that voting is open for " + week + "."
       + (failed ? " " + failed + " failed to send." : "");
+  });
+
+  adminRenameWeekBtn.addEventListener("click", async () => {
+    if (!auth.currentUser) {
+      adminRenameWeekStatusEl.textContent = "Sign in first.";
+      return;
+    }
+    const oldWeek = adminRenameWeekOldEl.value;
+    const newWeek = adminRenameWeekNewEl.value.trim();
+    if (!oldWeek || !newWeek) {
+      adminRenameWeekStatusEl.textContent = "Pick a week and enter a new name.";
+      return;
+    }
+    if (newWeek === oldWeek) {
+      adminRenameWeekStatusEl.textContent = "That's already its name.";
+      return;
+    }
+    const weeks = await getWeeksList();
+    if (weeks.indexOf(newWeek) !== -1) {
+      adminRenameWeekStatusEl.textContent = '"' + newWeek + '" is already a separate week — pick a name that isn\'t in use.';
+      return;
+    }
+    const confirmed = window.confirm('Rename "' + oldWeek + '" to "' + newWeek + '"? This moves every ballot, record, and release status recorded under it — nothing is lost, but it can\'t be undone.');
+    if (!confirmed) return;
+
+    adminRenameWeekBtn.disabled = true;
+    adminRenameWeekStatusEl.textContent = "Renaming “" + oldWeek + "” to “" + newWeek + "”…";
+    try {
+      await renameWeekData(oldWeek, newWeek);
+      if (state.week === oldWeek) state.week = newWeek;
+      if (state.publicWeek === oldWeek) state.publicWeek = newWeek;
+      adminRenameWeekNewEl.value = "";
+      adminRenameWeekStatusEl.textContent = '"' + oldWeek + '" is now "' + newWeek + '".';
+      await refreshAdminPanel();
+      if (state.view === "public") await loadPublicStandingsForSelection();
+    } catch (e) {
+      adminRenameWeekStatusEl.textContent = "Rename hit an error partway through — check your connection and try again; it's safe to retry.";
+    }
+    adminRenameWeekBtn.disabled = false;
   });
 
   adminDeleteWeekBtn.addEventListener("click", async () => {
