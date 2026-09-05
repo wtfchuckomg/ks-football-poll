@@ -155,7 +155,7 @@ different (an announcement, not a picks recap).
   as each is completed.
 - **Public results** — anyone can view this tab. Results for a week only show
   once you (the admin) release that week.
-- **Admin** — click "Admin" at the bottom, sign in with the email/password
+- **Admin** — click "Admin" at the far right of the menu bar, sign in with the email/password
   you created in step 3, then:
   - **Set week** — changes which week new ballots are recorded under.
   - **Release** — makes a week's results visible on the Public results tab.
