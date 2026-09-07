@@ -129,7 +129,8 @@
   table.ksfp-table tr:nth-child(5n) td { border-bottom: 1px solid var(--gold); }
   table.ksfp-table tr:last-child td { border-bottom: none; }
   .ksfp-rk { font-family: 'Anton', sans-serif; font-size: 17px; color: var(--gold); width: 28px; }
-  .ksfp-team { font-weight: 600; }
+  .ksfp-team { font-weight: 600; font-size: 16px; }
+  .ksfp-team-logo { width: 36px; height: 36px; object-fit: contain; vertical-align: middle; margin-right: 10px; border-radius: 3px; }
   .ksfp-pts { text-align: right; font-variant-numeric: tabular-nums; }
   .ksfp-fpv { text-align: right; color: var(--chalk-dim); font-variant-numeric: tabular-nums; }
   .ksfp-empty { color: var(--chalk-dim); font-size: 13.5px; padding: 18px 4px; text-align: center; }
@@ -876,6 +877,28 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     return { rows, ballotCount: voterKeys.length };
   }
 
+  // Tries a few reasonable filename spellings for a school's logo, since
+  // uploads won't all follow one exact convention — e.g. for "Mill Valley"
+  // this tries mill-valley, Mill Valley, and mill valley (each with several
+  // extensions) before giving up and showing no logo. Nothing breaks for a
+  // team with no matching file.
+  function logoNameVariants(name) {
+    const clean = name.replace(/'/g, "");
+    const dashLower = clean.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    const spaced = clean.replace(/[^A-Za-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+    const lowerSpaced = spaced.toLowerCase();
+    return Array.from(new Set([dashLower, spaced, lowerSpaced]));
+  }
+  const LOGO_EXTENSIONS = ["png", "jpg", "jpeg", "svg"];
+  function logoImgHtml(name) {
+    const candidates = [];
+    logoNameVariants(name).forEach(v => LOGO_EXTENSIONS.forEach(ext => candidates.push("logos/" + v + "." + ext)));
+    const first = candidates.shift();
+    return '<img src="' + first.replace(/"/g,'&quot;') + '" alt="" class="ksfp-team-logo" loading="lazy" '
+      + 'data-fallbacks="' + candidates.join("|").replace(/"/g,'&quot;') + '" '
+      + 'onerror="var fb=(this.dataset.fallbacks||\'\').split(\'|\').filter(Boolean); if(fb.length){this.dataset.fallbacks=fb.slice(1).join(\'|\'); this.src=fb[0];} else {this.style.display=\'none\';}">';
+  }
+
   // Standard "competition ranking" (AP-poll style): schools tied on both
   // points and 1st-place votes share the same rank, and the next distinct
   // school's rank skips ahead accordingly (two tied at 4 -> next is 6).
@@ -914,7 +937,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       const lastCol = prevWeek
         ? (prevRank[r.school] ? prevRank[r.school] : "NR")
         : ((lastSeason && lastSeason[r.school]) || "—");
-      html += '<tr><td class="ksfp-rk">' + formatRank(r.rank, r.tied) + '</td><td class="ksfp-team">' + name + '</td><td class="ksfp-pts">' + record + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + lastCol + '</td></tr>';
+      html += '<tr><td class="ksfp-rk">' + formatRank(r.rank, r.tied) + '</td><td class="ksfp-team">' + logoImgHtml(r.school) + name + '</td><td class="ksfp-pts">' + record + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + lastCol + '</td></tr>';
     });
     html += '</tbody></table>';
 
@@ -1171,7 +1194,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
 
     let html = '<table class="ksfp-table"><thead><tr><th>Rk</th><th>School</th><th style="text-align:right">Pts</th><th style="text-align:right">1st votes</th></tr></thead><tbody>';
     assignRanksWithTies(rows).filter(r => r.rank <= 25).forEach((r) => {
-      html += '<tr><td class="ksfp-rk">' + formatRank(r.rank, r.tied) + '</td><td class="ksfp-team">' + r.school + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + (r.fpv || "—") + '</td></tr>';
+      html += '<tr><td class="ksfp-rk">' + formatRank(r.rank, r.tied) + '</td><td class="ksfp-team">' + logoImgHtml(r.school) + r.school + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + (r.fpv || "—") + '</td></tr>';
     });
     html += '</tbody></table>';
     standingsEl.innerHTML = html;
