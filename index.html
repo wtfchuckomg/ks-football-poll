@@ -890,9 +890,13 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     return Array.from(new Set([dashLower, spaced, lowerSpaced]));
   }
   const LOGO_EXTENSIONS = ["png", "jpg", "jpeg", "svg"];
+  // Shown for any team with no logo file of its own, once every spelling
+  // variant above has been tried and failed.
+  const LOGO_FALLBACK = "logos/KShelmet.png";
   function logoImgHtml(name) {
     const candidates = [];
     logoNameVariants(name).forEach(v => LOGO_EXTENSIONS.forEach(ext => candidates.push("logos/" + v + "." + ext)));
+    candidates.push(LOGO_FALLBACK);
     const first = candidates.shift();
     return '<img src="' + first.replace(/"/g,'&quot;') + '" alt="" class="ksfp-team-logo" loading="lazy" '
       + 'data-fallbacks="' + candidates.join("|").replace(/"/g,'&quot;') + '" '
