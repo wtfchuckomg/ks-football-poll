@@ -887,7 +887,11 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     const dashLower = clean.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
     const spaced = clean.replace(/[^A-Za-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
     const lowerSpaced = spaced.toLowerCase();
-    return Array.from(new Set([dashLower, spaced, lowerSpaced]));
+    // Also try the school's exact name as-is (hyphens, periods, and casing
+    // preserved) — a file uploaded matching the roster name literally
+    // (e.g. "Gardner-Edgerton.png") wouldn't otherwise be tried, since the
+    // variants above normalize punctuation away.
+    return Array.from(new Set([clean, dashLower, spaced, lowerSpaced]));
   }
   const LOGO_EXTENSIONS = ["png", "jpg", "jpeg", "svg"];
   // Shown for any team with no logo file of its own, once every spelling
