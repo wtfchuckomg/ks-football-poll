@@ -197,6 +197,7 @@
     <div class="ksfp-sitenav">
       <a href="index.html" class="active">Media Rankings</a>
       <a href="https://picks.kansasmediarankings.com">Pick 'Em</a>
+      <a href="helmets.html">Helmets</a>
     </div>
     <button class="ksfp-admin-link" id="ksfp-admin-link">Admin</button>
     <div class="ksfp-admin-panel" id="ksfp-admin-panel" style="display:none;">
@@ -1014,7 +1015,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     CLASS_ORDER.forEach((cls, i) => {
       const { rows, records, lastSeason, prevRank, prevWeek } = results[i];
       html += '<div style="margin-bottom:28px;">';
-      html += '<div class="ksfp-standings-head"><h2>' + cls + '</h2></div>';
+      html += '<div class="ksfp-standings-head"><h2>Class ' + cls + '</h2></div>';
       html += rows.length === 0
         ? '<p class="ksfp-empty">No ballots were cast for ' + cls + '.</p>'
         : buildStandingsTableHtml(rows, records, prevRank, prevWeek, rankCountFor(cls), lastSeason);
