@@ -180,8 +180,9 @@
   // logos and helmet renders never load at all until you pick them,
   // instead of all 331 schools' images loading on page open.
   function renderClass(cls) {
+    const schools = CLASSES[cls].slice().sort((a, b) => a.localeCompare(b));
     contentEl.innerHTML = '<h2 class="helm-section-title">Class ' + cls + '</h2>'
-      + CLASSES[cls].map(schoolCardHtml).join("");
+      + schools.map(schoolCardHtml).join("");
   }
 
   selectEl.addEventListener("change", () => renderClass(selectEl.value));
