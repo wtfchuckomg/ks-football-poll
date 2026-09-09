@@ -70,10 +70,9 @@
   .helm-card-info { flex: 1; min-width: 200px; }
   .helm-name { font-family: 'Anton', sans-serif; font-size: 26px; letter-spacing: 0.3px; color: var(--gold-dim); line-height: 1.15; }
   .helm-coach { font-size: 13.5px; color: var(--chalk); margin-top: 8px; }
-  .helm-logo { width: 64px; height: 64px; object-fit: contain; margin-top: 14px; }
   .helm-renders { display: flex; gap: 14px; align-items: center; }
   .helm-render { height: 260px; width: auto; object-fit: contain; }
-  .helm-render[hidden], .helm-logo[hidden] { display: none; }
+  .helm-render[hidden] { display: none; }
   .helm-empty { font-size: 12.5px; color: var(--chalk-dim); font-style: italic; }
 </style>
 </head>
@@ -160,7 +159,6 @@
       + '<div class="helm-card-info">'
         + '<div class="helm-name">' + title + '</div>'
         + coachLine
-        + imgWithFallback("logos", school, "", "helm-logo")
       + '</div>'
       + '<div class="helm-renders">'
         + imgWithFallback("helmet logos", school, "", "helm-render")
