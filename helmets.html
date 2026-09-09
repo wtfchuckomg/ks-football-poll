@@ -72,7 +72,7 @@
   .helm-coach { font-size: 13.5px; color: var(--chalk); margin-top: 8px; }
   .helm-logo { width: 64px; height: 64px; object-fit: contain; margin-top: 14px; }
   .helm-renders { display: flex; gap: 14px; align-items: center; }
-  .helm-render { height: 120px; width: auto; object-fit: contain; }
+  .helm-render { height: 260px; width: auto; object-fit: contain; }
   .helm-render[hidden], .helm-logo[hidden] { display: none; }
   .helm-empty { font-size: 12.5px; color: var(--chalk-dim); font-style: italic; }
 </style>
@@ -163,8 +163,7 @@
         + imgWithFallback("logos", school, "", "helm-logo")
       + '</div>'
       + '<div class="helm-renders">'
-        + imgWithFallback("helmets", school, "Left", "helm-render")
-        + imgWithFallback("helmets", school, "Right", "helm-render")
+        + imgWithFallback("helmet logos", school, "", "helm-render")
       + '</div>'
     + '</div>';
   }
