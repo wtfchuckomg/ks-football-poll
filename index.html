@@ -258,9 +258,10 @@
         <button class="ksfp-btn primary" id="ksfp-admin-email-picks">Email everyone their picks</button>
         <p class="ksfp-admin-status" id="ksfp-admin-email-status"></p>
 
-        <label for="ksfp-admin-announce-list-text" style="margin-top:12px;">Voter mailing list (one email per line — this list is saved and reused every week, edit it anytime)</label>
-        <textarea id="ksfp-admin-announce-list-text" rows="4" placeholder="jane@example.com&#10;coach@example.com" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
-        <button class="ksfp-btn primary" id="ksfp-admin-save-announce-list" style="margin-top:6px;">Save mailing list</button>
+        <label for="ksfp-admin-announce-list-text" style="margin-top:12px;">Add to the mailing list (one email per line)</label>
+        <p class="ksfp-admin-status" style="margin:0 0 6px;" id="ksfp-admin-announce-list-count">—</p>
+        <textarea id="ksfp-admin-announce-list-text" rows="3" placeholder="jane@example.com&#10;coach@example.com" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
+        <button class="ksfp-btn primary" id="ksfp-admin-save-announce-list" style="margin-top:6px;">Add to mailing list</button>
         <p class="ksfp-admin-status" id="ksfp-admin-announce-list-status"></p>
 
         <label style="margin-top:12px;">Announce voting is open</label>
@@ -510,6 +511,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const adminEmailPicksBtn = document.getElementById("ksfp-admin-email-picks");
   const adminEmailStatusEl = document.getElementById("ksfp-admin-email-status");
   const adminAnnounceListTextEl = document.getElementById("ksfp-admin-announce-list-text");
+  const adminAnnounceListCountEl = document.getElementById("ksfp-admin-announce-list-count");
   const adminSaveAnnounceListBtn = document.getElementById("ksfp-admin-save-announce-list");
   const adminAnnounceListStatusEl = document.getElementById("ksfp-admin-announce-list-status");
   const adminAnnounceWeekLabelEl = document.getElementById("ksfp-admin-announce-week-label");
@@ -563,6 +565,15 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
 
   async function saveVoterContact(week, emailHash, email) {
     await withTimeout(setDoc(doc(db, "voterContacts", week, "entries", emailHash), { email }));
+  }
+
+  // Adds a voter to the persistent "Announce voting is open" mailing
+  // list — called automatically on every ballot submit, so the list
+  // builds itself up over time instead of being maintained by hand.
+  // Keyed the same way as a ballot entry, so voting again just re-saves
+  // the same doc rather than creating a duplicate.
+  async function addToMailingList(emailHash, email) {
+    await withTimeout(setDoc(doc(db, "mailingList", emailHash), { email }));
   }
 
   async function loadVoterContacts(week) {
@@ -686,8 +697,25 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   async function getVotingLocked() { return !!(await getSettings()).votingLocked; }
   async function setVotingLocked(val) { await updateSettings({ votingLocked: !!val }); }
 
-  async function getAnnouncementEmails() { return (await getSettings()).announcementEmails || []; }
-  async function setAnnouncementEmails(emails) { await updateSettings({ announcementEmails: emails }); }
+  // Combines whatever was manually saved before (the old full-replace
+  // list, kept around so nothing already entered gets lost) with every
+  // voter who's ever been auto-added by submitting a ballot.
+  async function getAnnouncementEmails() {
+    const legacy = (await getSettings()).announcementEmails || [];
+    const snap = await withTimeout(getDocs(collection(db, "mailingList")));
+    const tracked = snap.docs.map(d => d.data().email).filter(Boolean);
+    return Array.from(new Set([...legacy, ...tracked]));
+  }
+
+  // Adds emails to the mailing list (on top of whatever's already
+  // there) rather than replacing it — the list is mostly self-maintaining
+  // now, so this is just for adding people who haven't voted yet.
+  async function addAnnouncementEmails(emails) {
+    for (const email of emails) {
+      const hash = await hashEmail(email);
+      await addToMailingList(hash, email);
+    }
+  }
 
   // Bypasses the settings cache so a submit/clear right after an admin
   // manually locks sees the truth, not a snapshot from whenever this
@@ -1259,6 +1287,12 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       const key = await hashEmail(email);
       await saveBallotEntry(state.week, state.cls, key, rankings, name);
       await saveVoterContact(state.week, key, email);
+      try {
+        await addToMailingList(key, email);
+      } catch (e) {
+        // Don't let a mailing-list hiccup make a successfully-saved
+        // ballot look like it failed.
+      }
       state.completed[state.cls] = true;
       renderTabs();
       await loadStandings();
@@ -1403,7 +1437,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     adminEmailWeekLabelEl.textContent = currentWeek;
     adminAnnounceWeekLabelEl.textContent = currentWeek;
     const announceEmails = await getAnnouncementEmails();
-    adminAnnounceListTextEl.value = announceEmails.join("\n");
+    adminAnnounceListCountEl.textContent = announceEmails.length + (announceEmails.length === 1 ? " person" : " people") + " on the mailing list (voters are added automatically).";
 
     const weeks = await getWeeksList();
     adminReleaseSelectEl.innerHTML = weeks.map(w =>
@@ -1623,9 +1657,16 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       return;
     }
     const emails = adminAnnounceListTextEl.value.split("\n").map(e => e.trim()).filter(Boolean);
+    if (!emails.length) {
+      adminAnnounceListStatusEl.textContent = "Enter at least one email first.";
+      return;
+    }
     try {
-      await setAnnouncementEmails(emails);
-      adminAnnounceListStatusEl.textContent = "Saved " + emails.length + (emails.length === 1 ? " email." : " emails.");
+      await addAnnouncementEmails(emails);
+      adminAnnounceListTextEl.value = "";
+      adminAnnounceListStatusEl.textContent = "Added " + emails.length + (emails.length === 1 ? " email." : " emails.");
+      const announceEmails = await getAnnouncementEmails();
+      adminAnnounceListCountEl.textContent = announceEmails.length + (announceEmails.length === 1 ? " person" : " people") + " on the mailing list (voters are added automatically).";
     } catch (e) {
       adminAnnounceListStatusEl.textContent = "Save failed — you may need to sign in again.";
     }
