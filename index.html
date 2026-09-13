@@ -1161,10 +1161,10 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
 
     let html = '<thead><tr><th>Player</th>';
     for (let i = 1; i <= rankCount; i++) html += '<th style="text-align:center">' + i + '</th>';
-    html += '</tr></thead><tbody>';
+    html += '<th></th></tr></thead><tbody>';
 
     if (voterKeys.length === 0) {
-      html += '<tr><td colspan="' + (rankCount + 1) + '" class="ksfp-empty">No ballots yet for ' + state.cls + '.</td></tr>';
+      html += '<tr><td colspan="' + (rankCount + 2) + '" class="ksfp-empty">No ballots yet for ' + state.cls + '.</td></tr>';
     } else {
       voterKeys.forEach(key => {
         const entry = data[key];
@@ -1174,12 +1174,34 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
         for (let i = 0; i < rankCount; i++) {
           html += '<td style="text-align:center; font-size:12px;">' + (entry.rankings[i] || "—") + '</td>';
         }
+        html += '<td style="text-align:right;"><button data-remove-key="' + key.replace(/"/g,'&quot;') + '" style="background:none; border:1px solid var(--red); color:var(--red); border-radius:4px; padding:3px 8px; font-size:11px; font-family:inherit; cursor:pointer;">Remove</button></td>';
         html += '</tr>';
       });
     }
     html += '</tbody>';
     adminPicksTableEl.innerHTML = html;
   }
+
+  // Event delegation since rows (and their Remove buttons) are rebuilt
+  // fresh on every render — a listener on the individual buttons would
+  // be thrown away each time.
+  adminPicksTableEl.addEventListener("click", async (e) => {
+    const btn = e.target.closest("[data-remove-key]");
+    if (!btn) return;
+    if (!auth.currentUser) return;
+    const row = btn.closest("tr");
+    const voterName = row ? row.querySelector(".ksfp-team").textContent : "this voter";
+    const confirmed = window.confirm('Remove ' + voterName + '\'s ' + state.cls + ' ballot for ' + state.week + '? This cannot be undone.');
+    if (!confirmed) return;
+    btn.disabled = true;
+    try {
+      await deleteBallotEntry(state.week, state.cls, btn.dataset.removeKey);
+      await loadStandings();
+    } catch (e) {
+      btn.disabled = false;
+      window.alert("Could not remove that ballot — check your connection and try again.");
+    }
+  });
 
   async function loadStandings() {
     standingsEl.innerHTML = '<p class="ksfp-empty">Loading standings…</p>';
