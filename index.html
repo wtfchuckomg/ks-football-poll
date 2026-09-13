@@ -292,8 +292,8 @@
 
 <nav class="ksfp-sectionnav">
   <div class="ksfp-sectionnav-inner" id="ksfp-viewtoggle">
-    <button class="ksfp-view-btn active" data-view="vote" id="ksfp-vote-toggle-btn">Cast a ballot</button>
-    <button class="ksfp-view-btn" data-view="public" id="ksfp-public-toggle-btn">Public results</button>
+    <button class="ksfp-view-btn" data-view="vote" id="ksfp-vote-toggle-btn">Cast a ballot</button>
+    <button class="ksfp-view-btn active" data-view="public" id="ksfp-public-toggle-btn">Public results</button>
     <div class="ksfp-sectionnav-links">
       <a href="https://www.catchitkansas.com" target="_blank" rel="noopener">Catch It Kansas</a>
       <a href="https://www.kansaspregame.com" target="_blank" rel="noopener">Kansas Pregame</a>
@@ -311,7 +311,7 @@
 
   <p class="ksfp-public-msg" id="ksfp-vote-locked-msg" style="display:none;">Voting is currently closed. Check back soon.</p>
 
-  <div id="ksfp-vote-view">
+  <div id="ksfp-vote-view" style="display:none;">
     <div class="ksfp-tabs" id="ksfp-tabs"></div>
     <p class="ksfp-progress" id="ksfp-progress">Enter your email to track progress across classes.</p>
 
@@ -439,7 +439,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const DEFAULT_WEEK = "Preseason";
   function rankCountFor(cls) { return cls === "6-Man" ? 5 : 10; }
 
-  let state = { cls: "6A", email: "", completed: {}, view: "vote", week: DEFAULT_WEEK, publicWeek: null, publicCls: "ALL" };
+  let state = { cls: "6A", email: "", completed: {}, view: "public", week: DEFAULT_WEEK, publicWeek: null, publicCls: "ALL" };
 
   const root = document.getElementById("ksfp-root");
   const headerSubEl = document.getElementById("ksfp-header-sub");
@@ -1864,14 +1864,21 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     renderBallotForm();
     await loadStandings();
 
-    // Support a direct link straight to the public results page, e.g.
+    // The root domain defaults to Public Results — voting.html is the
+    // only page that asks for the ballot view (via ?vote=1), so casual
+    // visitors to the main site never land on a ballot by accident.
     // index.html?results=1  or  index.html?results=1&week=Week+1&class=6A
+    // still works as a direct link straight to a specific week/class.
     const params = new URLSearchParams(window.location.search);
     if (params.get("results")) {
       if (params.get("week")) state.publicWeek = params.get("week");
       if (params.get("class") && CLASS_ORDER.indexOf(params.get("class")) !== -1) {
         state.publicCls = params.get("class");
       }
+      switchView("public");
+    } else if (params.get("vote")) {
+      switchView("vote");
+    } else {
       switchView("public");
     }
   }
