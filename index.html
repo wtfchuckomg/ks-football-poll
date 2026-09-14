@@ -1,1891 +1,1913 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026 Kansas Media Football Rankings</title>
-<link rel="icon" type="image/png" href="favicon.png" />
-<link rel="apple-touch-icon" href="favicon.png" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="2026 Kansas Media Football Rankings" />
-<meta property="og:description" content="Weekly top-10 media rankings for every Kansas high school football classification." />
-<meta property="og:image" content="https://kansasmediarankings.com/og-image.png" />
-<meta property="og:url" content="https://kansasmediarankings.com/" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="2026 Kansas Media Football Rankings" />
-<meta name="twitter:description" content="Weekly top-10 media rankings for every Kansas high school football classification." />
-<meta name="twitter:image" content="https://kansasmediarankings.com/og-image.png" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="description" content="Pick 15 Kansas high school football games each week. Weekly winners and season-long standings.">
+
+<link rel="icon" type="image/png" sizes="32x32" href="brand/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="brand/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="brand/icon-180.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kansas Media HS Pick &rsquo;ems">
+<meta property="og:title" content="Kansas Media HS Pick &rsquo;ems">
+<meta property="og:description" content="Pick 15 Kansas high school football games each week. Weekly winners and season-long standings.">
+<meta property="og:url" content="https://picks.kansasmediarankings.com/">
+<meta property="og:image" content="https://picks.kansasmediarankings.com/brand/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kansas Media HS Pick &rsquo;ems">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kansas Media HS Pick &rsquo;ems">
+<meta name="twitter:description" content="Pick 15 Kansas high school football games each week. Weekly winners and season-long standings.">
+<meta name="twitter:image" content="https://picks.kansasmediarankings.com/brand/og.jpg">
+<title>Kansas Media Pick ’ems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600&display=swap');
+:root{
+  --page:#EBEEF0; --ground:#FFFFFF; --surface:#F5F6F8; --surface-2:#E9ECEF;
+  --ink:#0E1013; --muted:#666E78; --line:#D8DCE0; --line-2:#EAECEE;
+  --nav:#111417; --nav-ink:#FFFFFF; --nav-muted:#9AA2AB; --nav-line:#2A2F35;
+  --accent:#D50A0A; --accent-ink:#FFFFFF; --accent-wash:#FBEDED;
+  --win:#0F7A34; --loss:#C0271F; --win-wash:#E7F4EB; --loss-wash:#FBEAE8;
+  --brand-bar:#FFFFFF; --brand-ink:#0E1013; --brand-muted:#5A626B; --brand-line:#DFE3E7;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--page);color:var(--ink);
+  font:400 14px/1.4 Barlow,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3,.disp{font-family:"Barlow Condensed",Barlow,"Arial Narrow",sans-serif;margin:0;text-wrap:balance}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.num,.mono{font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
-  html, body { margin: 0; padding: 0; background: #F0F0F0; }
+/* ---------- site switcher ---------- */
+.sitebar{background:var(--nav);border-bottom:1px solid var(--nav-line)}
+.sitebar-inner{max-width:1100px;margin:0 auto;padding:0 18px;display:flex;gap:26px}
+.sitelink{
+  display:inline-block;padding:9px 0 7px;border-bottom:3px solid transparent;
+  font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:15px;
+  text-transform:uppercase;letter-spacing:.02em;color:var(--nav-muted);text-decoration:none}
+.sitelink:hover{color:var(--nav-ink)}
+.sitelink.active{color:var(--nav-ink);border-bottom-color:var(--accent)}
 
-  .ksfp-topbar { background: #000000; }
-  .ksfp-topbar-inner {
-    position: relative;
-    max-width: 900px; margin: 0 auto; padding: 0 20px; min-height: 54px;
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 24px;
-  }
-  .ksfp-sitenav { display: flex; gap: 24px; }
-  .ksfp-sitenav a, .ksfp-sitenav span { font-family: 'Anton', sans-serif; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; text-decoration: none; padding: 17px 0; color: #b8b8b8; border-bottom: 3px solid transparent; }
-  .ksfp-sitenav a.active { color: #ffffff; border-bottom: 3px solid var(--gold); }
-  .ksfp-sitenav a:not(.active):hover { color: #ffffff; }
-  .ksfp-sitenav span.disabled { color: #6b6b6b; opacity: 1; cursor: default; }
-  .ksfp-sitenav span.disabled small { display: block; font-family: 'Work Sans', sans-serif; font-size: 9px; letter-spacing: 0.3px; margin-top: 2px; text-transform: none; }
+/* ---------- masthead ---------- */
+.board{background:var(--brand-bar);color:var(--brand-ink);border-bottom:1px solid var(--brand-line)}
+.board-inner{max-width:1100px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;flex:0 1 auto;min-width:0}
+#brand-logo{height:44px;width:auto;max-width:100%;display:block}
+.gate-logo{width:100%;height:auto;display:block;margin-bottom:2px}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.brand-name{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:23px;
+  text-transform:uppercase;line-height:1;letter-spacing:-.005em}
+.brand-sub{font-size:11px;text-transform:uppercase;color:var(--nav-muted);font-weight:600;
+  border-left:1px solid var(--nav-line);padding-left:9px;letter-spacing:.02em}
+.weekchip{margin-right:auto;font-family:"Barlow Condensed",sans-serif;font-weight:600;
+  font-size:13px;text-transform:uppercase;color:var(--brand-ink);
+  border:1px solid var(--brand-line);padding:2px 8px;letter-spacing:.02em}
+.clock{display:flex;align-items:baseline;gap:7px}
+.clock-label{font-size:10px;text-transform:uppercase;color:var(--brand-muted);font-weight:600;letter-spacing:.03em}
+.clock-val{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:20px;
+  font-variant-numeric:tabular-nums;line-height:1}
+.clock.locked .clock-val{color:var(--accent)}
+.clock.soon .clock-val{color:#B26A00}
+.whoami{display:flex;align-items:center;gap:8px;font-size:13px;
+  border-left:1px solid var(--brand-line);padding-left:14px}
+.whoami[hidden],.tab[hidden],.btn[hidden]{display:none}
+.whoami b{font-weight:600}
+.linkish{background:none;border:0;padding:0;color:var(--brand-muted);font-size:11px;
+  text-decoration:underline;text-underline-offset:2px}
+.linkish:hover{color:var(--brand-ink)}
 
-  :root {
-    --bg: #F0F0F0;
-    --panel: #FFFFFF;
-    --panel-2: #F5F5F5;
-    --line: #DADADA;
-    --chalk: #1A1A1A;
-    --chalk-dim: #6B6B6B;
-    --gold: #D6001C;
-    --gold-dim: #A3001A;
-    --red: #8B0000;
-    --green: #1A7F37;
-  }
-  .ksfp * { box-sizing: border-box; }
-  .ksfp {
-    font-family: 'Work Sans', sans-serif;
-    background: var(--bg);
-    color: var(--chalk);
-    padding: 24px 20px 48px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .ksfp h1, .ksfp h2, .ksfp h3 { font-family: 'Anton', sans-serif; font-weight: 400; letter-spacing: 0.3px; margin: 0; }
+/* ---------- nav strip ---------- */
+nav.tabs{background:var(--nav);border-bottom:1px solid var(--nav-line);
+  position:sticky;top:0;z-index:40;white-space:nowrap;overflow-x:auto}
+.tabs-inner{max-width:1100px;margin:0 auto;padding:0 18px;display:flex}
+.tab{display:inline-block;text-decoration:none;background:none;border:0;
+  border-bottom:3px solid transparent;padding:9px 14px 7px;
+  font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:15px;
+  text-transform:uppercase;color:var(--nav-muted);border-radius:0;letter-spacing:.01em}
+.tab:hover{color:var(--nav-ink)}
+.tab[aria-current="page"]{color:var(--nav-ink);border-bottom-color:var(--accent)}
 
-  .ksfp-header { text-align: center; margin-bottom: 22px; }
-  .ksfp-header h1 { font-size: 34px; line-height: 1.05; }
-  .ksfp-header p { color: var(--chalk-dim); font-size: 14px; margin: 8px 0 0; }
+main{max-width:1100px;margin:0 auto;padding:20px 18px 80px}
+.view[hidden]{display:none!important}
 
-  .ksfp-tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 22px; }
-  .ksfp-tab {
-    background: var(--panel); border: 1px solid var(--line); color: var(--chalk-dim);
-    font-family: 'Anton', sans-serif; font-size: 14px; letter-spacing: 0.5px;
-    padding: 9px 16px; border-radius: 4px; cursor: pointer;
-  }
-  .ksfp-tab:hover { border-color: var(--gold-dim); color: var(--chalk); }
-  .ksfp-tab.active { background: var(--gold); border-color: var(--gold); color: #ffffff; }
-  .ksfp-tab.locked { opacity: 0.4; cursor: not-allowed; }
-  .ksfp-tab.locked:hover { border-color: var(--line); color: var(--chalk-dim); }
+/* ---------- section headings (rule, not rail) ---------- */
+.card{background:none;border:0;border-radius:0}
+.card+.card{margin-top:30px}
+.card-hd{padding:0 0 5px;margin-bottom:11px;background:none;
+  border-bottom:2px solid var(--ink);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.card-hd h2{font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:-.005em}
+.card-bd{padding:0}
+#view-admin .card-bd{background:var(--ground);border:1px solid var(--line);border-radius:3px;padding:14px}
+.hint{color:var(--muted);font-size:12px;margin:0}
+.eyebrow{font-size:10px;text-transform:uppercase;color:var(--muted);font-weight:700;letter-spacing:.04em}
 
-  .ksfp-progress { text-align: center; color: var(--chalk-dim); font-size: 12px; margin: -14px 0 20px; }
+/* ---------- two-column ---------- */
+.pcols{display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:30px;align-items:start}
+@media (max-width:900px){.pcols{grid-template-columns:1fr;gap:26px}}
+.prail .rail-hd{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:15px;
+  text-transform:uppercase;border-bottom:2px solid var(--ink);padding-bottom:4px;margin-bottom:8px}
+.prail .twrap{border:0;background:none}
+.prail{background:var(--ground);border:1px solid var(--line);border-radius:3px;padding:12px}
+.prail table{font-size:13px}
+.prail td{padding:5px 7px}
+.railnote{font-size:12px;color:var(--muted);padding:6px 0}
+.myline{display:flex;justify-content:space-between;align-items:baseline;
+  padding:7px 0;border-bottom:1px solid var(--line-2);font-size:13px}
+.myline b{font-family:"Barlow Condensed",sans-serif;font-size:17px;font-variant-numeric:tabular-nums}
 
-  .ksfp-next-btn { background: transparent; border: 1px solid currentColor; color: var(--gold); font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 12.5px; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-left: 8px; }
-  .ksfp-next-btn:hover { background: rgba(214,0,28,0.08); }
+/* ---------- scoreboard list ---------- */
+.games{display:flex;flex-direction:column;gap:8px}
+.game{border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--ground)}
+.game:focus-within{border-color:var(--muted)}
+.prow + .prow{border-top:1px solid var(--line-2)}
+.ghd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  padding:6px 10px;background:var(--surface);border-bottom:1px solid var(--line-2)}
+.gmatch{font-size:13.5px;font-weight:600;line-height:1.25}
+.gmatch em{font-style:normal;font-weight:400;color:var(--muted)}
+.gstatus{font-size:10px;text-transform:uppercase;font-weight:700;
+  letter-spacing:.04em;color:var(--accent);white-space:nowrap}
+.gstatus{color:var(--accent)}
+.prow{width:100%;background:none;border:0;padding:7px 10px;display:flex;align-items:center;gap:13px;
+  text-align:left;border-left:3px solid transparent}
+.prow:hover:not(:disabled){background:var(--surface)}
+.prow:disabled{cursor:default}
+.chip{flex:0 0 65px;height:65px;background:var(--surface-2);display:grid;place-items:center;
+  font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:20px;color:var(--muted);
+  border-radius:2px}
+.chip.logo{background:none}
+.chip.logo img{width:65px;height:65px;object-fit:contain;display:block}
+.prow.on .chip.logo{background:none}
+.team{flex:1 1 auto;font-weight:500;font-size:16.5px;line-height:1.25}
+.tag{font-size:10px;text-transform:uppercase;font-weight:700;color:var(--muted);letter-spacing:.03em}
+.ck{flex:0 0 22px;width:22px;height:22px;border:2px solid var(--line);display:grid;place-items:center;border-radius:2px}
+.ck::after{content:"";width:10px;height:5px;border-left:2.5px solid var(--accent-ink);
+  border-bottom:2.5px solid var(--accent-ink);transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+/* A pick with no result yet is shown by its tick and bolder name only —
+   colour is reserved for a verdict. */
+.prow.on{background:none;border-left-color:transparent}
+.prow.on .team{font-weight:700}
+.prow.on .chip{background:var(--accent);color:var(--accent-ink)}
+.prow.on .ck{background:var(--accent);border-color:var(--accent)}
+.prow.on .ck::after{opacity:1}
+/* The verdict is about YOUR pick, so only a picked row is coloured: green when
+   it came in, red when it did not. A row you did not pick stays plain, so a
+   miss is not answered by lighting up the team you should have taken. */
+.prow.on.won{background:var(--win-wash);border-left-color:var(--win)}
+.prow.on.won .team{color:var(--win);font-weight:700}
+.prow.on.won .chip,.prow.on.won .ck{background:var(--win);border-color:var(--win)}
+.prow.on.miss{background:var(--loss-wash);border-left-color:var(--loss)}
+.prow.on.miss .team{color:var(--loss);font-weight:700}
+.prow.on.miss .chip,.prow.on.miss .ck{background:var(--loss);border-color:var(--loss)}
 
-  .ksfp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
-  @media (max-width: 700px) { .ksfp-grid { grid-template-columns: 1fr; } }
+/* ---------- submit bar ---------- */
+.savebar{position:sticky;bottom:0;margin-top:0;background:var(--nav);color:var(--nav-ink);
+  padding:9px 12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tally{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:19px;
+  text-transform:uppercase;margin-right:auto;font-variant-numeric:tabular-nums}
+.tally small{color:var(--nav-muted);font-weight:600;font-size:12px}
+.status{font-size:12px;color:var(--nav-muted)}
+.status.ok{color:#3FBE68}
+.status.err{color:#FF6B63}
 
-  .ksfp-card { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--gold); border-radius: 4px; padding: 18px 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-  .ksfp-card h2 { font-size: 19px; margin-bottom: 4px; }
-  .ksfp-sub { color: var(--chalk-dim); font-size: 12.5px; margin: 0 0 16px; }
+/* ---------- buttons ---------- */
+.btn{background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);
+  padding:7px 15px;border-radius:2px;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+.btn:hover:not(:disabled){filter:brightness(1.1)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover:not(:disabled){border-color:var(--ink);filter:none}
+.btn.lamp{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.danger{background:none;color:var(--loss);border-color:var(--line)}
+.btn.sm{padding:4px 9px;font-size:11px}
+.savebar .btn.ghost{color:var(--nav-ink);border-color:var(--nav-line)}
 
-  .ksfp-field { margin-bottom: 12px; }
-  .ksfp-field label { display: block; font-size: 12px; color: var(--chalk-dim); margin-bottom: 4px; }
-  .ksfp-field input[type=email], .ksfp-field input[type=text] {
-    width: 100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk);
-    padding: 9px 10px; border-radius: 4px; font-size: 14px; font-family: inherit;
-  }
+/* ---------- tables ---------- */
+.twrap{overflow-x:auto;background:var(--ground);border:1px solid var(--line);border-radius:3px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{text-align:left;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:12px;
+  text-transform:uppercase;color:var(--muted);letter-spacing:.03em;
+  padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:6px 8px;border-bottom:1px solid var(--line-2);white-space:nowrap}
+tbody tr:nth-child(even) td{background:var(--surface)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.rank{color:var(--muted);width:26px;font-weight:700;font-variant-numeric:tabular-nums}
+tbody tr.leader td{background:var(--accent-wash)}
+tr.leader .rank{color:var(--accent)}
+.you-chip{font-size:9px;text-transform:uppercase;font-weight:700;background:var(--ink);
+  color:var(--ground);padding:1px 5px;margin-left:5px;letter-spacing:.03em}
 
-  .ksfp-rank-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
-  .ksfp-rank-num {
-    font-family: 'Anton', sans-serif; font-size: 15px; color: #ffffff; background: var(--gold);
-    width: 26px; height: 26px; min-width: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  }
-  .ksfp-rank-row select {
-    flex: 1; background: var(--bg); border: 1px solid var(--line); color: var(--chalk);
-    padding: 8px 8px; border-radius: 4px; font-size: 13.5px; font-family: inherit;
-  }
+/* ---------- forms ---------- */
+label.f{display:flex;flex-direction:column;gap:3px;font-size:10px;font-weight:700;
+  text-transform:uppercase;color:var(--muted);letter-spacing:.04em}
+input,select{font:inherit;font-size:14px;font-weight:400;text-transform:none;letter-spacing:0;
+  color:var(--ink);padding:6px 9px;border:1px solid var(--line);border-radius:2px;
+  background:var(--ground);width:100%}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:var(--accent)}
+.row{display:flex;gap:9px;flex-wrap:wrap;align-items:flex-end}
+.row>*{flex:1 1 170px}
+.row>.shrink{flex:0 0 auto}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.pill{display:inline-block;font-size:9px;text-transform:uppercase;font-weight:700;
+  padding:2px 6px;border:1px solid var(--line);color:var(--muted);letter-spacing:.03em}
+.pill.open{color:var(--win);border-color:var(--win)}
+.pill.locked{color:var(--accent);border-color:var(--accent)}
+.pill.final{background:var(--ink);color:var(--ground);border-color:var(--ink)}
 
-  .ksfp-actions { display: flex; gap: 10px; margin-top: 16px; }
-  .ksfp-btn {
-    font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 13.5px; border-radius: 4px;
-    padding: 10px 16px; cursor: pointer; border: 1px solid var(--gold);
-  }
-  .ksfp-btn.primary { background: var(--gold); color: #ffffff; }
-  .ksfp-btn.primary:hover { background: var(--gold-dim); }
-  .ksfp-btn.ghost { background: transparent; color: var(--chalk-dim); border-color: var(--line); }
-  .ksfp-btn.ghost:hover { color: var(--chalk); border-color: var(--gold-dim); }
-  .ksfp-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-  .ksfp-msg { font-size: 13px; margin-top: 12px; padding: 8px 10px; border-radius: 4px; display: none; }
-  .ksfp-msg.show { display: block; }
-  .ksfp-msg.ok { background: rgba(26,127,55,0.08); color: var(--green); border: 1px solid var(--green); }
-  .ksfp-msg.err { background: rgba(139,0,0,0.06); color: var(--red); border: 1px solid var(--red); }
-
-  .ksfp-standings-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
-  .ksfp-count { color: var(--chalk-dim); font-size: 12.5px; }
-
-  table.ksfp-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13.5px; }
-  table.ksfp-table th {
-    text-align: left; color: var(--chalk-dim); font-size: 11px; text-transform: uppercase;
-    letter-spacing: 0.5px; font-weight: 700; padding: 0 6px 8px; border-bottom: 2px solid var(--chalk);
-  }
-  table.ksfp-table td { padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: middle; }
-  table.ksfp-table tbody tr:nth-child(even) td { background: var(--panel-2); }
-  table.ksfp-table tr:nth-child(5n) td { border-bottom: 1px solid var(--gold); }
-  table.ksfp-table tr:last-child td { border-bottom: none; }
-  .ksfp-rk { font-family: 'Anton', sans-serif; font-size: 17px; color: var(--gold); width: 28px; }
-  .ksfp-team { font-weight: 600; font-size: 16px; }
-  .ksfp-team-logo { width: 66px; height: 53px; object-fit: cover; vertical-align: middle; margin-right: 10px; border-radius: 3px; }
-  .ksfp-pts { text-align: right; font-variant-numeric: tabular-nums; }
-  .ksfp-fpv { text-align: right; color: var(--chalk-dim); font-variant-numeric: tabular-nums; }
-  .ksfp-empty { color: var(--chalk-dim); font-size: 13.5px; padding: 18px 4px; text-align: center; }
-  .ksfp-receiving { font-size: 12px; color: var(--chalk-dim); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); line-height: 1.6; }
-
-  .ksfp-roster-list { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; margin-top: 12px; }
-  .ksfp-roster-item { display: flex; align-items: center; gap: 6px; }
-  .ksfp-roster-item.voted { color: var(--chalk); }
-  .ksfp-roster-item.missing { color: var(--chalk-dim); }
-  .ksfp-roster-dot { width: 8px; height: 8px; min-width: 8px; border-radius: 50%; display: inline-block; }
-  .ksfp-roster-item.voted .ksfp-roster-dot { background: var(--gold); }
-  .ksfp-roster-item.missing .ksfp-roster-dot { background: transparent; border: 1px solid var(--chalk-dim); }
-  .ksfp-receiving b { color: var(--chalk); font-weight: 600; }
-
-  .ksfp-note { color: var(--chalk-dim); font-size: 11.5px; margin-top: 14px; line-height: 1.5; }
-
-  .ksfp-masthead { background: #ffffff; border-bottom: 1px solid #DADADA; }
-  .ksfp-masthead-inner {
-    max-width: 900px; margin: 0 auto; padding: 14px 20px;
-    display: flex; align-items: center;
-  }
-  .ksfp-masthead-brand { display: flex; align-items: center; }
-  .ksfp-masthead-header-img { height: 48px; width: auto; display: block; }
-
-  .ksfp-sectionnav { background: #000000; }
-  .ksfp-sectionnav-inner { position: relative; max-width: 900px; margin: 0 auto; padding: 0 20px; display: flex; gap: 24px; flex-wrap: wrap; }
-  .ksfp-view-btn {
-    background: transparent; border: none; border-bottom: 3px solid transparent; color: #b8b8b8;
-    font-family: 'Anton', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase;
-    padding: 17px 0; cursor: pointer;
-  }
-  .ksfp-view-btn:hover { color: #ffffff; }
-  .ksfp-view-btn.active { color: #ffffff; border-bottom-color: #D6001C; }
-  .ksfp-sectionnav-links { margin-left: auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .ksfp-sectionnav-links a {
-    font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: 0.2px;
-    color: #8a8a8a; text-decoration: none; padding: 17px 0;
-  }
-  .ksfp-sectionnav-links a:hover { color: #ffffff; }
-
-  .ksfp-public-msg { text-align: center; color: var(--chalk-dim); font-size: 14px; padding: 30px 10px; }
-
-  .ksfp-admin-link { background: transparent; border: none; border-bottom: 3px solid transparent; color: #b8b8b8; font-family: 'Anton', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; padding: 17px 0; cursor: pointer; }
-  .ksfp-admin-link:hover { color: #ffffff; }
-  .ksfp-admin-link.active { color: #ffffff; border-bottom-color: #D6001C; }
-  .ksfp-admin-panel, .ksfp-admin-panel * { box-sizing: border-box; }
-  .ksfp-admin-panel {
-    position: absolute; top: 100%; right: 20px; margin-top: 8px;
-    width: 360px; max-width: calc(100vw - 40px); max-height: calc(100vh - 140px); overflow-y: auto;
-    background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; text-align: left;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.35); z-index: 500;
-  }
-  .ksfp-admin-panel label { display: block; font-size: 11px; color: var(--chalk-dim); margin-bottom: 6px; }
-  .ksfp-admin-panel input, .ksfp-admin-panel select { flex: 1; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 13px; font-family: inherit; }
-  .ksfp-admin-panel .ksfp-admin-link { color: var(--chalk-dim); border-bottom: none; padding: 0; font-family: inherit; font-weight: normal; text-transform: none; letter-spacing: normal; font-size: 12px; text-decoration: underline; }
-  .ksfp-admin-panel .ksfp-admin-link:hover { color: var(--gold); }
-  .ksfp-admin-status { font-size: 12px; color: var(--chalk-dim); margin: 8px 0 0; }
+/* ---------- gate ---------- */
+.gate{position:fixed;inset:0;z-index:60;background:rgba(10,12,14,.6);
+  display:flex;flex-direction:column;align-items:center;padding:5vh 18px 30px;overflow-y:auto}
+.gate[hidden]{display:none}
+.gate-card{width:100%;max-width:400px;background:var(--ground);
+  border:1px solid var(--line);border-radius:3px;padding:16px}
+.gate-close{background:none;border:0;color:#fff;font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.07em;margin-top:14px;padding:6px 10px;
+  text-decoration:underline;text-underline-offset:3px}
+.gate-close:hover{color:var(--accent)}
+.gate .card,.gate .card-bd{display:flex;flex-direction:column;gap:12px;border:0;padding:0;margin:0}
+.gate h1{font-size:30px;text-transform:uppercase;font-weight:700;line-height:1;letter-spacing:-.01em}
+.sep{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:10px;
+  text-transform:uppercase;font-weight:700;letter-spacing:.05em}
+.sep::before,.sep::after{content:"";height:1px;background:var(--line);flex:1}
+.err{color:var(--loss);font-size:13px;min-height:17px}
+.empty{color:var(--muted);font-size:13px;padding:20px 14px;background:var(--ground);border:1px solid var(--line);border-radius:3px}
+.banner{background:var(--accent-wash);border-left:3px solid var(--accent);
+  padding:9px 12px;font-size:13px;margin-bottom:12px}
+.adm-game{display:grid;grid-template-columns:22px 1fr 14px 1fr;gap:6px;align-items:center;margin-bottom:5px}
+.adm-game .n{font-size:11px;color:var(--muted);text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.adm-game .at2{text-align:center;color:var(--muted);font-size:10px}
+.res-row{display:grid;grid-template-columns:22px 1fr;gap:6px;align-items:center;margin-bottom:5px}
+.res-opts{display:grid;grid-template-columns:1fr 1fr 50px;gap:4px}
+.res-opt{background:var(--surface);border:1px solid var(--line);border-radius:2px;
+  padding:6px 8px;font-size:12.5px;font-weight:500;text-align:center;overflow:hidden;text-overflow:ellipsis}
+.res-opt[aria-pressed="true"]{background:var(--win);border-color:var(--win);color:#fff;font-weight:700}
+.res-opt.clear[aria-pressed="true"]{background:var(--muted);border-color:var(--muted)}
+@media (max-width:560px){
+  /* The box stays right-justified in a straight column; dropping the
+     AWAY/HOME tag is what closes the gap, since away is always the top row. */
+  .prow .tag{display:none}
+  .prow{gap:12px;padding:10px 12px}
+  .team{font-size:17px}
+  .savebar{row-gap:4px;padding:9px 10px}
+  .savebar .status{order:3;flex:1 1 100%}
+  .savebar .btn{order:2}
+  .sitebar-inner{gap:18px;padding:0 14px}
+  .sitelink{font-size:14px}
+  #brand-logo{height:30px}
+  .clock-val{font-size:17px}
+  .board-inner{gap:10px;padding:8px 14px}
+  .whoami{border-left:0;padding-left:0}
+  .grid-2{grid-template-columns:1fr}
+  .adm-game{grid-template-columns:18px 1fr;gap:4px}
+  .adm-game .at2{display:none}
+}
 </style>
 </head>
 <body>
 
-<nav class="ksfp-topbar">
-  <div class="ksfp-topbar-inner">
-    <div class="ksfp-sitenav">
-      <a href="index.html" class="active">Media Rankings</a>
-      <a href="https://picks.kansasmediarankings.com">Pick 'Em</a>
-      <a href="helmets.html">Helmets</a>
-      <a href="https://stats.kansasmediarankings.com">Stats</a>
-    </div>
-    <button class="ksfp-admin-link" id="ksfp-admin-link">Admin</button>
-    <div class="ksfp-admin-panel" id="ksfp-admin-panel" style="display:none;">
-
-      <div id="ksfp-admin-login">
-        <label for="ksfp-admin-email">Admin email</label>
-        <input type="email" id="ksfp-admin-email" placeholder="you@example.com" style="width:100%; margin-bottom:8px;" />
-        <label for="ksfp-admin-password">Password</label>
-        <input type="password" id="ksfp-admin-password" placeholder="Password" style="width:100%; margin-bottom:8px;" />
-        <button class="ksfp-btn primary" id="ksfp-admin-signin">Sign in</button>
-        <p class="ksfp-admin-status" id="ksfp-admin-login-status"></p>
-      </div>
-
-      <div id="ksfp-admin-controls" style="display:none;">
-        <p class="ksfp-admin-status" style="margin:0 0 12px;">Signed in as <b id="ksfp-admin-whoami"></b> — <button class="ksfp-admin-link" id="ksfp-admin-signout">Sign out</button></p>
-
-        <label for="ksfp-admin-week-input">Now voting: <span id="ksfp-admin-current-week">—</span></label>
-        <div style="display:flex; gap:8px; margin-bottom:6px;">
-          <input type="text" id="ksfp-admin-week-input" placeholder="e.g. Week 1" />
-          <button class="ksfp-btn primary" id="ksfp-admin-set-week">Set week</button>
-        </div>
-        <p class="ksfp-admin-status" id="ksfp-admin-week-status"></p>
-
-        <button class="ksfp-btn ghost" id="ksfp-admin-toggle-lock" style="border-color:var(--red); color:var(--red);">Lock voting</button>
-        <p class="ksfp-admin-status" id="ksfp-admin-lock-status"></p>
-
-        <label for="ksfp-admin-roster-text" style="margin-top:12px;">Expected voters this week (one per line)</label>
-        <textarea id="ksfp-admin-roster-text" rows="4" placeholder="Alice Smith&#10;Bob Jones" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
-        <button class="ksfp-btn primary" id="ksfp-admin-save-roster" style="margin-top:6px;">Save roster</button>
-        <p class="ksfp-admin-status" id="ksfp-admin-roster-status"></p>
-
-        <label for="ksfp-admin-release-select" style="margin-top:12px;">Release results for</label>
-        <div style="display:flex; gap:8px;">
-          <select id="ksfp-admin-release-select"></select>
-          <button class="ksfp-btn primary" id="ksfp-admin-toggle-release">Release</button>
-        </div>
-        <p class="ksfp-admin-status" id="ksfp-admin-status"></p>
-
-        <label for="ksfp-admin-records-class" style="margin-top:12px;">Add records for</label>
-        <div style="display:flex; gap:8px; margin-bottom:6px;">
-          <select id="ksfp-admin-records-week"></select>
-          <select id="ksfp-admin-records-class"></select>
-        </div>
-        <textarea id="ksfp-admin-records-text" rows="4" placeholder="One school per line, e.g.&#10;Maize: 8-0&#10;Wichita-Northwest: 7-0" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
-        <button class="ksfp-btn primary" id="ksfp-admin-save-records" style="margin-top:6px;">Save records</button>
-        <p class="ksfp-admin-status" id="ksfp-admin-records-status"></p>
-
-        <label for="ksfp-admin-clear-class" style="margin-top:12px;">Clear all ballots for</label>
-        <div style="display:flex; gap:8px; margin-bottom:6px;">
-          <select id="ksfp-admin-clear-week"></select>
-          <select id="ksfp-admin-clear-class"></select>
-        </div>
-        <button class="ksfp-btn ghost" id="ksfp-admin-clear-ballots" style="border-color:var(--red); color:var(--red);">Clear all ballots</button>
-        <p class="ksfp-admin-status" id="ksfp-admin-clear-status"></p>
-
-        <label style="margin-top:12px;">Email voters their picks</label>
-        <p class="ksfp-admin-status" style="margin:0 0 6px;">Sends everyone who voted for "<span id="ksfp-admin-email-week-label">—</span>" a recap of their picks across every class.</p>
-        <button class="ksfp-btn primary" id="ksfp-admin-email-picks">Email everyone their picks</button>
-        <p class="ksfp-admin-status" id="ksfp-admin-email-status"></p>
-
-        <label for="ksfp-admin-announce-list-text" style="margin-top:12px;">Add to the mailing list (one email per line)</label>
-        <p class="ksfp-admin-status" style="margin:0 0 6px;" id="ksfp-admin-announce-list-count">—</p>
-        <textarea id="ksfp-admin-announce-list-text" rows="3" placeholder="jane@example.com&#10;coach@example.com" style="width:100%; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit; resize: vertical;"></textarea>
-        <button class="ksfp-btn primary" id="ksfp-admin-save-announce-list" style="margin-top:6px;">Add to mailing list</button>
-        <p class="ksfp-admin-status" id="ksfp-admin-announce-list-status"></p>
-
-        <label style="margin-top:12px;">Announce voting is open</label>
-        <p class="ksfp-admin-status" style="margin:0 0 6px;">Emails everyone on the mailing list above to let them know voting is open for "<span id="ksfp-admin-announce-week-label">—</span>."</p>
-        <button class="ksfp-btn primary" id="ksfp-admin-send-announce">Email: Voting is open</button>
-        <p class="ksfp-admin-status" id="ksfp-admin-announce-status"></p>
-
-        <label for="ksfp-admin-rename-week-old" style="margin-top:12px;">Rename a week (keeps every ballot, record, and voter tied to it — just changes its label)</label>
-        <div style="display:flex; gap:8px; margin-bottom:6px;">
-          <select id="ksfp-admin-rename-week-old"></select>
-          <input type="text" id="ksfp-admin-rename-week-new" placeholder="New name, e.g. Week 2" style="flex:1; background: var(--bg); border: 1px solid var(--line); color: var(--chalk); padding: 6px 8px; border-radius: 4px; font-size: 12.5px; font-family: inherit;" />
-        </div>
-        <button class="ksfp-btn primary" id="ksfp-admin-rename-week-btn">Rename week</button>
-        <p class="ksfp-admin-status" id="ksfp-admin-rename-week-status"></p>
-      </div>
-
+<!-- ============ GATE (choose who you are) ============ -->
+<div id="gate" class="gate" hidden role="dialog" aria-modal="true" aria-label="Sign in to pick">
+  <div class="gate-card">
+  <div class="card">
+    <div class="card-bd">
+      <img src="brand/header-web.png" alt="Kansas Media HS Pick &rsquo;ems" class="gate-logo">
+      <h1 id="gate-title" class="visually-hidden">Kansas Media High School Pick &rsquo;ems</h1>
+      <div id="gate-note"></div>
+      <p class="hint">Sign in with Google to make your picks. It takes one tap, there's no
+        password to remember, and your picks follow you to any device.</p>
+      <button class="btn" id="google-signin">Sign in with Google</button>
+      <p class="err" id="gate-err"></p>
+      <p class="hint" style="font-size:12px">Your email is only visible to the commissioner.
+        Other players see your name and nothing else.</p>
     </div>
   </div>
-</nav>
-
-<div class="ksfp-masthead">
-  <div class="ksfp-masthead-inner">
-    <div class="ksfp-masthead-brand">
-      <img src="header.png" alt="Kansas Media Football Rankings" class="ksfp-masthead-header-img" />
-    </div>
   </div>
+  <button class="gate-close" id="gate-close" aria-label="Close">Close</button>
 </div>
 
-<nav class="ksfp-sectionnav">
-  <div class="ksfp-sectionnav-inner" id="ksfp-viewtoggle">
-    <button class="ksfp-view-btn" data-view="vote" id="ksfp-vote-toggle-btn">Cast a ballot</button>
-    <button class="ksfp-view-btn active" data-view="public" id="ksfp-public-toggle-btn">Public results</button>
-    <div class="ksfp-sectionnav-links">
-      <a href="https://www.catchitkansas.com" target="_blank" rel="noopener">Catch It Kansas</a>
-      <a href="https://www.kansaspregame.com" target="_blank" rel="noopener">Kansas Pregame</a>
-      <a href="http://kpreps.com" target="_blank" rel="noopener">KPreps</a>
-      <a href="http://kshsaacovered.com" target="_blank" rel="noopener">KSHSAA Covered</a>
+<!-- ============ APP ============ -->
+<div id="app" hidden>
+  <div class="sitebar">
+    <nav class="sitebar-inner" aria-label="Kansas Media sites">
+      <a class="sitelink" href="https://kansasmediarankings.com/">Media Rankings</a>
+      <a class="sitelink active" href="./" aria-current="page">Pick &rsquo;Ems</a>
+      <a class="sitelink" href="https://stats.kansasmediarankings.com/">Media Stats</a>
+      <a class="sitelink" href="https://kansasmediarankings.com/helmets.html">Helmets</a>
+    </nav>
+  </div>
+  <header class="board">
+    <div class="board-inner">
+      <div class="brand">
+        <img src="brand/header-web.png" alt="Kansas Media HS Pick &rsquo;ems" id="brand-logo">
+      </div>
+      <span class="weekchip" id="week-label">No week open</span>
+      <div class="clock" id="clock">
+        <span class="clock-label" id="clock-label">Picks lock in</span>
+        <span class="clock-val" id="clock-val">&mdash;</span>
+      </div>
+      <div class="whoami" id="whoami">
+        <div>
+          <b id="me-name">&mdash;</b>
+          <div><button class="linkish" id="switch-user">sign out</button></div>
+        </div>
+      </div>
+      <button class="btn sm" id="signin-btn" hidden>Sign in to pick</button>
     </div>
-  </div>
-</nav>
+  </header>
 
-<div class="ksfp" id="ksfp-root">
-  <div class="ksfp-header">
-    <h1>2026 Kansas Media Football Rankings</h1>
-    <p id="ksfp-header-sub">Thank you for casting your media vote for the 2026 season. Please fill every place by 11:59 p.m. Sunday night.</p>
-  </div>
+  <nav class="tabs" aria-label="Sections"><div class="tabs-inner">
+    <a class="tab" href="#picks" data-view="picks" aria-current="page">Make Picks</a>
+    <a class="tab" href="#standings" data-view="board">Standings</a>
+    <a class="tab" href="#my-results" data-view="mine">My Results</a>
+    <a class="tab" href="#commissioner" data-view="admin" id="tab-admin" hidden>Commissioner</a>
+  </div></nav>
 
-  <p class="ksfp-public-msg" id="ksfp-vote-locked-msg" style="display:none;">Voting is currently closed. Check back soon.</p>
-
-  <div id="ksfp-vote-view" style="display:none;">
-    <div class="ksfp-tabs" id="ksfp-tabs"></div>
-    <p class="ksfp-progress" id="ksfp-progress">Enter your email to track progress across classes.</p>
-
-    <div class="ksfp-grid" id="ksfp-vote-grid">
-      <div class="ksfp-card">
-        <h2 id="ksfp-ballot-title">Cast your ballot</h2>
-        <p class="ksfp-sub" id="ksfp-ballot-sub"></p>
-        <p class="ksfp-msg show err" id="ksfp-lock-banner" style="display:none;">Voting is currently locked. Check back soon.</p>
-
-        <div id="ksfp-ballot-body">
-          <div class="ksfp-field">
-            <label for="ksfp-name">Your name</label>
-            <input type="text" id="ksfp-name" placeholder="Jane Smith" />
+  <main>
+    <!-- ---- PICKS ---- -->
+    <section class="view" id="view-picks">
+      <div class="pcols">
+        <div class="pmain">
+          <div id="picks-banner"></div>
+          <div class="games" id="games"></div>
+          <div class="savebar" id="savebar" hidden>
+            <span class="tally" id="tally">0<small>/0 picked</small></span>
+            <span class="status" id="save-status"></span>
+            <button class="btn lamp" id="save-btn">Submit picks</button>
           </div>
+        </div>
+        <aside class="prail" id="prail"></aside>
+      </div>
+    </section>
 
-          <div class="ksfp-field">
-            <label for="ksfp-email">Email address</label>
-            <input type="email" id="ksfp-email" placeholder="name@email.com" />
+    <!-- ---- STANDINGS ---- -->
+    <section class="view" id="view-board" hidden>
+      <div class="card">
+        <div class="card-hd">
+          <h2>Season standings</h2>
+          <span class="hint" id="season-note"></span>
+        </div>
+        <div class="card-bd twrap" id="season-table"></div>
+      </div>
+      <div class="card">
+        <div class="card-hd">
+          <h2>Week by week</h2>
+          <select id="board-week" style="width:auto;margin-left:auto"></select>
+        </div>
+        <div class="card-bd twrap" id="week-table"></div>
+      </div>
+    </section>
+
+    <!-- ---- MY RESULTS ---- -->
+    <section class="view" id="view-mine" hidden>
+      <div class="card">
+        <div class="card-hd"><h2>My results</h2><span class="hint">Only you and the commissioner can see your picks.</span></div>
+        <div class="card-bd" id="mine-body"></div>
+      </div>
+    </section>
+
+    <!-- ---- ADMIN ---- -->
+    <section class="view" id="view-admin" hidden>
+      <div class="card">
+        <div class="card-hd">
+          <h2>Set up a week</h2>
+          <select id="adm-week-sel" style="width:auto;margin-left:auto"></select>
+        </div>
+        <div class="card-bd">
+          <div class="row" style="margin-bottom:14px">
+            <label class="f">Week number<input id="adm-num" type="number" min="1" max="30" value="1"></label>
+            <label class="f">Label<input id="adm-label" type="text" placeholder="Week 1"></label>
+            <label class="f">Picks lock at<input id="adm-deadline" type="datetime-local"></label>
           </div>
-
-          <div id="ksfp-ranks"></div>
-
-          <div class="ksfp-actions">
-            <button class="ksfp-btn primary" id="ksfp-submit">Submit ballot</button>
-            <button class="ksfp-btn ghost" id="ksfp-clear">Clear my ballot</button>
+          <div class="eyebrow" style="margin-bottom:8px">The 15 games &mdash; away team at home team</div>
+          <div id="adm-games"></div>
+          <div class="row" style="margin-top:16px">
+            <div class="shrink"><button class="btn" id="adm-save">Save week</button></div>
+            <div class="shrink"><button class="btn lamp" id="adm-publish">Publish to players</button></div>
+            <div class="shrink"><button class="btn ghost" id="adm-unpublish">Unpublish</button></div>
+            <div class="shrink"><button class="btn danger" id="adm-clear">Clear all picks</button></div>
+            <span class="status shrink" id="adm-status" style="flex:1 1 100%"></span>
           </div>
-          <div class="ksfp-msg" id="ksfp-msg"></div>
-          <p class="ksfp-note">Points follow the standard AP model: 10 for a 1st-place vote down to 1 for a 10th-place vote. Submitting again with the same email replaces your previous ballot for this class.</p>
         </div>
       </div>
 
-      <div class="ksfp-card">
-        <div class="ksfp-standings-head">
-          <h2>Current standings</h2>
-          <span class="ksfp-count" id="ksfp-count"></span>
+      <div class="card">
+        <div class="card-hd"><h2>Enter results</h2><span class="hint">Tap a winner and it saves immediately &mdash; come back as more games finish. Standings update each time.</span></div>
+        <div class="card-bd">
+          <div id="adm-results"></div>
+          <p class="status" id="adm-score-status" style="margin-top:12px"></p>
         </div>
-        <div id="ksfp-standings"></div>
       </div>
-    </div>
 
-    <div class="ksfp-card" id="ksfp-admin-roster-card" style="display:none; margin-top:20px;">
-      <div class="ksfp-standings-head">
-        <h2>Who's Voted — <span id="ksfp-admin-roster-cls"></span></h2>
-        <span class="ksfp-count" id="ksfp-admin-roster-count"></span>
+      <div class="card">
+        <div class="card-hd"><h2>Everyone&rsquo;s picks</h2><span class="hint">Commissioner only.</span></div>
+        <div class="card-bd twrap" id="adm-grid"></div>
       </div>
-      <div id="ksfp-admin-roster-list"></div>
-    </div>
 
-    <div class="ksfp-card" id="ksfp-admin-picks-card" style="display:none; margin-top:20px;">
-      <div class="ksfp-standings-head">
-        <h2>Everyone's Picks</h2>
-        <span class="ksfp-count">Commissioner only.</span>
+      <div class="card">
+        <div class="card-hd"><h2>Tell everyone</h2><span class="hint">Addresses go in BCC, so nobody sees anyone else&rsquo;s.</span></div>
+        <div class="card-bd">
+          <div class="row" style="margin-bottom:10px">
+            <label class="f">Subject<input id="mail-subject" type="text" autocomplete="off"></label>
+          </div>
+          <label class="f" style="margin-bottom:10px">Message
+            <textarea id="mail-body" rows="7" style="font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:2px;background:var(--ground);color:var(--ink);width:100%"></textarea>
+          </label>
+          <div class="row">
+            <div class="shrink"><button class="btn" id="mail-gmail">Open in Gmail</button></div>
+            <div class="shrink"><button class="btn ghost" id="mail-open">Open in my mail app</button></div>
+            <div class="shrink"><button class="btn ghost" id="mail-copy-to">Copy addresses</button></div>
+            <div class="shrink"><button class="btn ghost" id="mail-copy-msg">Copy message</button></div>
+            <span class="status shrink" id="mail-status" style="flex:1 1 100%"></span>
+            <textarea id="mail-fallback" rows="3" readonly hidden style="flex:1 1 100%;font:inherit;
+              padding:8px 10px;border:1px solid var(--line);border-radius:2px;
+              background:var(--surface);color:var(--ink)"></textarea>
+          </div>
+        </div>
       </div>
-      <div style="overflow-x:auto;">
-        <table class="ksfp-table" id="ksfp-admin-picks-table"></table>
-      </div>
-    </div>
-  </div>
 
-  <div id="ksfp-public-view" style="display:none;">
-    <div class="ksfp-tabs" id="ksfp-public-week-tabs"></div>
-    <p class="ksfp-public-msg" id="ksfp-public-msg"></p>
-    <div class="ksfp-card" id="ksfp-public-card" style="display:none;">
-      <div class="ksfp-standings-head">
-        <h2 id="ksfp-public-title">Final standings</h2>
-        <span class="ksfp-count" id="ksfp-public-count"></span>
+      <div class="card">
+        <div class="card-hd"><h2>Teams</h2><span class="hint">Add a logo once &mdash; it shows up every week after that. Use <b>Also known as</b> for the short names you actually type, like SM North.</span></div>
+        <div class="card-bd">
+          <div class="row" style="margin-bottom:12px">
+            <label class="f">Add a team<input id="team-new" type="text" placeholder="Team name" autocomplete="off"></label>
+            <div class="shrink"><button class="btn ghost" id="team-add">Add</button></div>
+            <div class="shrink"><button class="btn ghost" id="team-import">Import Kansas schools</button></div>
+            <div class="shrink"><button class="btn danger" id="team-prune">Remove unused</button></div>
+          </div>
+          <p class="hint" id="team-import-status" style="margin-bottom:10px"></p>
+          <div class="twrap" id="adm-teams"></div>
+        </div>
       </div>
-      <div id="ksfp-public-standings"></div>
-    </div>
-  </div>
 
+      <div class="card">
+        <div class="card-hd"><h2>Merge players</h2><span class="hint">One person, two records &mdash; usually one from before Google sign-in. The newer record is kept and the older one&rsquo;s weeks move onto it.</span></div>
+        <div class="card-bd">
+          <div id="merge-list"></div>
+          <div class="row" style="margin-top:12px">
+            <label class="f">Or fold<select id="merge-from"></select></label>
+            <label class="f">into<select id="merge-into"></select></label>
+            <div class="shrink"><button class="btn ghost" id="merge-add">Add to list</button></div>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <div class="shrink"><button class="btn" id="merge-run">Merge selected</button></div>
+            <span class="status shrink" id="merge-status" style="flex:1 1 100%"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd"><h2>Roster</h2><span class="hint">Put each player&rsquo;s Google address here and their existing record &mdash; picks, standings, everything &mdash; is theirs the moment they sign in. Emails are visible only to you.</span></div>
+        <div class="card-bd twrap" id="adm-roster"></div>
+      </div>
+    </section>
+  </main>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import {
-  getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-import {
-  getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+/* ==========================================================
+   1. CONFIG — the only part you need to edit.
+   ========================================================== */
 
-// ---- Fill this in with your Firebase project's web app config ----
-// Firebase console > Project settings > General > Your apps > SDK setup and config
+// Paste your Firebase web-app config here (Firebase console →
+// Project settings → Your apps → Web app → SDK setup → Config).
 const firebaseConfig = {
-  apiKey: "AIzaSyBTiNraruWtESR_ioYAEM4QaxkqBYY3ZAg",
-  authDomain: "ks-football-poll.firebaseapp.com",
-  projectId: "ks-football-poll",
-  storageBucket: "ks-football-poll.firebasestorage.app",
-  messagingSenderId: "359451879003",
-  appId: "1:359451879003:web:36df8102763cfab727817e"
+  apiKey:            "AIzaSyAm4TiQ2tE8XFp64I5qJfZnXc4n0seYSeg",
+  authDomain:        "ks-picks.firebaseapp.com",
+  projectId:         "ks-picks",
+  storageBucket:     "ks-picks.firebasestorage.app",
+  messagingSenderId: "501020589894",
+  appId:             "1:501020589894:web:0a2011c24f5000a0fc6f47"
 };
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
 
-// ---- Fill this in with your EmailJS account details (emailjs.com) ----
-// Account > General for the Public Key. Email Services for the Service ID.
-// Email Templates for the Template ID.
-const EMAILJS_PUBLIC_KEY = "5ZvIhkqtESa7Ygak-";
-const EMAILJS_SERVICE_ID = "service_z0ehguk";
-const EMAILJS_TEMPLATE_ID = "template_z7fhflh";
-// A second, separate template for the "voting is open" announcement blast —
-// make a new template in EmailJS for this one (different subject/body than
-// the picks-recap template above) and paste its ID here.
-const EMAILJS_ANNOUNCE_TEMPLATE_ID = "template_criq9pd";
-if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
-  window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+// Google accounts allowed to run the pool. Must match firestore.rules.
+const ADMIN_EMAILS = ["chuck8303@gmail.com"];
+
+const BRAND_NAME      = "Kansas Media";
+const BRAND_KICKER    = "High School Pick \u2019ems";
+const LEAGUE_NAME     = "Kansas Media High School Pick \u2019ems";
+
+// Shown for any school whose own logo is not in logos/ yet.
+const PLACEHOLDER_CREST = "logos/kshelmet.png";
+const GAMES_PER_WEEK  = 15;
+
+// "all"    — season % counts every game of every scored week, so a week
+//            you skip counts as zeros. Rewards showing up every week.
+// "played" — season % only counts weeks you actually submitted.
+const SEASON_PCT_MODE = "all";
+
+/* ==========================================================
+   2. Firebase
+   ========================================================== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut,
+         GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult,
+         setPersistence, indexedDBLocalPersistence, browserLocalPersistence,
+         browserSessionPersistence, inMemoryPersistence }
+  from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, updateDoc, deleteDoc, collection,
+         getDocs, query, where, onSnapshot, writeBatch, Timestamp, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+/* ==========================================================
+   3. Helpers
+   ========================================================== */
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
+  ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+const pad2   = n => String(n).padStart(2, "0");
+const weekId = n => "w" + pad2(n);
+const slug   = s => s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-")
+                     .replace(/^-|-$/g, "").slice(0, 40);
+const pct = (c, t) => t > 0 ? (c / t * 100) : 0;
+function team(name) {
+  const s = slug(name);
+  return S.teams.find(t => t.id === s)
+      || S.teams.find(t => (t.aliases || []).some(a => slug(a) === s))
+      || null;
+}
+const safeColor = c => /^#[0-9A-Fa-f]{3,8}$/.test(String(c || "")) ? c : null;
+// A logo is found by its filename, so dropping logos/<school-name>.png into the
+// repo is all it takes — no record to edit, no path to paste. Apostrophes and
+// periods are dropped before separating, so St. Mary's -> st-marys.
+const logoSlug = s => String(s).toLowerCase()
+  .replace(/['\u2019.]/g, "")
+  .replace(/[^a-z0-9]+/g, "-")
+  .replace(/^-|-$/g, "");
+
+function crest(name) {
+  const t = team(name), c = safeColor(t && t.color);
+  // Try the school's own name, then whatever was typed, then any short name —
+  // a file may have been named for the abbreviation the slate uses.
+  const names = [t && t.name, name, ...((t && t.aliases) || [])].filter(Boolean);
+  const seen = new Set(), tries = [];
+  names.forEach(n => {
+    const sl = logoSlug(n);
+    if (!sl || seen.has(sl)) return;
+    seen.add(sl);
+    tries.push("logos/" + sl + ".png");   // png only: crests need transparency
+  });
+  // A file in logos/ wins over a link pasted into the record: the files are
+  // ours and stay put, a hosted link is someone else's and can vanish.
+  const explicit = t && /^https?:/i.test(t.logo || "") ? t.logo : "";
+  if (explicit) tries.push(explicit);
+  // A school with no crest yet gets the Kansas helmet rather than bare initials,
+  // so a slate looks finished while the library is still filling in.
+  tries.push(PLACEHOLDER_CREST);
+  return `<span class="chip logo"><img src="${esc(tries[0])}" alt="" loading="lazy"
+    data-mono="${esc(mono(name))}"${c ? ` data-color="${esc(c)}"` : ""}
+    data-try="${esc(tries.slice(1).join("|"))}"></span>`;
+}
+const mono = s => { const w = String(s).replace(/[^A-Za-z0-9 ]/g, " ").trim().split(/\s+/);
+  return (w.length > 1 ? w.slice(0, 3).map(x => x[0]).join("")
+                       : String(s).replace(/[^A-Za-z0-9]/g, "").slice(0, 3)).toUpperCase(); };
+const fmtPct = (c, t) => t > 0 ? pct(c, t).toFixed(1) + "%" : "—";
+
+function toLocalInput(d) {
+  if (!d) return "";
+  return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}` +
+         `T${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+}
+function deadlineDate(w) {
+  if (!w || !w.deadline) return null;
+  return typeof w.deadline.toDate === "function" ? w.deadline.toDate() : new Date(w.deadline);
+}
+function isLocked(w) {
+  const d = deadlineDate(w);
+  return !d || Date.now() >= d.getTime();
+}
+function liveGames(w) {
+  return (w?.games || []).filter(g => g.away?.trim() && g.home?.trim());
+}
+function friendlyError(e) {
+  const code = e?.code || "";
+  if (code.includes("permission-denied"))
+    return "The server turned that down — picks are locked, or you're not the commissioner.";
+  if (code.includes("disallowed-useragent") || code.includes("operation-not-supported"))
+    return "This browser can't complete Google sign-in. Open the page in Safari or Chrome.";
+  if (code.includes("web-storage-unsupported"))
+    return "This browser is blocking site storage, which sign-in needs. Open the page in Safari or Chrome.";
+  if (code.includes("unavailable") || code.includes("network"))
+    return "Can't reach the server. Check your connection and try again.";
+  return e?.message || "Something went wrong.";
 }
 
-(function() {
-  const CLASSES = {
-    "6A": ["Wichita East","Derby","Wichita Southeast","Garden City","Wichita North","Dodge City","Manhattan","KC Wyandotte","Olathe Northwest","Washburn Rural","Olathe North","Wichita South","Wichita Heights","Olathe South","Gardner-Edgerton","Junction City","Shawnee Mission East","Olathe East","Campus","Topeka High","BV Northwest","BV West","Shawnee Mission Northwest","Lawrence Free State","Lawrence","Shawnee Mission South","Shawnee Mission West","Olathe West","Maize","Wichita Northwest","Shawnee Mission North","Mill Valley"],
-    "5A": ["Blue Valley","Liberal","Blue Valley North","Wichita West","KC Washington","JC Harmon","Bishop Carroll","Leavenworth","Hutchinson","Emporia","Topeka West","Blue Valley Southwest","Spring Hill","Seaman","Maize South","KC Turner","Hays","Shawnee Heights","Valley Center","Salina South","St. James Academy","KC Piper","Andover","De Soto","Salina Central","Pittsburg","Goddard","Eisenhower","Newton","Kapaun Mt. Carmel","Basehor-Linwood","Andover Central"],
-    "4A": ["Arkansas City","Lansing","KC Sumner Academy","Great Bend","Highland Park","St. Thomas Aquinas","KC Schlagle","Bonner Springs","Bishop Miege","Ottawa","Buhler","McPherson","Circle","Paola","Tonganoxie","Winfield","Eudora","Louisburg","Mulvane","Independence","Fort Scott","Augusta","Field Kindley","Rose Hill","Chanute","Wamego","El Dorado","Abilene","Wellington","Labette County","Rock Creek","Ulysses"],
-    "3A": ["Baldwin","Andale","Parsons","Atchison","Concordia","Clearwater","Chapman","Hayden","Perry-Lecompton/Bishop Seabury","Pratt","Clay Center","Santa Fe Trail","Hugoton","Hesston","Holton","Frontenac","Iola","Girard","Scott City","Osawatomie","Colby","Jefferson West","Anderson County","KC Bishop Ward","Columbus","Holcomb","Nemaha Central","Prairie View","Goodland","Wichita Collegiate","Hoisington","Burlington","Hiawatha","Larned","Wichita Trinity Academy","Smoky Valley","Wellsville","Lyons","Nickerson","Cheney"],
-    "2A": ["Marysville","Baxter Springs","Halstead","Council Grove","Neodesha","Beloit","Haven","Silver Lake","Riley County","Royal Valley","Caney Valley","Galena","Sabetha","Southeast of Saline","Maranatha Academy","Russell","Chaparral","Cherryvale","Minneapolis","Fredonia","Ellsworth","Kingman","Osage City","Riverside","Riverton","Lakin","Pleasant Ridge","Norton","Garden Plain","West Franklin","Central Heights","Phillipsburg","Southwestern Heights","Cimarron","Oskaloosa","Douglass","Marion","Horton","Jayhawk Linn","Humboldt"],
-    "1A": ["Hillsboro","Remington","Sterling","Medicine Lodge","Syracuse","St. Marys","Atchison County","Plainville/Natoma","Northeast-Arma","Bluestem","Rossville","Thomas More Prep-Marian","Eureka","Sedgwick","Belle Plaine","Moundridge","McLouth","Maur Hill-Mount Academy","Ellinwood","Mission Valley","Jackson Heights","Jefferson County North","Conway Springs","St. Mary's Colgan","Republic County","Doniphan West","Smith Center","Hutch Trinity","Inman","Uniontown","Sacred Heart","Valley Falls","Wabaunsee","Valley Heights","Centralia","Olpe","Onaga"],
-    "8-Man I": ["Oswego","Oakley","Southeast Cherokee","Herington","Lyndon","Ell-Saline","South Sumner County","Cair Paravel","West Elk/Elk Valley","Bennington","Chase County","Solomon","Elkhart/Rolla","WaKeeney-Trego","Washington County","Stanton County","Yates Center","Cedar Vale/Dexter","Udall","South Central","Oxford","Hoxie","Erie","Sublette","Canton-Galva","Clifton-Clyde","Rawlins County","Spearville","Wichita County","Central Plains","Northern Heights","Hill City","Central Burden","Lincoln","Kiowa County","Oberlin-Decatur","South Gray","Rock Hills","Pleasanton","St. John-Hudson"],
-    "8-Man II": ["Goessel","Little River","Sedan","Sylvan-Lucas Unified","Flinthills","La Crosse","Pretty Prairie","Kinsley","St. Francis","Meade","Ellis","Quinter","Norwich","Attica/Argonia","Rural Vista","Lakeside Downs","Pratt Skyline","Madison/Hamilton","Greeley County","Troy","Frankfort","Macksville","Osborne","St. John's/Tipton Catholic","Wichita Independent","Stockton","Burlingame","BV Randolph","Hodgeman County","Marmaton Valley","Fairfield","Hutch Central Christian","Lebo","Ness City","Colony Crest","Cunningham","Stafford","Minneola","Victoria","St. Paul","Wakefield","Linn","Pike Valley","Hanover","Hartford","Dighton","Waverly","Thunder Ridge","Wallace County","Axtell"],
-    "6-Man": ["Ingalls","South Barber","Deerfield","Golden Plains","Peabody-Burns","Satanta","Ashland","Centre","Wheatland-Grinnell","Tescott","Pawnee Heights","Bucklin","Altoona-Midway","Elyria Christian","Cheylin","Moscow","Southern Coffey County","Western Plains","Marais des Cygnes Valley","Northern Valley","Chase","Logan","Chetopa","Palco","Otis-Bison","Weskan","Brewster","Winona-Triplains"]
-  };
-  const CLASS_ORDER = ["6A","5A","4A","3A","2A","1A","8-Man I","8-Man II","6-Man"];
-  const DEFAULT_WEEK = "Preseason";
-  function rankCountFor(cls) { return cls === "6-Man" ? 5 : 10; }
+// Facebook, Instagram, Twitter/X, LinkedIn, Snapchat and Android webviews all
+// embed a stripped-down browser. Storage is often restricted, and Google flatly
+// refuses OAuth inside one, so we tell people to open the page properly.
+const IN_APP_BROWSER = /FBAN|FBAV|FB_IAB|Instagram|Twitter|LinkedInApp|Snapchat|Line\/|MicroMessenger|GSA\//i
+    .test(navigator.userAgent) || /Android.*;\s*wv\)/i.test(navigator.userAgent);
+const IS_IOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  let state = { cls: "6A", email: "", completed: {}, view: "public", week: DEFAULT_WEEK, publicWeek: null, publicCls: "ALL" };
+/* ==========================================================
+   4. State
+   ========================================================== */
+const S = {
+  uid: null, email: null, isAdmin: false,
+  me: null,                  // my player doc
+  players: [], weeks: [], scores: [], teams: [], contacts: [],
+  myPicks: {}, picksLoaded: false,   // weekId -> pick doc
+  allPicks: [],              // admin only
+  view: "picks", showGate: false,
+  draft: {},                 // weekId -> {gameId: 'away'|'home'} unsaved
+  admWeekId: null, admDraft: null,
+  boardWeekId: null,
+  ready: false
+};
 
-  const root = document.getElementById("ksfp-root");
-  const headerSubEl = document.getElementById("ksfp-header-sub");
-  const tabsEl = document.getElementById("ksfp-tabs");
-  const progressEl = document.getElementById("ksfp-progress");
-  const ranksEl = document.getElementById("ksfp-ranks");
-  const nameEl = document.getElementById("ksfp-name");
-  const emailEl = document.getElementById("ksfp-email");
-  const msgEl = document.getElementById("ksfp-msg");
-  const lockBannerEl = document.getElementById("ksfp-lock-banner");
-  const ballotBodyEl = document.getElementById("ksfp-ballot-body");
-  const voteLockedMsgEl = document.getElementById("ksfp-vote-locked-msg");
-  const voteGridEl = document.getElementById("ksfp-vote-grid");
-  const voteToggleBtnEl = document.getElementById("ksfp-vote-toggle-btn");
-  const submitBtnEl = document.getElementById("ksfp-submit");
-  const clearBtnEl = document.getElementById("ksfp-clear");
-  const standingsEl = document.getElementById("ksfp-standings");
-  const countEl = document.getElementById("ksfp-count");
-  const adminPicksCardEl = document.getElementById("ksfp-admin-picks-card");
-  const adminPicksTableEl = document.getElementById("ksfp-admin-picks-table");
-  const adminRosterCardEl = document.getElementById("ksfp-admin-roster-card");
-  const adminRosterClsEl = document.getElementById("ksfp-admin-roster-cls");
-  const adminRosterCountEl = document.getElementById("ksfp-admin-roster-count");
-  const adminRosterListEl = document.getElementById("ksfp-admin-roster-list");
-  const titleEl = document.getElementById("ksfp-ballot-title");
-  const subEl = document.getElementById("ksfp-ballot-sub");
+/* ==========================================================
+   5. Auth + subscriptions
+   ========================================================== */
+let unsubs = [];
 
-  const voteViewEl = document.getElementById("ksfp-vote-view");
-  const publicViewEl = document.getElementById("ksfp-public-view");
-  const publicWeekTabsEl = document.getElementById("ksfp-public-week-tabs");
-  const publicMsgEl = document.getElementById("ksfp-public-msg");
-  const publicCardEl = document.getElementById("ksfp-public-card");
-  const publicStandingsEl = document.getElementById("ksfp-public-standings");
-  const publicCountEl = document.getElementById("ksfp-public-count");
-
-  const adminLinkEl = document.getElementById("ksfp-admin-link");
-  const adminPanelEl = document.getElementById("ksfp-admin-panel");
-  const adminLoginEl = document.getElementById("ksfp-admin-login");
-  const adminControlsEl = document.getElementById("ksfp-admin-controls");
-  const adminEmailEl = document.getElementById("ksfp-admin-email");
-  const adminPasswordEl = document.getElementById("ksfp-admin-password");
-  const adminSignInBtn = document.getElementById("ksfp-admin-signin");
-  const adminLoginStatusEl = document.getElementById("ksfp-admin-login-status");
-  const adminWhoamiEl = document.getElementById("ksfp-admin-whoami");
-  const adminSignOutBtn = document.getElementById("ksfp-admin-signout");
-
-  const adminCurrentWeekEl = document.getElementById("ksfp-admin-current-week");
-  const adminWeekInputEl = document.getElementById("ksfp-admin-week-input");
-  const adminSetWeekBtn = document.getElementById("ksfp-admin-set-week");
-  const adminWeekStatusEl = document.getElementById("ksfp-admin-week-status");
-  const adminToggleLockBtn = document.getElementById("ksfp-admin-toggle-lock");
-  const adminLockStatusEl = document.getElementById("ksfp-admin-lock-status");
-  const adminRosterTextEl = document.getElementById("ksfp-admin-roster-text");
-  const adminSaveRosterBtn = document.getElementById("ksfp-admin-save-roster");
-  const adminRosterStatusEl = document.getElementById("ksfp-admin-roster-status");
-  const adminReleaseSelectEl = document.getElementById("ksfp-admin-release-select");
-  const adminToggleBtn = document.getElementById("ksfp-admin-toggle-release");
-  const adminStatusEl = document.getElementById("ksfp-admin-status");
-  const adminRecordsWeekEl = document.getElementById("ksfp-admin-records-week");
-  const adminRecordsClassEl = document.getElementById("ksfp-admin-records-class");
-  const adminRecordsTextEl = document.getElementById("ksfp-admin-records-text");
-  const adminSaveRecordsBtn = document.getElementById("ksfp-admin-save-records");
-  const adminRecordsStatusEl = document.getElementById("ksfp-admin-records-status");
-  const adminClearWeekEl = document.getElementById("ksfp-admin-clear-week");
-  const adminClearClassEl = document.getElementById("ksfp-admin-clear-class");
-  const adminClearBtn = document.getElementById("ksfp-admin-clear-ballots");
-  const adminClearStatusEl = document.getElementById("ksfp-admin-clear-status");
-  const adminEmailWeekLabelEl = document.getElementById("ksfp-admin-email-week-label");
-  const adminEmailPicksBtn = document.getElementById("ksfp-admin-email-picks");
-  const adminEmailStatusEl = document.getElementById("ksfp-admin-email-status");
-  const adminAnnounceListTextEl = document.getElementById("ksfp-admin-announce-list-text");
-  const adminAnnounceListCountEl = document.getElementById("ksfp-admin-announce-list-count");
-  const adminSaveAnnounceListBtn = document.getElementById("ksfp-admin-save-announce-list");
-  const adminAnnounceListStatusEl = document.getElementById("ksfp-admin-announce-list-status");
-  const adminAnnounceWeekLabelEl = document.getElementById("ksfp-admin-announce-week-label");
-  const adminSendAnnounceBtn = document.getElementById("ksfp-admin-send-announce");
-  const adminAnnounceStatusEl = document.getElementById("ksfp-admin-announce-status");
-  const adminRenameWeekOldEl = document.getElementById("ksfp-admin-rename-week-old");
-  const adminRenameWeekNewEl = document.getElementById("ksfp-admin-rename-week-new");
-  const adminRenameWeekBtn = document.getElementById("ksfp-admin-rename-week-btn");
-  const adminRenameWeekStatusEl = document.getElementById("ksfp-admin-rename-week-status");
-
-  const HEADER_TEXT = {
-    vote: "Thank you for casting your media vote for the 2026 season. Please fill every place by 11:59 p.m. Sunday night.",
-    public: "Any publication may use this rankings for their use without any attribution. If any media person(s) would like to vote please contact cchaney@cherryroad.com."
-  };
-
-  // ---------------------------------------------------------------
-  // Firestore data layer
-  //   polls/{week}__{cls}/entries/{emailHash}  -> { rankings, ts }
-  //   meta/settings                            -> { currentWeek, weeks }
-  //   releases/{week}                          -> { released }
-  //   records/{week}__{cls}                    -> { schools: { name: record } }
-  // ---------------------------------------------------------------
-  function pollId(week, cls) { return week + "__" + cls; }
-
-  // The Firestore SDK's realtime channel can retry silently forever
-  // against an unreachable/misconfigured project instead of rejecting —
-  // wrap every call so a bad network or bad firebaseConfig fails fast
-  // and visibly instead of hanging the page indefinitely.
-  const NETWORK_TIMEOUT_MS = 8000;
-  function withTimeout(promise) {
-    return Promise.race([
-      promise,
-      new Promise((_, reject) => setTimeout(() => reject(new Error("Network request timed out.")), NETWORK_TIMEOUT_MS))
-    ]);
+// Embedded browsers may block IndexedDB (and sometimes localStorage). Walk down
+// to whatever this one allows rather than failing to sign in at all.
+async function ensurePersistence() {
+  for (const p of [indexedDBLocalPersistence, browserLocalPersistence,
+                   browserSessionPersistence, inMemoryPersistence]) {
+    try { await setPersistence(auth, p); return; } catch (e) { /* try the next */ }
   }
+}
 
-  async function loadPollEntries(week, cls) {
-    const snap = await withTimeout(getDocs(collection(db, "polls", pollId(week, cls), "entries")));
-    const data = {};
-    snap.forEach(d => { data[d.id] = d.data(); });
-    return data;
+// A blank screen is never acceptable: if nothing has loaded, say why.
+let booted = false;
+setTimeout(() => {
+  if (booted) return;
+  S.ready = true;
+  S.bootNote = IN_APP_BROWSER
+    ? "This page is open inside another app\u2019s browser, which blocks the sign-in it needs. Open it in Safari or Chrome instead."
+    : "Still trying to reach the server. Check your connection, then reload.";
+  render();
+}, 9000);
+
+getRedirectResult(auth).catch(() => {});
+
+onAuthStateChanged(auth, async user => {
+  booted = true; S.ready = true; S.bootNote = null;
+  if (!user) {
+    // Signed out is a normal state now: the slate and standings stay public.
+    S.uid = null; S.email = null; S.isAdmin = false; S.me = null;
+    subscribe();
+    return;
   }
+  S.uid = user.uid;
+  S.email = user.email || null;
+  S.isAdmin = !!(user.email && ADMIN_EMAILS.includes(user.email));
+  S.googleName = user.displayName || (user.email || "").split("@")[0];
+  subscribe();
+  await ensurePlayer(user);
+});
 
-  async function saveBallotEntry(week, cls, emailHash, rankings, name) {
-    await withTimeout(setDoc(doc(db, "polls", pollId(week, cls), "entries", emailHash), { rankings, ts: Date.now(), name }));
-  }
+// Existing records keep their id, so their picks and standings stay attached.
+// A record is claimed by whichever Google account the commissioner assigned to
+// it; anyone with no assigned record simply gets a new one.
+async function ensurePlayer(user) {
+  const mail = (user.email || "").toLowerCase();
+  if (!mail) return;
 
-  async function deleteBallotEntry(week, cls, emailHash) {
-    await withTimeout(deleteDoc(doc(db, "polls", pollId(week, cls), "entries", emailHash)));
-  }
+  // Ask the server directly — the local roster has not necessarily arrived yet,
+  // and assuming it had would create a second record for someone who has one.
+  let found = null;
+  try {
+    const snap = await getDocs(query(collection(db, "players"), where("email", "==", mail)));
+    if (!snap.empty) found = { id: snap.docs[0].id, ...snap.docs[0].data() };
+  } catch (e) { console.warn("player lookup:", e); return; }
 
-  async function saveVoterContact(week, emailHash, email) {
-    await withTimeout(setDoc(doc(db, "voterContacts", week, "entries", emailHash), { email }));
-  }
-
-  // Adds a voter to the persistent "Announce voting is open" mailing
-  // list — called automatically on every ballot submit, so the list
-  // builds itself up over time instead of being maintained by hand.
-  // Keyed the same way as a ballot entry, so voting again just re-saves
-  // the same doc rather than creating a duplicate.
-  async function addToMailingList(emailHash, email) {
-    await withTimeout(setDoc(doc(db, "mailingList", emailHash), { email }));
-  }
-
-  async function loadVoterContacts(week) {
-    const snap = await withTimeout(getDocs(collection(db, "voterContacts", week, "entries")));
-    const data = {};
-    snap.forEach(d => { data[d.id] = d.data(); });
-    return data;
-  }
-
-  // Bulk deletes touch many documents (ballots across 9 classes, contacts,
-  // records) — give them more room than a single-document call before
-  // giving up.
-  const BULK_TIMEOUT_MS = 20000;
-  function withBulkTimeout(promise) {
-    return Promise.race([
-      promise,
-      new Promise((_, reject) => setTimeout(() => reject(new Error("Bulk operation timed out.")), BULK_TIMEOUT_MS))
-    ]);
-  }
-
-  // Moves every document keyed by `oldWeek` to the same shape keyed by
-  // `newWeek` (ballots, records, release status, voter contacts), then
-  // deletes the old copies and repoints meta/settings — a relabel, not
-  // a fresh week, so nothing already recorded is lost.
-  async function renameWeekData(oldWeek, newWeek) {
-    for (const cls of CLASS_ORDER) {
-      const entriesSnap = await withBulkTimeout(getDocs(collection(db, "polls", pollId(oldWeek, cls), "entries")));
-      await withBulkTimeout(Promise.all(entriesSnap.docs.map(d =>
-        setDoc(doc(db, "polls", pollId(newWeek, cls), "entries", d.id), d.data())
-      )));
-      await withBulkTimeout(Promise.all(entriesSnap.docs.map(d => deleteDoc(d.ref))));
-
-      const recSnap = await withBulkTimeout(getDoc(doc(db, "records", pollId(oldWeek, cls))));
-      if (recSnap.exists()) {
-        await withBulkTimeout(setDoc(doc(db, "records", pollId(newWeek, cls)), recSnap.data()));
-        await withBulkTimeout(deleteDoc(doc(db, "records", pollId(oldWeek, cls))));
-      }
+  if (found) {
+    if (found.uid !== user.uid) {
+      try { await updateDoc(doc(db, "players", found.id), { uid: user.uid }); }
+      catch (e) { console.warn("link:", e); }
     }
+    return;
+  }
 
-    const relSnap = await withBulkTimeout(getDoc(doc(db, "releases", oldWeek)));
-    if (relSnap.exists()) {
-      await withBulkTimeout(setDoc(doc(db, "releases", newWeek), relSnap.data()));
-      await withBulkTimeout(deleteDoc(doc(db, "releases", oldWeek)));
+  // Nobody assigned this address. Key the new record on the uid, which cannot
+  // collide with anyone else's.
+  try {
+    await setDoc(doc(db, "players", user.uid), {
+      id: user.uid, uid: user.uid, email: mail,
+      name: (user.displayName || mail.split("@")[0] || "Player").slice(0, 40),
+      createdAt: serverTimestamp()
+    }, { merge: true });
+  } catch (e) { console.warn("create player:", e); }
+}
+
+function subscribe() {
+  unsubs.forEach(u => { try { u(); } catch {} });
+  unsubs = [];
+
+  // Signed out there is no roster to read, and the rules rightly refuse one.
+  const playersRef = S.isAdmin ? collection(db, "players")
+    : S.email ? query(collection(db, "players"), where("email", "==", S.email.toLowerCase()))
+    : null;
+  if (!playersRef) { S.players = []; S.me = null; }
+  if (playersRef) unsubs.push(onSnapshot(playersRef, snap => {
+    S.players = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+                  .sort((a, b) => a.name.localeCompare(b.name));
+    const was = S.me;
+    S.me = S.uid ? (S.players.find(p => p.uid === S.uid) || null) : null;
+    if (!was && S.me) S.showGate = false;      // just claimed a name
+    booted = true; S.ready = true; S.bootNote = null;
+    render();
+  }, err => showFatal(err)));
+
+  unsubs.push(onSnapshot(collection(db, "teams"), snap => {
+    S.teams = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+                .sort((a, b) => a.name.localeCompare(b.name));
+    render();
+  }, err => console.warn("teams:", err)));
+
+  unsubs.push(onSnapshot(collection(db, "weeks"), snap => {
+    S.weeks = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+                .sort((a, b) => (a.num || 0) - (b.num || 0));
+    render();
+  }, err => showFatal(err)));
+
+  unsubs.push(onSnapshot(collection(db, "scores"), snap => {
+    S.scores = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    render();
+  }, err => showFatal(err)));
+
+  if (S.uid) unsubs.push(onSnapshot(query(collection(db, "picks"), where("uid", "==", S.uid)), snap => {
+    S.myPicks = {};
+    snap.docs.forEach(d => { const p = d.data(); S.myPicks[p.weekId] = p; });
+    S.picksLoaded = true;
+    render();
+  }, err => showFatal(err)));
+
+  if (S.isAdmin) {
+    unsubs.push(onSnapshot(collection(db, "picks"), snap => {
+      S.allPicks = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      render();
+    }, err => console.warn("admin picks:", err)));
+  }
+}
+
+function showFatal(err) {
+  console.error(err);
+  const g = $("#gate-err");
+  if (g) g.textContent = friendlyError(err);
+}
+
+/* ==========================================================
+   6. Gate — claim your name
+   ========================================================== */
+function renderGate() {
+  $("#gate-title").textContent = LEAGUE_NAME;
+
+  const note = $("#gate-note");
+  if (IN_APP_BROWSER) {
+    note.innerHTML = `<div class="banner"><b>Open this in your real browser.</b><br>
+      You&rsquo;re viewing it inside another app, which blocks the sign-in this page needs.
+      Tap the <b>${IS_IOS ? "&#8230; menu, then <b>Open in Safari</b>" : "&#8942; menu, then <b>Open in Chrome</b>"}</b>
+      &mdash; or copy the link and paste it into your browser.</div>`;
+  } else if (S.bootNote) {
+    note.innerHTML = `<div class="banner">${esc(S.bootNote)}</div>`;
+  } else {
+    note.innerHTML = "";
+  }
+  const g = $("#google-signin");
+  g.textContent = IN_APP_BROWSER ? "Open in Safari or Chrome to sign in" : "Sign in with Google";
+  g.disabled = IN_APP_BROWSER;
+}
+
+$("#google-signin").addEventListener("click", async () => {
+  const provider = new GoogleAuthProvider();
+  try {
+    await ensurePersistence();
+    await signInWithPopup(auth, provider);
+  } catch (err) {
+    const code = err?.code || "";
+    // Mobile browsers routinely block the popup; a redirect works where it doesn't.
+    if (/popup-blocked|popup-closed-by-user|operation-not-supported/.test(code)) {
+      try { await signInWithRedirect(auth, provider); return; } catch (e2) { err = e2; }
     }
+    $("#gate-err").textContent = friendlyError(err);
+  }
+});
 
-    const contactsSnap = await withBulkTimeout(getDocs(collection(db, "voterContacts", oldWeek, "entries")));
-    await withBulkTimeout(Promise.all(contactsSnap.docs.map(d =>
-      setDoc(doc(db, "voterContacts", newWeek, "entries", d.id), d.data())
-    )));
-    await withBulkTimeout(Promise.all(contactsSnap.docs.map(d => deleteDoc(d.ref))));
+$("#switch-user").addEventListener("click", async () => {
+  try { await signOut(auth); } catch (err) { alert(friendlyError(err)); }
+});
 
-    const settings = await getSettings();
-    const weeks = settings.weeks.map(w => w === oldWeek ? newWeek : w);
-    const overrides = { weeks };
-    if (settings.currentWeek === oldWeek) overrides.currentWeek = newWeek;
-    await updateSettings(overrides);
+/* ==========================================================
+   7. Countdown
+   ========================================================== */
+function activeWeek() {
+  const pub = S.weeks.filter(w => w.published);
+  if (!pub.length) return null;
+  const open = pub.filter(w => !isLocked(w))
+                  .sort((a, b) => deadlineDate(a) - deadlineDate(b));
+  return open[0] || pub[pub.length - 1];
+}
+
+function renderClock() {
+  const w = activeWeek();
+  const el = $("#clock"), val = $("#clock-val"), lab = $("#clock-label");
+  el.classList.remove("locked", "soon");
+  if (!w) { lab.textContent = "Status"; val.textContent = "—"; return; }
+  const d = deadlineDate(w);
+  const ms = d ? d.getTime() - Date.now() : -1;
+  if (ms <= 0) {
+    lab.textContent = "Picks";
+    val.textContent = "LOCKED";
+    el.classList.add("locked");
+    return;
+  }
+  lab.textContent = "Picks lock in";
+  const s  = Math.floor(ms / 1000);
+  const dd = Math.floor(s / 86400), hh = Math.floor(s % 86400 / 3600);
+  const mm = Math.floor(s % 3600 / 60), ss = s % 60;
+  val.textContent = dd > 0 ? `${dd}d ${pad2(hh)}:${pad2(mm)}:${pad2(ss)}`
+                           : `${pad2(hh)}:${pad2(mm)}:${pad2(ss)}`;
+  if (ms < 3600e3) el.classList.add("soon");
+}
+setInterval(() => {
+  if (!$("#app").hidden) { renderClock(); refreshLockState(); }
+}, 1000);
+
+let lastLocked = null;
+function refreshLockState() {
+  const w = activeWeek();
+  const locked = w ? isLocked(w) : true;
+  if (locked !== lastLocked) { lastLocked = locked; renderPicks(); }
+}
+
+/* ==========================================================
+   8. Make Picks
+   ========================================================== */
+function renderPicks() {
+  const w = activeWeek();
+  const banner = $("#picks-banner"), box = $("#games"), bar = $("#savebar");
+
+  if (!w) {
+    banner.innerHTML = "";
+    box.innerHTML = '<div class="card"><div class="empty">No week is open yet. The commissioner posts 15 games each week — check back.</div></div>';
+    bar.hidden = true; return;
   }
 
-  async function getRecordsDoc(week, cls) {
-    try {
-      const snap = await withTimeout(getDoc(doc(db, "records", pollId(week, cls))));
-      return snap.exists() ? snap.data() : {};
-    } catch (e) {
-      return {};
-    }
+  const games      = liveGames(w);
+  const weekLocked = isLocked(w);           // the real state of the week
+  const canPick    = !!S.me && !weekLocked; // whether THIS viewer may pick
+  const locked     = !canPick;              // controls are inert either way
+  const saved  = S.myPicks[w.id]?.picks || {};
+  if (S.picksLoaded && !S.draft[w.id]) S.draft[w.id] = { ...saved };
+  const draft   = canPick ? (S.draft[w.id] || saved) : saved;
+  const results = w.results || {};
+  const hasResults = w.scored && Object.keys(results).length > 0;
+
+  banner.innerHTML = !S.me
+    ? `<div class="banner"><b>You're just looking.</b> Anyone can see the games and the standings &mdash;
+       <button class="linkish" id="banner-signin" style="color:inherit;font-size:inherit">sign in</button>
+       to make your picks. It takes one tap and no password.</div>`
+    : !weekLocked
+    ? ""
+    : hasResults
+      ? (S.me && Object.keys(saved).length
+          ? `<div class="banner"><b>${esc(w.label || "This week")} is final.</b> Your card is below with the misses marked.</div>`
+          : `<div class="banner"><b>${esc(w.label || "This week")} is final.</b> Winners are marked in green.</div>`)
+      : `<div class="banner"><b>Picks are locked.</b> Results go up once the games finish.</div>`;
+
+  box.innerHTML = games.map((g, i) => {
+    const mine = draft[g.id], res = hasResults ? results[g.id] : null;
+    const row = (which, team) => {
+      const on = mine === which;
+      const cls = ["prow", on ? "on" : "", res === which ? "won" : "",
+                   res && res !== which ? "miss" : ""].filter(Boolean).join(" ");
+      return `<button class="${cls}" data-g="${esc(g.id)}" data-s="${which}"
+        aria-pressed="${on}" ${weekLocked ? "disabled" : ""}>
+        ${crest(team)}
+        <span class="team">${esc(team)}</span>
+        <span class="tag">${which}</span>
+        <span class="ck"></span></button>`;
+    };
+    const status = res ? "Final" : weekLocked ? "Locked" : "";
+    return `<div class="game">
+      <div class="ghd">
+        <span class="gmatch">${esc(g.away)} <em>at</em> ${esc(g.home)}</span>
+        <span class="gstatus">${status}</span>
+      </div>
+      ${row("away", g.away)}${row("home", g.home)}
+    </div>`;
+  }).join("");
+
+  const n = games.filter(g => draft[g.id]).length;
+  $("#tally").innerHTML = `${n}<small>/${games.length} picked</small>`;
+  bar.hidden = false;
+  const btn = $("#save-btn");
+  if (!S.me) {
+    $("#tally").innerHTML = `${games.length}<small> games this week</small>`;
+    btn.disabled = false;
+    btn.textContent = "Sign in to pick";
+    $("#save-status").className = "status";
+    $("#save-status").textContent = "";
+    return;
   }
-
-  async function getRecords(week, cls) {
-    const data = await getRecordsDoc(week, cls);
-    return data.schools || {};
+  btn.disabled = weekLocked || n === 0;
+  btn.textContent = Object.keys(saved).length ? "Update picks" : "Submit picks";
+  if (weekLocked) {
+    $("#save-status").className = "status err";
+    $("#save-status").textContent = "Locked";
+    btn.textContent = "Locked";
+  } else if (!$("#save-status").dataset.sticky) {
+    $("#save-status").className = "status";
+    $("#save-status").textContent = Object.keys(saved).length
+      ? "Saved — you can change these until the lock." : "";
   }
+}
 
-  async function saveRecords(week, cls, obj) {
-    const existing = await getRecordsDoc(week, cls);
-    await withTimeout(setDoc(doc(db, "records", pollId(week, cls)), { schools: obj, lastSeason: existing.lastSeason || {} }));
+// A logo that fails to load falls back to initials wherever it appears —
+// the scoreboard, the commissioner's team table, anywhere.
+document.addEventListener("error", e => {
+  const img = e.target;
+  if (!img || img.tagName !== "IMG" || !img.closest(".chip.logo")) return;
+  const queue = (img.dataset.try || "").split("|").filter(Boolean);
+  if (queue.length) {                       // work through the other spellings
+    img.dataset.try = queue.slice(1).join("|");
+    img.src = queue[0];
+    return;
   }
-
-  async function getLastSeason(week, cls) {
-    const data = await getRecordsDoc(week, cls);
-    return data.lastSeason || {};
+  const box = img.parentNode;
+  box.classList.remove("logo");
+  box.textContent = img.dataset.mono || "";
+  if (img.dataset.color) {
+    box.style.background = img.dataset.color;
+    box.style.color = "#fff";
   }
+}, true);
 
-  let settingsCache = null;
-  async function getSettings() {
-    if (settingsCache) return settingsCache;
-    const snap = await withTimeout(getDoc(doc(db, "meta", "settings")));
-    if (snap.exists()) { settingsCache = snap.data(); return settingsCache; }
-    settingsCache = { currentWeek: DEFAULT_WEEK, weeks: [DEFAULT_WEEK] };
-    return settingsCache;
-  }
+$("#games").addEventListener("click", e => {
+  if (!S.me && e.target.closest(".prow")) { openGate(); return; }
+  const b = e.target.closest(".prow"); if (!b || b.disabled) return;
+  const w = activeWeek(); if (!w || isLocked(w) || !S.me) return;
+  const d = S.draft[w.id] || (S.draft[w.id] = {});
+  d[b.dataset.g] = d[b.dataset.g] === b.dataset.s ? undefined : b.dataset.s;
+  if (!d[b.dataset.g]) delete d[b.dataset.g];
+  const st = $("#save-status");
+  st.dataset.sticky = "1"; st.className = "status"; st.textContent = "Not submitted yet";
+  renderPicks();
+});
 
-  async function getCurrentWeek() { return (await getSettings()).currentWeek; }
-  async function getWeeksList() { return (await getSettings()).weeks; }
-
-  // Full-replace write to meta/settings that always carries forward every
-  // known field except whatever's explicitly overridden — avoids silently
-  // wiping fields (e.g. an old bug where locking voting erased the roster).
-  async function updateSettings(overrides) {
-    const settings = await getSettings();
-    const next = Object.assign({
-      currentWeek: settings.currentWeek,
-      weeks: settings.weeks,
-      votingLocked: !!settings.votingLocked,
-      voterRoster: settings.voterRoster || [],
-      announcementEmails: settings.announcementEmails || []
-    }, overrides);
-    await withTimeout(setDoc(doc(db, "meta", "settings"), next));
-    settingsCache = next;
-  }
-
-  async function setCurrentWeek(week) {
-    const settings = await getSettings();
-    const weeks = settings.weeks.indexOf(week) === -1 ? settings.weeks.concat([week]) : settings.weeks;
-    // Starting a new week always unlocks voting and clears the old roster.
-    await updateSettings({ currentWeek: week, weeks, votingLocked: false, voterRoster: [] });
-  }
-
-  async function getVoterRoster() { return (await getSettings()).voterRoster || []; }
-  async function setVoterRoster(names) { await updateSettings({ voterRoster: names }); }
-
-  async function getVotingLocked() { return !!(await getSettings()).votingLocked; }
-  async function setVotingLocked(val) { await updateSettings({ votingLocked: !!val }); }
-
-  // Combines whatever was manually saved before (the old full-replace
-  // list, kept around so nothing already entered gets lost) with every
-  // voter who's ever been auto-added by submitting a ballot.
-  async function getAnnouncementEmails() {
-    const legacy = (await getSettings()).announcementEmails || [];
-    const snap = await withTimeout(getDocs(collection(db, "mailingList")));
-    const tracked = snap.docs.map(d => d.data().email).filter(Boolean);
-    return Array.from(new Set([...legacy, ...tracked]));
-  }
-
-  // Adds emails to the mailing list (on top of whatever's already
-  // there) rather than replacing it — the list is mostly self-maintaining
-  // now, so this is just for adding people who haven't voted yet.
-  async function addAnnouncementEmails(emails) {
-    for (const email of emails) {
-      const hash = await hashEmail(email);
-      await addToMailingList(hash, email);
-    }
-  }
-
-  // Bypasses the settings cache so a submit/clear right after an admin
-  // manually locks sees the truth, not a snapshot from whenever this
-  // tab first loaded.
-  async function getVotingLockedFresh() {
-    settingsCache = null;
-    return getVotingLocked();
-  }
-
-  // Same idea, for the current week: if an admin renames or changes the
-  // week while a voter's tab has been open, a stale state.week would
-  // otherwise silently write new ballots back under the old (possibly
-  // just-deleted) week name instead of the real current one.
-  async function getCurrentWeekFresh() {
-    settingsCache = null;
-    return getCurrentWeek();
-  }
-
-  async function getReleaseStatus(week) {
-    try {
-      const snap = await withTimeout(getDoc(doc(db, "releases", week)));
-      return !!(snap.exists() && snap.data().released);
-    } catch (e) {
-      return false;
-    }
-  }
-
-  async function setReleaseStatus(week, val) {
-    await withTimeout(setDoc(doc(db, "releases", week), { released: !!val }));
-  }
-
-  function isUnlocked(index) {
-    return index === 0 || !!state.completed[CLASS_ORDER[index - 1]];
-  }
-
-  async function refreshCompletionForEmail(email) {
-    if (!email) { state.completed = {}; return; }
-    const key = await hashEmail(email);
-    const results = await Promise.all(CLASS_ORDER.map(cls => loadPollEntries(state.week, cls)));
-    const completed = {};
-    CLASS_ORDER.forEach((cls, i) => { completed[cls] = !!results[i][key]; });
-    state.completed = completed;
-  }
-
-  function schoolsFor(cls) { return CLASSES[cls]; }
-
-  function shuffleArray(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }
-
-  function renderTabs() {
-    tabsEl.innerHTML = "";
-    CLASS_ORDER.forEach((cls, i) => {
-      const unlocked = isUnlocked(i) || !!state.completed[cls];
-      const btn = document.createElement("button");
-      btn.className = "ksfp-tab" + (cls === state.cls ? " active" : "") + (unlocked ? "" : " locked");
-      btn.textContent = cls;
-      if (!unlocked) {
-        btn.title = "Finish your " + CLASS_ORDER[i - 1] + " ballot to unlock " + cls + ".";
-      }
-      btn.addEventListener("click", () => {
-        if (!unlocked) {
-          showMsg("Finish your " + CLASS_ORDER[i - 1] + " ballot before moving on to " + cls + ".", "err");
-          return;
-        }
-        state.cls = cls;
-        renderTabs();
-        renderBallotForm();
-        loadStandings();
-        showMsg("", "");
-      });
-      tabsEl.appendChild(btn);
+$("#save-btn").addEventListener("click", async () => {
+  if (!S.me) { openGate(); return; }
+  const w = activeWeek(); if (!w) return;
+  const st = $("#save-status"), btn = $("#save-btn");
+  if (isLocked(w)) { st.className = "status err"; st.textContent = "Too late — picks are locked."; return; }
+  btn.disabled = true; st.className = "status"; st.textContent = "Saving…";
+  try {
+    await setDoc(doc(db, "picks", `${w.id}__${S.me.id}`), {
+      weekId: w.id, playerId: S.me.id, uid: S.uid, name: S.me.name,
+      picks: S.draft[w.id] || {}, updatedAt: serverTimestamp()
     });
+    delete st.dataset.sticky;
+    st.className = "status ok"; st.textContent = "Picks submitted.";
+  } catch (err) {
+    st.className = "status err"; st.textContent = friendlyError(err);
+  } finally { btn.disabled = false; }
+});
 
-    if (Object.keys(state.completed).length === 0) {
-      progressEl.textContent = "Enter your email to track progress across classes.";
-    } else {
-      const doneCount = CLASS_ORDER.filter(c => state.completed[c]).length;
-      progressEl.textContent = doneCount >= CLASS_ORDER.length
-        ? "All 9 classes complete — thanks for voting in every classification."
-        : doneCount + " of " + CLASS_ORDER.length + " classes completed.";
+/* ==========================================================
+   9. Standings
+   ========================================================== */
+function seasonRows() {
+  const scored = S.weeks.filter(w => w.scored);
+  const possible = scored.reduce((a, w) => a + (w.scoredGames || 0), 0);
+  const wins = {};
+  scored.forEach(w => {
+    const rows = S.scores.filter(s => s.weekId === w.id);
+    if (!rows.length) return;
+    const top = Math.max(...rows.map(r => r.correct));
+    rows.filter(r => r.correct === top && top > 0)
+        .forEach(r => wins[r.playerId] = (wins[r.playerId] || 0) + 1);
+  });
+  const by = {};
+  S.scores.forEach(s => {
+    if (!scored.some(w => w.id === s.weekId)) return;
+    const r = by[s.playerId] || (by[s.playerId] =
+      { playerId: s.playerId, name: s.name, correct: 0, played: 0, weeks: 0 });
+    r.correct += s.correct; r.played += s.total; r.weeks++; r.name = s.name;
+  });
+  return Object.values(by).map(r => {
+    const denom = SEASON_PCT_MODE === "all" ? possible : r.played;
+    return { ...r, wins: wins[r.playerId] || 0, denom, pct: pct(r.correct, denom) };
+  }).sort((a, b) => b.pct - a.pct || b.correct - a.correct || a.name.localeCompare(b.name));
+}
+
+document.addEventListener("click", e => {
+  if (e.target && e.target.id === "banner-signin") openGate();
+});
+
+function renderRail() {
+  const el = $("#prail"); if (!el) return;
+  const rows = seasonRows();
+  const mine = S.me ? rows.find(r => r.playerId === S.me.id) : null;
+  const myRank = mine ? rows.indexOf(mine) + 1 : null;
+
+  let out = '<div class="rail-hd">Season standings</div>';
+  if (!rows.length) {
+    out += '<div class="railnote">Standings open once the first week is scored.</div>';
+  } else {
+    out += `<div class="twrap"><table><tbody>${rows.slice(0, 8).map((r, i) => `
+      <tr class="${i === 0 ? "leader" : ""}">
+        <td class="rank">${i + 1}</td>
+        <td>${esc(r.name)}${S.me && r.playerId === S.me.id ? '<span class="you-chip">you</span>' : ""}</td>
+        <td class="num">${fmtPct(r.correct, r.denom)}</td></tr>`).join("")}</tbody></table></div>`;
+    if (mine) {
+      out += `<div class="myline"><span>Your rank</span><b>${myRank} of ${rows.length}</b></div>`;
+      out += `<div class="myline"><span>Correct</span><b>${mine.correct}/${mine.denom}</b></div>`;
+      out += `<div class="myline" style="border-bottom:0"><span>Weeks won</span><b>${mine.wins}</b></div>`;
     }
   }
+  el.innerHTML = out;
+}
 
-  function currentSelections() {
-    return Array.from(ranksEl.querySelectorAll("select")).map(s => s.value);
-  }
+function renderBoard() {
+  const rows = seasonRows();
+  const scored = S.weeks.filter(w => w.scored);
+  $("#season-note").textContent = scored.length
+    ? (SEASON_PCT_MODE === "all"
+        ? `Percentage is out of every game in all ${scored.length} scored week${scored.length > 1 ? "s" : ""} — a week you skip counts as zeros.`
+        : "Percentage counts only the weeks you submitted.")
+    : "";
 
-  let currentClassSchools = [];
+  $("#season-table").innerHTML = rows.length ? `<table>
+    <thead><tr><th class="rank">#</th><th>Player</th><th class="num">Weeks</th>
+      <th class="num">Wins</th><th class="num">Correct</th><th class="num">Pct</th></tr></thead>
+    <tbody>${rows.map((r, i) => `<tr class="${i === 0 ? "leader" : ""}">
+      <td class="rank">${i + 1}</td>
+      <td>${esc(r.name)}${S.me && r.playerId === S.me.id ? '<span class="you-chip">you</span>' : ""}</td>
+      <td class="num">${r.weeks}</td><td class="num">${r.wins}</td>
+      <td class="num">${r.correct}<span style="color:var(--muted)">/${r.denom}</span></td>
+      <td class="num">${fmtPct(r.correct, r.denom)}</td></tr>`).join("")}</tbody></table>`
+    : '<div class="empty">Nothing scored yet. Standings appear once the commissioner posts a week&rsquo;s results.</div>';
 
-  function rebuildSelectOptions() {
-    const schools = currentClassSchools;
-    const chosen = currentSelections();
-    ranksEl.querySelectorAll("select").forEach((sel) => {
-      const own = sel.value;
-      const opts = ['<option value="">Select a school</option>'].concat(
-        schools.filter(s => s === own || chosen.indexOf(s) === -1).map(s =>
-          '<option value="' + s.replace(/"/g,'&quot;') + '"' + (s === own ? " selected" : "") + '>' + s + '</option>'
-        )
-      );
-      sel.innerHTML = opts.join("");
-    });
-  }
+  const sel = $("#board-week");
+  const opts = scored.slice().reverse();
+  if (!S.boardWeekId || !opts.some(w => w.id === S.boardWeekId)) S.boardWeekId = opts[0]?.id || null;
+  sel.innerHTML = opts.map(w =>
+    `<option value="${w.id}" ${w.id === S.boardWeekId ? "selected" : ""}>${esc(w.label || "Week " + w.num)}</option>`).join("");
+  sel.hidden = !opts.length;
 
-  function renderBallotForm(prefill) {
-    currentClassSchools = shuffleArray(schoolsFor(state.cls).slice());
-    const schools = currentClassSchools;
-    const rankCount = rankCountFor(state.cls);
-    titleEl.textContent = "Cast your ballot — " + state.cls;
-    subEl.textContent = "Voting for: " + state.week + ". Rank your top " + rankCount + " out of " + schools.length + " member schools.";
-    ranksEl.innerHTML = "";
-    for (let i = 0; i < rankCount; i++) {
-      const row = document.createElement("div");
-      row.className = "ksfp-rank-row";
-      const num = document.createElement("div");
-      num.className = "ksfp-rank-num";
-      num.textContent = i + 1;
-      const sel = document.createElement("select");
-      sel.dataset.idx = i;
-      sel.addEventListener("change", rebuildSelectOptions);
-      row.appendChild(num);
-      row.appendChild(sel);
-      ranksEl.appendChild(row);
-    }
-    rebuildSelectOptions();
-    if (prefill && prefill.length === rankCount) {
-      const selects = ranksEl.querySelectorAll("select");
-      prefill.forEach((school, i) => { if (selects[i]) selects[i].value = school; });
-      rebuildSelectOptions();
-    }
-  }
+  const wk = S.scores.filter(s => s.weekId === S.boardWeekId)
+                     .sort((a, b) => b.correct - a.correct || a.name.localeCompare(b.name));
+  $("#week-table").innerHTML = wk.length ? `<table>
+    <thead><tr><th class="rank">#</th><th>Player</th><th class="num">Correct</th><th class="num">Pct</th></tr></thead>
+    <tbody>${wk.map((r, i) => `<tr class="${r.correct === wk[0].correct ? "leader" : ""}">
+      <td class="rank">${i + 1}</td>
+      <td>${esc(r.name)}${S.me && r.playerId === S.me.id ? '<span class="you-chip">you</span>' : ""}</td>
+      <td class="num">${r.correct}<span style="color:var(--muted)">/${r.total}</span></td>
+      <td class="num">${fmtPct(r.correct, r.total)}</td></tr>`).join("")}</tbody></table>`
+    : '<div class="empty">No scores for this week.</div>';
+}
+$("#board-week").addEventListener("change", e => { S.boardWeekId = e.target.value; renderBoard(); });
 
-  function showMsg(text, kind) {
-    if (!text) { msgEl.className = "ksfp-msg"; msgEl.textContent = ""; return; }
-    msgEl.className = "ksfp-msg show " + kind;
-    msgEl.textContent = text;
-  }
+/* ==========================================================
+   10. My Results
+   ========================================================== */
+function renderMine() {
+  if (!S.me) return;
+  const mine = S.weeks.filter(w => w.published && (S.myPicks[w.id] || w.scored))
+                      .sort((a, b) => (b.num || 0) - (a.num || 0));
+  if (!mine.length) { $("#mine-body").innerHTML = '<div class="empty">Once you submit a card it shows up here.</div>'; return; }
 
-  function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-
-  async function hashEmail(email) {
-    const enc = new TextEncoder().encode(email);
-    const digest = await crypto.subtle.digest("SHA-256", enc);
-    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, "0")).join("");
-  }
-
-  function renderPublicWeekTabs(weeks) {
-    publicWeekTabsEl.innerHTML = "";
-    weeks.forEach(week => {
-      const btn = document.createElement("button");
-      btn.className = "ksfp-tab" + (week === state.publicWeek ? " active" : "");
-      btn.textContent = week;
-      btn.addEventListener("click", () => {
-        state.publicWeek = week;
-        renderPublicWeekTabs(weeks);
-        showPublicWeek();
-      });
-      publicWeekTabsEl.appendChild(btn);
-    });
-  }
-
-  function loadPublicStandingsForSelection() {
-    return state.publicCls === "ALL" ? loadAllPublicStandings() : loadPublicStandings();
-  }
-
-  async function computeStandingsRows(week, cls) {
-    const data = await loadPollEntries(week, cls);
-    const rankCount = rankCountFor(cls);
-    const voterKeys = Object.keys(data);
-    const points = {};
-    const firstPlace = {};
-    voterKeys.forEach(key => {
-      const entry = data[key];
-      if (!entry || !Array.isArray(entry.rankings)) return;
-      entry.rankings.forEach((school, idx) => {
-        if (!school) return;
-        points[school] = (points[school] || 0) + (rankCount - idx);
-        if (idx === 0) firstPlace[school] = (firstPlace[school] || 0) + 1;
-      });
-    });
-    const rows = Object.keys(points).map(school => ({
-      school, pts: points[school], fpv: firstPlace[school] || 0
-    })).sort((a, b) => b.pts - a.pts || b.fpv - a.fpv || a.school.localeCompare(b.school));
-    return { rows, ballotCount: voterKeys.length };
-  }
-
-  // Tries a few reasonable filename spellings for a school's logo, since
-  // uploads won't all follow one exact convention — e.g. for "Mill Valley"
-  // this tries mill-valley, Mill Valley, and mill valley (each with several
-  // extensions) before giving up and showing no logo. Nothing breaks for a
-  // team with no matching file.
-  function logoNameVariants(name) {
-    const clean = name.replace(/'/g, "");
-    const dashLower = clean.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-    const spaced = clean.replace(/[^A-Za-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
-    const lowerSpaced = spaced.toLowerCase();
-    // Also try the school's exact name as-is (hyphens, periods, and casing
-    // preserved) — a file uploaded matching the roster name literally
-    // (e.g. "Gardner-Edgerton.png") wouldn't otherwise be tried, since the
-    // variants above normalize punctuation away.
-    return Array.from(new Set([clean, dashLower, spaced, lowerSpaced]));
-  }
-  const LOGO_EXTENSIONS = ["png", "jpg", "jpeg", "svg"];
-  // Shown for any team with no logo file of its own, once every spelling
-  // variant above has been tried and failed.
-  const LOGO_FALLBACK = "logos/KShelmet.png";
-  function logoImgHtml(name) {
-    const candidates = [];
-    logoNameVariants(name).forEach(v => LOGO_EXTENSIONS.forEach(ext => candidates.push("logos/" + v + "." + ext)));
-    candidates.push(LOGO_FALLBACK);
-    const first = candidates.shift();
-    return '<img src="' + first.replace(/"/g,'&quot;') + '" alt="" class="ksfp-team-logo" loading="lazy" '
-      + 'data-fallbacks="' + candidates.join("|").replace(/"/g,'&quot;') + '" '
-      + 'onerror="var fb=(this.dataset.fallbacks||\'\').split(\'|\').filter(Boolean); if(fb.length){this.dataset.fallbacks=fb.slice(1).join(\'|\'); this.src=fb[0];} else {this.style.display=\'none\';}">';
-  }
-
-  // Standard "competition ranking" (AP-poll style): schools tied on both
-  // points and 1st-place votes share the same rank, and the next distinct
-  // school's rank skips ahead accordingly (two tied at 4 -> next is 6).
-  function assignRanksWithTies(rows) {
-    const result = [];
-    let i = 0;
-    while (i < rows.length) {
-      let j = i;
-      while (j + 1 < rows.length && rows[j + 1].pts === rows[i].pts && rows[j + 1].fpv === rows[i].fpv) {
-        j++;
-      }
-      const rank = i + 1;
-      const tied = j > i;
-      for (let k = i; k <= j; k++) {
-        result.push(Object.assign({}, rows[k], { rank: rank, tied: tied }));
-      }
-      i = j + 1;
-    }
-    return result;
-  }
-
-  function formatRank(rank, tied) {
-    return tied ? "T-" + rank : String(rank);
-  }
-
-  function buildStandingsTableHtml(rows, records, prevRank, prevWeek, rankCount, lastSeason) {
-    const ranked = assignRanksWithTies(rows);
-    const top = ranked.filter(r => r.rank <= rankCount);
-    const others = ranked.filter(r => r.rank > rankCount);
-    const lastColLabel = prevWeek ? "LW" : "Last season";
-
-    let html = '<table class="ksfp-table"><thead><tr><th>Rk</th><th>School (1st place votes)</th><th style="text-align:right">Record</th><th style="text-align:right">Points</th><th style="text-align:right">' + lastColLabel + '</th></tr></thead><tbody>';
-    top.forEach((r) => {
-      const name = r.school + (r.fpv > 0 ? " (" + r.fpv + ")" : "");
-      const record = records[r.school] || "—";
-      const lastCol = prevWeek
-        ? (prevRank[r.school] ? prevRank[r.school] : "NR")
-        : ((lastSeason && lastSeason[r.school]) || "—");
-      html += '<tr><td class="ksfp-rk">' + formatRank(r.rank, r.tied) + '</td><td class="ksfp-team">' + logoImgHtml(r.school) + name + '</td><td class="ksfp-pts">' + record + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + lastCol + '</td></tr>';
-    });
-    html += '</tbody></table>';
-
-    if (others.length > 0) {
-      const list = others.map(r => r.school + " " + r.pts).join(", ");
-      html += '<p class="ksfp-receiving"><b>Receiving votes:</b> ' + list + '</p>';
-    }
-    return html;
-  }
-
-  async function loadClassStandingsData(week, cls) {
-    const weeks = await getWeeksList();
-    const weekIdx = weeks.indexOf(week);
-    const prevWeek = weekIdx > 0 ? weeks[weekIdx - 1] : null;
-    const [{ rows, ballotCount }, records, lastSeason, prevResult] = await Promise.all([
-      computeStandingsRows(week, cls),
-      getRecords(week, cls),
-      prevWeek ? Promise.resolve({}) : getLastSeason(week, cls),
-      prevWeek ? computeStandingsRows(prevWeek, cls) : Promise.resolve(null)
-    ]);
-    const prevRank = {};
-    if (prevResult) {
-      assignRanksWithTies(prevResult.rows).filter(r => r.rank <= rankCountFor(cls)).forEach(r => {
-        prevRank[r.school] = formatRank(r.rank, r.tied);
-      });
-    }
-    return { rows, ballotCount, records, lastSeason, prevRank, prevWeek };
-  }
-
-  async function loadPublicStandings() {
-    publicStandingsEl.innerHTML = '<p class="ksfp-empty">Loading standings…</p>';
-    document.getElementById("ksfp-public-title").textContent = state.publicWeek + " — " + state.publicCls;
-
-    let rows, ballotCount, records, lastSeason, prevRank, prevWeek;
-    try {
-      ({ rows, ballotCount, records, lastSeason, prevRank, prevWeek } = await loadClassStandingsData(state.publicWeek, state.publicCls));
-    } catch (e) {
-      publicStandingsEl.innerHTML = '<p class="ksfp-empty">Could not load standings. Check your connection or Firebase setup.</p>';
-      return;
-    }
-
-    publicCountEl.textContent = "";
-
-    if (rows.length === 0) {
-      publicStandingsEl.innerHTML = '<p class="ksfp-empty">No ballots were cast for ' + state.publicCls + '.</p>';
-      return;
-    }
-
-    publicStandingsEl.innerHTML = buildStandingsTableHtml(rows, records, prevRank, prevWeek, rankCountFor(state.publicCls), lastSeason);
-  }
-
-  async function loadAllPublicStandings() {
-    publicStandingsEl.innerHTML = '<p class="ksfp-empty">Loading standings…</p>';
-    document.getElementById("ksfp-public-title").textContent = state.publicWeek + " — All Classes";
-    publicCountEl.textContent = "";
-
-    let results;
-    try {
-      results = await Promise.all(CLASS_ORDER.map(cls => loadClassStandingsData(state.publicWeek, cls)));
-    } catch (e) {
-      publicStandingsEl.innerHTML = '<p class="ksfp-empty">Could not load standings. Check your connection or Firebase setup.</p>';
-      return;
-    }
-
-    let html = "";
-    CLASS_ORDER.forEach((cls, i) => {
-      const { rows, records, lastSeason, prevRank, prevWeek } = results[i];
-      html += '<div style="margin-bottom:28px;">';
-      html += '<div class="ksfp-standings-head"><h2>Class ' + cls + '</h2></div>';
-      html += rows.length === 0
-        ? '<p class="ksfp-empty">No ballots were cast for ' + cls + '.</p>'
-        : buildStandingsTableHtml(rows, records, prevRank, prevWeek, rankCountFor(cls), lastSeason);
-      html += '</div>';
-    });
-
-    publicStandingsEl.innerHTML = html;
-  }
-
-  async function showPublicWeek() {
-    const released = await getReleaseStatus(state.publicWeek);
-    const isAdmin = !!auth.currentUser;
-    document.getElementById("ksfp-public-title").textContent = state.publicWeek;
-    if (!released && !isAdmin) {
-      publicMsgEl.textContent = state.publicWeek + " results haven't been released yet. Check back after voting closes at 11:59 p.m. Sunday.";
-      publicCardEl.style.display = "none";
-      return;
-    }
-    publicMsgEl.textContent = (!released && isAdmin)
-      ? "Admin preview — " + state.publicWeek + " hasn't been released to the public yet."
-      : "";
-    publicCardEl.style.display = "block";
-    await loadPublicStandingsForSelection();
-  }
-
-  async function showPublicView() {
-    let weeks;
-    try {
-      weeks = await getWeeksList();
-    } catch (e) {
-      publicMsgEl.textContent = "Could not load results. Check your connection or Firebase setup.";
-      publicCardEl.style.display = "none";
-      return;
-    }
-    // Defaults to the latest week (last in the list) the first time results
-    // are viewed, or whenever the previously-selected week no longer exists;
-    // an explicit tab click or ?week= link is left alone after that.
-    if (!state.publicWeek || weeks.indexOf(state.publicWeek) === -1) state.publicWeek = weeks[weeks.length - 1];
-    renderPublicWeekTabs(weeks);
-    await showPublicWeek();
-  }
-
-  function switchView(view) {
-    state.view = view;
-    headerSubEl.textContent = HEADER_TEXT[view];
-    document.querySelectorAll(".ksfp-view-btn").forEach(b => {
-      b.classList.toggle("active", b.dataset.view === view);
-    });
-    voteViewEl.style.display = view === "vote" ? "block" : "none";
-    publicViewEl.style.display = view === "public" ? "block" : "none";
-    if (view === "public") showPublicView();
-  }
-
-  async function applyVotingLockUI() {
-    let locked = false;
-    try {
-      locked = await getVotingLocked();
-    } catch (e) {
-      locked = false;
-    }
-    const isAdmin = !!auth.currentUser;
-    const hideForVoters = locked && !isAdmin;
-
-    // Locking only ever hides the ballot side — Public results stays
-    // visible to everyone regardless of lock state (it has its own
-    // separate release/not-released gate).
-    if (hideForVoters && state.view === "vote") {
-      switchView("public");
-    }
-    voteToggleBtnEl.style.display = hideForVoters ? "none" : "";
-    voteLockedMsgEl.style.display = (hideForVoters && state.view === "vote") ? "block" : "none";
-    voteViewEl.style.display = hideForVoters ? "none" : (state.view === "vote" ? "block" : "none");
-
-    lockBannerEl.style.display = locked ? "block" : "none";
-    ballotBodyEl.style.display = locked ? "none" : "block";
-    submitBtnEl.disabled = locked;
-    clearBtnEl.disabled = locked;
-    return locked;
-  }
-
-  function namesMatch(a, b) { return a.trim().toLowerCase() === b.trim().toLowerCase(); }
-
-  async function renderVoterRosterStatus(data) {
-    if (!auth.currentUser) {
-      adminRosterCardEl.style.display = "none";
-      return;
-    }
-    const roster = await getVoterRoster();
-    if (roster.length === 0) {
-      adminRosterCardEl.style.display = "none";
-      return;
-    }
-    adminRosterCardEl.style.display = "block";
-    adminRosterClsEl.textContent = state.cls;
-
-    const votedNames = Object.keys(data).map(k => (data[k] && data[k].name) || "").filter(Boolean);
-    const votedCount = roster.filter(r => votedNames.some(v => namesMatch(v, r))).length;
-    adminRosterCountEl.textContent = votedCount + " of " + roster.length + " voted";
-
-    adminRosterListEl.innerHTML = roster.map(name => {
-      const voted = votedNames.some(v => namesMatch(v, name));
-      return '<div class="ksfp-roster-item ' + (voted ? "voted" : "missing") + '">'
-        + '<span class="ksfp-roster-dot"></span>' + name + '</div>';
+  $("#mine-body").innerHTML = mine.map(w => {
+    const picks = S.myPicks[w.id]?.picks || {};
+    const res = w.results || {};
+    const games = liveGames(w);
+    const sc = S.scores.find(s => s.weekId === w.id && s.playerId === S.me.id);
+    const head = `<div style="display:flex;align-items:baseline;gap:10px;margin:18px 0 8px">
+        <span class="disp" style="font-size:19px;font-weight:600;letter-spacing:.05em;text-transform:uppercase">${esc(w.label || "Week " + w.num)}</span>
+        ${w.scored
+          ? `<span class="pill final">${sc ? sc.correct + " of " + sc.total : "no card"}</span>`
+          : `<span class="pill ${isLocked(w) ? "locked" : "open"}">${isLocked(w) ? "locked" : "open"}</span>`}
+        ${sc ? `<span class="hint mono">${fmtPct(sc.correct, sc.total)}</span>` : ""}
+      </div>`;
+    const rows = games.map((g, i) => {
+      const p = picks[g.id], r = w.scored ? res[g.id] : null;
+      const mark = !p ? '<span style="color:var(--muted)">no pick</span>'
+        : !r ? esc(p === "away" ? g.away : g.home)
+        : `<span style="color:var(--${p === r ? "turf" : "brick"})">${esc(p === "away" ? g.away : g.home)}</span>`;
+      return `<tr><td class="rank">${pad2(i + 1)}</td>
+        <td>${esc(g.away)} <span style="color:var(--muted)">@</span> ${esc(g.home)}</td>
+        <td style="text-align:right">${mark}</td></tr>`;
     }).join("");
+    return head + `<div class="twrap"><table><tbody>${rows}</tbody></table></div>`;
+  }).join("");
+}
+
+/* ==========================================================
+   11. Commissioner
+   ========================================================== */
+let admKey = null;
+
+function blankWeek(num) {
+  return { num, label: "Week " + num, deadline: null,
+    games: Array.from({ length: GAMES_PER_WEEK }, (_, i) => ({ id: "g" + (i + 1), away: "", home: "" })) };
+}
+
+function renderAdmin() {
+  if (!S.isAdmin) return;
+
+  // week selector
+  const sel = $("#adm-week-sel");
+  const nextNum = (S.weeks.reduce((m, w) => Math.max(m, w.num || 0), 0) || 0) + 1;
+  if (!S.admWeekId) S.admWeekId = S.weeks[S.weeks.length - 1]?.id || "NEW";
+  sel.innerHTML = S.weeks.map(w =>
+      `<option value="${w.id}" ${w.id === S.admWeekId ? "selected" : ""}>${esc(w.label || "Week " + w.num)}${w.published ? "" : " (draft)"}</option>`).join("")
+    + `<option value="NEW" ${S.admWeekId === "NEW" ? "selected" : ""}>+ New week ${nextNum}</option>`;
+
+  const stored = S.weeks.find(w => w.id === S.admWeekId);
+
+  // rebuild the form only when the selected week changes, so typing isn't interrupted
+  if (admKey !== S.admWeekId) {
+    admKey = S.admWeekId;
+    S.admDraft = stored
+      ? { num: stored.num, label: stored.label,
+          deadline: deadlineDate(stored),
+          games: Array.from({ length: GAMES_PER_WEEK }, (_, i) =>
+            stored.games?.[i] || { id: "g" + (i + 1), away: "", home: "" }) }
+      : blankWeek(nextNum);
+
+    $("#adm-num").value = S.admDraft.num;
+    $("#adm-label").value = S.admDraft.label || "";
+    $("#adm-deadline").value = toLocalInput(S.admDraft.deadline);
+    $("#adm-games").innerHTML = S.admDraft.games.map((g, i) => `
+      <div class="adm-game">
+        <span class="n">${pad2(i + 1)}</span>
+        <input data-i="${i}" data-k="away" value="${esc(g.away)}" placeholder="Away team" autocomplete="off">
+        <span class="at2">@</span>
+        <input data-i="${i}" data-k="home" value="${esc(g.home)}" placeholder="Home team" autocomplete="off">
+      </div>`).join("");
+    $("#adm-status").textContent = "";
   }
 
-  function renderAdminPicksTable(data) {
-    if (!auth.currentUser) {
-      adminPicksCardEl.style.display = "none";
-      return;
-    }
-    adminPicksCardEl.style.display = "block";
-    const rankCount = rankCountFor(state.cls);
-    const voterKeys = Object.keys(data);
+  const pubBtn = $("#adm-publish"), unpubBtn = $("#adm-unpublish");
+  pubBtn.hidden = !!stored?.published;
+  unpubBtn.hidden = !stored?.published || !!stored?.scored;
 
-    let html = '<thead><tr><th>Player</th>';
-    for (let i = 1; i <= rankCount; i++) html += '<th style="text-align:center">' + i + '</th>';
-    html += '<th></th></tr></thead><tbody>';
+  // results
+  const games = S.admDraft.games.filter(g => g.away.trim() && g.home.trim());
+  const saved = (stored && stored.results) || {};   // the server's copy, always
+  $("#adm-results").innerHTML = games.length ? games.map((g, i) => `
+    <div class="res-row"><span class="n">${pad2(i + 1)}</span>
+      <div class="res-opts">
+        <button class="res-opt" data-r="${esc(g.id)}" data-v="away" aria-pressed="${saved[g.id] === "away"}">${esc(g.away)}</button>
+        <button class="res-opt" data-r="${esc(g.id)}" data-v="home" aria-pressed="${saved[g.id] === "home"}">${esc(g.home)}</button>
+        <button class="res-opt clear" data-r="${esc(g.id)}" data-v="" aria-pressed="${!saved[g.id]}">—</button>
+      </div></div>`).join("")
+    : '<div class="empty">Add the games above first.</div>';
 
-    if (voterKeys.length === 0) {
-      html += '<tr><td colspan="' + (rankCount + 2) + '" class="ksfp-empty">No ballots yet for ' + state.cls + '.</td></tr>';
-    } else {
-      voterKeys.forEach(key => {
-        const entry = data[key];
-        if (!entry || !Array.isArray(entry.rankings)) return;
-        const name = entry.name || "(unnamed)";
-        html += '<tr><td class="ksfp-team">' + name + '</td>';
-        for (let i = 0; i < rankCount; i++) {
-          html += '<td style="text-align:center; font-size:12px;">' + (entry.rankings[i] || "—") + '</td>';
-        }
-        html += '<td style="text-align:right;"><button data-remove-key="' + key.replace(/"/g,'&quot;') + '" style="background:none; border:1px solid var(--red); color:var(--red); border-radius:4px; padding:3px 8px; font-size:11px; font-family:inherit; cursor:pointer;">Remove</button></td>';
-        html += '</tr>';
+  // everyone's picks
+  const wk = stored;
+  const wp = S.allPicks.filter(p => p.weekId === S.admWeekId)
+                       .sort((a, b) => a.name.localeCompare(b.name));
+  $("#adm-grid").innerHTML = (wk && games.length && wp.length) ? `<table>
+    <thead><tr><th>Player</th>${games.map((_, i) => `<th class="num">${i + 1}</th>`).join("")}<th class="num">Right</th></tr></thead>
+    <tbody>${wp.map(p => {
+      let c = 0;
+      const cells = games.map(g => {
+        const v = p.picks?.[g.id], r = wk.results?.[g.id];
+        if (!v) return '<td class="num" style="color:var(--muted)">·</td>';
+        const short = (v === "away" ? g.away : g.home).slice(0, 4);
+        if (!r) return `<td class="num">${esc(short)}</td>`;
+        if (v === r) c++;
+        return `<td class="num" style="color:var(--${v === r ? "turf" : "brick"})">${esc(short)}</td>`;
+      }).join("");
+      const hasRes = wk.results && Object.keys(wk.results).length > 0;
+      return `<tr><td>${esc(p.name)}</td>${cells}<td class="num"><b>${hasRes ? c : "—"}</b></td></tr>`;
+    }).join("")}</tbody></table>`
+    : '<div class="empty">No cards submitted for this week yet.</div>';
+
+  renderMail();
+  renderTeams();
+  renderMerge();
+  renderAdminRoster();
+}
+
+let rosterKey = null;
+function renderAdminRoster() {
+  const key = S.players.map(p => p.id + ":" + (p.uid ? 1 : 0)).join(",");
+  if (key === rosterKey) return;
+  rosterKey = key;
+  $("#adm-roster").innerHTML = S.players.length ? `<table>
+    <thead><tr><th>Player</th><th>Email</th><th>Device</th><th></th></tr></thead>
+    <tbody>${S.players.map(p => `<tr>
+      <td>${esc(p.name)}</td>
+      <td><input data-pid="${esc(p.id)}" data-pk="email" value="${esc(p.email || "")}"
+        placeholder="their@gmail.com" autocomplete="off" style="min-width:180px"></td>
+      <td><span class="pill ${p.uid ? "open" : "draft"}">${p.uid ? "claimed" : "unclaimed"}</span></td>
+      <td style="text-align:right">
+        <button class="btn ghost sm" data-reset="${esc(p.id)}">Reset</button>
+        <button class="btn danger sm" data-del="${esc(p.id)}">Remove</button></td></tr>`).join("")}</tbody></table>`
+    : '<div class="empty">Nobody has joined yet.</div>';
+}
+
+/* ---- commissioner: form wiring ---- */
+$("#adm-week-sel").addEventListener("change", e => { S.admWeekId = e.target.value; renderAdmin(); });
+$("#adm-games").addEventListener("input", e => {
+  const el = e.target; if (!el.dataset.k) return;
+  S.admDraft.games[+el.dataset.i][el.dataset.k] = el.value;
+  renderAdmin();
+});
+$("#adm-num").addEventListener("input", e => { S.admDraft.num = +e.target.value || 1; });
+$("#adm-label").addEventListener("input", e => { S.admDraft.label = e.target.value; });
+$("#adm-deadline").addEventListener("input", e => {
+  S.admDraft.deadline = e.target.value ? new Date(e.target.value) : null;
+});
+$("#adm-results").addEventListener("click", async e => {
+  const b = e.target.closest("[data-r]"); if (!b) return;
+  const week = S.weeks.find(w => w.id === S.admWeekId);
+  const st = $("#adm-score-status");
+  if (!week) {
+    st.className = "status err";
+    st.textContent = "Save the week first — there is nothing to score against yet.";
+    return;
+  }
+  // build on what the server holds, never on a stale local copy
+  const next = { ...(week.results || {}) };
+  if (b.dataset.v) next[b.dataset.r] = b.dataset.v;
+  else delete next[b.dataset.r];
+  const g = (week.games || []).find(x => x.id === b.dataset.r);
+  const label = !b.dataset.v ? "Winner cleared"
+    : `${b.dataset.v === "away" ? (g ? g.away : "Away") : (g ? g.home : "Home")} wins`;
+  await commitResults(week, next, label);
+});
+
+// Scoring is incremental: whatever has a winner counts, the rest waits. That
+// lets results go in as games finish rather than all at once on Friday night.
+async function commitResults(week, results, note) {
+  const st = $("#adm-score-status");
+  const games   = liveGames({ games: (week.games && week.games.length) ? week.games
+                                     : (S.admDraft ? S.admDraft.games : []) });
+  const decided = games.filter(g => results[g.id]);
+  const cards   = S.allPicks.filter(p => p.weekId === week.id);
+
+  st.className = "status"; st.textContent = "Saving\u2026";
+  try {
+    const batch = writeBatch(db);
+    cards.forEach(p => {
+      const correct = decided.reduce(
+        (a, g) => a + (p.picks?.[g.id] === results[g.id] ? 1 : 0), 0);
+      batch.set(doc(db, "scores", `${week.id}__${p.playerId}`), {
+        weekId: week.id, playerId: p.playerId, name: p.name,
+        correct, total: decided.length
       });
-    }
-    html += '</tbody>';
-    adminPicksTableEl.innerHTML = html;
+    });
+    batch.set(doc(db, "weeks", week.id), {
+      results, scored: decided.length > 0, scoredGames: decided.length
+    }, { merge: true });
+    await batch.commit();
+    st.className = "status ok";
+    st.textContent = `${note} \u2014 ${decided.length} of ${games.length} games in, ` +
+      `${cards.length} card${cards.length === 1 ? "" : "s"} scored. Standings are live.`;
+  } catch (e) { st.className = "status err"; st.textContent = friendlyError(e); }
+}
+
+function admWeekPayload() {
+  const num = +$("#adm-num").value || 1;
+  return { id: weekId(num), num,
+    label: $("#adm-label").value.trim() || "Week " + num,
+    deadline: S.admDraft.deadline ? Timestamp.fromDate(S.admDraft.deadline) : null,
+    games: S.admDraft.games.map(g => ({ id: g.id, away: g.away.trim(), home: g.home.trim() })) };
+}
+function admSay(msg, kind = "") { const el = $("#adm-status"); el.className = "status " + kind; el.textContent = msg; }
+
+async function saveWeek(extra = {}) {
+  const p = admWeekPayload();
+  await setDoc(doc(db, "weeks", p.id), { ...p, ...extra }, { merge: true });
+  // any team typed for the first time joins the library, ready for a logo
+  const names = [...new Set(p.games.flatMap(g => [g.away, g.home]).filter(Boolean))];
+  const missing = names.filter(n => slug(n) && !team(n));
+  if (missing.length) {
+    const tb = writeBatch(db);
+    missing.forEach(n => tb.set(doc(db, "teams", slug(n)),
+      { id: slug(n), name: n, logo: "", color: "" }, { merge: true }));
+    await tb.commit();
   }
+  if (S.admWeekId !== p.id) { S.admWeekId = p.id; admKey = null; }
+  return p;
+}
 
-  // Event delegation since rows (and their Remove buttons) are rebuilt
-  // fresh on every render — a listener on the individual buttons would
-  // be thrown away each time.
-  adminPicksTableEl.addEventListener("click", async (e) => {
-    const btn = e.target.closest("[data-remove-key]");
-    if (!btn) return;
-    if (!auth.currentUser) return;
-    const row = btn.closest("tr");
-    const voterName = row ? row.querySelector(".ksfp-team").textContent : "this voter";
-    const confirmed = window.confirm('Remove ' + voterName + '\'s ' + state.cls + ' ballot for ' + state.week + '? This cannot be undone.');
-    if (!confirmed) return;
-    btn.disabled = true;
-    try {
-      await deleteBallotEntry(state.week, state.cls, btn.dataset.removeKey);
-      await loadStandings();
-    } catch (e) {
-      btn.disabled = false;
-      window.alert("Could not remove that ballot — check your connection and try again.");
+$("#adm-save").addEventListener("click", async () => {
+  admSay("Saving…");
+  try { const p = await saveWeek(); admSay(`${p.label} saved as a draft.`, "ok"); }
+  catch (e) { admSay(friendlyError(e), "err"); }
+});
+
+$("#adm-publish").addEventListener("click", async () => {
+  const p = admWeekPayload();
+  const n = p.games.filter(g => g.away && g.home).length;
+  if (!p.deadline) { admSay("Set the lock time before publishing.", "err"); return; }
+  if (!n) { admSay("Add at least one game before publishing.", "err"); return; }
+  if (n < GAMES_PER_WEEK && !confirm(`Only ${n} of ${GAMES_PER_WEEK} games are filled in. Publish anyway?`)) return;
+  admSay("Publishing…");
+  try {
+    await saveWeek({ published: true });
+    admSay(`${p.label} is live — ${n} games, locking ${S.admDraft.deadline.toLocaleString()}.`, "ok");
+  } catch (e) { admSay(friendlyError(e), "err"); }
+});
+
+$("#adm-unpublish").addEventListener("click", async () => {
+  if (!confirm("Hide this week from players again?")) return;
+  try { await updateDoc(doc(db, "weeks", S.admWeekId), { published: false }); admSay("Unpublished.", "ok"); }
+  catch (e) { admSay(friendlyError(e), "err"); }
+});
+
+
+$("#adm-clear").addEventListener("click", async () => {
+  const week = S.weeks.find(w => w.id === S.admWeekId);
+  if (!week) { admSay("Save the week first — there's nothing to clear.", "err"); return; }
+  const cards  = S.allPicks.filter(p => p.weekId === week.id);
+  const scores = S.scores.filter(s => s.weekId === week.id);
+  const label  = week.label || "Week " + week.num;
+  const wins   = Object.keys(week.results || {}).length;
+  const local  = wins;
+  if (!cards.length && !scores.length && !wins && !local && !week.scored) {
+    admSay(`${label} is already clear — no cards, scores or winners.`, "ok"); return;
+  }
+  if (!confirm(
+    `Clear ${label}?\n\n` +
+    `\u2022 ${cards.length} submitted card${cards.length === 1 ? "" : "s"} will be deleted\n` +
+    `\u2022 ${scores.length} score${scores.length === 1 ? "" : "s"} will be removed from the standings\n` +
+    `\u2022 ${Math.max(wins, local)} entered winner${Math.max(wins, local) === 1 ? "" : "s"} will be cleared\n\n` +
+    `The games and the lock time stay. Everyone will need to pick again.\n` +
+    `This cannot be undone.`)) return;
+
+  admSay("Clearing\u2026");
+  try {
+    const batch = writeBatch(db);
+    cards.forEach(p  => batch.delete(doc(db, "picks",  p.id)));
+    scores.forEach(s => batch.delete(doc(db, "scores", s.id)));
+    batch.set(doc(db, "weeks", week.id),
+      { results: {}, scored: false, scoredGames: 0 }, { merge: true });
+    await batch.commit();
+    delete S.draft[week.id];
+    admSay(`Cleared ${label}. ${cards.length} card${cards.length === 1 ? "" : "s"} deleted \u2014 the week is open for picks again.`, "ok");
+  } catch (e) { admSay(friendlyError(e), "err"); }
+});
+
+let mailKey = null;
+function renderMail() {
+  const wk = activeWeek() || S.weeks.filter(w => w.published).slice(-1)[0];
+  const withMail = S.players.filter(p => (p.email || "").includes("@"));
+  const key = (wk ? wk.id : "-") + ":" + withMail.length;
+  if (key === mailKey) return;              // don't overwrite an edited draft
+  mailKey = key;
+
+  const label = wk ? (wk.label || "Week " + wk.num) : "This week";
+  const when  = wk && deadlineDate(wk)
+    ? deadlineDate(wk).toLocaleString(undefined,
+        { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "2-digit" })
+    : "";
+  const games = wk ? liveGames(wk).length : 0;
+
+  $("#mail-subject").value = `${label} picks are open — ${LEAGUE_NAME}`;
+  $("#mail-body").value =
+    `${label} is up${games ? ` with ${games} game${games === 1 ? "" : "s"}` : ""}.\n\n` +
+    (when ? `Picks lock ${when}. After that the board is closed, so get them in.\n\n` : "") +
+    `Make your picks: ${location.origin}${location.pathname}\n\n` +
+    `Sign in with Google — no password, and your picks follow you to any device.\n`;
+  $("#mail-status").textContent =
+    `${withMail.length} player${withMail.length === 1 ? "" : "s"} with an address on file` +
+    (S.players.length > withMail.length
+      ? ` · ${S.players.length - withMail.length} without one, add it in the Roster` : "");
+  $("#mail-status").className = "status";
+}
+
+function mailAddresses() {
+  return S.players.map(p => (p.email || "").trim())
+                  .filter(e => e.includes("@")).join(",");
+}
+async function copyText(text, msg) {
+  const st = $("#mail-status");
+  try {
+    await navigator.clipboard.writeText(text);
+    st.className = "status ok"; st.textContent = msg;
+    $("#mail-fallback").hidden = true;
+    return;
+  } catch { /* some browsers refuse without a trusted gesture */ }
+  // Give them something to select rather than telling them to find it themselves.
+  const box = $("#mail-fallback");
+  box.hidden = false; box.value = text; box.focus(); box.select();
+  st.className = "status";
+  st.textContent = "Your browser blocked the clipboard — the text is selected below, press " +
+    (navigator.platform.startsWith("Mac") ? "\u2318C" : "Ctrl+C") + ".";
+}
+
+$("#mail-gmail").addEventListener("click", () => {
+  const to = mailAddresses();
+  const st = $("#mail-status");
+  if (!to) { st.className = "status err"; st.textContent = "No addresses on file yet — add them in the Roster."; return; }
+  // Gmail's own compose window: no mail client needed, and it takes far longer
+  // recipient lists than a mailto link. BCC, so nobody sees anyone else.
+  const url = "https://mail.google.com/mail/?view=cm&fs=1"
+    + "&bcc=" + encodeURIComponent(to)
+    + "&su="  + encodeURIComponent($("#mail-subject").value)
+    + "&body=" + encodeURIComponent($("#mail-body").value);
+  window.open(url, "_blank", "noopener");
+  st.className = "status ok";
+  st.textContent = `Gmail opened with ${to.split(",").length} addresses in BCC. Check BCC, then send.`;
+});
+
+$("#mail-open").addEventListener("click", () => {
+  const to = mailAddresses();
+  const st = $("#mail-status");
+  if (!to) { st.className = "status err"; st.textContent = "No addresses on file yet — add them in the Roster."; return; }
+  // BCC, never To: players must not see each other's addresses
+  const url = "mailto:?bcc=" + encodeURIComponent(to)
+    + "&subject=" + encodeURIComponent($("#mail-subject").value)
+    + "&body=" + encodeURIComponent($("#mail-body").value);
+  if (url.length > 1800) {
+    st.className = "status err";
+    st.textContent = "Too many addresses for a mail link — use Copy addresses and paste them into BCC yourself.";
+    return;
+  }
+  location.href = url;
+  st.className = "status ok";
+  st.textContent = "Opening your email app — check the addresses are in BCC before sending.";
+});
+
+$("#mail-copy-to").addEventListener("click", () => {
+  const to = mailAddresses();
+  if (!to) { const st = $("#mail-status"); st.className = "status err";
+    st.textContent = "No addresses on file yet."; return; }
+  copyText(to, `${to.split(",").length} addresses copied — paste them into BCC.`);
+});
+$("#mail-copy-msg").addEventListener("click", () =>
+  copyText($("#mail-subject").value + "\n\n" + $("#mail-body").value, "Message copied."));
+
+let teamsKey = null;
+function renderTeams() {
+  const el = $("#adm-teams"); if (!el) return;
+  const key = S.teams.map(t => t.id + ":" + (t.aliases || []).length).join(",");
+  if (key === teamsKey) {                      // refresh previews without stealing focus
+    S.teams.forEach(t => {
+      const cell = el.querySelector(`[data-crest="${t.id}"]`);
+      if (cell) cell.innerHTML = crest(t.name);
+    });
+    return;
+  }
+  teamsKey = key;
+  el.innerHTML = S.teams.length ? `<table>
+    <thead><tr><th></th><th>Team</th><th>Also known as</th><th>Logo image URL</th><th>Colour</th><th></th></tr></thead>
+    <tbody>${S.teams.map(t => `<tr>
+      <td data-crest="${esc(t.id)}">${crest(t.name)}</td>
+      <td>${esc(t.name)}</td>
+      <td style="width:22%"><input data-tid="${esc(t.id)}" data-k="aliases" value="${esc((t.aliases || []).join(", "))}"
+        placeholder="short name" autocomplete="off"></td>
+      <td style="width:32%"><input data-tid="${esc(t.id)}" data-k="logo" value="${esc(t.logo || "")}"
+        placeholder="https://…/logo.png" autocomplete="off"></td>
+      <td><input data-tid="${esc(t.id)}" data-k="color" type="color"
+        value="${safeColor(t.color) || "#888888"}" style="width:44px;padding:2px;height:30px"></td>
+      <td style="text-align:right"><button class="btn danger sm" data-tdel="${esc(t.id)}">Remove</button></td>
+    </tr>`).join("")}</tbody></table>`
+    : '<div class="empty">No teams yet. They get added automatically when you save a week, or add one above.</div>';
+}
+
+$("#adm-teams").addEventListener("change", async e => {
+  const el = e.target; if (!el.dataset.tid) return;
+  let value = el.value.trim();
+  if (el.dataset.k === "aliases") {
+    value = [...new Set(value.split(",").map(v => v.trim()).filter(Boolean))];
+    const clash = value.map(v => slug(v)).find(v =>
+      S.teams.some(t => t.id !== el.dataset.tid &&
+        (t.id === v || (t.aliases || []).some(a => slug(a) === v))));
+    if (clash) {
+      alert(`"${clash}" already belongs to another team. Pick a different short name.`);
+      renderTeams(); return;
     }
-  });
+  }
+  try { await updateDoc(doc(db, "teams", el.dataset.tid), { [el.dataset.k]: value }); }
+  catch (err) { alert(friendlyError(err)); }
+});
 
-  async function loadStandings() {
-    standingsEl.innerHTML = '<p class="ksfp-empty">Loading standings…</p>';
-    countEl.textContent = "";
-    await applyVotingLockUI();
-    let data;
-    try {
-      data = await loadPollEntries(state.week, state.cls);
-    } catch (e) {
-      standingsEl.innerHTML = '<p class="ksfp-empty">Could not load standings. Check your connection or Firebase setup.</p>';
-      return;
-    }
-    const voterKeys = Object.keys(data);
-    renderAdminPicksTable(data);
-    await renderVoterRosterStatus(data);
+$("#adm-teams").addEventListener("click", async e => {
+  const b = e.target.closest("[data-tdel]"); if (!b) return;
+  const t = S.teams.find(x => x.id === b.dataset.tdel); if (!t) return;
+  if (!confirm(`Remove ${t.name} from the team library?\n\nGames already using the name keep working \u2014 they just lose the logo.`)) return;
+  try { await deleteDoc(doc(db, "teams", t.id)); } catch (err) { alert(friendlyError(err)); }
+});
 
-    const canSeeResults = !!auth.currentUser || !!state.completed[state.cls];
-    if (!canSeeResults) {
-      countEl.textContent = "";
-      standingsEl.innerHTML = '<p class="ksfp-empty">Standings for ' + state.cls + ' will show once you submit your ballot for this class.</p>';
-      await maybePrefillFromEmail(data);
-      return;
-    }
+$("#team-add").addEventListener("click", async () => {
+  const name = $("#team-new").value.trim();
+  if (name.length < 2) return;
+  try {
+    await setDoc(doc(db, "teams", slug(name)),
+      { id: slug(name), name, logo: "", color: "" }, { merge: true });
+    $("#team-new").value = "";
+  } catch (err) { alert(friendlyError(err)); }
+});
+$("#team-new").addEventListener("keydown", e => { if (e.key === "Enter") $("#team-add").click(); });
 
-    countEl.textContent = "";
+$("#team-import").addEventListener("click", async () => {
+  const st = $("#team-import-status");
+  st.textContent = "Reading logos/teams.json\u2026";
+  let list;
+  try {
+    const res = await fetch("logos/teams.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    list = await res.json();
+  } catch (e) {
+    st.textContent = "Couldn't read logos/teams.json — make sure the logos folder is uploaded alongside index.html.";
+    return;
+  }
+  const fresh = list.filter(t => !S.teams.some(x => x.id === t.slug));
+  // a school already in the library but still without a logo picks one up when
+  // the manifest gains it, so logos uploaded later aren't stranded
+  const upgrade = list.filter(t => S.teams.some(x => x.id === t.slug && (
+        (t.file && !x.logo) ||
+        ((t.aliases || []).length && !(x.aliases || []).length))));
+  if (!fresh.length && !upgrade.length) {
+    st.textContent = `Nothing to add — all ${list.length} schools are already in the library with their logos.`; return;
+  }
+  const parts = [];
+  if (fresh.length) parts.push(`add ${fresh.length} school${fresh.length === 1 ? "" : "s"}`);
+  if (upgrade.length) parts.push(`add logos to ${upgrade.length} you already have`);
+  if (!confirm(`This will ${parts.join(" and ")}.\n\n` +
+      `${fresh.filter(t => t.file).length + upgrade.length} will end up with a logo. Nothing else is changed.`)) return;
 
-    if (voterKeys.length === 0) {
-      standingsEl.innerHTML = '<p class="ksfp-empty">No ballots yet for ' + state.cls + '. Be the first to vote.</p>';
-      await maybePrefillFromEmail(data);
-      return;
-    }
-
-    const rankCount = rankCountFor(state.cls);
-    const points = {};
-    const firstPlace = {};
-    voterKeys.forEach(key => {
-      const entry = data[key];
-      if (!entry || !Array.isArray(entry.rankings)) return;
-      entry.rankings.forEach((school, idx) => {
-        if (!school) return;
-        points[school] = (points[school] || 0) + (rankCount - idx);
-        if (idx === 0) firstPlace[school] = (firstPlace[school] || 0) + 1;
+  const work = [...fresh, ...upgrade];
+  st.textContent = `Saving ${work.length}\u2026`;
+  try {
+    for (let i = 0; i < work.length; i += 400) {   // Firestore caps a batch at 500
+      const chunk = work.slice(i, i + 400);
+      const b = writeBatch(db);
+      chunk.forEach(t => {
+        const existing = S.teams.find(x => x.id === t.slug);
+        const data = { id: t.slug, name: t.name };
+        if (t.file && !(existing && existing.logo)) data.logo = "logos/" + t.file;
+        if (!existing) data.color = "";
+        const aliases = (t.aliases || []).filter(a =>
+          !S.teams.some(x => x.id !== t.slug && x.id === slug(a)));
+        if (aliases.length) data.aliases = aliases;
+        b.set(doc(db, "teams", t.slug), data, { merge: true });
       });
+      await b.commit();
+      st.textContent = `Saved ${Math.min(i + chunk.length, work.length)} of ${work.length}\u2026`;
+    }
+    st.textContent = `Done — ${fresh.length} added, ${upgrade.length} given a logo. ` +
+      `Type a team name into a slate and its logo appears automatically.`;
+  } catch (e) { st.textContent = friendlyError(e); }
+});
+
+// Which teams are actually named in a slate, by full name or short name.
+function usedTeamIds() {
+  const ids = new Set();
+  S.weeks.forEach(w => (w.games || []).forEach(g => {
+    [g.away, g.home].forEach(n => {
+      if (!n || !n.trim()) return;
+      const t = team(n);
+      if (t) ids.add(t.id);
     });
+  }));
+  return ids;
+}
 
-    const rows = Object.keys(points).map(school => ({
-      school, pts: points[school], fpv: firstPlace[school] || 0
-    })).sort((a, b) => b.pts - a.pts || b.fpv - a.fpv || a.school.localeCompare(b.school));
-
-    let html = '<table class="ksfp-table"><thead><tr><th>Rk</th><th>School</th><th style="text-align:right">Pts</th><th style="text-align:right">1st votes</th></tr></thead><tbody>';
-    assignRanksWithTies(rows).filter(r => r.rank <= 25).forEach((r) => {
-      html += '<tr><td class="ksfp-rk">' + formatRank(r.rank, r.tied) + '</td><td class="ksfp-team">' + logoImgHtml(r.school) + r.school + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + (r.fpv || "—") + '</td></tr>';
-    });
-    html += '</tbody></table>';
-    standingsEl.innerHTML = html;
-
-    await maybePrefillFromEmail(data);
+$("#team-prune").addEventListener("click", async () => {
+  const st = $("#team-import-status");
+  const used = usedTeamIds();
+  const spare = S.teams.filter(t => !used.has(t.id));
+  if (!spare.length) {
+    st.textContent = `Nothing to remove — all ${S.teams.length} teams are used in a week.`; return;
   }
-
-  async function maybePrefillFromEmail(data) {
-    const email = emailEl.value.trim().toLowerCase();
-    if (!email || !isValidEmail(email)) return;
-    const key = await hashEmail(email);
-    if (data[key] && Array.isArray(data[key].rankings)) {
-      if (data[key].name && !nameEl.value.trim()) nameEl.value = data[key].name;
-      renderBallotForm(data[key].rankings);
+  if (!confirm(
+    `Remove ${spare.length} team${spare.length === 1 ? "" : "s"} that no week uses?\n\n` +
+    `${used.size} used in a slate will be kept, with their logos.\n` +
+    `Nothing about your weeks, picks or standings changes, and you can import the full list again whenever you like.`)) return;
+  st.textContent = `Removing ${spare.length}\u2026`;
+  try {
+    for (let i = 0; i < spare.length; i += 400) {
+      const chunk = spare.slice(i, i + 400);
+      const b = writeBatch(db);
+      chunk.forEach(t => b.delete(doc(db, "teams", t.id)));
+      await b.commit();
+      st.textContent = `Removed ${Math.min(i + chunk.length, spare.length)} of ${spare.length}\u2026`;
     }
+    st.textContent = `Done — ${used.size} team${used.size === 1 ? "" : "s"} left, the ones your weeks actually use.`;
+  } catch (e) { st.textContent = friendlyError(e); }
+});
+
+// ---------------- Merging duplicate players ----------------
+// Records are gathered from both the roster and the score documents, since a
+// player removed from the roster can still own weeks in the standings.
+const NICKNAMES = { chuck:"charles", charlie:"charles", steve:"steven", stevie:"steven",
+  sully:"sullivan", wes:"weston", bill:"william", billy:"william", will:"william",
+  mike:"michael", matt:"matthew", tom:"thomas", tommy:"thomas", jim:"james",
+  jimmy:"james", bob:"robert", rob:"robert", dan:"daniel", danny:"daniel",
+  dave:"david", joe:"joseph", pat:"patrick", ben:"benjamin", nick:"nicholas",
+  chris:"christopher", tony:"anthony", josh:"joshua", jake:"jacob", zach:"zachary",
+  sam:"samuel", alex:"alexander", andy:"andrew", drew:"andrew", greg:"gregory",
+  jeff:"jeffrey", jon:"jonathan", ken:"kenneth", rick:"richard", rich:"richard",
+  ron:"ronald", tim:"timothy", trey:"trey", jd:"jd" };
+
+const tokens = s => String(s || "").toLowerCase().replace(/[^a-z ]/g, " ").split(/\s+/).filter(Boolean);
+
+function mergeRecords() {
+  const by = {};
+  S.players.forEach(p => { by[p.id] = { id: p.id, name: p.name, uid: p.uid || "", email: p.email || "", onRoster: true }; });
+  S.scores.forEach(x => { if (!by[x.playerId]) by[x.playerId] = { id: x.playerId, name: x.name, uid: "", email: "", onRoster: false }; });
+  Object.values(by).forEach(r => {
+    r.weeks = [...new Set(S.scores.filter(x => x.playerId === r.id).map(x => x.weekId)
+      .concat(S.allPicks.filter(p => p.playerId === r.id).map(p => p.weekId)))].sort();
+  });
+  return Object.values(by).filter(r => r.weeks.length || r.onRoster);
+}
+
+// How confident is it that two records are one person? null means "not a pair".
+function sameness(a, b) {
+  const A = tokens(a.name), B = tokens(b.name);
+  if (!A.length || !B.length) return null;
+  const nick = t => NICKNAMES[t] || t;
+  if (A.join(" ") === B.join(" ")) return { level: "high", why: "same name" };
+  const [short, long] = A.length <= B.length ? [A, B] : [B, A];
+  if (short.length === 1 && long.length > 1) {
+    const h = short[0];
+    if (h === long[0]) return { level: "high", why: "first name vs full name" };
+    if (nick(h) === long[0] || nick(long[0]) === h) return { level: "high", why: "nickname vs full name" };
+    if (long[1].startsWith(h.slice(0, 4)) && h.length >= 4) return { level: "check", why: "nickname from surname" };
+    const initials = long[0].slice(0, Math.max(2, h.length - 1));
+    if (h.startsWith(long[0].slice(0, 3)) && h.slice(3, 4) === long[1][0]) return { level: "check", why: "first name + last initial" };
+    if (h.startsWith(long[0][0] + long[1]) || h === long[0][0] + long[1][0]) return { level: "check", why: "initials" };
   }
+  if (A[0] === B[0] && A.length > 1 && B.length > 1 && A[1][0] === B[1][0])
+    return { level: "check", why: "same first name and last initial" };
+  return null;
+}
 
-  async function submitBallot() {
-    if (await getVotingLockedFresh()) {
-      showMsg("Voting is currently locked. Check back soon.", "err");
-      return;
-    }
-    const freshWeek = await getCurrentWeekFresh();
-    if (freshWeek !== state.week) {
-      state.week = freshWeek;
-      subEl.textContent = "Voting for: " + state.week + ". Rank your top " + rankCountFor(state.cls) + " out of " + CLASSES[state.cls].length + " member schools.";
-    }
-    const name = nameEl.value.trim();
-    if (!name) {
-      showMsg("Enter your name first.", "err");
-      return;
-    }
-    const email = emailEl.value.trim().toLowerCase();
-    if (!isValidEmail(email)) {
-      showMsg("Enter a valid email address first.", "err");
-      return;
-    }
-    const rankings = currentSelections();
-    if (rankings.some(r => !r)) {
-      showMsg("Fill in all " + rankCountFor(state.cls) + " ranking slots before submitting.", "err");
-      return;
-    }
-    const unique = new Set(rankings);
-    if (unique.size !== rankings.length) {
-      showMsg("Each school can only appear once on your ballot.", "err");
-      return;
-    }
+let mergeList = [];     // [{keep, lose, why, level, conflict, on}]
+let mergeKey = null;
 
-    const submitBtn = document.getElementById("ksfp-submit");
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting…";
-    try {
-      const key = await hashEmail(email);
-      await saveBallotEntry(state.week, state.cls, key, rankings, name);
-      await saveVoterContact(state.week, key, email);
-      try {
-        await addToMailingList(key, email);
-      } catch (e) {
-        // Don't let a mailing-list hiccup make a successfully-saved
-        // ballot look like it failed.
-      }
-      state.completed[state.cls] = true;
-      renderTabs();
-      await loadStandings();
-
-      const idx = CLASS_ORDER.indexOf(state.cls);
-      const nextCls = CLASS_ORDER[idx + 1];
-      const justFinishedEverything = CLASS_ORDER.every(cls => state.completed[cls]);
-      let emailedRecap = false;
-      if (justFinishedEverything) {
-        try {
-          await sendVoterRecapEmail(state.week, key, name, email);
-          emailedRecap = true;
-        } catch (e) {
-          emailedRecap = false;
-        }
-      }
-
-      msgEl.className = "ksfp-msg show ok";
-      msgEl.innerHTML = "";
-      const recordedText = justFinishedEverything
-        ? "Your " + state.cls + " ballot has been recorded — that's all 9 classes! " + (emailedRecap ? "A copy of your picks has been emailed to you." : "")
-        : "Your " + state.cls + " ballot has been recorded.";
-      msgEl.appendChild(document.createTextNode(recordedText));
-      if (nextCls) {
-        const nextBtn = document.createElement("button");
-        nextBtn.className = "ksfp-next-btn";
-        nextBtn.textContent = "Continue to " + nextCls + " →";
-        nextBtn.addEventListener("click", () => {
-          state.cls = nextCls;
-          renderTabs();
-          renderBallotForm();
-          loadStandings();
-          showMsg("", "");
-        });
-        msgEl.appendChild(nextBtn);
-      }
-    } catch (e) {
-      showMsg("Something went wrong saving your ballot. Try again.", "err");
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Submit ballot";
+function suggestMerges() {
+  const recs = mergeRecords();
+  // how many records start with each first name — "Dylan" alone is ambiguous
+  // when three different players are called Dylan
+  const firstCount = {};
+  recs.forEach(r => { const f = tokens(r.name)[0]; if (f) firstCount[f] = (firstCount[f] || 0) + 1; });
+  const out = [];
+  for (let i = 0; i < recs.length; i++) for (let j = i + 1; j < recs.length; j++) {
+    const a = recs[i], b = recs[j], m = sameness(a, b);
+    if (!m) continue;
+    const first = tokens(a.name)[0];
+    if (m.level === "high" && m.why === "first name vs full name" && firstCount[first] >= 3) {
+      m.level = "check";
+      m.why += ` — ${firstCount[first]} players are called ${a.name.split(" ")[0]}`;
     }
+    const shared = a.weeks.filter(w => b.weeks.includes(w));
+    const last = r => r.weeks[r.weeks.length - 1] || "";
+    let keep = a, lose = b;
+    if (last(b) > last(a) || (last(b) === last(a) && (b.uid && !a.uid))) { keep = b; lose = a; }
+    // Two records that played the same week are two different people — unless
+    // one of them carried on into weeks the other never played, which is what a
+    // person who switched to a new record looks like. Dylan and Dylan F both
+    // stopped after Week 1, so they are two players, not one.
+    if (shared.length) {
+      const carriedOn = keep.weeks.some(w => !lose.weeks.includes(w));
+      if (m.level !== "high" || !carriedOn) continue;
+    }
+    out.push({ keep, lose, why: m.why, level: shared.length ? "conflict" : m.level,
+               conflict: shared, on: !shared.length && m.level === "high" });
   }
+  // A record takes part in one pairing only: once folded it no longer exists to
+  // be a keeper, and a keeper cannot also be folded away elsewhere. Most
+  // confident pairings claim their records first.
+  const rank = p => p.level === "high" ? 0 : p.level === "conflict" ? 1 : 2;
+  const taken = new Set();
+  return out.sort((x, y) => rank(x) - rank(y)).filter(p => {
+    if (taken.has(p.lose.id) || taken.has(p.keep.id)) return false;
+    taken.add(p.lose.id); taken.add(p.keep.id);
+    return true;
+  });
+}
 
-  async function clearBallot() {
-    if (await getVotingLockedFresh()) {
-      showMsg("Voting is currently locked. Check back soon.", "err");
+function weekScore(id, wk) {
+  const x = S.scores.find(s => s.playerId === id && s.weekId === wk);
+  return x ? `${x.correct}/${x.total}` : "card";
+}
+
+function renderMerge() {
+  const el = $("#merge-list"); if (!el) return;
+  const key = S.players.length + ":" + S.scores.length + ":" + S.allPicks.length;
+  if (key !== mergeKey) { mergeKey = key; mergeList = suggestMerges(); }
+
+  el.innerHTML = mergeList.length ? `<div class="twrap"><table>
+    <thead><tr><th></th><th>Keep</th><th>Fold in</th><th>What happens</th></tr></thead>
+    <tbody>${mergeList.map((p, i) => {
+      const moves = p.lose.weeks.filter(w => !p.keep.weeks.includes(w));
+      const note = [
+        moves.length ? "moves " + moves.map(w => `${w.replace("w0","Wk ").replace("w","Wk ")} (${weekScore(p.lose.id, w)})`).join(", ") : "",
+        p.conflict.length ? `<b style="color:var(--loss)">both played ${p.conflict.map(w=>w.replace("w0","Wk ")).join(", ")}</b> — ${esc(p.keep.name)}&rsquo;s card is kept, ${esc(p.lose.name)}&rsquo;s dropped` : ""
+      ].filter(Boolean).join("; ") || "no weeks to move";
+      return `<tr>
+        <td><input type="checkbox" data-mi="${i}" ${p.on ? "checked" : ""} style="width:auto"></td>
+        <td><b>${esc(p.keep.name)}</b><div class="hint">${p.keep.weeks.map(w => weekScore(p.keep.id, w)).join(" · ")}</div></td>
+        <td>${esc(p.lose.name)}<div class="hint">${p.lose.weeks.map(w => weekScore(p.lose.id, w)).join(" · ")}</div></td>
+        <td style="white-space:normal;min-width:220px">${note}
+          <div class="hint">${esc(p.why)}${p.level === "check" ? " — worth a look" : ""}
+          · <button class="linkish" data-mswap="${i}" style="color:var(--muted)">swap</button></div></td>
+      </tr>`; }).join("")}</tbody></table></div>`
+    : '<div class="empty">No likely duplicates found.</div>';
+
+  const recs = mergeRecords().sort((a, b) => a.name.localeCompare(b.name));
+  const opts = recs.map(r => `<option value="${esc(r.id)}">${esc(r.name)} (${r.weeks.length} wk)</option>`).join("");
+  const f = $("#merge-from"), t = $("#merge-into");
+  if (f.options.length !== recs.length) { f.innerHTML = opts; t.innerHTML = opts; }
+}
+
+$("#merge-list").addEventListener("change", e => {
+  const i = e.target.dataset.mi; if (i === undefined) return;
+  mergeList[+i].on = e.target.checked;
+});
+$("#merge-list").addEventListener("click", e => {
+  const b = e.target.closest("[data-mswap]"); if (!b) return;
+  const p = mergeList[+b.dataset.mswap];
+  [p.keep, p.lose] = [p.lose, p.keep];
+  mergeKey = "held";                                   // keep the edit on re-render
+  renderMerge();
+});
+$("#merge-add").addEventListener("click", () => {
+  const recs = mergeRecords();
+  const lose = recs.find(r => r.id === $("#merge-from").value);
+  const keep = recs.find(r => r.id === $("#merge-into").value);
+  const st = $("#merge-status");
+  if (!lose || !keep || lose.id === keep.id) { st.className = "status err"; st.textContent = "Pick two different players."; return; }
+  mergeList = mergeList.filter(p => p.lose.id !== lose.id && p.keep.id !== lose.id);
+  const shared = lose.weeks.filter(w => keep.weeks.includes(w));
+  mergeList.push({ keep, lose, why: "added by hand", level: shared.length ? "conflict" : "high", conflict: shared, on: true });
+  mergeKey = "held"; renderMerge();
+  st.className = "status"; st.textContent = `${lose.name} will fold into ${keep.name}.`;
+});
+
+async function foldPlayer(keep, lose) {
+  const batch = writeBatch(db);
+  const keepWeeks = new Set(keep.weeks);
+  const picks  = S.allPicks.filter(p => p.playerId === lose.id);
+  const scores = S.scores.filter(x => x.playerId === lose.id);
+  const weeks  = [...new Set(picks.map(p => p.weekId).concat(scores.map(x => x.weekId)))];
+  let moved = 0, dropped = 0;
+  weeks.forEach(wk => {
+    const pk = picks.find(p => p.weekId === wk), sc = scores.find(x => x.weekId === wk);
+    if (keepWeeks.has(wk)) {                          // the keeper already has this week
+      if (pk) batch.delete(doc(db, "picks", pk.id));
+      if (sc) batch.delete(doc(db, "scores", sc.id));
+      dropped++;
       return;
     }
-    state.week = await getCurrentWeekFresh();
-    const email = emailEl.value.trim().toLowerCase();
-    if (!isValidEmail(email)) {
-      showMsg("Enter your email to find and clear your ballot.", "err");
-      return;
+    if (pk) {
+      const { id, ...body } = pk;
+      // uid must be the keeper's, or the week vanishes from their My Results
+      batch.set(doc(db, "picks", `${wk}__${keep.id}`),
+        { ...body, playerId: keep.id, uid: keep.uid || pk.uid, name: keep.name });
+      batch.delete(doc(db, "picks", pk.id));
     }
-    const key = await hashEmail(email);
-    const data = await loadPollEntries(state.week, state.cls);
-    if (!data[key]) {
-      showMsg("No ballot found for that email in " + state.cls + ".", "err");
-      return;
+    if (sc) {
+      batch.set(doc(db, "scores", `${wk}__${keep.id}`),
+        { weekId: wk, playerId: keep.id, name: keep.name, correct: sc.correct, total: sc.total });
+      batch.delete(doc(db, "scores", sc.id));
     }
-    await deleteBallotEntry(state.week, state.cls, key);
-    renderBallotForm();
-    showMsg("Your ballot for " + state.cls + " has been cleared.", "ok");
-    await loadStandings();
+    moved++;
+  });
+  if (!keep.email && lose.email && S.players.some(p => p.id === keep.id))
+    batch.update(doc(db, "players", keep.id), { email: lose.email });
+  if (S.players.some(p => p.id === lose.id)) batch.delete(doc(db, "players", lose.id));
+  await batch.commit();
+  return { moved, dropped };
+}
+
+$("#merge-run").addEventListener("click", async () => {
+  const st = $("#merge-status");
+  const chosen = mergeList.filter(p => p.on);
+  if (!chosen.length) { st.className = "status err"; st.textContent = "Tick at least one pair."; return; }
+  const lines = chosen.map(p => `• ${p.lose.name} → ${p.keep.name}` +
+    (p.conflict.length ? `  (drops ${p.lose.name}'s ${p.conflict.join(", ")} card)` : ""));
+  if (!confirm(`Merge ${chosen.length} pair${chosen.length === 1 ? "" : "s"}?\n\n${lines.join("\n")}\n\n` +
+      `Each older record's weeks move onto the kept one and the older record is removed. This cannot be undone.`)) return;
+  let done = 0, moved = 0, dropped = 0; const failed = [];
+  for (const p of chosen) {
+    st.className = "status"; st.textContent = `Merging ${p.lose.name} into ${p.keep.name}…`;
+    try { const r = await foldPlayer(p.keep, p.lose); done++; moved += r.moved; dropped += r.dropped; }
+    catch (e) { failed.push(`${p.lose.name}: ${friendlyError(e)}`); }
   }
+  mergeKey = null;
+  st.className = failed.length ? "status err" : "status ok";
+  st.textContent = `Merged ${done} of ${chosen.length}: ${moved} week${moved === 1 ? "" : "s"} moved` +
+    (dropped ? `, ${dropped} duplicate card${dropped === 1 ? "" : "s"} dropped` : "") + "." +
+    (failed.length ? "  Failed — " + failed.join("; ") : "  Standings have updated.");
+});
 
-  document.getElementById("ksfp-submit").addEventListener("click", submitBallot);
-  document.getElementById("ksfp-clear").addEventListener("click", clearBallot);
-  emailEl.addEventListener("change", async () => {
-    const email = emailEl.value.trim().toLowerCase();
-    await refreshCompletionForEmail(email);
+$("#adm-roster").addEventListener("change", async e => {
+  const el = e.target; if (el.dataset.pk !== "email") return;
+  const mail = el.value.trim().toLowerCase();
+  if (mail && !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(mail)) {
+    alert("That doesn't look like an email address."); renderAdminRoster(); return; }
+  const clash = S.players.find(p => p.id !== el.dataset.pid && (p.email || "") === mail && mail);
+  if (clash) { alert(`${clash.name} is already using that address.`); renderAdminRoster(); return; }
+  try { await updateDoc(doc(db, "players", el.dataset.pid), { email: mail }); }
+  catch (err) { alert(friendlyError(err)); }
+});
 
-    const currentIdx = CLASS_ORDER.indexOf(state.cls);
-    if (!isUnlocked(currentIdx) && !state.completed[state.cls]) {
-      const firstIncompleteIdx = CLASS_ORDER.findIndex(c => !state.completed[c]);
-      state.cls = firstIncompleteIdx === -1 ? CLASS_ORDER[CLASS_ORDER.length - 1] : CLASS_ORDER[firstIncompleteIdx];
-      renderBallotForm();
-      await loadStandings();
+$("#adm-roster").addEventListener("click", async e => {
+  const reset = e.target.closest("[data-reset]"), del = e.target.closest("[data-del]");
+  try {
+    if (reset) {
+      const p = S.players.find(x => x.id === reset.dataset.reset);
+      if (p && confirm(`Release "${p.name}" so they can claim it on a new device?`))
+        await updateDoc(doc(db, "players", p.id), { uid: "" });
+    } else if (del) {
+      const p = S.players.find(x => x.id === del.dataset.del);
+      if (p && confirm(`Remove "${p.name}" from the roster? Their submitted cards stay in the standings.`))
+        await deleteDoc(doc(db, "players", p.id));
     }
+  } catch (err) { alert(friendlyError(err)); }
+});
 
-    renderTabs();
-    const data = await loadPollEntries(state.week, state.cls);
-    await maybePrefillFromEmail(data);
-  });
-
-  document.querySelectorAll(".ksfp-view-btn").forEach(btn => {
-    btn.addEventListener("click", () => switchView(btn.dataset.view));
-  });
-
-  adminLinkEl.addEventListener("click", async (e) => {
-    e.stopPropagation();
-    const isHidden = adminPanelEl.style.display === "none";
-    adminPanelEl.style.display = isHidden ? "block" : "none";
-    adminLinkEl.classList.toggle("active", isHidden);
-    if (isHidden) await refreshAdminPanel();
-  });
-  adminPanelEl.addEventListener("click", (e) => e.stopPropagation());
-  document.addEventListener("click", () => {
-    if (adminPanelEl.style.display !== "none") {
-      adminPanelEl.style.display = "none";
-      adminLinkEl.classList.remove("active");
-    }
-  });
-
-  onAuthStateChanged(auth, async (user) => {
-    const loggedIn = !!user;
-    adminLoginEl.style.display = loggedIn ? "none" : "block";
-    adminControlsEl.style.display = loggedIn ? "block" : "none";
-    if (loggedIn) {
-      adminWhoamiEl.textContent = user.email;
-    }
-    if (adminPanelEl.style.display !== "none") {
-      await refreshAdminPanel();
-    }
-    if (state.view === "public") {
-      await showPublicWeek();
-    }
-    if (state.view === "vote") {
-      await loadStandings();
-    }
-  });
-
-  adminSignInBtn.addEventListener("click", async () => {
-    adminLoginStatusEl.textContent = "Signing in…";
-    try {
-      await signInWithEmailAndPassword(auth, adminEmailEl.value.trim(), adminPasswordEl.value);
-      adminPasswordEl.value = "";
-      adminLoginStatusEl.textContent = "";
-    } catch (e) {
-      adminLoginStatusEl.textContent = "Sign-in failed — check the email and password.";
-    }
-  });
-
-  adminSignOutBtn.addEventListener("click", async () => {
-    await signOut(auth);
-  });
-
-  async function refreshAdminPanel() {
-    const currentWeek = await getCurrentWeek();
-    adminCurrentWeekEl.textContent = currentWeek;
-    adminEmailWeekLabelEl.textContent = currentWeek;
-    adminAnnounceWeekLabelEl.textContent = currentWeek;
-    const announceEmails = await getAnnouncementEmails();
-    adminAnnounceListCountEl.textContent = announceEmails.length + (announceEmails.length === 1 ? " person" : " people") + " on the mailing list (voters are added automatically).";
-
-    const weeks = await getWeeksList();
-    adminReleaseSelectEl.innerHTML = weeks.map(w =>
-      '<option value="' + w.replace(/"/g,'&quot;') + '"' + (w === currentWeek ? " selected" : "") + '>' + w + '</option>'
-    ).join("");
-    adminRecordsWeekEl.innerHTML = weeks.map(w =>
-      '<option value="' + w.replace(/"/g,'&quot;') + '"' + (w === currentWeek ? " selected" : "") + '>' + w + '</option>'
-    ).join("");
-    adminRecordsClassEl.innerHTML = CLASS_ORDER.map(c =>
-      '<option value="' + c + '">' + c + '</option>'
-    ).join("");
-    adminClearWeekEl.innerHTML = weeks.map(w =>
-      '<option value="' + w.replace(/"/g,'&quot;') + '"' + (w === currentWeek ? " selected" : "") + '>' + w + '</option>'
-    ).join("");
-    adminClearClassEl.innerHTML = CLASS_ORDER.map(c =>
-      '<option value="' + c + '">' + c + '</option>'
-    ).join("");
-    adminRenameWeekOldEl.innerHTML = weeks.map(w =>
-      '<option value="' + w.replace(/"/g,'&quot;') + '">' + w + (w === currentWeek ? " (current)" : "") + '</option>'
-    ).join("");
-
-    await refreshReleaseStatusText();
-    await loadRecordsIntoTextarea();
-    await refreshLockStatusText();
-    await refreshRosterTextarea();
+// The site switcher can navigate away mid-card. Picks only exist in the
+// browser until Submit, so say so rather than losing them silently.
+window.addEventListener("beforeunload", e => {
+  const w = activeWeek();
+  if (!w || !S.me || isLocked(w)) return;
+  const draft = S.draft[w.id] || {};
+  const saved = S.myPicks[w.id]?.picks || {};
+  const keys = new Set([...Object.keys(draft), ...Object.keys(saved)]);
+  for (const k of keys) {
+    if (draft[k] !== saved[k]) { e.preventDefault(); e.returnValue = ""; return; }
   }
+});
 
-  async function refreshRosterTextarea() {
-    const roster = await getVoterRoster();
-    adminRosterTextEl.value = roster.join("\n");
-    adminRosterStatusEl.textContent = roster.length
-      ? roster.length + " expected voter" + (roster.length === 1 ? "" : "s") + " set for this week."
-      : "No roster set for this week yet.";
-  }
+/* ==========================================================
+   12. Shell
+   ========================================================== */
+function openGate() { S.showGate = true; render(); }
+function closeGate() { S.showGate = false; render(); }
+$("#signin-btn").addEventListener("click", openGate);
+$("#gate-close").addEventListener("click", closeGate);
+$("#gate").addEventListener("click", e => { if (e.target === $("#gate")) closeGate(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && S.showGate) closeGate(); });
 
-  async function refreshLockStatusText() {
-    const locked = await getVotingLocked();
-    adminToggleLockBtn.textContent = locked ? "Unlock voting" : "Lock voting";
-    adminLockStatusEl.textContent = locked
-      ? "Voting is currently locked — voters can't submit or change ballots."
-      : "Voting is open for the current week.";
-  }
+// Views are addressable, so the tabs can be ordinary links: right-click,
+// middle-click and cmd-click all behave, and back/forward work.
+const VIEW_BY_HASH = { "#picks": "picks", "#standings": "board",
+                       "#my-results": "mine", "#commissioner": "admin" };
+const HASH_BY_VIEW = Object.fromEntries(
+  Object.entries(VIEW_BY_HASH).map(([h, v]) => [v, h]));
 
-  // Tracks what's currently on-screen vs. what's actually saved, so
-  // switching the week/class dropdown never silently throws away
-  // typed-but-unsaved records (this is exactly how records can look
-  // "entered" but never actually reach a given week/class).
-  let lastLoadedRecordsText = "";
+function applyHash() {
+  S.view = VIEW_BY_HASH[location.hash] || "picks";
+  render();
+}
+window.addEventListener("hashchange", applyHash);
 
-  async function loadRecordsIntoTextarea() {
-    const week = adminRecordsWeekEl.value;
-    const cls = adminRecordsClassEl.value;
-    if (!week || !cls) { adminRecordsTextEl.value = ""; lastLoadedRecordsText = ""; return; }
-    const records = await getRecords(week, cls);
-    lastLoadedRecordsText = Object.keys(records).map(school => school + ": " + records[school]).join("\n");
-    adminRecordsTextEl.value = lastLoadedRecordsText;
-    adminRecordsStatusEl.textContent = "";
-  }
+function render() {
+  if (!S.ready) return;
 
-  async function handleRecordsSelectorChange() {
-    if (adminRecordsTextEl.value !== lastLoadedRecordsText) {
-      const ok = window.confirm("You have unsaved records typed for the previous week/class — switch anyway and lose them?");
-      if (!ok) return;
-    }
-    await loadRecordsIntoTextarea();
-  }
-  adminRecordsWeekEl.addEventListener("change", handleRecordsSelectorChange);
-  adminRecordsClassEl.addEventListener("change", handleRecordsSelectorChange);
+  $("#app").hidden = false;
+  $("#gate").hidden = !S.showGate;
+  if (S.showGate) renderGate();
 
-  adminSaveRecordsBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminRecordsStatusEl.textContent = "Sign in first.";
-      window.alert("You're not signed in as admin, so nothing was saved. Sign in first, then try again.");
-      return;
-    }
-    const week = adminRecordsWeekEl.value;
-    const cls = adminRecordsClassEl.value;
-    const lines = adminRecordsTextEl.value.split("\n").map(l => l.trim()).filter(Boolean);
-    const records = {};
-    lines.forEach(line => {
-      const idx = line.indexOf(":");
-      if (idx === -1) return;
-      const school = line.slice(0, idx).trim();
-      const record = line.slice(idx + 1).trim();
-      if (school && record) records[school] = record;
-    });
-    if (!Object.keys(records).length) {
-      adminRecordsStatusEl.textContent = "Nothing to save — enter records as \"School: record\", one per line.";
-      return;
-    }
-    try {
-      await saveRecords(week, cls, records);
-      lastLoadedRecordsText = adminRecordsTextEl.value;
-      adminRecordsStatusEl.textContent = "Saved " + Object.keys(records).length + " records for " + cls + " — " + week + ".";
-      if (state.view === "public" && state.publicWeek === week) {
-        await loadPublicStandingsForSelection();
-      }
-    } catch (e) {
-      adminRecordsStatusEl.textContent = "Save failed — you may need to sign in again.";
-      window.alert("Saving records for " + cls + " — " + week + " failed. Nothing was recorded. Try signing out and back in, then save again.");
-    }
+  const w = activeWeek();
+  $("#brand-logo").alt = LEAGUE_NAME;
+  $("#week-label").textContent = w
+    ? `${w.label || "Week " + w.num}${w.scored ? " · final" : isLocked(w) ? " · locked" : ""}`
+    : "No week open";
+  $("#whoami").hidden = !S.me;
+  $("#signin-btn").hidden = !!S.me;
+  if (S.me) $("#me-name").textContent = S.me.name + (S.isAdmin ? " · commissioner" : "");
+  $("#tab-admin").hidden = !S.isAdmin;
+  $('.tab[data-view="mine"]').hidden = !S.me;
+  if (!S.isAdmin && S.view === "admin") S.view = "picks";
+  if (!S.me && S.view === "mine") S.view = "picks";
+
+  $$(".tab").forEach(t => {
+    if (t.dataset.view === S.view) t.setAttribute("aria-current", "page");
+    else t.removeAttribute("aria-current");
   });
+  const want = HASH_BY_VIEW[S.view];
+  if (want && location.hash !== want) history.replaceState(null, "", want);
+  ["picks", "board", "mine", "admin"].forEach(v => { $("#view-" + v).hidden = v !== S.view; });
 
-  adminClearBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminClearStatusEl.textContent = "Sign in first.";
-      return;
-    }
-    const week = adminClearWeekEl.value;
-    const cls = adminClearClassEl.value;
-    const confirmed = window.confirm(
-      "Delete ALL ballots for " + cls + " — " + week + "? This cannot be undone."
-    );
-    if (!confirmed) return;
+  renderClock();
+  if (S.view === "picks") { renderPicks(); renderRail(); }
+  if (S.view === "board") renderBoard();
+  if (S.view === "mine")  renderMine();
+  if (S.view === "admin") renderAdmin();
+}
 
-    adminClearStatusEl.textContent = "Clearing…";
-    try {
-      const data = await loadPollEntries(week, cls);
-      const ids = Object.keys(data);
-      await Promise.all(ids.map(id => deleteBallotEntry(week, cls, id)));
-      adminClearStatusEl.textContent = "Cleared " + ids.length + (ids.length === 1 ? " ballot" : " ballots") + " for " + cls + " — " + week + ".";
-      if (state.week === week && state.cls === cls) await loadStandings();
-      if (state.view === "public" && state.publicWeek === week && state.publicCls === cls) await loadPublicStandings();
-    } catch (e) {
-      adminClearStatusEl.textContent = "Clear failed — you may need to sign in again.";
-    }
-  });
 
-  async function sendVoterRecapEmail(week, key, name, email) {
-    if (!window.emailjs || EMAILJS_PUBLIC_KEY === "REPLACE_ME") return;
-    const allClassEntries = await Promise.all(CLASS_ORDER.map(cls => loadPollEntries(week, cls)));
-    const perClassPicks = {};
-    CLASS_ORDER.forEach((cls, i) => {
-      const entry = allClassEntries[i][key];
-      if (entry && Array.isArray(entry.rankings)) perClassPicks[cls] = entry.rankings;
-    });
-    await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      to_email: email,
-      to_name: name,
-      week: week,
-      picks: buildPicksEmailBody(perClassPicks)
-    });
-  }
-
-  function buildPicksEmailBody(perClassPicks) {
-    const lines = [];
-    CLASS_ORDER.forEach(cls => {
-      const picks = perClassPicks[cls];
-      if (!picks) return;
-      lines.push(cls + ":");
-      picks.forEach((school, i) => lines.push("  " + (i + 1) + ". " + school));
-      lines.push("");
-    });
-    return lines.join("\n").trim();
-  }
-
-  adminEmailPicksBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminEmailStatusEl.textContent = "Sign in first.";
-      return;
-    }
-    if (!window.emailjs || EMAILJS_PUBLIC_KEY === "REPLACE_ME") {
-      adminEmailStatusEl.textContent = "EmailJS isn't set up yet — see the README for setup steps.";
-      return;
-    }
-    const week = state.week;
-    const confirmed = window.confirm("Email every voter who submitted a ballot for " + week + " a recap of their picks?");
-    if (!confirmed) return;
-
-    adminEmailStatusEl.textContent = "Gathering picks…";
-    try {
-      const [allClassEntries, contacts] = await Promise.all([
-        Promise.all(CLASS_ORDER.map(cls => loadPollEntries(week, cls))),
-        loadVoterContacts(week)
-      ]);
-
-      const voters = {};
-      CLASS_ORDER.forEach((cls, i) => {
-        const entries = allClassEntries[i];
-        Object.keys(entries).forEach(hash => {
-          const entry = entries[hash];
-          if (!entry || !Array.isArray(entry.rankings)) return;
-          if (!voters[hash]) voters[hash] = { name: entry.name || "Voter", perClassPicks: {} };
-          voters[hash].perClassPicks[cls] = entry.rankings;
-        });
-      });
-
-      const hashes = Object.keys(voters);
-      let sent = 0, failed = 0, skipped = 0;
-      for (const hash of hashes) {
-        adminEmailStatusEl.textContent = "Sending " + (sent + failed + skipped + 1) + " of " + hashes.length + "…";
-        const contact = contacts[hash];
-        if (!contact || !contact.email) { skipped++; continue; }
-        try {
-          await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-            to_email: contact.email,
-            to_name: voters[hash].name,
-            week: week,
-            picks: buildPicksEmailBody(voters[hash].perClassPicks)
-          });
-          sent++;
-        } catch (e) {
-          failed++;
-        }
-      }
-      adminEmailStatusEl.textContent = "Emailed " + sent + (sent === 1 ? " voter" : " voters") + " for " + week + "."
-        + (skipped ? " " + skipped + " skipped (no email on file)." : "")
-        + (failed ? " " + failed + " failed to send." : "");
-    } catch (e) {
-      adminEmailStatusEl.textContent = "Something went wrong gathering picks.";
-    }
-  });
-
-  adminSaveAnnounceListBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminAnnounceListStatusEl.textContent = "Sign in first.";
-      return;
-    }
-    const emails = adminAnnounceListTextEl.value.split("\n").map(e => e.trim()).filter(Boolean);
-    if (!emails.length) {
-      adminAnnounceListStatusEl.textContent = "Enter at least one email first.";
-      return;
-    }
-    try {
-      await addAnnouncementEmails(emails);
-      adminAnnounceListTextEl.value = "";
-      adminAnnounceListStatusEl.textContent = "Added " + emails.length + (emails.length === 1 ? " email." : " emails.");
-      const announceEmails = await getAnnouncementEmails();
-      adminAnnounceListCountEl.textContent = announceEmails.length + (announceEmails.length === 1 ? " person" : " people") + " on the mailing list (voters are added automatically).";
-    } catch (e) {
-      adminAnnounceListStatusEl.textContent = "Save failed — you may need to sign in again.";
-    }
-  });
-
-  adminSendAnnounceBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminAnnounceStatusEl.textContent = "Sign in first.";
-      return;
-    }
-    if (!window.emailjs || EMAILJS_PUBLIC_KEY === "REPLACE_ME" || EMAILJS_ANNOUNCE_TEMPLATE_ID === "REPLACE_ME") {
-      adminAnnounceStatusEl.textContent = "EmailJS announcement template isn't set up yet — see the README for setup steps.";
-      return;
-    }
-    const week = state.week;
-    let emails;
-    try {
-      emails = await getAnnouncementEmails();
-    } catch (e) {
-      adminAnnounceStatusEl.textContent = "Could not load the mailing list.";
-      return;
-    }
-    if (emails.length === 0) {
-      adminAnnounceStatusEl.textContent = "The mailing list is empty — add emails above and save first.";
-      return;
-    }
-    const confirmed = window.confirm("Email all " + emails.length + " people on the mailing list to announce that voting is open for " + week + "?");
-    if (!confirmed) return;
-
-    let sent = 0, failed = 0;
-    for (const email of emails) {
-      adminAnnounceStatusEl.textContent = "Sending " + (sent + failed + 1) + " of " + emails.length + "…";
-      try {
-        await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_ANNOUNCE_TEMPLATE_ID, {
-          to_email: email,
-          week: week,
-          voting_url: "https://kansasmediarankings.com/voting"
-        });
-        sent++;
-      } catch (e) {
-        failed++;
-      }
-    }
-    adminAnnounceStatusEl.textContent = "Emailed " + sent + (sent === 1 ? " person" : " people") + " that voting is open for " + week + "."
-      + (failed ? " " + failed + " failed to send." : "");
-  });
-
-  adminRenameWeekBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminRenameWeekStatusEl.textContent = "Sign in first.";
-      return;
-    }
-    const oldWeek = adminRenameWeekOldEl.value;
-    const newWeek = adminRenameWeekNewEl.value.trim();
-    if (!oldWeek || !newWeek) {
-      adminRenameWeekStatusEl.textContent = "Pick a week and enter a new name.";
-      return;
-    }
-    if (newWeek === oldWeek) {
-      adminRenameWeekStatusEl.textContent = "That's already its name.";
-      return;
-    }
-    const weeks = await getWeeksList();
-    if (weeks.indexOf(newWeek) !== -1) {
-      adminRenameWeekStatusEl.textContent = '"' + newWeek + '" is already a separate week — pick a name that isn\'t in use.';
-      return;
-    }
-    const confirmed = window.confirm('Rename "' + oldWeek + '" to "' + newWeek + '"? This moves every ballot, record, and release status recorded under it — nothing is lost, but it can\'t be undone.');
-    if (!confirmed) return;
-
-    adminRenameWeekBtn.disabled = true;
-    adminRenameWeekStatusEl.textContent = "Renaming “" + oldWeek + "” to “" + newWeek + "”…";
-    try {
-      await renameWeekData(oldWeek, newWeek);
-      if (state.week === oldWeek) state.week = newWeek;
-      if (state.publicWeek === oldWeek) state.publicWeek = newWeek;
-      adminRenameWeekNewEl.value = "";
-      adminRenameWeekStatusEl.textContent = '"' + oldWeek + '" is now "' + newWeek + '".';
-      await refreshAdminPanel();
-      if (state.view === "public") await loadPublicStandingsForSelection();
-    } catch (e) {
-      adminRenameWeekStatusEl.textContent = "Rename hit an error partway through — check your connection and try again; it's safe to retry.";
-    }
-    adminRenameWeekBtn.disabled = false;
-  });
-
-  async function refreshReleaseStatusText() {
-    const week = adminReleaseSelectEl.value;
-    if (!week) { adminStatusEl.textContent = ""; return; }
-    const released = await getReleaseStatus(week);
-    adminToggleBtn.textContent = released ? "Unrelease " + week : "Release " + week;
-    adminStatusEl.textContent = released ? week + " is currently public." : week + " is currently hidden from the public page.";
-  }
-
-  adminReleaseSelectEl.addEventListener("change", refreshReleaseStatusText);
-
-  adminSetWeekBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminWeekStatusEl.textContent = "Sign in first.";
-      return;
-    }
-    const newWeek = adminWeekInputEl.value.trim();
-    if (!newWeek) {
-      adminWeekStatusEl.textContent = "Enter a week name first, e.g. \"Week 1\".";
-      return;
-    }
-    try {
-      await setCurrentWeek(newWeek);
-      state.week = newWeek;
-      adminWeekInputEl.value = "";
-      adminWeekStatusEl.textContent = "Now voting: " + newWeek + ".";
-      renderBallotForm();
-      await loadStandings();
-      await refreshAdminPanel();
-    } catch (e) {
-      adminWeekStatusEl.textContent = "Save failed — you may need to sign in again.";
-    }
-  });
-
-  adminToggleLockBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminLockStatusEl.textContent = "Sign in first.";
-      return;
-    }
-    try {
-      const locked = await getVotingLocked();
-      await setVotingLocked(!locked);
-      await refreshLockStatusText();
-      await applyVotingLockUI();
-    } catch (e) {
-      adminLockStatusEl.textContent = "Save failed — you may need to sign in again.";
-    }
-  });
-
-  adminSaveRosterBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminRosterStatusEl.textContent = "Sign in first.";
-      return;
-    }
-    const names = adminRosterTextEl.value.split("\n").map(n => n.trim()).filter(Boolean);
-    try {
-      await setVoterRoster(names);
-      await refreshRosterTextarea();
-      if (state.view === "vote") await loadStandings();
-    } catch (e) {
-      adminRosterStatusEl.textContent = "Save failed — you may need to sign in again.";
-    }
-  });
-
-  adminToggleBtn.addEventListener("click", async () => {
-    if (!auth.currentUser) {
-      adminStatusEl.textContent = "Sign in first.";
-      return;
-    }
-    const week = adminReleaseSelectEl.value;
-    try {
-      const released = await getReleaseStatus(week);
-      await setReleaseStatus(week, !released);
-      await refreshReleaseStatusText();
-      if (state.view === "public") await showPublicView();
-    } catch (e) {
-      adminStatusEl.textContent = "Save failed — you may need to sign in again.";
-    }
-  });
-
-  async function init() {
-    try {
-      state.week = await getCurrentWeek();
-    } catch (e) {
-      console.error("Could not reach Firestore — check firebaseConfig in index.html.", e);
-    }
-    renderTabs();
-    renderBallotForm();
-    await loadStandings();
-
-    // The root domain defaults to Public Results — voting.html is the
-    // only page that asks for the ballot view (via ?vote=1), so casual
-    // visitors to the main site never land on a ballot by accident.
-    // index.html?results=1  or  index.html?results=1&week=Week+1&class=6A
-    // still works as a direct link straight to a specific week/class.
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("results")) {
-      if (params.get("week")) state.publicWeek = params.get("week");
-      if (params.get("class") && CLASS_ORDER.indexOf(params.get("class")) !== -1) {
-        state.publicCls = params.get("class");
-      }
-      switchView("public");
-    } else if (params.get("vote")) {
-      switchView("vote");
-    } else {
-      switchView("public");
-    }
-  }
-
-  init();
-})();
+applyHash();
 </script>
 </body>
 </html>
