@@ -293,7 +293,6 @@
 
 <nav class="ksfp-sectionnav">
   <div class="ksfp-sectionnav-inner" id="ksfp-viewtoggle">
-    <button class="ksfp-view-btn" data-view="vote" id="ksfp-vote-toggle-btn">Cast a ballot</button>
     <button class="ksfp-view-btn active" data-view="public" id="ksfp-public-toggle-btn">Public results</button>
     <div class="ksfp-sectionnav-links">
       <a href="https://www.catchitkansas.com" target="_blank" rel="noopener">Catch It Kansas</a>
@@ -454,7 +453,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const ballotBodyEl = document.getElementById("ksfp-ballot-body");
   const voteLockedMsgEl = document.getElementById("ksfp-vote-locked-msg");
   const voteGridEl = document.getElementById("ksfp-vote-grid");
-  const voteToggleBtnEl = document.getElementById("ksfp-vote-toggle-btn");
   const submitBtnEl = document.getElementById("ksfp-submit");
   const clearBtnEl = document.getElementById("ksfp-clear");
   const standingsEl = document.getElementById("ksfp-standings");
@@ -1114,7 +1112,6 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     if (hideForVoters && state.view === "vote") {
       switchView("public");
     }
-    voteToggleBtnEl.style.display = hideForVoters ? "none" : "";
     voteLockedMsgEl.style.display = (hideForVoters && state.view === "vote") ? "block" : "none";
     voteViewEl.style.display = hideForVoters ? "none" : (state.view === "vote" ? "block" : "none");
 
