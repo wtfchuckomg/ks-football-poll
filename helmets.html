@@ -47,20 +47,36 @@
   .ksfp-masthead-header-img { height: 48px; width: auto; display: block; }
 
   .ksfp-classnav { background: #000000; position: sticky; top: 0; z-index: 50; }
-  .ksfp-classnav-inner { max-width: 1100px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; gap: 12px; }
-  .ksfp-classnav label { font-family: 'Anton', sans-serif; font-size: 12.5px; letter-spacing: 0.4px; text-transform: uppercase; color: #b8b8b8; }
-  .ksfp-classnav select {
-    font-family: 'Anton', sans-serif; font-size: 14px; letter-spacing: 0.4px; text-transform: uppercase;
-    background: #1a1a1a; color: #ffffff; border: 1px solid #444; border-radius: 4px; padding: 8px 12px;
+  .ksfp-classnav-inner { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  #helm-class-tabs {
+    display: flex; align-items: center; gap: 4px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+  .helm-class-tab {
+    font-family: 'Anton', sans-serif; font-size: 13px; letter-spacing: 0.4px; text-transform: uppercase;
+    background: none; border: none; border-bottom: 3px solid transparent; color: #b8b8b8;
+    padding: 14px 12px; cursor: pointer; white-space: nowrap;
+  }
+  .helm-class-tab:hover:not(.active) { color: #ffffff; }
+  .helm-class-tab.active { color: #ffffff; border-bottom-color: var(--gold); }
+  #helm-class-select { display: none; }
+  @media (max-width: 700px) {
+    .ksfp-classnav-inner { padding: 10px 20px; overflow-x: visible; }
+    #helm-class-tabs { display: none; }
+    #helm-class-select {
+      display: block; width: 100%;
+      font-family: 'Anton', sans-serif; font-size: 14px; letter-spacing: 0.4px; text-transform: uppercase;
+      background: #1a1a1a; color: #ffffff; border: 1px solid #444; border-radius: 4px; padding: 8px 12px;
+    }
   }
 
   .helm-wrap { max-width: 1100px; margin: 0 auto; padding: 30px 20px 60px; font-family: 'Work Sans', sans-serif; color: var(--chalk); }
   .helm-intro { text-align: center; color: var(--chalk-dim); font-size: 14px; margin-bottom: 30px; }
   .helm-section-title {
     font-family: 'Anton', sans-serif; font-size: 26px; letter-spacing: 0.5px; text-transform: uppercase;
-    border-bottom: 3px solid var(--gold); padding-bottom: 8px; margin: 46px 0 18px;
+    border-bottom: 3px solid var(--gold); padding-bottom: 8px; margin: 46px 0 6px;
   }
   .helm-section-title:first-of-type { margin-top: 0; }
+  .helm-section-sub { font-size: 12.5px; color: var(--chalk-dim); margin: 0 0 18px; }
 
   .helm-card {
     background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
@@ -71,7 +87,7 @@
   .helm-name { font-family: 'Anton', sans-serif; font-size: 26px; letter-spacing: 0.3px; color: var(--gold-dim); line-height: 1.15; }
   .helm-coach { font-size: 13.5px; color: var(--chalk); margin-top: 8px; }
   .helm-renders { display: flex; gap: 14px; align-items: center; }
-  .helm-render { height: 260px; width: auto; object-fit: contain; }
+  .helm-render { height: 140px; width: auto; object-fit: contain; cursor: pointer; }
   .helm-render[hidden] { display: none; }
   .helm-empty { font-size: 12.5px; color: var(--chalk-dim); font-style: italic; }
 </style>
@@ -97,7 +113,7 @@
 
 <nav class="ksfp-classnav">
   <div class="ksfp-classnav-inner">
-    <label for="helm-class-select">Classification</label>
+    <div id="helm-class-tabs"></div>
     <select id="helm-class-select"></select>
   </div>
 </nav>
@@ -149,7 +165,8 @@
     const first = candidates.shift();
     return '<img src="' + first.replace(/"/g,'&quot;') + '" alt="" class="' + cssClass + '" loading="lazy" '
       + 'data-fallbacks="' + candidates.join("|").replace(/"/g,'&quot;') + '" '
-      + 'onerror="var fb=(this.dataset.fallbacks||\'\').split(\'|\').filter(Boolean); if(fb.length){this.dataset.fallbacks=fb.slice(1).join(\'|\'); this.src=fb[0];} else {this.hidden=true;}">';
+      + 'onerror="var fb=(this.dataset.fallbacks||\'\').split(\'|\').filter(Boolean); if(fb.length){this.dataset.fallbacks=fb.slice(1).join(\'|\'); this.src=fb[0];} else {this.hidden=true;}" '
+      + 'onclick="window.open(this.src, \'_blank\')" title="Click for full size">';
   }
 
   function schoolCardHtml(school) {
@@ -167,24 +184,39 @@
     + '</div>';
   }
 
+  const tabsEl = document.getElementById("helm-class-tabs");
   const selectEl = document.getElementById("helm-class-select");
   const contentEl = document.getElementById("helm-content");
 
+  tabsEl.innerHTML = CLASS_ORDER.map(cls =>
+    '<button type="button" class="helm-class-tab" data-cls="' + cls + '">Class ' + cls + '</button>'
+  ).join("");
   selectEl.innerHTML = CLASS_ORDER.map(cls =>
     '<option value="' + cls + '">Class ' + cls + '</option>'
   ).join("");
 
   // Renders only the picked classification's cards — the other 8 classes'
   // logos and helmet renders never load at all until you pick them,
-  // instead of all 331 schools' images loading on page open.
+  // instead of all 331 schools' images loading on page open. Tabs are for
+  // wider screens; on a phone the classnav becomes the dropdown instead
+  // (see the max-width: 700px rule above), so both stay in sync here.
   function renderClass(cls) {
     const schools = CLASSES[cls].slice().sort((a, b) => a.localeCompare(b));
     contentEl.innerHTML = '<h2 class="helm-section-title">Class ' + cls + '</h2>'
+      + '<p class="helm-section-sub">Click on helmet for full size</p>'
       + schools.map(schoolCardHtml).join("");
+    tabsEl.querySelectorAll(".helm-class-tab").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.cls === cls);
+    });
+    selectEl.value = cls;
   }
 
+  tabsEl.addEventListener("click", e => {
+    const btn = e.target.closest(".helm-class-tab");
+    if (btn) renderClass(btn.dataset.cls);
+  });
   selectEl.addEventListener("change", () => renderClass(selectEl.value));
-  renderClass(selectEl.value);
+  renderClass(CLASS_ORDER[0]);
 })();
 </script>
 </body>
