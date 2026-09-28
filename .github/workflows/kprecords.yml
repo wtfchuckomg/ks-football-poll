@@ -1,10 +1,13 @@
 # Overall records from KPreps' district standings for the live week, into kprecords.json.
-# Runs every three hours Saturday through Monday, after Friday's games, until that week is released.
+# Runs Monday at 6 a.m. in Kansas, after voting locks at midnight Sunday, unless the week is already released.
 name: KPreps records
 
 on:
   schedule:
-    - cron: '0 */3 * * 6,0,1'
+    # 6 a.m. in Kansas is 11:00 UTC in summer (CDT) and 12:00 in winter (CST). Both are listed; the first
+    # step lets through only the one that is 6 a.m. in Kansas.
+    - cron: '0 11 * * 1'
+    - cron: '0 12 * * 1'
   workflow_dispatch:
     inputs:
       force:
@@ -24,10 +27,17 @@ jobs:
   records:
     runs-on: ubuntu-latest
     steps:
+      - name: Is it 6 a.m. in Kansas?
+        id: when
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ] || [ "$(TZ=America/Chicago date +%H)" = "06" ]; then echo "go=1" >> "$GITHUB_OUTPUT"; else echo "Not 6 a.m. in Kansas; the other run has it."; fi
       - uses: actions/checkout@v4
+        if: steps.when.outputs.go == '1'
       - name: Read records from KPreps
+        if: steps.when.outputs.go == '1'
         run: python3 .github/kp_records.py ${{ inputs.force && '--force' || '' }}
       - name: Save and publish any changes
+        if: steps.when.outputs.go == '1'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
