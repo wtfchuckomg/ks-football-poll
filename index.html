@@ -1282,10 +1282,10 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     renderAdminPicksTable(data);
     await renderVoterRosterStatus(data);
 
-    const canSeeResults = !!auth.currentUser || !!state.completed[state.cls];
+    const canSeeResults = !!auth.currentUser || await getReleaseStatus(state.week);
     if (!canSeeResults) {
       countEl.textContent = "";
-      standingsEl.innerHTML = '<p class="ksfp-empty">Standings for ' + state.cls + ' will show once you submit your ballot for this class.</p>';
+      standingsEl.innerHTML = '<p class="ksfp-empty">Standings will be posted when the ' + state.week + ' rankings are released.</p>';
       await maybePrefillFromEmail(data);
       return;
     }
