@@ -645,6 +645,23 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     return data.schools || {};
   }
 
+  // kprecords.json is written by .github/kp_records.py from KPreps; a record typed in the admin panel wins.
+  let kpRecordsPromise = null;
+  function getKpRecords() {
+    if (!kpRecordsPromise) {
+      kpRecordsPromise = fetch("kprecords.json", { cache: "no-cache" })
+        .then(r => r.ok ? r.json() : {})
+        .catch(() => ({}));
+    }
+    return kpRecordsPromise;
+  }
+
+  async function getDisplayRecords(week, cls) {
+    const [typed, kp] = await Promise.all([getRecords(week, cls), getKpRecords()]);
+    const fromKp = (kp.weeks && kp.weeks[week] && kp.weeks[week][cls]) || {};
+    return Object.assign({}, fromKp, typed);
+  }
+
   async function saveRecords(week, cls, obj) {
     const existing = await getRecordsDoc(week, cls);
     await withTimeout(setDoc(doc(db, "records", pollId(week, cls)), { schools: obj, lastSeason: existing.lastSeason || {} }));
@@ -990,7 +1007,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     const prevWeek = weekIdx > 0 ? weeks[weekIdx - 1] : null;
     const [{ rows, ballotCount }, records, lastSeason, prevResult] = await Promise.all([
       computeStandingsRows(week, cls),
-      getRecords(week, cls),
+      getDisplayRecords(week, cls),
       prevWeek ? Promise.resolve({}) : getLastSeason(week, cls),
       prevWeek ? computeStandingsRows(prevWeek, cls) : Promise.resolve(null)
     ]);

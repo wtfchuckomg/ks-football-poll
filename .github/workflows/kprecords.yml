@@ -1,0 +1,39 @@
+# Overall records from KPreps' district standings for the live week, into kprecords.json.
+# Runs every three hours Saturday through Monday, after Friday's games, until that week is released.
+name: KPreps records
+
+on:
+  schedule:
+    - cron: '0 */3 * * 6,0,1'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Fill the live week even if it has already been released
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: kprecords
+  cancel-in-progress: false
+
+jobs:
+  records:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read records from KPreps
+        run: python3 .github/kp_records.py ${{ inputs.force && '--force' || '' }}
+      - name: Save and publish any changes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add kprecords.json
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git -c user.name="KPreps records" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "KPreps records for the live week"
+          git pull -q --rebase && git push -q
+          curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" > /dev/null || true
