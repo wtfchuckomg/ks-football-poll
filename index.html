@@ -753,10 +753,21 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     return getCurrentWeek();
   }
 
+  // Tries twice, then throws, so a failed read is never mistaken for "not released".
+  async function fetchReleaseStatus(week) {
+    for (let attempt = 0; ; attempt++) {
+      try {
+        const snap = await withTimeout(getDoc(doc(db, "releases", week)));
+        return !!(snap.exists() && snap.data().released);
+      } catch (e) {
+        if (attempt >= 1) throw e;
+      }
+    }
+  }
+
   async function getReleaseStatus(week) {
     try {
-      const snap = await withTimeout(getDoc(doc(db, "releases", week)));
-      return !!(snap.exists() && snap.data().released);
+      return await fetchReleaseStatus(week);
     } catch (e) {
       return false;
     }
@@ -1088,7 +1099,14 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   }
 
   async function showPublicWeek() {
-    const released = await getReleaseStatus(state.publicWeek);
+    let released;
+    try {
+      released = await fetchReleaseStatus(state.publicWeek);
+    } catch (e) {
+      publicMsgEl.textContent = "Couldn't load " + state.publicWeek + " right now. Refresh the page to try again.";
+      publicCardEl.style.display = "none";
+      return;
+    }
     const isAdmin = !!auth.currentUser;
     document.getElementById("ksfp-public-title").textContent = state.publicWeek;
     if (!released && !isAdmin) {
