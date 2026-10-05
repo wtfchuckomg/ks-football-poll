@@ -313,7 +313,7 @@
 
   <div id="ksfp-vote-view" style="display:none;">
     <div class="ksfp-tabs" id="ksfp-tabs"></div>
-    <p class="ksfp-progress" id="ksfp-progress">Enter your email to track progress across classes.</p>
+    <p class="ksfp-progress" id="ksfp-progress">Vote in all 9 classes — your ballot only counts once every class is in.</p>
 
     <div class="ksfp-grid" id="ksfp-vote-grid">
       <div class="ksfp-card">
@@ -556,10 +556,12 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
 
   async function saveBallotEntry(week, cls, emailHash, rankings, name) {
     await withTimeout(setDoc(doc(db, "polls", pollId(week, cls), "entries", emailHash), { rankings, ts: Date.now(), name }));
+    countedVotersCache.delete(week);
   }
 
   async function deleteBallotEntry(week, cls, emailHash) {
     await withTimeout(deleteDoc(doc(db, "polls", pollId(week, cls), "entries", emailHash)));
+    countedVotersCache.delete(week);
   }
 
   async function saveVoterContact(week, emailHash, email) {
@@ -629,6 +631,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     const overrides = { weeks };
     if (settings.currentWeek === oldWeek) overrides.currentWeek = newWeek;
     await updateSettings(overrides);
+    countedVotersCache.clear();
   }
 
   async function getRecordsDoc(week, cls) {
@@ -811,12 +814,12 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     });
 
     if (Object.keys(state.completed).length === 0) {
-      progressEl.textContent = "Enter your email to track progress across classes.";
+      progressEl.textContent = "Vote in all 9 classes — your ballot only counts once every class is in.";
     } else {
       const doneCount = CLASS_ORDER.filter(c => state.completed[c]).length;
       progressEl.textContent = doneCount >= CLASS_ORDER.length
         ? "All 9 classes complete — thanks for voting in every classification."
-        : doneCount + " of " + CLASS_ORDER.length + " classes completed.";
+        : doneCount + " of " + CLASS_ORDER.length + " classes completed. Your ballot counts once all " + CLASS_ORDER.length + " are in.";
     }
   }
 
@@ -901,10 +904,31 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     return state.publicCls === "ALL" ? loadAllPublicStandings() : loadPublicStandings();
   }
 
+  // From this week on, a voter's ballots count only once they've submitted every class. Earlier weeks
+  // were already released counting partial ballots, so they're left as they were.
+  const ALL_CLASSES_REQUIRED_FROM = "Week 6";
+  const countedVotersCache = new Map();
+
+  // The voters whose ballots count for a week, or null when every ballot counts.
+  async function countedVoterKeys(week) {
+    const weeks = await getWeeksList();
+    const from = weeks.indexOf(ALL_CLASSES_REQUIRED_FROM);
+    if (from === -1 || weeks.indexOf(week) < from) return null;
+    if (!countedVotersCache.has(week)) {
+      const p = Promise.all(CLASS_ORDER.map(c => loadPollEntries(week, c))).then(all => {
+        const [first, ...rest] = all.map(d => Object.keys(d));
+        return new Set(first.filter(k => rest.every(keys => keys.includes(k))));
+      });
+      p.catch(() => countedVotersCache.delete(week));
+      countedVotersCache.set(week, p);
+    }
+    return countedVotersCache.get(week);
+  }
+
   async function computeStandingsRows(week, cls) {
-    const data = await loadPollEntries(week, cls);
+    const [data, counted] = await Promise.all([loadPollEntries(week, cls), countedVoterKeys(week)]);
     const rankCount = rankCountFor(cls);
-    const voterKeys = Object.keys(data);
+    const voterKeys = Object.keys(data).filter(k => !counted || counted.has(k));
     const points = {};
     const firstPlace = {};
     voterKeys.forEach(key => {
@@ -1167,6 +1191,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
 
   let adminPicksData = {};
   let adminEditingKey = null;
+  let adminCountedKeys = null;
 
   function renderAdminPicksTable(data) {
     if (!auth.currentUser) {
@@ -1193,7 +1218,9 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
         if (!entry || !Array.isArray(entry.rankings)) return;
         const name = entry.name || "(unnamed)";
         const safeKey = key.replace(/"/g,'&quot;');
-        html += '<tr data-row-key="' + safeKey + '"><td class="ksfp-team">' + name + '</td>';
+        const notCounted = adminCountedKeys && !adminCountedKeys.has(key)
+          ? '<div style="font-size:11px; color:var(--red); font-weight:normal;">Not counted — hasn\'t finished all 9 classes</div>' : '';
+        html += '<tr data-row-key="' + safeKey + '"><td class="ksfp-team">' + name + notCounted + '</td>';
         if (key === adminEditingKey) {
           for (let i = 0; i < rankCount; i++) {
             const cur = entry.rankings[i] || "";
@@ -1270,8 +1297,8 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
 
     const btn = e.target.closest("[data-remove-key]");
     if (!btn) return;
-    const row = btn.closest("tr");
-    const voterName = row ? row.querySelector(".ksfp-team").textContent : "this voter";
+    const removing = adminPicksData[btn.dataset.removeKey];
+    const voterName = (removing && removing.name) || "this voter";
     const confirmed = window.confirm('Remove ' + voterName + '\'s ' + state.cls + ' ballot for ' + state.week + '? This cannot be undone.');
     if (!confirmed) return;
     btn.disabled = true;
@@ -1295,7 +1322,10 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       standingsEl.innerHTML = '<p class="ksfp-empty">Could not load standings. Check your connection or Firebase setup.</p>';
       return;
     }
-    const voterKeys = Object.keys(data);
+    let counted = null;
+    try { counted = await countedVoterKeys(state.week); } catch (e) { counted = null; }
+    const voterKeys = Object.keys(data).filter(k => !counted || counted.has(k));
+    adminCountedKeys = counted;
     renderAdminPicksTable(data);
     await renderVoterRosterStatus(data);
 
@@ -1417,7 +1447,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       msgEl.innerHTML = "";
       const recordedText = justFinishedEverything
         ? "Your " + state.cls + " ballot has been recorded — that's all 9 classes! " + (emailedRecap ? "A copy of your picks has been emailed to you." : "")
-        : "Your " + state.cls + " ballot has been recorded.";
+        : "Your " + state.cls + " ballot has been saved. Finish all " + CLASS_ORDER.length + " classes for your ballot to count.";
       msgEl.appendChild(document.createTextNode(recordedText));
       if (nextCls) {
         const nextBtn = document.createElement("button");
