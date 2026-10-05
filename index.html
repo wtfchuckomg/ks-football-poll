@@ -904,16 +904,10 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     return state.publicCls === "ALL" ? loadAllPublicStandings() : loadPublicStandings();
   }
 
-  // From this week on, a voter's ballots count only once they've submitted every class. Earlier weeks
-  // were already released counting partial ballots, so they're left as they were.
-  const ALL_CLASSES_REQUIRED_FROM = "Week 6";
+  // A voter's ballots count only once they've submitted every class.
   const countedVotersCache = new Map();
 
-  // The voters whose ballots count for a week, or null when every ballot counts.
   async function countedVoterKeys(week) {
-    const weeks = await getWeeksList();
-    const from = weeks.indexOf(ALL_CLASSES_REQUIRED_FROM);
-    if (from === -1 || weeks.indexOf(week) < from) return null;
     if (!countedVotersCache.has(week)) {
       const p = Promise.all(CLASS_ORDER.map(c => loadPollEntries(week, c))).then(all => {
         const [first, ...rest] = all.map(d => Object.keys(d));
