@@ -539,7 +539,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   // against an unreachable/misconfigured project instead of rejecting —
   // wrap every call so a bad network or bad firebaseConfig fails fast
   // and visibly instead of hanging the page indefinitely.
-  const NETWORK_TIMEOUT_MS = 8000;
+  const NETWORK_TIMEOUT_MS = 20000;
   function withTimeout(promise) {
     return Promise.race([
       promise,
@@ -1100,6 +1100,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
 
   async function showPublicWeek() {
     let released;
+    publicMsgEl.textContent = "Loading " + state.publicWeek + "…";
     try {
       released = await fetchReleaseStatus(state.publicWeek);
     } catch (e) {
