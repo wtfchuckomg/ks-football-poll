@@ -111,6 +111,22 @@
   .ksfp-btn.ghost:hover { color: var(--chalk); border-color: var(--gold-dim); }
   .ksfp-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
+  .ksfp-modal-backdrop {
+    position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.6);
+    display: flex; align-items: center; justify-content: center; padding: 16px;
+  }
+  .ksfp-modal-backdrop[hidden] { display: none; }
+  .ksfp-modal {
+    background: var(--panel); color: var(--chalk); border-top: 4px solid var(--gold); border-radius: 8px;
+    max-width: 460px; width: 100%; padding: 22px; box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+    font-family: 'Work Sans', sans-serif;
+  }
+  .ksfp-modal h2 { font-family: 'Anton', sans-serif; font-size: 24px; letter-spacing: 0.3px; text-transform: uppercase; margin: 0 0 10px; }
+  .ksfp-modal p { font-size: 14px; line-height: 1.5; margin: 0 0 14px; }
+  .ksfp-ack-check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; font-weight: 600; margin-bottom: 16px; cursor: pointer; }
+  .ksfp-ack-check input { width: 18px; height: 18px; margin-top: 1px; flex-shrink: 0; }
+  .ksfp-modal .ksfp-btn { width: 100%; }
+  .ksfp-modal .ksfp-btn:disabled { opacity: 0.45; cursor: not-allowed; }
   .ksfp-msg { font-size: 13px; margin-top: 12px; padding: 8px 10px; border-radius: 4px; display: none; }
   .ksfp-msg.show { display: block; }
   .ksfp-msg.ok { background: rgba(26,127,55,0.08); color: var(--green); border: 1px solid var(--green); }
@@ -383,6 +399,15 @@
     </div>
   </div>
 
+</div>
+
+<div class="ksfp-modal-backdrop" id="ksfp-ack-modal" role="dialog" aria-modal="true" aria-labelledby="ksfp-ack-title" hidden>
+  <div class="ksfp-modal">
+    <h2 id="ksfp-ack-title">Before you vote</h2>
+    <p>Your ballot only counts if you complete <b>all 9 classes</b>: 6A, 5A, 4A, 3A, 2A, 1A, 8-Man I, 8-Man II and 6-Man. If you leave any class unfinished, none of your picks will be counted.</p>
+    <label class="ksfp-ack-check"><input type="checkbox" id="ksfp-ack-checkbox" /> I understand my ballot won't be counted unless I finish all 9 classes.</label>
+    <button type="button" class="ksfp-btn primary" id="ksfp-ack-btn" disabled>Start voting</button>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -1149,6 +1174,32 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     publicViewEl.style.display = view === "public" ? "block" : "none";
     if (view === "public") showPublicView();
   }
+
+  // Voters must acknowledge the all-9-classes rule before voting, once per week per browser.
+  const ackModalEl = document.getElementById("ksfp-ack-modal");
+  const ackCheckboxEl = document.getElementById("ksfp-ack-checkbox");
+  const ackBtnEl = document.getElementById("ksfp-ack-btn");
+  const ackKey = () => "ksfp-ack-" + state.week;
+
+  async function maybeShowBallotAck() {
+    let seen = false;
+    try { seen = localStorage.getItem(ackKey()) === "1"; } catch (e) { seen = false; }
+    if (seen) return;
+    let locked = false;
+    try { locked = await getVotingLocked(); } catch (e) { locked = false; }
+    if (locked) return;
+    ackCheckboxEl.checked = false;
+    ackBtnEl.disabled = true;
+    ackModalEl.hidden = false;
+    ackCheckboxEl.focus();
+  }
+
+  ackCheckboxEl.addEventListener("change", () => { ackBtnEl.disabled = !ackCheckboxEl.checked; });
+  ackBtnEl.addEventListener("click", () => {
+    if (!ackCheckboxEl.checked) return;
+    try { localStorage.setItem(ackKey(), "1"); } catch (e) {}
+    ackModalEl.hidden = true;
+  });
 
   async function applyVotingLockUI() {
     let locked = false;
@@ -2002,6 +2053,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       switchView("public");
     } else if (params.get("vote")) {
       switchView("vote");
+      await maybeShowBallotAck();
     } else {
       switchView("public");
     }
