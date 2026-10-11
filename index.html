@@ -125,8 +125,13 @@
   .ksfp-modal p { font-size: 14px; line-height: 1.5; margin: 0 0 14px; }
   .ksfp-ack-check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; font-weight: 600; margin-bottom: 16px; cursor: pointer; }
   .ksfp-ack-check input { width: 18px; height: 18px; margin-top: 1px; flex-shrink: 0; }
-  .ksfp-modal .ksfp-btn { width: 100%; }
-  .ksfp-modal .ksfp-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  .ksfp-ack-btn {
+    width: 100%; background: #000000; color: #ffffff; border: none; border-bottom: 4px solid var(--gold);
+    font-family: 'Anton', sans-serif; font-size: 17px; letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 11px 16px; cursor: pointer;
+  }
+  .ksfp-ack-btn:hover { background: #1a1a1a; }
+  .ksfp-ack-btn:disabled { color: #777777; border-bottom-color: #444444; background: #000000; cursor: not-allowed; }
   .ksfp-msg { font-size: 13px; margin-top: 12px; padding: 8px 10px; border-radius: 4px; display: none; }
   .ksfp-msg.show { display: block; }
   .ksfp-msg.ok { background: rgba(26,127,55,0.08); color: var(--green); border: 1px solid var(--green); }
@@ -406,7 +411,7 @@
     <h2 id="ksfp-ack-title">Before you vote</h2>
     <p>Your ballot only counts if you complete <b>all 9 classes</b>: 6A, 5A, 4A, 3A, 2A, 1A, 8-Man I, 8-Man II and 6-Man. If you leave any class unfinished, none of your picks will be counted.</p>
     <label class="ksfp-ack-check"><input type="checkbox" id="ksfp-ack-checkbox" /> I understand my ballot won't be counted unless I finish all 9 classes.</label>
-    <button type="button" class="ksfp-btn primary" id="ksfp-ack-btn" disabled>Start voting</button>
+    <button type="button" class="ksfp-ack-btn" id="ksfp-ack-btn" disabled>Start voting</button>
   </div>
 </div>
 
