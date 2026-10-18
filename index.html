@@ -808,7 +808,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   }
 
   function isUnlocked(index) {
-    return index === 0 || !!state.completed[CLASS_ORDER[index - 1]];
+    return !!auth.currentUser || index === 0 || !!state.completed[CLASS_ORDER[index - 1]];
   }
 
   async function refreshCompletionForEmail(email) {
@@ -1614,6 +1614,12 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
       await showPublicWeek();
     }
     if (state.view === "vote") {
+      const idx = CLASS_ORDER.indexOf(state.cls);
+      if (!isUnlocked(idx) && !state.completed[state.cls]) {
+        state.cls = CLASS_ORDER[0];
+        renderBallotForm();
+      }
+      renderTabs();
       await loadStandings();
     }
   });
