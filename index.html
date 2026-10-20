@@ -577,21 +577,38 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     ]);
   }
 
-  async function loadPollEntries(week, cls) {
-    const snap = await withTimeout(getDocs(collection(db, "polls", pollId(week, cls), "entries")));
-    const data = {};
-    snap.forEach(d => { data[d.id] = d.data(); });
-    return data;
+  // Firebase's free plan caps reads per day, and the standings, the all-9-classes check and the
+  // admin tables all read the same ballots, so each class is read once and reused for a minute.
+  const POLL_CACHE_MS = 60000;
+  const pollEntriesCache = new Map();
+
+  function loadPollEntries(week, cls) {
+    const key = pollId(week, cls);
+    const hit = pollEntriesCache.get(key);
+    if (hit && Date.now() - hit.at < POLL_CACHE_MS) return hit.p.then(data => Object.assign({}, data));
+    const p = withTimeout(getDocs(collection(db, "polls", key, "entries"))).then(snap => {
+      const data = {};
+      snap.forEach(d => { data[d.id] = d.data(); });
+      return data;
+    });
+    p.catch(() => pollEntriesCache.delete(key));
+    pollEntriesCache.set(key, { p, at: Date.now() });
+    return p.then(data => Object.assign({}, data));
+  }
+
+  function forgetPollEntries(week) {
+    CLASS_ORDER.forEach(cls => pollEntriesCache.delete(pollId(week, cls)));
+    countedVotersCache.delete(week);
   }
 
   async function saveBallotEntry(week, cls, emailHash, rankings, name) {
     await withTimeout(setDoc(doc(db, "polls", pollId(week, cls), "entries", emailHash), { rankings, ts: Date.now(), name }));
-    countedVotersCache.delete(week);
+    forgetPollEntries(week);
   }
 
   async function deleteBallotEntry(week, cls, emailHash) {
     await withTimeout(deleteDoc(doc(db, "polls", pollId(week, cls), "entries", emailHash)));
-    countedVotersCache.delete(week);
+    forgetPollEntries(week);
   }
 
   async function saveVoterContact(week, emailHash, email) {
@@ -662,6 +679,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     if (settings.currentWeek === oldWeek) overrides.currentWeek = newWeek;
     await updateSettings(overrides);
     countedVotersCache.clear();
+    pollEntriesCache.clear();
   }
 
   async function getRecordsDoc(week, cls) {
