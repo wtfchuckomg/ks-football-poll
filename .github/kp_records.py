@@ -3,8 +3,9 @@
 
 Reads the live week (meta/settings.currentWeek) and whether it's released from Firestore, reads
 the nine class pages at kpreps.com/kansas/districts/, and writes every school's overall record into
-kprecords.json under that week. Earlier weeks in the file are never touched, and a released week is
-left alone (pass --force to fill it anyway), so a week's records stay as they were when it went public.
+kprecords.json under that week. Earlier weeks in the file are never touched, and a released week that
+already has records is left alone (pass --force to refill it), so a week's records stay as they were
+when it went public. --week "Week 8" fills that week without reading Firestore.
 The site shows these only where no record was typed in the admin panel.
 """
 import json, re, sys, time, urllib.parse, urllib.request
@@ -95,13 +96,19 @@ def norm(s):
 
 def main():
     force = '--force' in sys.argv
-    week = fs_doc('meta/settings').get('currentWeek', {}).get('stringValue')
+    data = json.loads(OUT.read_text()) if OUT.exists() else {}
+    weeks = data.get('weeks', {})
+    # --week "Week 8" names the week directly, without reading Firestore.
+    week = sys.argv[sys.argv.index('--week') + 1] if '--week' in sys.argv else None
     if not week:
-        raise SystemExit('Could not read the live week from Firestore.')
-    released = fs_doc(f'releases/{week}').get('released', {}).get('booleanValue', False)
-    if released and not force:
-        print(f'{week} is already released; leaving its records as they are.')
-        return
+        week = fs_doc('meta/settings').get('currentWeek', {}).get('stringValue')
+        if not week:
+            raise SystemExit('Could not read the live week from Firestore.')
+        released = fs_doc(f'releases/{week}').get('released', {}).get('booleanValue', False)
+        # A released week keeps the records it went public with; one released before it was ever filled still gets filled.
+        if released and week in weeks and not force:
+            print(f'{week} is already released with records; leaving them as they are.')
+            return
 
     kp = kp_records()
     everywhere = {norm(n): rec for recs in kp.values() for n, rec in recs.items()}
@@ -118,8 +125,6 @@ def main():
                 missing.append(f'{school} ({cls})')
         week_out[cls] = got
 
-    data = json.loads(OUT.read_text()) if OUT.exists() else {}
-    weeks = data.get('weeks', {})
     if weeks.get(week) == week_out:
         print(f'{week}: no record changes.')
         return
