@@ -1,0 +1,5854 @@
+{
+ "season": 2025,
+ "source": "Chuck's 2025 rankings sheet, https://docs.google.com/spreadsheets/d/12UvneLb7_DLplr2Tyy9DYl_QSsZy42o81cR4GX3HT1Y",
+ "weeks": [
+  {
+   "label": "Week 2",
+   "date": "Wednesday, Sept. 10, 2025",
+   "classes": {
+    "6A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Manhattan",
+       "fpv": 8,
+       "record": "1-0",
+       "pts": 114,
+       "lw": "—"
+      },
+      {
+       "rank": 2,
+       "school": "Wichita Northwest",
+       "fpv": 4,
+       "record": "1-0",
+       "pts": 106,
+       "lw": "—"
+      },
+      {
+       "rank": 3,
+       "school": "Lawrence Free State",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 92,
+       "lw": "—"
+      },
+      {
+       "rank": 4,
+       "school": "BV Northwest",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 88,
+       "lw": "—"
+      },
+      {
+       "rank": 5,
+       "school": "Derby",
+       "fpv": 0,
+       "record": "0-1",
+       "pts": 71,
+       "lw": "—"
+      },
+      {
+       "rank": 6,
+       "school": "Gardner-Edgerton",
+       "fpv": 0,
+       "record": "0-1",
+       "pts": 63,
+       "lw": "—"
+      },
+      {
+       "rank": 7,
+       "school": "Wichita East",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 31,
+       "lw": "—"
+      },
+      {
+       "rank": 8,
+       "school": "Maize",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 28,
+       "lw": "—"
+      },
+      {
+       "rank": 9,
+       "school": "Junction City",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 16,
+       "lw": "—"
+      },
+      {
+       "rank": 10,
+       "school": "Shawnee Mission East",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 13,
+       "lw": "—"
+      }
+     ],
+     "receiving": "Olathe North 10, SM Northwest 10, BV West 8, Washburn Rural 5, Olathe South 5"
+    },
+    "5A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "St. Thomas Aquinas",
+       "fpv": 11,
+       "record": "1-0",
+       "pts": 119,
+       "lw": "—"
+      },
+      {
+       "rank": 2,
+       "school": "Mill Valley",
+       "fpv": 1,
+       "record": "1-0",
+       "pts": 105,
+       "lw": "—"
+      },
+      {
+       "rank": 3,
+       "school": "Hays",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 94,
+       "lw": "—"
+      },
+      {
+       "rank": 4,
+       "school": "Great Bend",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 88,
+       "lw": "—"
+      },
+      {
+       "rank": 5,
+       "school": "St. James Academy",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 74,
+       "lw": "—"
+      },
+      {
+       "rank": 6,
+       "school": "Blue Valley",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 46,
+       "lw": "—"
+      },
+      {
+       "rank": 7,
+       "school": "Hutchinson",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 43,
+       "lw": "—"
+      },
+      {
+       "rank": 8,
+       "school": "Basehor-Linwood",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 37,
+       "lw": "—"
+      },
+      {
+       "rank": 9,
+       "school": "De Soto",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 22,
+       "lw": "—"
+      },
+      {
+       "rank": 10,
+       "school": "Spring Hill",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 14,
+       "lw": "—"
+      }
+     ],
+     "receiving": "Salina Central 10, Maize South 6, Pittsburg 1"
+    },
+    "4A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Kapaun Mt. Carmel",
+       "fpv": 8,
+       "record": "1-0",
+       "pts": 115,
+       "lw": "—"
+      },
+      {
+       "rank": 2,
+       "school": "Bishop Miege",
+       "fpv": 4,
+       "record": "0-1",
+       "pts": 107,
+       "lw": "—"
+      },
+      {
+       "rank": 3,
+       "school": "Buhler",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 95,
+       "lw": "—"
+      },
+      {
+       "rank": 4,
+       "school": "Wamego",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 74,
+       "lw": "—"
+      },
+      {
+       "rank": 5,
+       "school": "Wellington",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 55,
+       "lw": "—"
+      },
+      {
+       "rank": 6,
+       "school": "Ottawa",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 54,
+       "lw": "—"
+      },
+      {
+       "rank": 7,
+       "school": "Chanute",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 43,
+       "lw": "—"
+      },
+      {
+       "rank": 8,
+       "school": "Andover Central",
+       "fpv": 0,
+       "record": "0-1",
+       "pts": 35,
+       "lw": "—"
+      },
+      {
+       "rank": 9,
+       "school": "Tonganoxie",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 30,
+       "lw": "—"
+      },
+      {
+       "rank": 10,
+       "school": "KC Piper",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 22,
+       "lw": "—"
+      }
+     ],
+     "receiving": "Mulvane 21, McPherson 3, Lansing 3, Winfield 1, Louisburg 1, Circle 1"
+    },
+    "3A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Andale",
+       "fpv": 12,
+       "record": "1-0",
+       "pts": 120,
+       "lw": "—"
+      },
+      {
+       "rank": 2,
+       "school": "Hayden",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 108,
+       "lw": "—"
+      },
+      {
+       "rank": 3,
+       "school": "Wellsville",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 85,
+       "lw": "—"
+      },
+      {
+       "rank": 4,
+       "school": "Holcomb",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 72,
+       "lw": "—"
+      },
+      {
+       "rank": 5,
+       "school": "Scott City",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 49,
+       "lw": "—"
+      },
+      {
+       "rank": 6,
+       "school": "Rock Creek",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 47,
+       "lw": "—"
+      },
+      {
+       "rank": 7,
+       "school": "Frontenac",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 37,
+       "lw": "—"
+      },
+      {
+       "rank": 8,
+       "school": "Cheney",
+       "fpv": 0,
+       "record": "0-1",
+       "pts": 34,
+       "lw": "—"
+      },
+      {
+       "rank": 9,
+       "school": "Hesston",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 30,
+       "lw": "—"
+      },
+      {
+       "rank": 10,
+       "school": "Prairie View",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 27,
+       "lw": "—"
+      }
+     ],
+     "receiving": "Collegiate 26, Clay Center 14, Neodesha 8, Holton 2, Hugoton 1"
+    },
+    "2A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Southeast of Saline",
+       "fpv": 11,
+       "record": "1-0",
+       "pts": 119,
+       "lw": "—"
+      },
+      {
+       "rank": 2,
+       "school": "Nemaha Central",
+       "fpv": 1,
+       "record": "1-0",
+       "pts": 108,
+       "lw": "—"
+      },
+      {
+       "rank": 3,
+       "school": "Osage City",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 91,
+       "lw": "—"
+      },
+      {
+       "rank": 4,
+       "school": "Beloit",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 88,
+       "lw": "—"
+      },
+      {
+       "rank": 5,
+       "school": "Garden Plain",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 57,
+       "lw": "—"
+      },
+      {
+       "rank": 6,
+       "school": "Hoisington",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 52,
+       "lw": "—"
+      },
+      {
+       "rank": 7,
+       "school": "Sabetha",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 40,
+       "lw": "—"
+      },
+      {
+       "rank": 8,
+       "school": "Council Grove",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 35,
+       "lw": "—"
+      },
+      {
+       "rank": 9,
+       "school": "Phillipsburg",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 26,
+       "lw": "—"
+      },
+      {
+       "rank": 10,
+       "school": "St. Marys",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 13,
+       "lw": "—"
+      }
+     ],
+     "receiving": "Ellsworth 11, Caney Valley 9, Silver Lake 6, Royal Valley 4, Humboldt 1"
+    },
+    "1A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Conway Springs",
+       "fpv": 11,
+       "record": "1-0",
+       "pts": 119,
+       "lw": "—"
+      },
+      {
+       "rank": 2,
+       "school": "Jackson Heights",
+       "fpv": 1,
+       "record": "1-0",
+       "pts": 102,
+       "lw": "—"
+      },
+      {
+       "rank": 3,
+       "school": "Rossville",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 90,
+       "lw": "—"
+      },
+      {
+       "rank": 4,
+       "school": "Centralia",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 83,
+       "lw": "—"
+      },
+      {
+       "rank": 5,
+       "school": "St. Mary's Colgan",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 79,
+       "lw": "—"
+      },
+      {
+       "rank": 6,
+       "school": "Sterling",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 45,
+       "lw": "—"
+      },
+      {
+       "rank": 7,
+       "school": "Moundridge",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 30,
+       "lw": "—"
+      },
+      {
+       "rank": 8,
+       "school": "Marion",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 23,
+       "lw": "—"
+      },
+      {
+       "rank": 8,
+       "school": "Inman",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 23,
+       "lw": "—"
+      },
+      {
+       "rank": 10,
+       "school": "Plainville/Natoma",
+       "fpv": 0,
+       "record": "0-1",
+       "pts": 22,
+       "lw": "—"
+      }
+     ],
+     "receiving": "Jefferson County North 14, Medicine Lodge 10, Smith Center 10, Olpe 5, Oakley 2, Valley Heights 2, Riverside 1"
+    },
+    "8-Man I": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "South Central",
+       "fpv": 9,
+       "record": "1-0",
+       "pts": 117,
+       "lw": "—"
+      },
+      {
+       "rank": 2,
+       "school": "Central Plains",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 100,
+       "lw": "—"
+      },
+      {
+       "rank": 3,
+       "school": "Wichita County",
+       "fpv": 2,
+       "record": "0-1",
+       "pts": 95,
+       "lw": "—"
+      },
+      {
+       "rank": 4,
+       "school": "Little River",
+       "fpv": 1,
+       "record": "1-0",
+       "pts": 86,
+       "lw": "—"
+      },
+      {
+       "rank": 5,
+       "school": "Lincoln",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 48,
+       "lw": "—"
+      },
+      {
+       "rank": 6,
+       "school": "Lyndon",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 36,
+       "lw": "—"
+      },
+      {
+       "rank": 7,
+       "school": "Rawlins County",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 30,
+       "lw": "—"
+      },
+      {
+       "rank": 8,
+       "school": "Ell-Saline",
+       "fpv": 0,
+       "record": "0-1",
+       "pts": 29,
+       "lw": "—"
+      },
+      {
+       "rank": 9,
+       "school": "WaKeeney-Trego",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 25,
+       "lw": "—"
+      },
+      {
+       "rank": 10,
+       "school": "Clifton-Clyde",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 23,
+       "lw": "—"
+      }
+     ],
+     "receiving": "Madison 18, Cedar Vale/Dexter 13, Sylvan-Lucas Unified 12, Kiowa County 4, Canton-Galva 4, St. Francis 4, Chase County 4, Washington County 3, Oberlin-Decature Co. 3, Sublette 2, Oswego 1"
+    },
+    "8-Man II": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Axtell",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 120,
+       "lw": "—"
+      },
+      {
+       "rank": 2,
+       "school": "Victoria",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 102,
+       "lw": "—"
+      },
+      {
+       "rank": 3,
+       "school": "Hanover",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 98,
+       "lw": "—"
+      },
+      {
+       "rank": 4,
+       "school": "Burlingame",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 76,
+       "lw": "—"
+      },
+      {
+       "rank": 5,
+       "school": "Hodgeman County",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 60,
+       "lw": "—"
+      },
+      {
+       "rank": 6,
+       "school": "Osborne",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 53,
+       "lw": "—"
+      },
+      {
+       "rank": 7,
+       "school": "Hutch Central Christian",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 47,
+       "lw": "—"
+      },
+      {
+       "rank": 8,
+       "school": "Frankfort",
+       "fpv": 0,
+       "record": "0-1",
+       "pts": 34,
+       "lw": "—"
+      },
+      {
+       "rank": 9,
+       "school": "Rural Vista",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 24,
+       "lw": "—"
+      },
+      {
+       "rank": 10,
+       "school": "Marmaton Valley",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 17,
+       "lw": "—"
+      }
+     ],
+     "receiving": "Argonia & Attica 16, Lebo 10, Waverly 3"
+    },
+    "6-Man": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Weskan",
+       "fpv": 7,
+       "record": "0-1",
+       "pts": 54,
+       "lw": "—"
+      },
+      {
+       "rank": 2,
+       "school": "Cunningham",
+       "fpv": 5,
+       "record": "1-0",
+       "pts": 51,
+       "lw": "—"
+      },
+      {
+       "rank": 3,
+       "school": "Golden Plains",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 35,
+       "lw": "—"
+      },
+      {
+       "rank": 4,
+       "school": "Tescott",
+       "fpv": 0,
+       "record": "1-0",
+       "pts": 25,
+       "lw": "—"
+      },
+      {
+       "rank": 5,
+       "school": "South Barber",
+       "fpv": 0,
+       "record": "0-1",
+       "pts": 7,
+       "lw": "—"
+      }
+     ],
+     "receiving": "Otis-Bison 4, Pawnee Heights 2, Marias Des Cygnes Valley 1, Ingalls 1"
+    }
+   }
+  },
+  {
+   "label": "Week 3",
+   "date": "Monday, Sept. 15, 2025",
+   "classes": {
+    "6A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Manhattan",
+       "fpv": 10,
+       "record": "2-0",
+       "pts": 118,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Wichita Northwest",
+       "fpv": 4,
+       "record": "2-0",
+       "pts": 108,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "BV Northwest",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 93,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Derby",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 71,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Gardner-Edgerton",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 55,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Maize",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 48,
+       "lw": "8"
+      },
+      {
+       "rank": 7,
+       "school": "Junction City",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 38,
+       "lw": "9"
+      },
+      {
+       "rank": 8,
+       "school": "Shawnee Mission East",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 37,
+       "lw": "10"
+      },
+      {
+       "rank": 9,
+       "school": "Lawrence Free State",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 36,
+       "lw": "3"
+      },
+      {
+       "rank": 10,
+       "school": "Washburn Rural",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 26,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Wichita East 10, Olathe North 9, Olathe West 7, SM Northwest 2, Topeka 2"
+    },
+    "5A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "St. Thomas Aquinas",
+       "fpv": 12,
+       "record": "2-0",
+       "pts": 120,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Hays",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 100,
+       "lw": "3"
+      },
+      {
+       "rank": 3,
+       "school": "Great Bend",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 88,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Mill Valley",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 83,
+       "lw": "2"
+      },
+      {
+       "rank": 5,
+       "school": "St. James Academy",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 64,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Hutchinson",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 62,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Basehor-Linwood",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 44,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "De Soto",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 38,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Blue Valley",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 24,
+       "lw": "6"
+      },
+      {
+       "rank": 10,
+       "school": "Spring Hill",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 17,
+       "lw": "10"
+      }
+     ],
+     "receiving": "Salina Central 12, Maize South 7, Liberal 1"
+    },
+    "4A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Kapaun Mt. Carmel",
+       "fpv": 9,
+       "record": "2-0",
+       "pts": 116,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Bishop Miege",
+       "fpv": 3,
+       "record": "1-1",
+       "pts": 105,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Buhler",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 98,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Ottawa",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 78,
+       "lw": "6"
+      },
+      {
+       "rank": 5,
+       "school": "Chanute",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 69,
+       "lw": "7"
+      },
+      {
+       "rank": 6,
+       "school": "Wamego",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 47,
+       "lw": "4"
+      },
+      {
+       "rank": 7,
+       "school": "Paola",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 32,
+       "lw": "NR"
+      },
+      {
+       "rank": 8,
+       "school": "Wellington",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 28,
+       "lw": "5"
+      },
+      {
+       "rank": 9,
+       "school": "Andover Central",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 22,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Mulvane",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 21,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Tonganoxie 12, Labette County 11, KC Piper 9, Lansing 4, McPherson 4, Eudora 3, Atchison 1"
+    },
+    "3A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Andale",
+       "fpv": 12,
+       "record": "2-0",
+       "pts": 120,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Hayden",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 108,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Wellsville",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 94,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Holcomb",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 80,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Rock Creek",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 70,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Scott City",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 59,
+       "lw": "5"
+      },
+      {
+       "rank": 7,
+       "school": "Cheney",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 32,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Wichita Collegiate",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 28,
+       "lw": "NR"
+      },
+      {
+       "rank": 9,
+       "school": "Santa Fe Trail",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 23,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Hugoton",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 14,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Hesston 8, Neodesha 8, Frontenac 7, Prairie View 4, Jefferson West 3, Smoky Valley 2"
+    },
+    "2A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Southeast of Saline",
+       "fpv": 10,
+       "record": "2-0",
+       "pts": 118,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Nemaha Central",
+       "fpv": 2,
+       "record": "2-0",
+       "pts": 108,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Osage City",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 94,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Hoisington",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 79,
+       "lw": "6"
+      },
+      {
+       "rank": 5,
+       "school": "Garden Plain",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 76,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Council Grove",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 50,
+       "lw": "8"
+      },
+      {
+       "rank": 7,
+       "school": "Sabetha",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 47,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "Beloit",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 35,
+       "lw": "4"
+      },
+      {
+       "rank": 9,
+       "school": "Caney Valley",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 21,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Ellsworth",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 19,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Russell 8, Haven 5, Phillipsburg 4, St. Marys 3, Eureka 1"
+    },
+    "1A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Jackson Heights",
+       "fpv": 8,
+       "record": "2-0",
+       "pts": 111,
+       "lw": "2"
+      },
+      {
+       "rank": 2,
+       "school": "Rossville",
+       "fpv": 4,
+       "record": "2-0",
+       "pts": 108,
+       "lw": "3"
+      },
+      {
+       "rank": 3,
+       "school": "St. Mary's Colgan",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 94,
+       "lw": "5"
+      },
+      {
+       "rank": 4,
+       "school": "Conway Springs",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 76,
+       "lw": "1"
+      },
+      {
+       "rank": 5,
+       "school": "Sterling",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 72,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Centralia",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 47,
+       "lw": "4"
+      },
+      {
+       "rank": 7,
+       "school": "Marion",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 35,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Inman",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 33,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Smith Center",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 31,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Plainville/Natoma",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 17,
+       "lw": "10"
+      }
+     ],
+     "receiving": "Jefferson Co. North 15, Moundridge 12, Valley Falls 4, Valley Heights 4, Olpe 2"
+    },
+    "8-Man I": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "South Central",
+       "fpv": 8,
+       "record": "1-0",
+       "pts": 115,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Little River",
+       "fpv": 3,
+       "record": "2-0",
+       "pts": 97,
+       "lw": "4"
+      },
+      {
+       "rank": 3,
+       "school": "Wichita County",
+       "fpv": 1,
+       "record": "1-1",
+       "pts": 94,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Central Plains",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 79,
+       "lw": "2"
+      },
+      {
+       "rank": 5,
+       "school": "Lincoln",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 69,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Lyndon",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 49,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Rawlins County",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 36,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "WaKeeney-Trego",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 35,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Ell-Saline",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 20,
+       "lw": "8"
+      },
+      {
+       "rank": 10,
+       "school": "Cedar Vale/Dexter",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 19,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Madison 18, Sylvan-Lucas Unified 6, St. Francis 5, Oberlin-Decatur Co. 4, Lakeside-Downs 3, Chase County 2, Oxford 2, Clifton-Clyde 2, Sublette 1"
+    },
+    "8-Man II": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Axtell",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 120,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Victoria",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 105,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Hanover",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 99,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Burlingame",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 80,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Hodgeman County",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 69,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Hutch Central Christian",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 60,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Marmaton Valley",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 35,
+       "lw": "10"
+      },
+      {
+       "rank": 8,
+       "school": "Osborne",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 33,
+       "lw": "6"
+      },
+      {
+       "rank": 9,
+       "school": "Rural Vista",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 18,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Wallace County",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 16,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Argonia & Attica 10, Frankfort 8, Lebo 7"
+    },
+    "6-Man": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Weskan",
+       "fpv": 6,
+       "record": "1-1",
+       "pts": 52,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Cunningham",
+       "fpv": 6,
+       "record": "2-0",
+       "pts": 51,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Tescott",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 31,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Ingalls",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 23,
+       "lw": "NR"
+      },
+      {
+       "rank": 5,
+       "school": "South Barber",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 9,
+       "lw": "5"
+      }
+     ],
+     "receiving": "Golden Plains 8, Pawnee Heights 4, Marias Des Cygens Valley 3"
+    }
+   }
+  },
+  {
+   "label": "Week 4",
+   "date": "Monday, Sept. 22, 2025",
+   "classes": {
+    "6A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Manhattan",
+       "fpv": 10,
+       "record": "3-0",
+       "pts": 118,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Wichita Northwest",
+       "fpv": 2,
+       "record": "3-0",
+       "pts": 107,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Derby",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 96,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Maize",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 78,
+       "lw": "6"
+      },
+      {
+       "rank": 5,
+       "school": "Gardner-Edgerton",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 57,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "BV Northwest",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 55,
+       "lw": "3"
+      },
+      {
+       "rank": 7,
+       "school": "Lawrence Free State",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 44,
+       "lw": "9"
+      },
+      {
+       "rank": 8,
+       "school": "Junction City",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 33,
+       "lw": "7"
+      },
+      {
+       "rank": 9,
+       "school": "Shawnee Mission Northwest",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 24,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Olathe North",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 16,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "SM East 13, Washburn Rural 11, Olathe South 8"
+    },
+    "5A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "St. Thomas Aquinas",
+       "fpv": 12,
+       "record": "3-0",
+       "pts": 120,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Great Bend",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 97,
+       "lw": "3"
+      },
+      {
+       "rank": 3,
+       "school": "Hays",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 96,
+       "lw": "2"
+      },
+      {
+       "rank": 4,
+       "school": "Mill Valley",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 94,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "St. James Academy",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 73,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Basehor-Linwood",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 44,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "De Soto",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 38,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Salina Central",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 32,
+       "lw": "NR"
+      },
+      {
+       "rank": 9,
+       "school": "Hutchinson",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 19,
+       "lw": "6"
+      },
+      {
+       "rank": 10,
+       "school": "Valley Center",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 17,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Blue Valley 15, BV North 7, Liberal 5, KC Washington 2, Maize South 1"
+    },
+    "4A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Kapaun Mt. Carmel",
+       "fpv": 7,
+       "record": "3-0",
+       "pts": 115,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Bishop Miege",
+       "fpv": 5,
+       "record": "2-1",
+       "pts": 110,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Buhler",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 87,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Ottawa",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 86,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Wamego",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 54,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Mulvane",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 41,
+       "lw": "10"
+      },
+      {
+       "rank": 7,
+       "school": "McPherson",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 40,
+       "lw": "NR"
+      },
+      {
+       "rank": 8,
+       "school": "Andover Central",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 39,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Wellington",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 29,
+       "lw": "8"
+      },
+      {
+       "rank": 10,
+       "school": "Labette County",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 23,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Chanute 16, Tonganoxie 11, Eudora 5, Paola 2, Atchison 2"
+    },
+    "3A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Andale",
+       "fpv": 12,
+       "record": "3-0",
+       "pts": 120,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Hayden",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 108,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Holcomb",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 91,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Rock Creek",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 83,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Scott City",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 75,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Cheney",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 47,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Santa Fe Trail",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 30,
+       "lw": "9"
+      },
+      {
+       "rank": 8,
+       "school": "Wichita Collegiate",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 29,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Hugoton",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 20,
+       "lw": "10"
+      },
+      {
+       "rank": 10,
+       "school": "Wellsville",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 18,
+       "lw": "3"
+      }
+     ],
+     "receiving": "Hesston 12, Frontenac 11, Chaparral 11, Prairie View 9, Pratt 3"
+    },
+    "2A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Southeast of Saline",
+       "fpv": 7,
+       "record": "3-0",
+       "pts": 115,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Nemaha Central",
+       "fpv": 5,
+       "record": "3-0",
+       "pts": 113,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Osage City",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 95,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Hoisington",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 85,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Council Grove",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 60,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Sabetha",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 54,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Garden Plain",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 50,
+       "lw": "5"
+      },
+      {
+       "rank": 8,
+       "school": "Ellsworth",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 31,
+       "lw": "10"
+      },
+      {
+       "rank": 9,
+       "school": "Haven",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 22,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Caney Valley",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 19,
+       "lw": "9"
+      }
+     ],
+     "receiving": "Douglass 8, Russell 6, St. Marys 2"
+    },
+    "1A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Jackson Heights",
+       "fpv": 9,
+       "record": "3-0",
+       "pts": 115,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "St. Mary's Colgan",
+       "fpv": 2,
+       "record": "3-0",
+       "pts": 106,
+       "lw": "3"
+      },
+      {
+       "rank": 3,
+       "school": "Sterling",
+       "fpv": 1,
+       "record": "3-0",
+       "pts": 91,
+       "lw": "5"
+      },
+      {
+       "rank": 4,
+       "school": "Rossville",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 85,
+       "lw": "2"
+      },
+      {
+       "rank": 5,
+       "school": "Marion",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 52,
+       "lw": "7"
+      },
+      {
+       "rank": 6,
+       "school": "Centralia",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 50,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Smith Center",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 45,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Jefferson County North",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 35,
+       "lw": "NR"
+      },
+      {
+       "rank": 9,
+       "school": "Inman",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 24,
+       "lw": "8"
+      },
+      {
+       "rank": 10,
+       "school": "Moundridge",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 22,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Conway Springs 14, Valley Heights 6, Riverside 6, Olpe 3, TMP 1"
+    },
+    "8-Man I": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "South Central",
+       "fpv": 8,
+       "record": "2-0",
+       "pts": 115,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Wichita County",
+       "fpv": 1,
+       "record": "2-1",
+       "pts": 105,
+       "lw": "3"
+      },
+      {
+       "rank": 3,
+       "school": "Little River",
+       "fpv": 3,
+       "record": "3-0",
+       "pts": 97,
+       "lw": "2"
+      },
+      {
+       "rank": 4,
+       "school": "Central Plains",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 82,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Lincoln",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 67,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Lyndon",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 47,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "WaKeeney-Trego",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 40,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Madison/Hamilton",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 32,
+       "lw": "NR"
+      },
+      {
+       "rank": 9,
+       "school": "Ell-Saline",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 22,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Rawlins County",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 13,
+       "lw": "7"
+      }
+     ],
+     "receiving": "Sylvan-Lucas Unified 11, St. Francis 8, Oxford 7, Cedar Vale/Dexter 7, Clifton-Clyde 5, Oberlin-Decatur Co. 2"
+    },
+    "8-Man II": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Axtell",
+       "fpv": 12,
+       "record": "3-0",
+       "pts": 120,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Victoria",
+       "fpv": 0,
+       "record": "2-0",
+       "pts": 105,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Hanover",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 96,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Hodgeman County",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 83,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Hutch Central Christian",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 72,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Burlingame",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 54,
+       "lw": "4"
+      },
+      {
+       "rank": 7,
+       "school": "Marmaton Valley",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 37,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "Wallace County",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 25,
+       "lw": "10"
+      },
+      {
+       "rank": 9,
+       "school": "Osborne",
+       "fpv": 0,
+       "record": "1-1",
+       "pts": 24,
+       "lw": "8"
+      },
+      {
+       "rank": 10,
+       "school": "Rural Vista",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 17,
+       "lw": "9"
+      }
+     ],
+     "receiving": "Frankfort 12, Argonia & Attica 8, Lebo 7"
+    },
+    "6-Man": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Weskan",
+       "fpv": 6,
+       "record": "2-1",
+       "pts": 57,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Cunningham",
+       "fpv": 6,
+       "record": "3-0",
+       "pts": 51,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Tescott",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 32,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Ingalls",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 27,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "South Barber",
+       "fpv": 0,
+       "record": "2-1",
+       "pts": 12,
+       "lw": "5"
+      }
+     ],
+     "receiving": "Otis-Bison 1"
+    }
+   }
+  },
+  {
+   "label": "Week 5",
+   "date": "Monday, Sept. 29, 2025",
+   "classes": {
+    "6A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Maize",
+       "fpv": 10,
+       "record": "4-0",
+       "pts": 118,
+       "lw": "4"
+      },
+      {
+       "rank": 2,
+       "school": "Wichita Northwest",
+       "fpv": 1,
+       "record": "3-1",
+       "pts": 102,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Junction City",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 89,
+       "lw": "8"
+      },
+      {
+       "rank": 4,
+       "school": "Manhattan",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 83,
+       "lw": "1"
+      },
+      {
+       "rank": 5,
+       "school": "Gardner-Edgerton",
+       "fpv": 1,
+       "record": "3-1",
+       "pts": 79,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Lawrence Free State",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 46,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Washburn Rural",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 45,
+       "lw": "NR"
+      },
+      {
+       "rank": 8,
+       "school": "Shawnee Mission East",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 28,
+       "lw": "NR"
+      },
+      {
+       "rank": 9,
+       "school": "Derby",
+       "fpv": 0,
+       "record": "2-2",
+       "pts": 27,
+       "lw": "3"
+      },
+      {
+       "rank": 10,
+       "school": "BV Northwest",
+       "fpv": 0,
+       "record": "2-2",
+       "pts": 18,
+       "lw": "6"
+      }
+     ],
+     "receiving": "Olathe NW 16, SM NW 2, Olathe West 1"
+    },
+    "5A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "St. Thomas Aquinas",
+       "fpv": 12,
+       "record": "4-0",
+       "pts": 120,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Great Bend",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 104,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Hays",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 95,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Mill Valley",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 89,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "St. James Academy",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 69,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Basehor-Linwood",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 58,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Salina Central",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 46,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "De Soto",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 33,
+       "lw": "7"
+      },
+      {
+       "rank": 9,
+       "school": "Hutchinson",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 25,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Blue Valley",
+       "fpv": 0,
+       "record": "1-3",
+       "pts": 8,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Liberal 6, Valley Center 2, Spring Hill 2, Maize South 1, Goddard 1, KC Washington 1"
+    },
+    "4A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Kapaun Mt. Carmel",
+       "fpv": 12,
+       "record": "4-0",
+       "pts": 120,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Bishop Miege",
+       "fpv": 0,
+       "record": "2-2",
+       "pts": 94,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Buhler",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 84,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Andover Central",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 70,
+       "lw": "8"
+      },
+      {
+       "rank": 5,
+       "school": "McPherson",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 67,
+       "lw": "7"
+      },
+      {
+       "rank": 6,
+       "school": "Mulvane",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 56,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Eudora",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 53,
+       "lw": "NR"
+      },
+      {
+       "rank": 8,
+       "school": "Ottawa",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 42,
+       "lw": "4"
+      },
+      {
+       "rank": 9,
+       "school": "Wellington",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 40,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Tonganoxie",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 21,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Wamego 9, Atchison 2, Chanute 1"
+    },
+    "3A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Andale",
+       "fpv": 12,
+       "record": "4-0",
+       "pts": 120,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Hayden",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 108,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Holcomb",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 93,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Rock Creek",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 80,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Scott City",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 74,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Cheney",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 64,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Santa Fe Trail",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 43,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "Hugoton",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 30,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Hesston",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 18,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Baldwin",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 9,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Frontenac 8, Prairie View 7, Pratt 6, Collegiate 2, Wellsville 2"
+    },
+    "2A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Southeast of Saline",
+       "fpv": 7,
+       "record": "4-0",
+       "pts": 115,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Nemaha Central",
+       "fpv": 5,
+       "record": "4-0",
+       "pts": 113,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Osage City",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 94,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Hoisington",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 84,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Council Grove",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 63,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Sabetha",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 56,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Garden Plain",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 49,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "Ellsworth",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 35,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Haven",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 28,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Russell",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 13,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Phillipsburg 3, Silver Lake 2, Caney Valley 1"
+    },
+    "1A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Jackson Heights",
+       "fpv": 9,
+       "record": "4-0",
+       "pts": 112,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "St. Mary's Colgan",
+       "fpv": 3,
+       "record": "4-0",
+       "pts": 107,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Sterling",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 96,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Rossville",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 84,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Marion",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 64,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Smith Center",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 52,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Centralia",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 50,
+       "lw": "6"
+      },
+      {
+       "rank": 8,
+       "school": "Jefferson County North",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 35,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Inman",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 28,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Moundridge",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 20,
+       "lw": "10"
+      }
+     ],
+     "receiving": "Olpe 6, Riverside 5, Thomas More Prep 2, Medicine Lodge 1"
+    },
+    "8-Man I": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "South Central",
+       "fpv": 9,
+       "record": "3-0",
+       "pts": 115,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Little River",
+       "fpv": 1,
+       "record": "4-0",
+       "pts": 106,
+       "lw": "3"
+      },
+      {
+       "rank": 3,
+       "school": "Central Plains",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 91,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "WaKeeney-Trego",
+       "fpv": 2,
+       "record": "4-0",
+       "pts": 84,
+       "lw": "7"
+      },
+      {
+       "rank": 5,
+       "school": "Lincoln",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 73,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Wichita County",
+       "fpv": 0,
+       "record": "2-2",
+       "pts": 56,
+       "lw": "2"
+      },
+      {
+       "rank": 7,
+       "school": "Lyndon",
+       "fpv": 0,
+       "record": "3-0",
+       "pts": 47,
+       "lw": "5"
+      },
+      {
+       "rank": 8,
+       "school": "Madison/Hamilton",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 38,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Ell-Saline",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 21,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Sylvan-Lucas Unified",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 13,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Hill City 7, Oberlin-Decatur Co. 4, Oxford 3, Rawlins Co. 1"
+    },
+    "8-Man II": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Axtell",
+       "fpv": 12,
+       "record": "4-0",
+       "pts": 120,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Victoria",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 104,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Hanover",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 100,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Hodgeman County",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 84,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Hutch Central Christian",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 72,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Burlingame",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 58,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Wallace County",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 40,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Rural Vista",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 37,
+       "lw": "10"
+      },
+      {
+       "rank": 9,
+       "school": "Lebo",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 17,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Attica/Argonia",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 12,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Marmaton Valley 10, Minneola 3, Osborne 2, Logan-Palco 2, Frankfort 1"
+    },
+    "6-Man": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Weskan",
+       "fpv": 11,
+       "record": "2-1",
+       "pts": 59,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Cunningham",
+       "fpv": 1,
+       "record": "3-1",
+       "pts": 42,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Ingalls",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 31,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Tescott",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 30,
+       "lw": "3"
+      },
+      {
+       "rank": 5,
+       "school": "South Barber",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 18,
+       "lw": "5"
+      }
+     ],
+     "receiving": ""
+    }
+   }
+  },
+  {
+   "label": "Week 6",
+   "date": "Monday, Oct. 6, 2025",
+   "classes": {
+    "6A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Maize",
+       "fpv": 13,
+       "record": "5-0",
+       "pts": 130,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Wichita Northwest",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 116,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Manhattan",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 99,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Junction City",
+       "fpv": 0,
+       "record": "3-2",
+       "pts": 82,
+       "lw": "3"
+      },
+      {
+       "rank": 5,
+       "school": "Lawrence Free State",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 69,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Washburn Rural",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 67,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Derby",
+       "fpv": 0,
+       "record": "3-2",
+       "pts": 38,
+       "lw": "9"
+      },
+      {
+       "rank": 8,
+       "school": "Shawnee Mission East",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 37,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Olathe Northwest",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 25,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Olathe West",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 22,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Gardner-Edgerton 16, BV NW 10, SM NW 4"
+    },
+    "5A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "St. Thomas Aquinas",
+       "fpv": 13,
+       "record": "5-0",
+       "pts": 130,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Great Bend",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 111,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Hays",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 105,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Mill Valley",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 96,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "St. James Academy",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 71,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Basehor-Linwood",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 61,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Salina Central",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 38,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "De Soto",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 34,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Liberal",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 26,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Blue Valley",
+       "fpv": 0,
+       "record": "2-3",
+       "pts": 17,
+       "lw": "10"
+      }
+     ],
+     "receiving": "Spring Hill 14, Hutch 3, Maize South 3, Valley Center 2, KC Washington 2, Leavenworth 1, Goddard 1"
+    },
+    "4A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Kapaun Mt. Carmel",
+       "fpv": 13,
+       "record": "5-0",
+       "pts": 130,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Bishop Miege",
+       "fpv": 0,
+       "record": "2-3",
+       "pts": 112,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "McPherson",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 91,
+       "lw": "5"
+      },
+      {
+       "rank": 4,
+       "school": "Eudora",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 80,
+       "lw": "7"
+      },
+      {
+       "rank": 5,
+       "school": "Mulvane",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 61,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Buhler",
+       "fpv": 0,
+       "record": "3-2",
+       "pts": 49,
+       "lw": "3"
+      },
+      {
+       "rank": 7,
+       "school": "Wellington",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 48,
+       "lw": "9"
+      },
+      {
+       "rank": 8,
+       "school": "Wamego",
+       "fpv": 0,
+       "record": "3-2",
+       "pts": 46,
+       "lw": "NR"
+      },
+      {
+       "rank": 9,
+       "school": "Tonganoxie",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 44,
+       "lw": "10"
+      },
+      {
+       "rank": 10,
+       "school": "Andover Central",
+       "fpv": 0,
+       "record": "3-2",
+       "pts": 40,
+       "lw": "4"
+      }
+     ],
+     "receiving": "Labette Co. 8, Chanute 3, Ottawa 3"
+    },
+    "3A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Andale",
+       "fpv": 13,
+       "record": "5-0",
+       "pts": 130,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Hayden",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 117,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Holcomb",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 98,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Rock Creek",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 95,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Hugoton",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 76,
+       "lw": "8"
+      },
+      {
+       "rank": 6,
+       "school": "Santa Fe Trail",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 49,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Scott City",
+       "fpv": 0,
+       "record": "3-1",
+       "pts": 41,
+       "lw": "5"
+      },
+      {
+       "rank": 8,
+       "school": "Hesston",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 36,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Pratt",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 22,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Frontenac",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 17,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Cheney 15, Prairie View 13, Jefferson West 5, Holton 1"
+    },
+    "2A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Southeast of Saline",
+       "fpv": 10,
+       "record": "5-0",
+       "pts": 127,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Nemaha Central",
+       "fpv": 3,
+       "record": "5-0",
+       "pts": 120,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Osage City",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 102,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Hoisington",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 93,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Sabetha",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 76,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Garden Plain",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 64,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Silver Lake",
+       "fpv": 0,
+       "record": "3-2",
+       "pts": 32,
+       "lw": "NR"
+      },
+      {
+       "rank": 8,
+       "school": "Haven",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 27,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Council Grove",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 23,
+       "lw": "5"
+      },
+      {
+       "rank": 10,
+       "school": "St. Marys",
+       "fpv": 0,
+       "record": "3-2",
+       "pts": 12,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Caney Valley 11, Russell 8, Phillipsburg 7, Ellsworth 7, Hillsboro 3, Eureka 3"
+    },
+    "1A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Jackson Heights",
+       "fpv": 10,
+       "record": "5-0",
+       "pts": 126,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "St. Mary's Colgan",
+       "fpv": 3,
+       "record": "5-0",
+       "pts": 117,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Sterling",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 99,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Rossville",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 96,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Smith Center",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 74,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Centralia",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 61,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Jefferson County North",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 44,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Inman",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 40,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Moundridge",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 20,
+       "lw": "10"
+      },
+      {
+       "rank": 10,
+       "school": "Olpe",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 15,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Marion 14, Riverside 6, Hutch Trinity 2, Troy 1"
+    },
+    "8-Man I": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "South Central",
+       "fpv": 13,
+       "record": "4-0",
+       "pts": 130,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Little River",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 114,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Central Plains",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 93,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "WaKeeney-Trego",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 91,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Lincoln",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 74,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Lyndon",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 56,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Wichita County",
+       "fpv": 0,
+       "record": "3-2",
+       "pts": 45,
+       "lw": "6"
+      },
+      {
+       "rank": 8,
+       "school": "Madison/Hamilton",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 41,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Oxford",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 22,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Ell-Saline",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 20,
+       "lw": "9"
+      }
+     ],
+     "receiving": "Sylvan-Lucas Unified 14, Hill City 6, Cedar Vale/Dexter 5, Oberlin-Decatur Co. 4"
+    },
+    "8-Man II": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Axtell",
+       "fpv": 13,
+       "record": "5-0",
+       "pts": 130,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Victoria",
+       "fpv": 0,
+       "record": "4-0",
+       "pts": 113,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Hanover",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 108,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Hodgeman County",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 90,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Hutch Central Christian",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 79,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Burlingame",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 60,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Wallace County",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 48,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "Rural Vista",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 36,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Attica/Argonia",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 23,
+       "lw": "10"
+      },
+      {
+       "rank": 10,
+       "school": "Lebo",
+       "fpv": 0,
+       "record": "3-2",
+       "pts": 10,
+       "lw": "9"
+      }
+     ],
+     "receiving": "Marmaton Valley 8, Minneola 4, Osborne 4, Logan-Palco 2"
+    },
+    "6-Man": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Weskan",
+       "fpv": 12,
+       "record": "4-1",
+       "pts": 68,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Cunningham",
+       "fpv": 1,
+       "record": "4-1",
+       "pts": 53,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Ingalls",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 44,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Tescott",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 30,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "South Barber",
+       "fpv": 0,
+       "record": "4-1",
+       "pts": 14,
+       "lw": "5"
+      }
+     ],
+     "receiving": ""
+    }
+   }
+  },
+  {
+   "label": "Week 7",
+   "date": "Tuesday, Oct. 14, 2025",
+   "classes": {
+    "6A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Maize",
+       "fpv": 11,
+       "record": "6-0",
+       "pts": 110,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Wichita Northwest",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 96,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Junction City",
+       "fpv": 0,
+       "record": "4-2",
+       "pts": 83,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Lawrence Free State",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 67,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Washburn Rural",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 60,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Manhattan",
+       "fpv": 0,
+       "record": "4-2",
+       "pts": 48,
+       "lw": "3"
+      },
+      {
+       "rank": 7,
+       "school": "Shawnee Mission East",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 39,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Derby",
+       "fpv": 0,
+       "record": "4-2",
+       "pts": 38,
+       "lw": "7"
+      },
+      {
+       "rank": 9,
+       "school": "Olathe West",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 34,
+       "lw": "10"
+      },
+      {
+       "rank": 10,
+       "school": "Olathe Northwest",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 20,
+       "lw": "9"
+      }
+     ],
+     "receiving": "Olathe East 6, Gardner-Edgerton 1"
+    },
+    "5A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "St. Thomas Aquinas",
+       "fpv": 10,
+       "record": "5-1",
+       "pts": 108,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Great Bend",
+       "fpv": 1,
+       "record": "6-0",
+       "pts": 97,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Hays",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 92,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "St. James Academy",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 72,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Mill Valley",
+       "fpv": 0,
+       "record": "4-2",
+       "pts": 62,
+       "lw": "4"
+      },
+      {
+       "rank": 6,
+       "school": "Basehor-Linwood",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 53,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Salina Central",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 43,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "Blue Valley",
+       "fpv": 0,
+       "record": "3-3",
+       "pts": 20,
+       "lw": "10"
+      },
+      {
+       "rank": 9,
+       "school": "Spring Hill",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 18,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Leavenworth",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 10,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "De Soto 9, Andover 8, KC Washington 6, Hutchinson 4, Valley Center 2, Maize South 1"
+    },
+    "4A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Kapaun Mt. Carmel",
+       "fpv": 11,
+       "record": "6-0",
+       "pts": 110,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Bishop Miege",
+       "fpv": 0,
+       "record": "2-4",
+       "pts": 86,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Eudora",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 78,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Mulvane",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 74,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Wellington",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 60,
+       "lw": "7"
+      },
+      {
+       "rank": 6,
+       "school": "Buhler",
+       "fpv": 0,
+       "record": "4-2",
+       "pts": 58,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Wamego",
+       "fpv": 0,
+       "record": "4-2",
+       "pts": 53,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "McPherson",
+       "fpv": 0,
+       "record": "4-2",
+       "pts": 29,
+       "lw": "3"
+      },
+      {
+       "rank": 9,
+       "school": "Labette County",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 20,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Tonganoxie",
+       "fpv": 0,
+       "record": "4-2",
+       "pts": 15,
+       "lw": "9"
+      }
+     ],
+     "receiving": "Ottawa 11, Chanute 6, Andover Central 3"
+    },
+    "3A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Andale",
+       "fpv": 11,
+       "record": "6-0",
+       "pts": 110,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Hayden",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 99,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Holcomb",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 86,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Rock Creek",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 79,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Hugoton",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 65,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Santa Fe Trail",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 49,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Hesston",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 37,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Pratt",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 31,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Cheney",
+       "fpv": 0,
+       "record": "4-2",
+       "pts": 20,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Frontenac",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 14,
+       "lw": "10"
+      }
+     ],
+     "receiving": "Prairie View 11, Scott City 4"
+    },
+    "2A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Southeast of Saline",
+       "fpv": 8,
+       "record": "6-0",
+       "pts": 107,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Nemaha Central",
+       "fpv": 3,
+       "record": "6-0",
+       "pts": 102,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Osage City",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 85,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Hoisington",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 80,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Sabetha",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 58,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Garden Plain",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 56,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Silver Lake",
+       "fpv": 0,
+       "record": "4-2",
+       "pts": 35,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "Haven",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 30,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Council Grove",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 23,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Caney Valley",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 15,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Russell 6, Eureka 4, Hillsboro 2, St. Marys 1, Ellsworth 1"
+    },
+    "1A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Jackson Heights",
+       "fpv": 8,
+       "record": "6-0",
+       "pts": 105,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "St. Mary's Colgan",
+       "fpv": 3,
+       "record": "6-0",
+       "pts": 99,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Sterling",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 86,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Rossville",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 80,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Smith Center",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 59,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Centralia",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 52,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Inman",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 45,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Jefferson County North",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 42,
+       "lw": "7"
+      },
+      {
+       "rank": 9,
+       "school": "Moundridge",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 21,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Olpe",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 11,
+       "lw": "10"
+      }
+     ],
+     "receiving": "Hutch Trinity 4, Riverside 2"
+    },
+    "8-Man I": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "South Central",
+       "fpv": 11,
+       "record": "5-0",
+       "pts": 110,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "WaKeeney-Trego",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 89,
+       "lw": "4"
+      },
+      {
+       "rank": 3,
+       "school": "Central Plains",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 87,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Lincoln",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 70,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Lyndon",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 64,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Ell-Saline",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 58,
+       "lw": "10"
+      },
+      {
+       "rank": 7,
+       "school": "Little River",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 49,
+       "lw": "2"
+      },
+      {
+       "rank": 8,
+       "school": "Wichita County",
+       "fpv": 0,
+       "record": "4-2",
+       "pts": 36,
+       "lw": "7"
+      },
+      {
+       "rank": 9,
+       "school": "Oxford",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 18,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Sylvan-Lucas Unified",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 17,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Hill City 4, Oberlin-Decatur 3, Madison 3"
+    },
+    "8-Man II": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Axtell",
+       "fpv": 11,
+       "record": "6-0",
+       "pts": 110,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Victoria",
+       "fpv": 0,
+       "record": "5-0",
+       "pts": 94,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Hanover",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 84,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Hutch Central Christian",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 73,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Hodgeman County",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 72,
+       "lw": "4"
+      },
+      {
+       "rank": 6,
+       "school": "Burlingame",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 53,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Wallace County",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 40,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "Rural Vista",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 39,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Marmaton Valley",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 22,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Logan-Palco",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 9,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Osborne 7, Argonia & Attica 2"
+    },
+    "6-Man": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Weskan",
+       "fpv": 10,
+       "record": "5-1",
+       "pts": 54,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Cunningham",
+       "fpv": 1,
+       "record": "5-1",
+       "pts": 45,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "South Barber",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 32,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Tescott",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 19,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Ingalls",
+       "fpv": 0,
+       "record": "5-1",
+       "pts": 15,
+       "lw": "5"
+      }
+     ],
+     "receiving": ""
+    }
+   }
+  },
+  {
+   "label": "Week 8",
+   "date": "Monday, Oct. 20, 2025",
+   "classes": {
+    "6A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Maize",
+       "fpv": 14,
+       "record": "7-0",
+       "pts": 140,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Wichita Northwest",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 125,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Junction City",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 108,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Olathe West",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 91,
+       "lw": "9"
+      },
+      {
+       "rank": 5,
+       "school": "Manhattan",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 79,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Derby",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 70,
+       "lw": "8"
+      },
+      {
+       "rank": 7,
+       "school": "Washburn Rural",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 40,
+       "lw": "5"
+      },
+      {
+       "rank": 8,
+       "school": "Lawrence Free State",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 36,
+       "lw": "4"
+      },
+      {
+       "rank": 9,
+       "school": "Shawnee Mission East",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 31,
+       "lw": "7"
+      },
+      {
+       "rank": 10,
+       "school": "Gardner-Edgerton",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 28,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Olathe NW 14, SM NW 4, Olathe East 3, Olathe North 1"
+    },
+    "5A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "St. Thomas Aquinas",
+       "fpv": 12,
+       "record": "6-1",
+       "pts": 138,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Great Bend",
+       "fpv": 2,
+       "record": "7-0",
+       "pts": 128,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "St. James Academy",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 110,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Mill Valley",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 95,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Hays",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 84,
+       "lw": "3"
+      },
+      {
+       "rank": 6,
+       "school": "Basehor-Linwood",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 75,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Blue Valley",
+       "fpv": 0,
+       "record": "4-3",
+       "pts": 32,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Spring Hill",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 31,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Andover",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 27,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Leavenworth",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 15,
+       "lw": "10"
+      }
+     ],
+     "receiving": "De Soto 14, Hutchinson 11, Salina Central 11, KC Washington 6, Goddard 6, Liberal 3, Maize South 1"
+    },
+    "4A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Kapaun Mt. Carmel",
+       "fpv": 13,
+       "record": "6-1",
+       "pts": 138,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Bishop Miege",
+       "fpv": 0,
+       "record": "2-5",
+       "pts": 111,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Eudora",
+       "fpv": 1,
+       "record": "6-1",
+       "pts": 110,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Mulvane",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 92,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Wamego",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 90,
+       "lw": "7"
+      },
+      {
+       "rank": 6,
+       "school": "Buhler",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 78,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Andover Central",
+       "fpv": 0,
+       "record": "4-3",
+       "pts": 30,
+       "lw": "NR"
+      },
+      {
+       "rank": 8,
+       "school": "Tonganoxie",
+       "fpv": 0,
+       "record": "4-3",
+       "pts": 28,
+       "lw": "10"
+      },
+      {
+       "rank": 9,
+       "school": "Abilene",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 24,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Rose Hill",
+       "fpv": 0,
+       "record": "4-3",
+       "pts": 16,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Ottawa 15, Labette County 12, McPherson 9, Wellington 9, Chanute 6, Paola 1"
+    },
+    "3A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Andale",
+       "fpv": 14,
+       "record": "7-0",
+       "pts": 140,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Hayden",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 126,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Holcomb",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 109,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Rock Creek",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 101,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Santa Fe Trail",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 78,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Hugoton",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 61,
+       "lw": "5"
+      },
+      {
+       "rank": 7,
+       "school": "Pratt",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 47,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Cheney",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 39,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Frontenac",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 27,
+       "lw": "10"
+      },
+      {
+       "rank": 10,
+       "school": "Prairie View",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 18,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Jefferson West 9, Chapparal 7, Scott City 6, Hesston 2"
+    },
+    "2A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Southeast of Saline",
+       "fpv": 9,
+       "record": "7-0",
+       "pts": 135,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Nemaha Central",
+       "fpv": 5,
+       "record": "7-0",
+       "pts": 131,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Hoisington",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 112,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Sabetha",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 84,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Garden Plain",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 70,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Silver Lake",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 68,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Osage City",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 61,
+       "lw": "3"
+      },
+      {
+       "rank": 8,
+       "school": "Caney Valley",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 39,
+       "lw": "10"
+      },
+      {
+       "rank": 9,
+       "school": "Council Grove",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 27,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Eureka",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 10,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Russell 8, Hillsboro 8, Haven 6, Beloit 4, Phillipsburg 4, Ellsworth 3"
+    },
+    "1A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Jackson Heights",
+       "fpv": 10,
+       "record": "7-0",
+       "pts": 132,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "St. Mary's Colgan",
+       "fpv": 3,
+       "record": "7-0",
+       "pts": 123,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Sterling",
+       "fpv": 1,
+       "record": "7-0",
+       "pts": 111,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Rossville",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 105,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Smith Center",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 81,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Centralia",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 65,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Inman",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 51,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Jefferson County North",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 47,
+       "lw": "7"
+      },
+      {
+       "rank": 9,
+       "school": "Moundridge",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 28,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Hutch Trinity",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 15,
+       "lw": "10"
+      }
+     ],
+     "receiving": "Olpe 6, Riverside 3, Marion 2, Thomas More Prep 1"
+    },
+    "8-Man I": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "South Central",
+       "fpv": 13,
+       "record": "6-0",
+       "pts": 136,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "WaKeeney-Trego",
+       "fpv": 1,
+       "record": "7-0",
+       "pts": 120,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Lincoln",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 101,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Ell-Saline",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 89,
+       "lw": "6"
+      },
+      {
+       "rank": 5,
+       "school": "Lyndon",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 88,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Little River",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 67,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Wichita County",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 43,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Central Plains",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 40,
+       "lw": "3"
+      },
+      {
+       "rank": 9,
+       "school": "Oxford",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 35,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Cedar Vale/Dexter",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 17,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Madison 14, Hill City 11, Sylvan-Lucas Unified 4, Decature Co. 2, Clifton-Clyde 2"
+    },
+    "8-Man II": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Hanover",
+       "fpv": 14,
+       "record": "7-0",
+       "pts": 140,
+       "lw": "3"
+      },
+      {
+       "rank": 2,
+       "school": "Axtell",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 119,
+       "lw": "1"
+      },
+      {
+       "rank": 3,
+       "school": "Victoria",
+       "fpv": 0,
+       "record": "6-0",
+       "pts": 117,
+       "lw": "2"
+      },
+      {
+       "rank": 4,
+       "school": "Hodgeman County",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 92,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Hutch Central Christian",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 90,
+       "lw": "4"
+      },
+      {
+       "rank": 6,
+       "school": "Wallace County",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 56,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Rural Vista",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 52,
+       "lw": "8"
+      },
+      {
+       "rank": 8,
+       "school": "Marmaton Valley",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 37,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Burlingame",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 35,
+       "lw": "6"
+      },
+      {
+       "rank": 10,
+       "school": "Linn",
+       "fpv": 0,
+       "record": "5-2",
+       "pts": 12,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Logan-Palco 10, Minneola 7, Osborne 1, Frankfort 1, Attica & Argonia 1"
+    },
+    "6-Man": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Weskan",
+       "fpv": 13,
+       "record": "6-1",
+       "pts": 69,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Cunningham",
+       "fpv": 1,
+       "record": "6-1",
+       "pts": 57,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "South Barber",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 41,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Ingalls",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 22,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Tescott",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 21,
+       "lw": "4"
+      }
+     ],
+     "receiving": ""
+    }
+   }
+  },
+  {
+   "label": "Final",
+   "date": "Tuesday, Oct. 28, 2025",
+   "classes": {
+    "6A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Maize",
+       "fpv": 14,
+       "record": "8-0",
+       "pts": 140,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Wichita Northwest",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 126,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Olathe West",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 101,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Junction City",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 91,
+       "lw": "3"
+      },
+      {
+       "rank": 5,
+       "school": "Manhattan",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 88,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Gardner-Edgerton",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 62,
+       "lw": "10"
+      },
+      {
+       "rank": 7,
+       "school": "Shawnee Mission Northwest",
+       "fpv": 0,
+       "record": "5-3",
+       "pts": 46,
+       "lw": "NR"
+      },
+      {
+       "rank": 8,
+       "school": "Derby",
+       "fpv": 0,
+       "record": "5-3",
+       "pts": 35,
+       "lw": "6"
+      },
+      {
+       "rank": 9,
+       "school": "Olathe Northwest",
+       "fpv": 0,
+       "record": "5-3",
+       "pts": 29,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Washburn Rural",
+       "fpv": 0,
+       "record": "5-3",
+       "pts": 19,
+       "lw": "7"
+      }
+     ],
+     "receiving": "SM East 15, Wichita SE 10, Free State 2, BV Northwest 1"
+    },
+    "5A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "St. Thomas Aquinas",
+       "fpv": 14,
+       "record": "7-1",
+       "pts": 140,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Great Bend",
+       "fpv": 0,
+       "record": "8-0",
+       "pts": 126,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "St. James Academy",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 108,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Mill Valley",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 91,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Hays",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 84,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Basehor-Linwood",
+       "fpv": 0,
+       "record": "8-0",
+       "pts": 67,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Andover",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 38,
+       "lw": "9"
+      },
+      {
+       "rank": 8,
+       "school": "Spring Hill",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 35,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Blue Valley",
+       "fpv": 0,
+       "record": "4-4",
+       "pts": 28,
+       "lw": "7"
+      },
+      {
+       "rank": 10,
+       "school": "Leavenworth",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 15,
+       "lw": "10"
+      }
+     ],
+     "receiving": "Salina Central 14, De Soto 11, Hutch 10, Liberal 2, Bishop Carroll 1"
+    },
+    "4A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Kapaun Mt. Carmel",
+       "fpv": 12,
+       "record": "7-1",
+       "pts": 138,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Eudora",
+       "fpv": 2,
+       "record": "7-1",
+       "pts": 120,
+       "lw": "3"
+      },
+      {
+       "rank": 3,
+       "school": "Mulvane",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 99,
+       "lw": "4"
+      },
+      {
+       "rank": 4,
+       "school": "Wamego",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 94,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Bishop Miege",
+       "fpv": 0,
+       "record": "3-5",
+       "pts": 90,
+       "lw": "2"
+      },
+      {
+       "rank": 6,
+       "school": "Rose Hill",
+       "fpv": 0,
+       "record": "5-3",
+       "pts": 44,
+       "lw": "10"
+      },
+      {
+       "rank": 7,
+       "school": "Ottawa",
+       "fpv": 0,
+       "record": "5-3",
+       "pts": 39,
+       "lw": "NR"
+      },
+      {
+       "rank": 8,
+       "school": "Wellington",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 31,
+       "lw": "NR"
+      },
+      {
+       "rank": 9,
+       "school": "McPherson",
+       "fpv": 0,
+       "record": "5-3",
+       "pts": 29,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Buhler",
+       "fpv": 0,
+       "record": "5-3",
+       "pts": 26,
+       "lw": "6"
+      }
+     ],
+     "receiving": "Labette County 18, Andover Central 16, Abilene 10, Augusta 9, Tonganoxie 7"
+    },
+    "3A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Andale",
+       "fpv": 14,
+       "record": "8-0",
+       "pts": 140,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Hayden",
+       "fpv": 0,
+       "record": "8-0",
+       "pts": 126,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Holcomb",
+       "fpv": 0,
+       "record": "8-0",
+       "pts": 110,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Rock Creek",
+       "fpv": 0,
+       "record": "8-0",
+       "pts": 100,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Santa Fe Trail",
+       "fpv": 0,
+       "record": "8-0",
+       "pts": 79,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Hugoton",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 65,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Pratt",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 55,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "Frontenac",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 35,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Prairie View",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 28,
+       "lw": "10"
+      },
+      {
+       "rank": 10,
+       "school": "Cheney",
+       "fpv": 0,
+       "record": "5-3",
+       "pts": 17,
+       "lw": "8"
+      }
+     ],
+     "receiving": "Scott City 12, Chaparral 3, Hesston 2, Jefferson West 1"
+    },
+    "2A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Southeast of Saline",
+       "fpv": 10,
+       "record": "8-0",
+       "pts": 136,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Nemaha Central",
+       "fpv": 4,
+       "record": "8-0",
+       "pts": 130,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Hoisington",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 112,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Sabetha",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 84,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Garden Plain",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 74,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Silver Lake",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 72,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Osage City",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 62,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "Caney Valley",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 33,
+       "lw": "8"
+      },
+      {
+       "rank": 9,
+       "school": "Council Grove",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 20,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Hillsboro",
+       "fpv": 0,
+       "record": "5-3",
+       "pts": 13,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Haven 8, Beloit 8, Phillipsburg 6, Russell 6, Eureka 5, Ellsworth 1"
+    },
+    "1A": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Jackson Heights",
+       "fpv": 10,
+       "record": "8-0",
+       "pts": 132,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "St. Mary's Colgan",
+       "fpv": 3,
+       "record": "8-0",
+       "pts": 118,
+       "lw": "3"
+      },
+      {
+       "rank": 3,
+       "school": "Sterling",
+       "fpv": 1,
+       "record": "8-0",
+       "pts": 117,
+       "lw": "2"
+      },
+      {
+       "rank": 4,
+       "school": "Rossville",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 107,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Smith Center",
+       "fpv": 0,
+       "record": "8-0",
+       "pts": 82,
+       "lw": "5"
+      },
+      {
+       "rank": 6,
+       "school": "Centralia",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 69,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Inman",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 54,
+       "lw": "7"
+      },
+      {
+       "rank": 8,
+       "school": "Moundridge",
+       "fpv": 0,
+       "record": "6-1",
+       "pts": 19,
+       "lw": "9"
+      },
+      {
+       "rank": 9,
+       "school": "Republic County",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 17,
+       "lw": "NR"
+      },
+      {
+       "rank": 10,
+       "school": "Olpe",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 16,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Jeff Co. North 15, Hutch Trinity 11, Riverside 10, TMP 2, Marion 1"
+    },
+    "8-Man I": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "South Central",
+       "fpv": 11,
+       "record": "7-0",
+       "pts": 137,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "WaKeeney-Trego",
+       "fpv": 3,
+       "record": "8-0",
+       "pts": 128,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Lyndon",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 97,
+       "lw": "5"
+      },
+      {
+       "rank": 4,
+       "school": "Ell-Saline",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 96,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Little River",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 87,
+       "lw": "6"
+      },
+      {
+       "rank": 6,
+       "school": "Wichita County",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 52,
+       "lw": "7"
+      },
+      {
+       "rank": 7,
+       "school": "Hill City",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 44,
+       "lw": "NR"
+      },
+      {
+       "rank": 8,
+       "school": "Lincoln",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 38,
+       "lw": "3"
+      },
+      {
+       "rank": 9,
+       "school": "Cedar Vale/Dexter",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 21,
+       "lw": "10"
+      },
+      {
+       "rank": 10,
+       "school": "Clifton-Clyde",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 19,
+       "lw": "NR"
+      }
+     ],
+     "receiving": "Oxford 15, Madison 14, Sylvan-Lucas Unified 12, Central Plains 5, Oswego 4, Meade 1"
+    },
+    "8-Man II": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Hanover",
+       "fpv": 14,
+       "record": "8-0",
+       "pts": 140,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Axtell",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 119,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "Victoria",
+       "fpv": 0,
+       "record": "7-0",
+       "pts": 117,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Hutch Central Christian",
+       "fpv": 0,
+       "record": "8-0",
+       "pts": 92,
+       "lw": "5"
+      },
+      {
+       "rank": 5,
+       "school": "Rural Vista",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 67,
+       "lw": "7"
+      },
+      {
+       "rank": 6,
+       "school": "Wallace County",
+       "fpv": 0,
+       "record": "8-0",
+       "pts": 65,
+       "lw": "6"
+      },
+      {
+       "rank": 7,
+       "school": "Hodgeman County",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 63,
+       "lw": "4"
+      },
+      {
+       "rank": 8,
+       "school": "Marmaton Valley",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 41,
+       "lw": "5"
+      },
+      {
+       "rank": 9,
+       "school": "Burlingame",
+       "fpv": 0,
+       "record": "5-3",
+       "pts": 20,
+       "lw": "9"
+      },
+      {
+       "rank": 10,
+       "school": "Logan-Palco",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 12,
+       "lw": "10"
+      }
+     ],
+     "receiving": "Linn 10, Minneola 5, Lebo 5, Frankfort 4, Argonia & Attica 2"
+    },
+    "6-Man": {
+     "rows": [
+      {
+       "rank": 1,
+       "school": "Weskan",
+       "fpv": 13,
+       "record": "7-1",
+       "pts": 69,
+       "lw": "1"
+      },
+      {
+       "rank": 2,
+       "school": "Cunningham",
+       "fpv": 1,
+       "record": "7-1",
+       "pts": 57,
+       "lw": "2"
+      },
+      {
+       "rank": 3,
+       "school": "South Barber",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 41,
+       "lw": "3"
+      },
+      {
+       "rank": 4,
+       "school": "Ingalls",
+       "fpv": 0,
+       "record": "7-1",
+       "pts": 22,
+       "lw": "4"
+      },
+      {
+       "rank": 5,
+       "school": "Tescott",
+       "fpv": 0,
+       "record": "6-2",
+       "pts": 21,
+       "lw": "5"
+      }
+     ],
+     "receiving": ""
+    }
+   }
+  }
+ ]
+}

@@ -192,6 +192,15 @@
   }
   .ksfp-sectionnav-links a:hover { color: #ffffff; }
 
+  .ksfp-season-switch { display: flex; justify-content: center; margin-bottom: 14px; }
+  .ksfp-season-btn {
+    font-family: 'Anton', sans-serif; font-size: 14px; letter-spacing: 0.4px; padding: 6px 18px; cursor: pointer;
+    background: #ffffff; color: var(--chalk-dim); border: 1px solid var(--line); margin-left: -1px;
+  }
+  .ksfp-season-btn:first-child { border-radius: 4px 0 0 4px; margin-left: 0; }
+  .ksfp-season-btn:last-child { border-radius: 0 4px 4px 0; }
+  .ksfp-season-btn:hover:not(.active) { color: var(--chalk); }
+  .ksfp-season-btn.active { background: #000000; border-color: #000000; color: #ffffff; position: relative; }
   .ksfp-public-msg { text-align: center; color: var(--chalk-dim); font-size: 14px; padding: 30px 10px; }
 
   .ksfp-admin-link { background: transparent; border: none; border-bottom: 3px solid transparent; color: #b8b8b8; font-family: 'Anton', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; padding: 17px 0; cursor: pointer; }
@@ -393,6 +402,7 @@
   </div>
 
   <div id="ksfp-public-view" style="display:none;">
+    <div class="ksfp-season-switch" id="ksfp-public-season" role="group" aria-label="Season"></div>
     <div class="ksfp-tabs" id="ksfp-public-week-tabs"></div>
     <p class="ksfp-public-msg" id="ksfp-public-msg"></p>
     <div class="ksfp-card" id="ksfp-public-card" style="display:none;">
@@ -469,7 +479,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const DEFAULT_WEEK = "Preseason";
   function rankCountFor(cls) { return cls === "6-Man" ? 5 : 10; }
 
-  let state = { cls: "6A", email: "", completed: {}, view: "public", week: DEFAULT_WEEK, publicWeek: null, publicCls: "ALL" };
+  let state = { cls: "6A", email: "", completed: {}, view: "public", week: DEFAULT_WEEK, publicWeek: null, publicCls: "ALL", publicSeason: "2026" };
 
   const root = document.getElementById("ksfp-root");
   const headerSubEl = document.getElementById("ksfp-header-sub");
@@ -499,6 +509,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   const voteViewEl = document.getElementById("ksfp-vote-view");
   const publicViewEl = document.getElementById("ksfp-public-view");
   const publicWeekTabsEl = document.getElementById("ksfp-public-week-tabs");
+  const publicSeasonEl = document.getElementById("ksfp-public-season");
   const publicMsgEl = document.getElementById("ksfp-public-msg");
   const publicCardEl = document.getElementById("ksfp-public-card");
   const publicStandingsEl = document.getElementById("ksfp-public-standings");
@@ -1147,6 +1158,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
   }
 
   async function showPublicWeek() {
+    if (state.publicSeason !== LIVE_SEASON) return showPastSeasonWeek();
     let released;
     publicMsgEl.textContent = "Loading " + state.publicWeek + "…";
     try {
@@ -1170,7 +1182,98 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     await loadPublicStandingsForSelection();
   }
 
+  // Past seasons come from rankings<year>.json files imported from Chuck's sheets, so browsing them
+  // costs no database reads. The live season is the only one read from Firebase.
+  const LIVE_SEASON = "2026";
+  const SEASONS = ["2026", "2025", "2024"];
+  const pastSeasonCache = {};
+
+  function getPastSeason(year) {
+    if (!pastSeasonCache[year]) {
+      pastSeasonCache[year] = fetch("rankings" + year + ".json").then(r => {
+        if (!r.ok) throw new Error("Missing " + year);
+        return r.json();
+      });
+      pastSeasonCache[year].catch(() => { delete pastSeasonCache[year]; });
+    }
+    return pastSeasonCache[year];
+  }
+
+  function setHeaderSeason(year) {
+    document.querySelector(".ksfp-header h1").textContent = year + " Kansas Media Football Rankings";
+  }
+
+  function renderSeasonSwitch() {
+    publicSeasonEl.innerHTML = "";
+    SEASONS.forEach(year => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "ksfp-season-btn" + (year === state.publicSeason ? " active" : "");
+      btn.textContent = year;
+      btn.setAttribute("aria-pressed", String(year === state.publicSeason));
+      btn.addEventListener("click", () => {
+        if (year === state.publicSeason) return;
+        state.publicSeason = year;
+        state.publicWeek = null;
+        showPublicView();
+      });
+      publicSeasonEl.appendChild(btn);
+    });
+  }
+
+  function pastClassHtml(cls, entry, recordLabel) {
+    let html = '<div style="margin-bottom:28px;"><div class="ksfp-standings-head"><h2>Class ' + cls + '</h2></div>';
+    const rows = (entry && entry.rows) || [];
+    if (!rows.length) return html + '<p class="ksfp-empty">No rankings for ' + cls + '.</p></div>';
+    html += '<table class="ksfp-table"><thead><tr><th>Rk</th><th>School (1st place votes)</th><th style="text-align:right">' + recordLabel + '</th><th style="text-align:right">Points</th><th style="text-align:right">LW</th></tr></thead><tbody>';
+    rows.forEach(r => {
+      const tied = rows.filter(o => o.rank === r.rank).length > 1;
+      const name = r.school + (r.fpv > 0 ? " (" + r.fpv + ")" : "");
+      html += '<tr><td class="ksfp-rk">' + formatRank(r.rank, tied) + '</td><td class="ksfp-team">' + logoImgHtml(r.school) + name + '</td><td class="ksfp-pts">' + (r.record || "—") + '</td><td class="ksfp-pts">' + r.pts + '</td><td class="ksfp-fpv">' + (r.lw || "—") + '</td></tr>';
+    });
+    html += '</tbody></table>';
+    if (entry.receiving) html += '<p class="ksfp-receiving"><b>Receiving votes:</b> ' + entry.receiving + '</p>';
+    return html + '</div>';
+  }
+
+  async function showPastSeasonWeek() {
+    let data;
+    try {
+      data = await getPastSeason(state.publicSeason);
+    } catch (e) {
+      publicMsgEl.textContent = "Couldn't load the " + state.publicSeason + " rankings. Refresh the page to try again.";
+      publicCardEl.style.display = "none";
+      return;
+    }
+    const week = data.weeks.find(w => w.label === state.publicWeek) || data.weeks[data.weeks.length - 1];
+    const classes = state.publicCls === "ALL" ? CLASS_ORDER : [state.publicCls];
+    document.getElementById("ksfp-public-title").textContent = state.publicSeason + " " + week.label + (state.publicCls === "ALL" ? " — All Classes" : " — " + state.publicCls);
+    publicCountEl.textContent = week.date ? "Released " + week.date : "";
+    publicMsgEl.textContent = "";
+    publicCardEl.style.display = "block";
+    publicStandingsEl.innerHTML = classes.map(cls => pastClassHtml(cls, week.classes[cls], week.recordLabel || "Record")).join("");
+  }
+
   async function showPublicView() {
+    renderSeasonSwitch();
+    setHeaderSeason(state.publicSeason);
+    if (state.publicSeason !== LIVE_SEASON) {
+      publicMsgEl.textContent = "Loading " + state.publicSeason + "…";
+      publicCardEl.style.display = "none";
+      let data;
+      try {
+        data = await getPastSeason(state.publicSeason);
+      } catch (e) {
+        publicWeekTabsEl.innerHTML = "";
+        publicMsgEl.textContent = "Couldn't load the " + state.publicSeason + " rankings. Refresh the page to try again.";
+        return;
+      }
+      const labels = data.weeks.map(w => w.label);
+      if (!state.publicWeek || labels.indexOf(state.publicWeek) === -1) state.publicWeek = labels[labels.length - 1];
+      renderPublicWeekTabs(labels);
+      await showPastSeasonWeek();
+      return;
+    }
     let weeks;
     try {
       weeks = await getWeeksList();
@@ -1195,6 +1298,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     });
     voteViewEl.style.display = view === "vote" ? "block" : "none";
     publicViewEl.style.display = view === "public" ? "block" : "none";
+    if (view === "vote") setHeaderSeason(LIVE_SEASON);
     if (view === "public") showPublicView();
   }
 
@@ -2075,6 +2179,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     // still works as a direct link straight to a specific week/class.
     const params = new URLSearchParams(window.location.search);
     if (params.get("results")) {
+      if (SEASONS.indexOf(params.get("season")) !== -1) state.publicSeason = params.get("season");
       if (params.get("week")) state.publicWeek = params.get("week");
       if (params.get("class") && CLASS_ORDER.indexOf(params.get("class")) !== -1) {
         state.publicCls = params.get("class");
