@@ -465,7 +465,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
 
 (function() {
   const CLASSES = {
-    "6A": ["Wichita East","Derby","Wichita Southeast","Garden City","Wichita North","Dodge City","Manhattan","KC Wyandotte","Olathe Northwest","Washburn Rural","Olathe North","Wichita South","Wichita Heights","Olathe South","Gardner-Edgerton","Junction City","Shawnee Mission East","Olathe East","Campus","Topeka High","BV Northwest","BV West","Shawnee Mission Northwest","Lawrence Free State","Lawrence","Shawnee Mission South","Shawnee Mission West","Olathe West","Maize","Wichita Northwest","Shawnee Mission North","Mill Valley"],
+    "6A": ["Wichita East","Derby","Wichita Southeast","Garden City","Wichita North","Dodge City","Manhattan","KC Wyandotte","Olathe Northwest","Washburn Rural","Olathe North","Wichita South","Wichita Heights","Olathe South","Gardner Edgerton","Junction City","Shawnee Mission East","Olathe East","Campus","Topeka High","BV Northwest","BV West","Shawnee Mission Northwest","Lawrence Free State","Lawrence","Shawnee Mission South","Shawnee Mission West","Olathe West","Maize","Wichita Northwest","Shawnee Mission North","Mill Valley"],
     "5A": ["Blue Valley","Liberal","Blue Valley North","Wichita West","KC Washington","JC Harmon","Bishop Carroll","Leavenworth","Hutchinson","Emporia","Topeka West","Blue Valley Southwest","Spring Hill","Seaman","Maize South","KC Turner","Hays","Shawnee Heights","Valley Center","Salina South","St. James Academy","KC Piper","Andover","De Soto","Salina Central","Pittsburg","Goddard","Eisenhower","Newton","Kapaun Mt. Carmel","Basehor-Linwood","Andover Central"],
     "4A": ["Arkansas City","Lansing","KC Sumner Academy","Great Bend","Highland Park","St. Thomas Aquinas","KC Schlagle","Bonner Springs","Bishop Miege","Ottawa","Buhler","McPherson","Circle","Paola","Tonganoxie","Winfield","Eudora","Louisburg","Mulvane","Independence","Fort Scott","Augusta","Field Kindley","Rose Hill","Chanute","Wamego","El Dorado","Abilene","Wellington","Labette County","Rock Creek","Ulysses"],
     "3A": ["Baldwin","Andale","Parsons","Atchison","Concordia","Clearwater","Chapman","Hayden","Perry-Lecompton/Bishop Seabury","Pratt","Clay Center","Santa Fe Trail","Hugoton","Hesston","Holton","Frontenac","Iola","Girard","Scott City","Osawatomie","Colby","Jefferson West","Anderson County","KC Bishop Ward","Columbus","Holcomb","Nemaha Central","Prairie View","Goodland","Wichita Collegiate","Hoisington","Burlington","Hiawatha","Larned","Wichita Trinity Academy","Smoky Valley","Wellsville","Lyons","Nickerson","Cheney"],
@@ -588,6 +588,15 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     ]);
   }
 
+  // Schools whose name changed. Ballots and typed records keep the old spelling, so it's read as the new one.
+  const SCHOOL_RENAMES = { "Gardner-Edgerton": "Gardner Edgerton" };
+  const canonSchool = name => SCHOOL_RENAMES[name] || name;
+  function canonKeys(obj) {
+    const out = {};
+    Object.keys(obj || {}).forEach(k => { out[canonSchool(k)] = obj[k]; });
+    return out;
+  }
+
   // Firebase's free plan caps reads per day, and the standings, the all-9-classes check and the
   // admin tables all read the same ballots, so each class is read once and reused for a minute.
   const POLL_CACHE_MS = 60000;
@@ -599,7 +608,11 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     if (hit && Date.now() - hit.at < POLL_CACHE_MS) return hit.p.then(data => Object.assign({}, data));
     const p = withTimeout(getDocs(collection(db, "polls", key, "entries"))).then(snap => {
       const data = {};
-      snap.forEach(d => { data[d.id] = d.data(); });
+      snap.forEach(d => {
+        const entry = d.data();
+        if (Array.isArray(entry.rankings)) entry.rankings = entry.rankings.map(canonSchool);
+        data[d.id] = entry;
+      });
       return data;
     });
     p.catch(() => pollEntriesCache.delete(key));
@@ -704,7 +717,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
 
   async function getRecords(week, cls) {
     const data = await getRecordsDoc(week, cls);
-    return data.schools || {};
+    return canonKeys(data.schools);
   }
 
   // kprecords.json is written by .github/kp_records.py from KPreps; a record typed in the admin panel wins.
@@ -731,7 +744,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
 
   async function getLastSeason(week, cls) {
     const data = await getRecordsDoc(week, cls);
-    return data.lastSeason || {};
+    return canonKeys(data.lastSeason);
   }
 
   let settingsCache = null;
@@ -1022,7 +1035,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     const lowerSpaced = spaced.toLowerCase();
     // Also try the school's exact name as-is (hyphens, periods, and casing
     // preserved) — a file uploaded matching the roster name literally
-    // (e.g. "Gardner-Edgerton.png") wouldn't otherwise be tried, since the
+    // (e.g. "Basehor-Linwood.png") wouldn't otherwise be tried, since the
     // variants above normalize punctuation away.
     return Array.from(new Set([clean, dashLower, spaced, lowerSpaced]));
   }
