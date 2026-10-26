@@ -131,6 +131,11 @@
     padding: 11px 16px; cursor: pointer;
   }
   .ksfp-ack-btn:hover { background: #1a1a1a; }
+  .ksfp-leave-anyway {
+    display: block; width: 100%; margin-top: 10px; padding: 8px; background: none; border: none; cursor: pointer;
+    font-family: 'Work Sans', sans-serif; font-size: 13px; color: var(--chalk-dim); text-decoration: underline;
+  }
+  .ksfp-leave-anyway:hover { color: var(--chalk); }
   .ksfp-ack-btn:disabled { color: #777777; border-bottom-color: #444444; background: #000000; cursor: not-allowed; }
   .ksfp-msg { font-size: 13px; margin-top: 12px; padding: 8px 10px; border-radius: 4px; display: none; }
   .ksfp-msg.show { display: block; }
@@ -421,8 +426,18 @@
   <div class="ksfp-modal">
     <h2 id="ksfp-ack-title">Before you vote</h2>
     <p>Your ballot only counts if you complete <b>all 9 classes</b>: 6A, 5A, 4A, 3A, 2A, 1A, 8-Man I, 8-Man II and 6-Man. If you leave any class unfinished, none of your picks will be counted.</p>
-    <label class="ksfp-ack-check"><input type="checkbox" id="ksfp-ack-checkbox" /> I understand my ballot won't be counted unless I finish all 9 classes.</label>
+    <p><b>If you leave the site before finishing all 9 classes, your ballot won't be submitted.</b></p>
+    <label class="ksfp-ack-check"><input type="checkbox" id="ksfp-ack-checkbox" /> I understand my ballot won't be counted unless I finish all 9 classes before leaving.</label>
     <button type="button" class="ksfp-ack-btn" id="ksfp-ack-btn" disabled>Start voting</button>
+  </div>
+</div>
+
+<div class="ksfp-modal-backdrop" id="ksfp-leave-modal" role="dialog" aria-modal="true" aria-labelledby="ksfp-leave-title" hidden>
+  <div class="ksfp-modal">
+    <h2 id="ksfp-leave-title">Your ballot isn't finished</h2>
+    <p>You've done <b id="ksfp-leave-done">0</b> of 9 classes. Your ballot won't be submitted or counted unless you complete <b>all 9 classes</b>.</p>
+    <button type="button" class="ksfp-ack-btn" id="ksfp-leave-stay">Keep voting</button>
+    <button type="button" class="ksfp-leave-anyway" id="ksfp-leave-go">Leave anyway</button>
   </div>
 </div>
 
@@ -1342,6 +1357,49 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     ackModalEl.hidden = true;
   });
 
+  // A voter who has started but not finished all 9 classes gets a reminder before leaving. Clicking one of
+  // the site's own links shows our popup; closing the tab or going back can only show the browser's own box.
+  const leaveModalEl = document.getElementById("ksfp-leave-modal");
+  let leavingTo = null;
+  let allowLeave = false;
+  let votingLockedNow = false;
+
+  function unfinishedClassCount() {
+    if (state.view !== "vote" || auth.currentUser || votingLockedNow) return null;
+    const done = CLASS_ORDER.filter(c => state.completed[c]).length;
+    if (done >= CLASS_ORDER.length) return null;
+    const started = done > 0 || currentSelections().some(Boolean);
+    return started ? done : null;
+  }
+
+  window.addEventListener("beforeunload", e => {
+    if (allowLeave || unfinishedClassCount() === null) return;
+    e.preventDefault();
+    e.returnValue = "";
+  });
+
+  document.addEventListener("click", e => {
+    const link = e.target.closest("a[href]");
+    if (!link || link.target === "_blank" || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    const done = unfinishedClassCount();
+    if (done === null) return;
+    e.preventDefault();
+    leavingTo = link.href;
+    document.getElementById("ksfp-leave-done").textContent = done;
+    leaveModalEl.hidden = false;
+    document.getElementById("ksfp-leave-stay").focus();
+  });
+
+  document.getElementById("ksfp-leave-stay").addEventListener("click", () => {
+    leaveModalEl.hidden = true;
+    leavingTo = null;
+  });
+  document.getElementById("ksfp-leave-go").addEventListener("click", () => {
+    allowLeave = true;
+    leaveModalEl.hidden = true;
+    if (leavingTo) window.location.href = leavingTo;
+  });
+
   async function applyVotingLockUI() {
     let locked = false;
     try {
@@ -1351,6 +1409,7 @@ if (window.emailjs && EMAILJS_PUBLIC_KEY !== "REPLACE_ME") {
     }
     const isAdmin = !!auth.currentUser;
     const hideForVoters = locked && !isAdmin;
+    votingLockedNow = locked;
 
     // Locking only ever hides the ballot side — Public results stays
     // visible to everyone regardless of lock state (it has its own
